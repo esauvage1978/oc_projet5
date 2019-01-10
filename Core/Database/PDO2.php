@@ -10,7 +10,7 @@ namespace ES\Core\Database;
 
 use PDO;
 
-require_once '../config/bdd.php';
+require_once ESES_ROOT_PATH_FAT . 'config\\bdd.php';
 
 /**
  * Classe implémentant le singleton pour PDO
@@ -41,17 +41,9 @@ class PDO2
     {
         if (!isset(self::$_instance))
         {
-            //Debug::var_dump("Instance PDO 2");
-            try
-            {
-                self::$_instance = new PDO('mysql:host=' . ES_DB_HOST . ';dbname=' . ES_DB_NAME . ';charset=utf8', ES_DB_USERNAME, ES_DB_PASSWORD);
-                self::$_instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                self::$_instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            }
-            catch (\PDOException $e)
-            {
-                echo $e . ES_DB_HOST . " - " . ES_DB_NAME;
-            }
+            self::$_instance = new PDO('mysql:host=' . ES_DB_HOST . ';dbname=' . ES_DB_NAME . ';charset=utf8', ES_DB_USERNAME, ES_DB_PASSWORD);
+            self::$_instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            self::$_instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         }
         //Debug::var_dump("Appel PDO 2");
         return self::$_instance;

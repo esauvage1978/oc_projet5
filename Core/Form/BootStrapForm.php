@@ -7,8 +7,9 @@
  */
 
 namespace ES\Core\Form;
+
 use ES\Core\Form\Form;
-require 'Form.php';
+
 
 class BootStrapForm extends Form
 {

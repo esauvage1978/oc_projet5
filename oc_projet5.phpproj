@@ -35,7 +35,6 @@
     <Compile Include="Core\Form\BootStrapForm.php" />
     <Compile Include="Core\Form\Form.php" />
     <Compile Include="Core\Toolbox\Alert.php" />
-    <Compile Include="Core\Toolbox\Debug.php" />
     <Compile Include="Core\Render\AbstractRenderView.php" />
     <Compile Include="Public\index.php" />
   </ItemGroup>

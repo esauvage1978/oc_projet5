@@ -51,11 +51,10 @@ class AbstractRenderView
                 ));
         }
 
-        $this->title=$data['title'];
+        $this->_title=$data['title'];
         echo $this->genererFichier(
             ES_ROOT_PATH_FAT_MODULES . 'Shared\\View\\TemplateView.php',
             array(
-                'title'=>$this->_title,
                 'alert'=>$this->_alert
             )
         );
@@ -63,6 +62,20 @@ class AbstractRenderView
 
     private function genererFichier($fichier, $data)
     {
+        $strFind=array(
+            '##DIR_VENDOR##',
+            '##DIR_PUBLIC##',
+            '##INDEX##',
+            '##TITLE##'
+            );
+        $strReplace=array(
+            ES_ROOT_PATH_WEB_VENDOR,
+            ES_ROOT_PATH_WEB_PUBLIC,
+            ES_ROOT_PATH_WEB_INDEX,
+            $this->_title
+            );
+
+
         try
         {
             if (file_exists($fichier))
@@ -73,7 +86,8 @@ class AbstractRenderView
                 extract($data);
                 ob_start();
                 require $fichier;
-                return ob_get_clean();
+                $fileContent= ob_get_clean();
+                return str_replace($strFind,$strReplace, $fileContent);
             }
             throw new \Exception("Fichier ' . $fichier . ' introuvable");
         }
@@ -83,4 +97,5 @@ class AbstractRenderView
         }
 
     }
+
 }
