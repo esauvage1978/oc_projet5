@@ -10,6 +10,7 @@
     <RuntimeVersion>7.1</RuntimeVersion>
     <SpecificPageValue>Public/index.php</SpecificPageValue>
     <StartAction>SpecificPage</StartAction>
+    <Runtime>PHP</Runtime>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
@@ -18,9 +19,161 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="App\Modules\Shared\Controler\SharedControler.php" />
+    <Compile Include="App\Modules\Shared\Render\SharedRenderView.php" />
+    <Compile Include="App\Modules\Shared\View\HomeView.php" />
+    <Compile Include="App\Modules\Shared\View\TemplateView.php" />
+    <Compile Include="App\Modules\Shared\Services\Routeur.php" />
+    <Compile Include="Config\bdd.php" />
+    <Compile Include="Config\constantes.php" />
+    <Compile Include="Core\Autoloader\Autoloader.php" />
+    <Compile Include="Core\Database\AbstractManager.php" />
+    <Compile Include="Core\Database\AbstractUnitClass.php" />
+    <Compile Include="Core\Database\BddAction.php" />
+    <Compile Include="Core\Database\PDO2.php" />
+    <Compile Include="Core\Form\BootStrapForm.php" />
+    <Compile Include="Core\Form\Form.php" />
+    <Compile Include="Core\Toolbox\Alert.php" />
+    <Compile Include="Core\Toolbox\Debug.php" />
+    <Compile Include="Core\Render\RenderView.php" />
     <Compile Include="Public\index.php" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\" />
+    <Folder Include="App\Modules\" />
+    <Folder Include="App\Modules\Shared\" />
+    <Folder Include="App\Modules\Shared\Render\" />
+    <Folder Include="App\Modules\Shared\Controler\" />
+    <Folder Include="App\Modules\Shared\View\" />
+    <Folder Include="App\Modules\Shared\Services\" />
+    <Folder Include="Config\" />
+    <Folder Include="Core\" />
+    <Folder Include="Core\Autoloader\" />
+    <Folder Include="Core\Database\" />
+    <Folder Include="Core\Form\" />
+    <Folder Include="Core\Toolbox\" />
+    <Folder Include="Core\Render\" />
     <Folder Include="Public\" />
+    <Folder Include="Public\css\" />
+    <Folder Include="Public\fonts\" />
+    <Folder Include="Public\images\" />
+    <Folder Include="Public\images\bg\" />
+    <Folder Include="Public\images\ico\" />
+    <Folder Include="Public\images\logo\" />
+    <Folder Include="Public\images\overlays\" />
+    <Folder Include="Public\images\portfolio\" />
+    <Folder Include="Public\images\prettyPhoto\" />
+    <Folder Include="Public\images\prettyPhoto\dark_rounded\" />
+    <Folder Include="Public\images\prettyPhoto\dark_square\" />
+    <Folder Include="Public\images\prettyPhoto\default\" />
+    <Folder Include="Public\images\prettyPhoto\facebook\" />
+    <Folder Include="Public\images\prettyPhoto\light_rounded\" />
+    <Folder Include="Public\images\prettyPhoto\light_square\" />
+    <Folder Include="Public\images\team\" />
+    <Folder Include="Public\js\" />
+    <Folder Include="Public\vendor\" />
+    <Folder Include="Public\vendor\bootstrap\" />
+    <Folder Include="Public\vendor\bootstrap\css\" />
+    <Folder Include="Public\vendor\bootstrap\js\" />
+    <Folder Include="Public\vendor\font-awesome\" />
+    <Folder Include="Public\vendor\impact\" />
+    <Folder Include="Public\vendor\jquery\" />
+    <Folder Include="Public\vendor\trumbowyg\" />
+    <Folder Include="Public\vendor\trumbowyg\ui\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Public\css\animate.css" />
+    <Content Include="Public\css\pe-icons.css" />
+    <Content Include="Public\css\prettyPhoto.css" />
+    <Content Include="Public\css\style.css" />
+    <Content Include="Public\fonts\fontawesome-webfont.eot" />
+    <Content Include="Public\fonts\fontawesome-webfont.svg" />
+    <Content Include="Public\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Public\fonts\fontawesome-webfont.woff" />
+    <Content Include="Public\fonts\FontAwesome.otf" />
+    <Content Include="Public\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Public\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Public\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Public\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Public\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="Public\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Public\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="Public\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Public\images\bg\bg1.jpg" />
+    <Content Include="Public\images\bg\bg2.jpg" />
+    <Content Include="Public\images\bg\bg3.jpg" />
+    <Content Include="Public\images\bg\bg4.jpg" />
+    <Content Include="Public\images\bg\bg5.jpg" />
+    <Content Include="Public\images\bg\bg6.jpg" />
+    <Content Include="Public\images\bg\bg7.jpg" />
+    <Content Include="Public\images\ico\apple-touch-icon-114x114.png" />
+    <Content Include="Public\images\ico\apple-touch-icon-144x144.png" />
+    <Content Include="Public\images\ico\apple-touch-icon-57x57.png" />
+    <Content Include="Public\images\ico\apple-touch-icon-72x72.png" />
+    <Content Include="Public\images\ico\apple-touch-icon.png" />
+    <Content Include="Public\images\ico\avatar.png" />
+    <Content Include="Public\images\ico\favicon.ico" />
+    <Content Include="Public\images\loading.GIF" />
+    <Content Include="Public\images\logo.png" />
+    <Content Include="Public\images\marker.png" />
+    <Content Include="Public\images\portfolio\folio01.jpg" />
+    <Content Include="Public\images\portfolio\folio02.jpg" />
+    <Content Include="Public\images\portfolio\folio03.jpg" />
+    <Content Include="Public\images\portfolio\folio04.jpg" />
+    <Content Include="Public\images\portfolio\folio05.jpg" />
+    <Content Include="Public\images\portfolio\folio06.jpg" />
+    <Content Include="Public\images\portfolio\folio07.jpg" />
+    <Content Include="Public\images\portfolio\folio08.jpg" />
+    <Content Include="Public\images\portfolio\folio09.jpg" />
+    <Content Include="Public\images\portfolio\folio10.jpg" />
+    <Content Include="Public\images\portfolio\folio11.jpg" />
+    <Content Include="Public\images\portfolio\folio12.jpg" />
+    <Content Include="Public\images\portfolio\folio13.jpg" />
+    <Content Include="Public\images\portfolio\folio14.jpg" />
+    <Content Include="Public\images\portfolio\folio15.jpg" />
+    <Content Include="Public\images\portfolio\folio16.jpg" />
+    <Content Include="Public\images\portfolio\folio17.jpg" />
+    <Content Include="Public\images\portfolio\folio18.jpg" />
+    <Content Include="Public\images\team\team01.jpg" />
+    <Content Include="Public\images\team\team02.jpg" />
+    <Content Include="Public\images\team\team03.jpg" />
+    <Content Include="Public\images\team\team04.jpg" />
+    <Content Include="Public\images\world-map.png" />
+    <Content Include="Public\vendor\bootstrap\bootstrap.min.css" />
+    <Content Include="Public\vendor\bootstrap\bootstrap.min.js" />
+    <Content Include="Public\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Public\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Public\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Public\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Public\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Public\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Public\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Public\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Public\vendor\font-awesome\font-awesome.min.css" />
+    <Content Include="Public\vendor\impact\bootstrap.min.js" />
+    <Content Include="Public\vendor\impact\html5shiv.js" />
+    <Content Include="Public\vendor\impact\init.js" />
+    <Content Include="Public\vendor\impact\jquery.isotope.min.js" />
+    <Content Include="Public\vendor\impact\jquery.js" />
+    <Content Include="Public\vendor\impact\jquery.prettyPhoto.js" />
+    <Content Include="Public\vendor\impact\plugins.js" />
+    <Content Include="Public\vendor\impact\respond.min.js" />
+    <Content Include="Public\vendor\jquery\jquery.js" />
+    <Content Include="Public\vendor\jquery\jquery.min.js" />
+    <Content Include="Public\vendor\jquery\jquery.min.map" />
+    <Content Include="Public\vendor\jquery\jquery.slim.js" />
+    <Content Include="Public\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Public\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Public\vendor\trumbowyg\trumbowyg.min.js" />
+    <Content Include="Public\vendor\trumbowyg\ui\icons.svg" />
+    <Content Include="Public\vendor\trumbowyg\ui\trumbowyg.min.css" />
   </ItemGroup>
 </Project>
