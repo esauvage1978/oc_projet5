@@ -8,6 +8,7 @@ namespace ES\App\Modules\Shared\Services;
 
 use ES\Core\Autoloader\Autoloader;
 
+
 require '../Config/constantes.php';
 require '../Core/Autoloader/Autoloader.php';
 
@@ -29,9 +30,10 @@ class Routeur
     private $_parametre_p=null;
     private $_parametre_mot=null;
 
-    private $_moduleClass;
     private $_moduleInstance;
     private $_moduleFunction;
+
+
 
     const MODULE_DEFAULT_VALUE='Shared';
     const SECTION_DEFAULT_VALUE='home';
@@ -206,7 +208,7 @@ class Routeur
 
         return true;
     }
-    private function showDefaultPage() :bool 
+    private function showDefaultPage() :bool
     {
         $this->_admin=self::ADMIN_DEFAULT_VALUE;
         $this->_module=self::MODULE_DEFAULT_VALUE;

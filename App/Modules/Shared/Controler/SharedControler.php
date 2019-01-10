@@ -2,8 +2,10 @@
 
 namespace ES\App\Modules\Shared\Controler;
 
-use ES\App\Modules\Shared\Render\SharedRenderView;
-use ES\Core\Toolbox\Alert;
+
+use \ES\App\Modules\Shared\Render\SharedRenderView;
+use \ES\Core\Controler\AbstractControler;
+
 /**
  * SharedControler short summary.
  * Controler frontal de base
@@ -12,12 +14,13 @@ use ES\Core\Toolbox\Alert;
  * @version 1.0
  * @author ragus
  */
-class SharedControler
+class SharedControler extends AbstractControler
 {
     private $_renderView;
 
     public function __construct()
     {
+        parent::__construct();
         $this->_renderView=new SharedRenderView();
     }
 

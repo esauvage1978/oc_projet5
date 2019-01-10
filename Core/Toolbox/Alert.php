@@ -10,16 +10,38 @@ class Alert
     const ERREUR="alert-danger";
     const SUCCES="alert-success";
     const INFO="alert-info";
-    const ATTENTION="alert-warning";
+    const WARNING="alert-warning";
 
-    /**
-     * Ecriture du message
-     * @param mixed $type
-     * @param mixed $message
-     */
-    public static function write($type, $message)
+    private static $_instance;
+
+    public static function getInstance() : Alert
     {
-        $data=array($type,self::getIcone($type ),$message);
+        //design pattern SINGLETON
+        if (!isset(self::$_instance))
+        {
+            self::$_instance = new Alert();
+        }
+        return self::$_instance;
+    }
+
+    public function __construct()
+    {
+
+    }
+    public function isPresent()
+    {
+        return isset($_SESSION['flash']);
+    }
+    private function getAlert()
+    {
+        return $_SESSION['flash'];
+    }
+    private function unsetAlert()
+    {
+        unset($_SESSION['flash']);
+    }
+    private function setAlert($data)
+    {
         if (self::isPresent())
             array_push( $_SESSION['flash'], $data);
         else
@@ -27,8 +49,36 @@ class Alert
     }
 
     /**
+     * Ecriture du message
+     * @param mixed $type
+     * @param mixed $message
+     */
+    private function write($type, $message)
+    {
+        $this->setAlert(array($type,self::getIcone($type ),$message));
+    }
+
+    public function writeError($message)
+    {
+        $this->write(self::ERREUR,$message);
+    }
+    public function writeInfo($message)
+    {
+        $this->write(self::INFO,$message);
+    }
+    public function writeSucces($message)
+    {
+        $this->write(self::SUCCES,$message);
+    }
+    public function writeWarning($message)
+    {
+        $this->write(self::WARNING,$message);
+    }
+
+
+    /**
      * Création de l'icône du message
-     * @param mixed $type 
+     * @param mixed $type
      * @return string
      */
     private static function getIcone($type)
@@ -52,28 +102,25 @@ class Alert
      * Vérification de la présence de message Flash
      * @return boolean
      */
-    public static function isPresent()
-    {
-        return isset($_SESSION['flash']);
-    }
+
 
     /**
      * Affichage des messages
      * @return string
      */
-    public static function read()
+    public function show()
     {
         $message_retour="";
         if (self::isPresent())
         {
             //Debug::var_dump ($_SESSION['flash']);
-            foreach ($_SESSION['flash'] as $message)
+            foreach ($this->getAlert() as $message)
             {
                 $message_retour .= '<div class="alert ' .$message[0] . '" role="alert"><div class="row vertical-align">';
                 $message_retour .= '<div class="col-xs-1 text-center">' . $message[1];
                 $message_retour .= '</div><div class="col-xs-11">' . $message[2] . '</div></div></div>';
             }
-            unset($_SESSION['flash']);
+            $this->unsetAlert ();
         }
         return $message_retour;
     }

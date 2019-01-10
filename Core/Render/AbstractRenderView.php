@@ -2,13 +2,15 @@
 
 namespace ES\Core\Render;
 
-class RenderView
+use ES\Core\Toolbox\Alert;
+
+class AbstractRenderView
 {
     /**
      * Titre utilisé dans le template
      * @var mixed
      */
-    private $title;
+    private $_title;
     /**
      * contenu des templates
      * @var mixed
@@ -18,11 +20,18 @@ class RenderView
      * template de module
      * @var mixed
      */
-    private $module;
+    private $_module;
+
+    /**
+     * Summary of $_alert
+     * @var mixed
+     */
+    private $_alert;
 
     protected function __construct($module)
     {
-        $this->module=ucfirst(strtolower($module));
+        $this->_module=ucfirst(strtolower($module));
+        $this->_alert=Alert::getInstance();
     }
 
     protected function show($view, $data, $modulesViewTemplate=false)
@@ -37,7 +46,7 @@ class RenderView
         if($modulesViewTemplate==true)
         {
             $this->_content = array('content'=>$this->genererFichier(
-                ES_ROOT_PATH_FAT_MODULES . '\\'.$this->module.'\\View\\' .$this->module.'TemplateView.php',
+                ES_ROOT_PATH_FAT_MODULES . '\\'.$this->_module.'\\View\\' .$this->_module.'TemplateView.php',
                  $data
                 ));
         }
@@ -46,16 +55,18 @@ class RenderView
         echo $this->genererFichier(
             ES_ROOT_PATH_FAT_MODULES . 'Shared\\View\\TemplateView.php',
             array(
-                'title'=>$this->title
+                'title'=>$this->_title,
+                'alert'=>$this->_alert
             )
         );
     }
 
     private function genererFichier($fichier, $data)
     {
-        try {
-
-            if (file_exists($fichier)) {
+        try
+        {
+            if (file_exists($fichier))
+            {
 
                 if(isset($this->_content))
                     extract ($this->_content);
@@ -63,13 +74,12 @@ class RenderView
                 ob_start();
                 require $fichier;
                 return ob_get_clean();
-            } else {
-                throw new \Exception("Fichier ' . $fichier . ' introuvable");
             }
-        } catch (exception $e)
+            throw new \Exception("Fichier ' . $fichier . ' introuvable");
+        }
+        catch (exception $e)
         {
-            var_dump ($e);
-            die();
+            throw new \Exception('Erreur dans la classe RenderView');
         }
 
     }

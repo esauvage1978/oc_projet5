@@ -31,8 +31,7 @@ class AbstractManager
         }
         else
         {
-            $myUnitClass =new static::$class_name($data);
-            return $myUnitClass;
+            return new static::$class_name($data);
         }
     }
 

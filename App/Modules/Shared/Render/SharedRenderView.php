@@ -2,7 +2,7 @@
 
 
 namespace ES\App\Modules\Shared\Render;
-use \ES\Core\Render\RenderView;
+use \ES\Core\Render\AbstractRenderView;
 
 /**
  * BlogRenderView short summary.
@@ -12,7 +12,7 @@ use \ES\Core\Render\RenderView;
  * @version 1.0
  * @author ragus
  */
-class SharedRenderView  extends RenderView
+class SharedRenderView  extends AbstractRenderView
 {
     public function __construct()
     {
