@@ -1,0 +1,1 @@
+#$Core/Controler/AbstractControler.php 2phpX!hr$Core/Controler/AbstractControler.php

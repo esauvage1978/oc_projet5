@@ -10,7 +10,7 @@ namespace ES\Core\Database;
 
 use PDO;
 
-require_once ESES_ROOT_PATH_FAT . 'config\\bdd.php';
+require_once ES_ROOT_PATH_FAT . 'config\\bdd.php';
 
 /**
  * Classe implémentant le singleton pour PDO
@@ -45,7 +45,6 @@ class PDO2
             self::$_instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$_instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         }
-        //Debug::var_dump("Appel PDO 2");
         return self::$_instance;
     }
     // End of PDO2::getInstance() */

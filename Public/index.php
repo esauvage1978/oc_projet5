@@ -6,7 +6,7 @@ require '../App/Modules/Shared/Services/Routeur.php';
 
 session_start();
 
-$routeur=Routeur::getInstance();
-$routeur->exec();
+$routeur=new Routeur();
+$routeur->run();
 
 

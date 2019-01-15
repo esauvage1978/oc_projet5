@@ -1,10 +1,9 @@
 <?php
 
 namespace ES\Core\Render;
+Use ES\Core\Toolbox\Flash;
 
-use ES\Core\Toolbox\Alert;
-
-class AbstractRenderView
+abstract class AbstractRenderView
 {
     /**
      * Titre utilisé dans le template
@@ -16,10 +15,7 @@ class AbstractRenderView
      * @var mixed
      */
     private $_content;
-    /**
-     * template de module
-     * @var mixed
-     */
+    protected $flash;
     private $_module;
 
     /**
@@ -28,10 +24,12 @@ class AbstractRenderView
      */
     private $_alert;
 
-    protected function __construct($module)
+    protected $_request;
+
+    public function __construct($module)
     {
-        $this->_module=ucfirst(strtolower($module));
-        $this->_alert=Alert::getInstance();
+        $this->flash=new Flash();
+        $this->_module=$module;
     }
 
     protected function show($view, $data, $modulesViewTemplate=false)
@@ -43,10 +41,10 @@ class AbstractRenderView
             $data
         ));
 
-        if($modulesViewTemplate==true)
+        if($modulesViewTemplate)
         {
             $this->_content = array('content'=>$this->genererFichier(
-                ES_ROOT_PATH_FAT_MODULES . '\\'.$this->_module.'\\View\\' .$this->_module.'TemplateView.php',
+                ES_ROOT_PATH_FAT_MODULES . '\\'. $this->_module .'\\View\\' . $this->_module .'TemplateView.php',
                  $data
                 ));
         }
@@ -55,7 +53,7 @@ class AbstractRenderView
         echo $this->genererFichier(
             ES_ROOT_PATH_FAT_MODULES . 'Shared\\View\\TemplateView.php',
             array(
-                'alert'=>$this->_alert
+                'flash'=>$this->flash
             )
         );
     }
@@ -82,18 +80,20 @@ class AbstractRenderView
             {
 
                 if(isset($this->_content))
+                {
                     extract ($this->_content);
+                }
                 extract($data);
                 ob_start();
                 require $fichier;
                 $fileContent= ob_get_clean();
                 return str_replace($strFind,$strReplace, $fileContent);
             }
-            throw new \Exception("Fichier ' . $fichier . ' introuvable");
+            throw new \ErrorException("Fichier ' . $fichier . ' introuvable");
         }
         catch (exception $e)
         {
-            throw new \Exception('Erreur dans la classe RenderView');
+            throw new \ErrorException('Erreur dans la classe RenderView');
         }
 
     }

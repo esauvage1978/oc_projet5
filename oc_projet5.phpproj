@@ -11,6 +11,16 @@
     <SpecificPageValue>Public/index.php</SpecificPageValue>
     <StartAction>SpecificPage</StartAction>
     <Runtime>PHP</Runtime>
+    <SaveServerSettingsInUserFile>false</SaveServerSettingsInUserFile>
+    <EnvName>PHPDev</EnvName>
+    <PHPDevHostName>localhost</PHPDevHostName>
+    <PHPDevAutoPort>false</PHPDevAutoPort>
+    <PHPDevPort>11546</PHPDevPort>
+    <CustomXdebugPort>9010</CustomXdebugPort>
+    <PublishEvent>None</PublishEvent>
+    <DebugMappingMethod>Automatic</DebugMappingMethod>
+    <DBGpProxyEnabled>false</DBGpProxyEnabled>
+    <DBGpProxyPort>9001</DBGpProxyPort>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
@@ -22,38 +32,63 @@
     <Compile Include="App\Modules\Shared\Controler\SharedControler.php" />
     <Compile Include="App\Modules\Shared\Render\SharedRenderView.php" />
     <Compile Include="App\Modules\Shared\View\HomeView.php" />
+    <Compile Include="App\Modules\Shared\View\Partial\FlashPartialView.php" />
+    <Compile Include="App\Modules\Shared\View\Partial\MenuPartialView.php" />
     <Compile Include="App\Modules\Shared\View\TemplateView.php" />
     <Compile Include="App\Modules\Shared\Services\Routeur.php" />
+    <Compile Include="App\Modules\User\Controler\UserControler.php" />
+    <Compile Include="App\Modules\User\Form\UserForm.php" />
+    <Compile Include="App\Modules\User\Model\UserTable.php" />
+    <Compile Include="App\Modules\User\Model\UserManager.php" />
+    <Compile Include="App\Modules\User\Render\UserRenderView.php" />
+    <Compile Include="App\Modules\User\View\ConnexionView.php" />
+    <Compile Include="App\Modules\User\View\SignupView.php" />
+    <Compile Include="App\Modules\User\View\UserTemplateView.php" />
     <Compile Include="Config\bdd.php" />
     <Compile Include="Config\constantes.php" />
     <Compile Include="Core\Autoloader\Autoloader.php" />
     <Compile Include="Core\Controler\AbstractControler.php" />
-    <Compile Include="Core\Database\AbstractManager.php" />
-    <Compile Include="Core\Database\AbstractUnitClass.php" />
+    <Compile Include="Core\Model\AbstractManager.php" />
+    <Compile Include="Core\Model\AbstractTable.php" />
     <Compile Include="Core\Database\BddAction.php" />
     <Compile Include="Core\Database\PDO2.php" />
     <Compile Include="Core\Form\BootStrapForm.php" />
     <Compile Include="Core\Form\Form.php" />
-    <Compile Include="Core\Toolbox\Alert.php" />
     <Compile Include="Core\Render\AbstractRenderView.php" />
+    <Compile Include="Core\Toolbox\Request.php" />
+    <Compile Include="Core\Toolbox\Flash.php" />
+    <Compile Include="Core\Toolbox\Toolbox.php" />
+    <Compile Include="App\Modules\User\Model\Auth.php" />
+    <Compile Include="Core\Toolbox\Auth.php" />
     <Compile Include="Public\index.php" />
+    <Compile Include="Public\test.php" />
+    <Compile Include="Tests\FlashTest.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\" />
     <Folder Include="App\Modules\" />
+    <Folder Include="App\Modules\Shared\View\Partial\" />
+    <Folder Include="App\Modules\User\" />
     <Folder Include="App\Modules\Shared\" />
     <Folder Include="App\Modules\Shared\Render\" />
     <Folder Include="App\Modules\Shared\Controler\" />
     <Folder Include="App\Modules\Shared\View\" />
     <Folder Include="App\Modules\Shared\Services\" />
+    <Folder Include="App\Modules\User\Model\" />
+    <Folder Include="App\Modules\User\Controler\" />
+    <Folder Include="App\Modules\User\Form\" />
+    <Folder Include="App\Modules\User\Render\" />
+    <Folder Include="App\Modules\User\View\" />
     <Folder Include="Config\" />
     <Folder Include="Core\" />
     <Folder Include="Core\Autoloader\" />
     <Folder Include="Core\Database\" />
     <Folder Include="Core\Form\" />
     <Folder Include="Core\Controler\" />
+    <Folder Include="Core\Model\" />
     <Folder Include="Core\Toolbox\" />
     <Folder Include="Core\Render\" />
+    <Folder Include="Tests\" />
     <Folder Include="Public\" />
     <Folder Include="Public\css\" />
     <Folder Include="Public\fonts\" />
@@ -77,12 +112,14 @@
     <Folder Include="Public\vendor\bootstrap\css\" />
     <Folder Include="Public\vendor\bootstrap\js\" />
     <Folder Include="Public\vendor\font-awesome\" />
+    <Folder Include="Public\vendor\font-awesome\fonts\" />
     <Folder Include="Public\vendor\impact\" />
     <Folder Include="Public\vendor\jquery\" />
     <Folder Include="Public\vendor\trumbowyg\" />
     <Folder Include="Public\vendor\trumbowyg\ui\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="composer.json" />
     <Content Include="Public\css\animate.css" />
     <Content Include="Public\css\pe-icons.css" />
     <Content Include="Public\css\prettyPhoto.css" />

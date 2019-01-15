@@ -1,0 +1,146 @@
+Environment variables:
+  - =::=::\
+  - =C:=C:\wamp64\www\oc_projet5
+  - ALLUSERSPROFILE=C:\ProgramData
+  - APPDATA=C:\Users\ragus\AppData\Roaming
+  - COMPUTERNAME=RAGUS-PC
+  - ComSpec=C:\WINDOWS\system32\cmd.exe
+  - CommonProgramFiles=C:\Program Files\Common Files
+  - CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+  - CommonProgramW6432=C:\Program Files\Common Files
+  - DriverData=C:\Windows\System32\Drivers\DriverData
+  - ERROR_CODE=0
+  - FPS_BROWSER_APP_PROFILE_STRING=Internet Explorer
+  - FPS_BROWSER_USER_PROFILE_STRING=Default
+  - HOMEDRIVE=C:
+  - HOMEPATH=\Users\ragus
+  - JAVA_EXEC="C:\dev\sonar-scanner-3.3.0.1492-windows\bin\..\jre\bin\java.exe"
+  - JAVA_HOME=C:\dev\sonar-scanner-3.3.0.1492-windows\bin\..\jre
+  - LOCALAPPDATA=C:\Users\ragus\AppData\Local
+  - LOGONSERVER=\\RAGUS-PC
+  - NUMBER_OF_PROCESSORS=8
+  - OS=Windows_NT
+  - OneDrive=C:\Users\ragus\OneDrive
+  - PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+  - PROCESSOR_ARCHITECTURE=AMD64
+  - PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 42 Stepping 7, GenuineIntel
+  - PROCESSOR_LEVEL=6
+  - PROCESSOR_REVISION=2a07
+  - PROJECT_HOME=C:\wamp64\www\oc_projet5
+  - PROMPT=$P$G
+  - PSModulePath=C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+  - PUBLIC=C:\Users\Public
+  - Path=C:\Program Files (x86)\iis express\PHP\v7.1;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\wamp64\bin\php\php7.1.9;C:\ProgramData\ComposerSetup\bin;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\PuTTY\;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Users\ragus\AppData\Local\Microsoft\WindowsApps;C:\Users\ragus\AppData\Roaming\Composer\vendor\bin;C:\Program Files\JetBrains\PhpStorm 2018.3\bin;"C:\Users\ragus\AppData\Local\Microsoft\WindowsApps;C:\wamp64\bin\php\php7.1.9";C:\Users\ragus\AppData\Roaming\Composer\vendor\bin;C:\Program Files\JetBrains\PhpStorm 2018.3\bin;C:\dev\sonar-scanner-3.3.0.1492-windows\bin
+  - PhpStorm=C:\Program Files\JetBrains\PhpStorm 2018.3\bin;
+  - ProgramData=C:\ProgramData
+  - ProgramFiles=C:\Program Files
+  - ProgramFiles(x86)=C:\Program Files (x86)
+  - ProgramW6432=C:\Program Files
+  - SESSIONNAME=Console
+  - SONAR_SCANNER_HOME=C:\dev\sonar-scanner-3.3.0.1492-windows\bin\..
+  - SystemDrive=C:
+  - SystemRoot=C:\WINDOWS
+  - TEMP=C:\Users\ragus\AppData\Local\Temp
+  - TMP=C:\Users\ragus\AppData\Local\Temp
+  - USERDOMAIN=ragus-PC
+  - USERDOMAIN_ROAMINGPROFILE=ragus-PC
+  - USERNAME=ragus
+  - USERPROFILE=C:\Users\ragus
+  - scriptdir=C:\dev\sonar-scanner-3.3.0.1492-windows\bin
+  - use_embedded_jre=true
+  - windir=C:\WINDOWS
+System properties:
+  - awt.toolkit=sun.awt.windows.WToolkit
+  - file.encoding=Cp1252
+  - file.encoding.pkg=sun.io
+  - file.separator=\
+  - java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+  - java.awt.headless=true
+  - java.awt.printerjob=sun.awt.windows.WPrinterJob
+  - java.class.path=C:\dev\sonar-scanner-3.3.0.1492-windows\bin\..\lib\sonar-scanner-cli-3.3.0.1492.jar
+  - java.class.version=52.0
+  - java.endorsed.dirs=C:\dev\sonar-scanner-3.3.0.1492-windows\jre\lib\endorsed
+  - java.ext.dirs=C:\dev\sonar-scanner-3.3.0.1492-windows\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+  - java.home=C:\dev\sonar-scanner-3.3.0.1492-windows\jre
+  - java.io.tmpdir=C:\Users\ragus\AppData\Local\Temp\
+  - java.library.path=C:\dev\sonar-scanner-3.3.0.1492-windows\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\iis express\PHP\v7.1;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\wamp64\bin\php\php7.1.9;C:\ProgramData\ComposerSetup\bin;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\PuTTY\;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Users\ragus\AppData\Local\Microsoft\WindowsApps;C:\Users\ragus\AppData\Roaming\Composer\vendor\bin;C:\Program Files\JetBrains\PhpStorm 2018.3\bin;"C:\Users\ragus\AppData\Local\Microsoft\WindowsApps;C:\wamp64\bin\php\php7.1.9";C:\Users\ragus\AppData\Roaming\Composer\vendor\bin;C:\Program Files\JetBrains\PhpStorm 2018.3\bin;C:\dev\sonar-scanner-3.3.0.1492-windows\bin;.
+  - java.runtime.name=Java(TM) SE Runtime Environment
+  - java.runtime.version=1.8.0_121-b13
+  - java.specification.name=Java Platform API Specification
+  - java.specification.vendor=Oracle Corporation
+  - java.specification.version=1.8
+  - java.vendor=Oracle Corporation
+  - java.vendor.url=http://java.oracle.com/
+  - java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+  - java.version=1.8.0_121
+  - java.vm.info=mixed mode
+  - java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+  - java.vm.specification.name=Java Virtual Machine Specification
+  - java.vm.specification.vendor=Oracle Corporation
+  - java.vm.specification.version=1.8
+  - java.vm.vendor=Oracle Corporation
+  - java.vm.version=25.121-b13
+  - line.separator=
+
+  - os.arch=amd64
+  - os.name=Windows 10
+  - os.version=10.0
+  - path.separator=;
+  - project.home=C:\wamp64\www\oc_projet5
+  - scanner.home=C:\dev\sonar-scanner-3.3.0.1492-windows\bin\..
+  - sun.arch.data.model=64
+  - sun.boot.class.path=C:\dev\sonar-scanner-3.3.0.1492-windows\jre\lib\resources.jar;C:\dev\sonar-scanner-3.3.0.1492-windows\jre\lib\rt.jar;C:\dev\sonar-scanner-3.3.0.1492-windows\jre\lib\sunrsasign.jar;C:\dev\sonar-scanner-3.3.0.1492-windows\jre\lib\jsse.jar;C:\dev\sonar-scanner-3.3.0.1492-windows\jre\lib\jce.jar;C:\dev\sonar-scanner-3.3.0.1492-windows\jre\lib\charsets.jar;C:\dev\sonar-scanner-3.3.0.1492-windows\jre\lib\jfr.jar;C:\dev\sonar-scanner-3.3.0.1492-windows\jre\classes
+  - sun.boot.library.path=C:\dev\sonar-scanner-3.3.0.1492-windows\jre\bin
+  - sun.cpu.endian=little
+  - sun.cpu.isalist=amd64
+  - sun.desktop=windows
+  - sun.io.unicode.encoding=UnicodeLittle
+  - sun.java.command=org.sonarsource.scanner.cli.Main -X -Dsonar.projectKey=oc_projet5 -Dsonar.sources=. -Dsonar.host.url=http://localhost:9002 -Dsonar.login=ca48782cd360e715b3addafbdf874c18c285891d -Dsonar.exclusions=Public/vendor/**
+  - sun.java.launcher=SUN_STANDARD
+  - sun.jnu.encoding=Cp1252
+  - sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+  - sun.os.patch.level=
+  - sun.stderr.encoding=cp850
+  - sun.stdout.encoding=cp850
+  - user.country=FR
+  - user.dir=C:\wamp64\www\oc_projet5
+  - user.home=C:\Users\ragus
+  - user.language=fr
+  - user.name=ragus
+  - user.script=
+  - user.timezone=Europe/Paris
+  - user.variant=
+SonarQube plugins:
+  - SonarPython 1.10.0.2131 (python)
+  - SonarCSS 1.0.3.724 (cssfamily)
+  - JaCoCo 1.0.1.143 (jacoco)
+  - SonarGo 1.1.0.1612 (go)
+  - SonarKotlin 1.4.0.155 (kotlin)
+  - Svn 1.9.0.1295 (scmsvn)
+  - SonarJS 5.0.0.6962 (javascript)
+  - SonarRuby 1.4.0.155 (ruby)
+  - SonarScala 1.4.0.155 (sonarscala)
+  - SonarC# 7.9.1.7622 (csharp)
+  - SonarJava 5.9.2.16552 (java)
+  - LDAP 2.2.0.608 (ldap)
+  - Git 1.6.0.1349 (scmgit)
+  - SonarFlex 2.4.0.1222 (flex)
+  - SonarXML 1.5.1.1452 (xml)
+  - SonarPHP 2.15.0.4060 (php)
+  - SonarTS 1.8.0.3332 (typescript)
+  - SonarVB 7.9.1.7622 (vbnet)
+Global properties:
+  - sonar.core.id=BF41A1F2-AWhBU2Gk-KOfOhJDRHFS
+  - sonar.core.startTime=2019-01-14T22:07:48+0100
+Settings for module: oc_projet5
+  - sonar.exclusions=Public/vendor/**
+  - sonar.host.url=http://localhost:9002
+  - sonar.login=******
+  - sonar.projectBaseDir=C:\wamp64\www\oc_projet5
+  - sonar.projectKey=oc_projet5
+  - sonar.scanner.app=ScannerCli
+  - sonar.scanner.appVersion=3.3.0.1492
+  - sonar.sourceEncoding=windows-1252
+  - sonar.sources=.
+  - sonar.verbose=true
+  - sonar.working.directory=C:\wamp64\www\oc_projet5\.scannerwork

@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
-    <SpecificPageValue>Public/index.php?page=toto</SpecificPageValue>
-    <RuntimePath>C:\Program Files (x86)\IIS Express\PHP\v7.1\php.exe</RuntimePath>
+    <RuntimePath>C:\wamp64\bin\php\php7.1.9\php.exe</RuntimePath>
   </PropertyGroup>
 </Project>

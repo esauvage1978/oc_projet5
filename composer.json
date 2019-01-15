@@ -1,0 +1,17 @@
+{
+    "name": "ragus/oc_projet5",
+  "authors": [
+    {
+      "name": "esauvage1978",
+      "email": "emmanuel.sauvage@live.fr"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"ES\\Core\\Toolbox\\" : "Core/Toolbox/"}
+  },
+
+    "require": {},
+    "require-dev": {
+      "phpunit/phpunit": "7"
+    }
+  }
