@@ -2,31 +2,82 @@
 
 namespace ES\App\Modules\User\Model;
 
-use ES\Core\Model\AbstractManager;
-use ES\App\Modules\User\Model\UserTable;
+use \ES\App\Modules\User\Render\UserRenderView;
+use \ES\Core\Model\AbstractTable;
+
 /**
- * UserManager short summary.
+ * User short summary.
  *
- * UserManager description.
+ * User description.
  *
  * @version 1.0
  * @author ragus
  */
-class UserManager extends AbstractManager
+class UserTable extends AbstractTable
 {
-    protected static $table='ocp5_user';
-    protected static $order_by;
-    protected static $id='u_id';
+    protected static $_prefixe='u_';
 
-    public function identifiantExist($identifiant,$id=null)
+
+    private $u_id;
+    private $u_identifiant;
+    private $u_mail;
+    private $u_password;
+
+
+    #region CHECK DONNEES
+    public function getIdentifiant():string
     {
-        return parent::exist('u_identifiant', $identifiant, $id );
+        return $this->u_identifiant;
     }
-    public function mailExist($mail,$id=null)
+    public function getMail():string
     {
-        return parent::exist('u_mail', $mail, $id );
+        return $this->u_mail;
+    }
+    public function getPassword():string
+    {
+        return $this->u_password;
+    }
+    public function setIdentifiant($value)
+    {
+        if(!isset($value) || empty($value) || !$value)
+        {
+            throw new \InvalidArgumentException('Les informations de l\'identifiant sont incorrectes.');
+        }
+        else if (strlen($value)<=3)
+        {
+            throw new \InvalidArgumentException('L\'identifiant doit avoir plus de 3 caractères.');
+        }
+        $this->u_identifiant=$value;
     }
 
+    public function setMail($value)
+    {
+        if(!isset($value) || empty($value) || !$value)
+        {
+            throw new \InvalidArgumentException('Les informations du mail sont incorrectes.');
+        }
+        $this->u_mail=$value;
+    }
 
-
+    public function setPassword($value)
+    {
+        if(!isset($value) || empty($value) || !$value)
+        {
+            throw new \InvalidArgumentException('Les informations du mot de passe sont incorrectes.');
+        }
+        else if (strlen($value)!=60)
+        {
+            throw new \InvalidArgumentException('La longueur du mot de passe est incorrecte. (' . strlen($value) . ' caractères)');
+        }
+        $this->u_password=$value;
+    }
+    public function setId($value)
+    {
+        if(!isset($value) || empty($value) || !$value || !is_int($value))
+        {
+            throw new \InvalidArgumentException('Les informations de l\'id sont incorrectes.');
+        }
+        $this->u_id=$value;
+    }
+    #endregion
 }

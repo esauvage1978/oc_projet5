@@ -1,1 +1,1 @@
-/"Core/Render/AbstractRenderView.php 2phpXfhr"Core/Render/AbstractRenderView.php
+/Core/Model/AbstractTable.php 2phpX-hrCore/Model/AbstractTable.php

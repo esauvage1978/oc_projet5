@@ -1,3 +1,1 @@
--
-Core/Model :,3r
-Core/Model
+-Core/Model/AbstractManager.php 2phpXjhrCore/Model/AbstractManager.php

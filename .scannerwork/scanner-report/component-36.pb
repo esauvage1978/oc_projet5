@@ -1,1 +1,1 @@
-$Core/Controler :#rCore/Controler
+$Core/Autoloader :#rCore/Autoloader

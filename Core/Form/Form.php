@@ -49,7 +49,7 @@ class Form
      * Form constructor.
      * @param $data
      */
-    public function __construct(Request $data)
+    public function __construct($data)
     {
         $this->_data = $data;
     }
@@ -57,7 +57,11 @@ class Form
 
     protected function getValue($index)
     {
-        $data=$this->_data->getPostValue($index);
+        $data=null;
+        $data=is_array ( $this->_data)
+            ?(array_key_exists($index,$this->_data)?$this->_data[$index]:null)
+            :$this->_data->getPostValue($index);
+        
         return isset($data)? $data:null;
     }
 

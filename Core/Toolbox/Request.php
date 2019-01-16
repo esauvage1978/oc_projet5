@@ -40,30 +40,23 @@ class Request
     {
         return isset($this->_post[$key]);
     }
-
     #endregion
+
+    #region session
     public function getSessionValue($key,$type=self::TYPE_STRING)
     {
         return isset($this->_session[$key])?$this->securise($this->_session[$key],$type):null;
     }
-
     public function hasSessionValue($key) :bool
     {
         return isset($this->_session[$key]);
     }
-    public function unsetSessionValue($key)
+    public function unsetSessionValue($key) 
     {
         unset($this->_session[$key]);
         unset($_SESSION[$key]);
     }
-    public function pushSessionValue($key,$data)
-    {
-        if ($this->hasSessionValue($key))
-            array_push( $this->_session[$key], $data);
-        else
-            $this->_session[$key]=array($data);
-        $_SESSION[$key]=$this->_session[$key];
-    }
+    #endregion
 
     private function securise($data, $type=self::TYPE_STRING)
     {

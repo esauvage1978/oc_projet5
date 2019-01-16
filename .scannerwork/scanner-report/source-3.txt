@@ -1,24 +1,27 @@
 <?php
 
+namespace ES\App\Modules\Shared\Controler;
 
-namespace ES\App\Modules\Shared\Render;
-use \ES\Core\Render\AbstractRenderView;
+
+use \ES\Core\Controler\AbstractControler;
 
 /**
- * BlogRenderView short summary.
- *
- * BlogRenderView description.
+ * SharedControler short summary.
+ * Controler frontal de base
+ * SharedControler description.
  *
  * @version 1.0
  * @author ragus
  */
-class SharedRenderView  extends AbstractRenderView
+class SharedControler extends AbstractControler
 {
-
     protected static $module='Shared';
 
-    public function render($view,$data)
+    public function homeShow()
     {
-        parent::show($view,$data,false);
+        $this->renderView->render(
+            ES_ROOT_PATH_FAT_MODULES . 'Shared\\View\\HomeView.php',
+            array('title'=>'Page d\'accueil')
+        );
     }
 }

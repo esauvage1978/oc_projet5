@@ -1,45 +1,32 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: esauvage1978
- * Date: 02/01/2019
- * Time: 10:27
- */
 
-namespace ES\Core\Database;
+namespace ES\Core\Controler;
+
+Use ES\Core\Toolbox\Flash;
+Use ES\Core\Toolbox\Request;
+
 
 /**
- * Class de gestion des requêtes
+ * Controler short summary.
+ *
+ * Controler description.
+ *
+ * @version 1.0
+ * @author ragus
  */
-class BddAction
+class AbstractControler
 {
-    private $_pdo;
+    protected $flash;
+    protected $_request;
+    protected $renderView;
+    protected static $module='';
 
-    /**
-     * Constructeur
-     */
     public function __construct()
     {
-        $this->_pdo=PDO2::getInstance();
+        $this->_request=new Request(array('get'=>$_GET,'post'=>$_POST,'session'=>$_SESSION,'cookie'=>$_COOKIE));
+        $this->flash=new Flash();
+        $caller = '\\ES\\App\\Modules\\' . static::$module . '\\Render\\'. static::$module . 'RenderView';
+        $this->renderView=new $caller(static::$module);
     }
 
-    public function query($requete)
-    {
-        return $this->_pdo->query($requete)->fetchAll();
-    }
-
-    public function prepare($requete,$params,$only_one=false)
-    {
-        $pdoStatement= $this->_pdo->prepare($requete);
-        $pdoStatement->execute($params);
-        if($only_one)
-        {
-            $data=$pdoStatement->fetch();
-        }
-        else
-        {
-            $data=$pdoStatement->fetchAll() ;
-        }
-        return $data;
-    }
 }

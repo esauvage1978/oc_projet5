@@ -1,1 +1,1 @@
-#$Core/Controler/AbstractControler.php 2phpX!hr$Core/Controler/AbstractControler.php
+#Core/Autoloader/Autoloader.php 2phpXhrCore/Autoloader/Autoloader.php

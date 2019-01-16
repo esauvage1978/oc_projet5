@@ -1,1 +1,1 @@
-App/Modules/User/Render :rApp/Modules/User/Render
+App/Modules/User/View :rApp/Modules/User/View

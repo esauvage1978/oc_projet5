@@ -2,6 +2,7 @@
 
 namespace ES\Core\Render;
 Use ES\Core\Toolbox\Flash;
+Use ES\Core\Toolbox\Request;
 
 abstract class AbstractRenderView
 {
@@ -16,49 +17,44 @@ abstract class AbstractRenderView
      */
     private $_content;
     protected $flash;
-    private $_module;
-
-    /**
-     * Summary of $_alert
-     * @var mixed
-     */
-    private $_alert;
-
     protected $_request;
+    protected static $module='';
+    protected static $modulesViewTemplate=false;
 
-    public function __construct($module)
+    public function __construct()
     {
         $this->flash=new Flash();
-        $this->_module=$module;
+        $this->_request=new Request(
+            ['get'=>$_GET,
+            'post'=>$_POST,
+            'session'=>$_SESSION,
+            'cookie'=>$_COOKIE]);
     }
 
-    protected function show($view, $data, $modulesViewTemplate=false)
+    protected function render($view, $data)
     {
-
 
         $this->_content= array('content'=> $this->genererFichier(
             $view,
             $data
         ));
 
-        if($modulesViewTemplate)
+        if(static::$modulesViewTemplate)
         {
             $this->_content = array('content'=>$this->genererFichier(
-                ES_ROOT_PATH_FAT_MODULES . '\\'. $this->_module .'\\View\\' . $this->_module .'TemplateView.php',
+                ES_ROOT_PATH_FAT_MODULES . '\\'. static::$module .'\\View\\' . static::$module .'TemplateView.php',
                  $data
                 ));
         }
-
+        $data['flash']=$this->flash;
         $this->_title=$data['title'];
         echo $this->genererFichier(
             ES_ROOT_PATH_FAT_MODULES . 'Shared\\View\\TemplateView.php',
-            array(
-                'flash'=>$this->flash
-            )
+            $data
         );
     }
 
-    private function genererFichier($fichier, $data)
+    protected function genererFichier($fichier, $data)
     {
         $strFind=array(
             '##DIR_VENDOR##',
@@ -83,7 +79,8 @@ abstract class AbstractRenderView
                 {
                     extract ($this->_content);
                 }
-                extract($data);
+                isset($data)?extract($data):'';
+
                 ob_start();
                 require $fichier;
                 $fileContent= ob_get_clean();

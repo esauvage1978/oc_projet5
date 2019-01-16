@@ -10,6 +10,7 @@
             <?= $form->password(); ?>
         </div>
         <?= $form->submit_primary('connexion','Connexion');?>
+        <a href="##INDEX##?page=user.pwdforget"> Mot de passe oublié ?</a>
 
     </form>
     <hr />

@@ -161,34 +161,21 @@ class Routeur
 
         if(isset($page) && !empty($page))
         {
-            $page = strtolower($page);
-            $pageExplode= explode('.',$page);
+            $page = ($page);
+            $pageExplode= explode('.',strtolower($page));
+            $key=0;
+
 
             if($pageExplode[0]=='admin' )
             {
                 $this->_admin='Admin';
-                $this->_module=$pageExplode[1];
-                if(isset($pageExplode[2]))
-                {
-                    $this->_section=$pageExplode[2];
-                }
-                if(isset($pageExplode[3]))
-                {
-                    $this->_action=$pageExplode[3];
-                }
+                $key=1;
             }
-            else
-            {
-                $this->_module=$pageExplode[0];
-                if(isset($pageExplode[1]))
-                {
-                    $this->_section=$pageExplode[1];
-                }
-                if(isset($pageExplode[2]))
-                {
-                    $this->_action=$pageExplode[2];
-                }
-            }
+
+            $this->_module=$pageExplode[$key];
+            $this->_section= (isset($pageExplode[$key+1]))?$pageExplode[$key+1]:null;
+            $this->_action= (isset($pageExplode[$key+2]))?$pageExplode[$key+2]:null;
+
             $retour=true;
         }
 

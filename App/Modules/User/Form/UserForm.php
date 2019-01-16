@@ -26,9 +26,17 @@ class UserForm extends BootStrapForm
     {
         $options[parent::OPTIONS_REQUIRED]='true';
         $options[parent::OPTIONS_MAXLENGHT]=100;
-        $options[parent::OPTIONS_LABEL]='Identifiant ou addresse mail';
-        $options[parent::OPTIONS_PLACEHOLDER]='Identifiant ou addresse mail';
+        $options[parent::OPTIONS_LABEL]='Identifiant ou adresse mail';
+        $options[parent::OPTIONS_PLACEHOLDER]='Identifiant ou adresse mail';
         return parent::input('login',$options);
+    }
+
+    public function passwordForget()
+    {
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=100;
+        $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_HIDDEN;
+        return parent::input('pwdForget',$options);
     }
 
     public function mail()
@@ -36,8 +44,8 @@ class UserForm extends BootStrapForm
         $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_EMAIL;
         $options[parent::OPTIONS_REQUIRED]='true';
         $options[parent::OPTIONS_MAXLENGHT]=100;
-        $options[parent::OPTIONS_LABEL]='Addresse mail';
-        $options[parent::OPTIONS_PLACEHOLDER]='Addresse mail';
+        $options[parent::OPTIONS_LABEL]='Adresse mail';
+        $options[parent::OPTIONS_PLACEHOLDER]='Adresse mail';
         return parent::input('mail',$options);
     }
 

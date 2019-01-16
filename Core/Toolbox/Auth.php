@@ -39,7 +39,7 @@ class Auth
      */
     public static function str_random(int $lenght = 60): String
     {
-        $alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#!:;$*-+(){}";
+        $alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return substr(str_shuffle(str_repeat($alphabet, $lenght)), 0, $lenght);
     }
 }

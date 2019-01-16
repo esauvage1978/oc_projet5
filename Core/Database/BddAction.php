@@ -23,16 +23,41 @@ class BddAction
         $this->_pdo=PDO2::getInstance();
     }
 
-    public function query($requete)
+    public function query($requete,$only_one=false)
     {
-        return $this->_pdo->query($requete)->fetchAll();
+        $pdoStatement = $this->_pdo()->query($requete);
+        $data=null;
+
+        if ( strpos($requete, 'UPDATE') === 0 ||
+             strpos($requete, 'INSERT') === 0 ||
+             strpos($requete, 'DELETE') === 0 )
+        {
+            $data= $pdoStatement;
+        }
+        else if ($only_one)
+        {
+            $data = $pdoStatement->fetch();
+        }
+        else 
+        {
+            $data = $pdoStatement->fetchAll();
+        }
+        return $data;
     }
 
     public function prepare($requete,$params,$only_one=false)
     {
         $pdoStatement= $this->_pdo->prepare($requete);
         $pdoStatement->execute($params);
-        if($only_one)
+        $data=null;
+
+        if ( strpos($requete, 'UPDATE') === 0 ||
+             strpos($requete, 'INSERT') === 0 ||
+             strpos($requete, 'DELETE') === 0 )
+        {
+            $data= $pdoStatement;
+        }
+        else if($only_one)
         {
             $data=$pdoStatement->fetch();
         }
@@ -41,5 +66,10 @@ class BddAction
             $data=$pdoStatement->fetchAll() ;
         }
         return $data;
+    }
+
+    public function lastInsertId()
+    {
+        $this->_pdo->lastInsertId();
     }
 }

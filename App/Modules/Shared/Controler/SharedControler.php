@@ -16,12 +16,12 @@ use \ES\Core\Controler\AbstractControler;
 class SharedControler extends AbstractControler
 {
     protected static $module='Shared';
-
+    
     public function homeShow()
     {
-        $this->renderView->render(
-            ES_ROOT_PATH_FAT_MODULES . 'Shared\\View\\HomeView.php',
-            array('title'=>'Page d\'accueil')
-        );
+        $this->view('HomeView',
+            [
+                'title'=>'Page d\'accueil'
+            ]);
     }
 }
