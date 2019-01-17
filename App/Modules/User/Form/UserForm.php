@@ -31,14 +31,20 @@ class UserForm extends BootStrapForm
         return parent::input('login',$options);
     }
 
-    public function passwordForget()
+    public function hash()
     {
         $options[parent::OPTIONS_REQUIRED]='true';
         $options[parent::OPTIONS_MAXLENGHT]=100;
         $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_HIDDEN;
-        return parent::input('pwdForget',$options);
+        return parent::input('hash',$options);
     }
-
+    public function idHidden()
+    {
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=100;
+        $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_HIDDEN;
+        return parent::input('idHidden',$options);
+    }
     public function mail()
     {
         $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_EMAIL;
@@ -49,7 +55,18 @@ class UserForm extends BootStrapForm
         return parent::input('mail',$options);
     }
 
-
+    public function passwordOld()
+    {
+        $options[parent::OPTIONS_LABEL]='Ancien mot de passe';
+        $options[parent::OPTIONS_PLACEHOLDER]='Ancien mot de passe';
+        return parent::input_password('pwdOld',$options);
+    }
+    public function passwordNew()
+    {
+        $options[parent::OPTIONS_LABEL]='Nouveau mot de passe';
+        $options[parent::OPTIONS_PLACEHOLDER]='Nouveau mot de passe';
+        return parent::input_password('pwdNew',$options);
+    }
     public function password()
     {
         $options[parent::OPTIONS_LABEL]='Mot de passe';

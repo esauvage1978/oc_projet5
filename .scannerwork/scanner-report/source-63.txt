@@ -1,26 +1,12 @@
 <?php
 
+use \ES\App\Modules\Shared\Services\Routeur;
 
-require_once '../Core/Toolbox/Flash.php';
+require '../App/Modules/Shared/Services/Routeur.php';
 
-use PHPUnit\Framework\TestCase;
-use ES\Core\ToolBox\Flash;
+session_start();
 
-class EmailTest extends TestCase
-{
-    public function testCanBeCreatedFromValidEmailAddress(): void
-    {
-        $flash=new Flash();
-        $this->assertInstanceOf(
-            Flash::class,
-            $flash
-        );
-    }
+$routeur=new Routeur();
+$routeur->run();
 
-    public function testWrite()
-    {
-        $flash =new Flash();
-        //$this->assertNotFalse ($flash->writeError('test'));
-    }
 
-}

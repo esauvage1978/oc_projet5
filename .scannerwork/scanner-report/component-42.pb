@@ -1,1 +1,1 @@
-*Core/Form/BootStrapForm.php 2phpX,hrCore/Form/BootStrapForm.php
+*$Core/Controler/AbstractControler.php 2phpX'hr$Core/Controler/AbstractControler.php

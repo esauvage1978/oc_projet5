@@ -1,1 +1,1 @@
-%$Core/Controler/AbstractControler.php 2phpX hr$Core/Controler/AbstractControler.php
+%Config/bdd.php 2phpXhrConfig/bdd.php

@@ -1,1 +1,1 @@
-(Core/Database/BddAction.php 2phpXKhrCore/Database/BddAction.php
+(Core/Autoloader/Autoloader.php 2phpXhrCore/Autoloader/Autoloader.php

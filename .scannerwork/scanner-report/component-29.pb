@@ -1,1 +1,1 @@
-*App/Modules/User/View/UserTemplateView.php 2phpXhr*App/Modules/User/View/UserTemplateView.php
+App/Modules/User/View : !#rApp/Modules/User/View

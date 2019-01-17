@@ -1,1 +1,1 @@
-2Core/Toolbox/Flash.php 2phpX1hrCore/Toolbox/Flash.php
+2Core/Model/AbstractManager.php 2phpXçhrCore/Model/AbstractManager.php

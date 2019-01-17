@@ -1,0 +1,6 @@
+<?php
+//if ($user_)
+?>
+<li>
+    <a href="##INDEX##user.deconnexion">Déconnexion</a>
+</li>

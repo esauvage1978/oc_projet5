@@ -1,1 +1,1 @@
-&Core/Controler :%rCore/Controler
+&Config :%'rConfig

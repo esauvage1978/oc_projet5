@@ -1,1 +1,1 @@
-+	Core/Form :*,r	Core/Form
++Core/Controler :*rCore/Controler

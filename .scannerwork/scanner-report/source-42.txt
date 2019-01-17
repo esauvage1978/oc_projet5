@@ -1,44 +1,39 @@
 <?php
+
+namespace ES\Core\Controler;
+
+Use ES\Core\Toolbox\Flash;
+Use ES\Core\Toolbox\Request;
+
+
 /**
- * Created by PhpStorm.
- * User: esauvage1978
- * Date: 28/12/2018
- * Time: 10:39
+ * Controler short summary.
+ *
+ * Controler description.
+ *
+ * @version 1.0
+ * @author ragus
  */
-
-namespace ES\Core\Form;
-
-use ES\Core\Form\Form;
-
-
-class BootStrapForm extends Form
+class AbstractControler
 {
-    /**
-     * @param $name
-     * @return string
-     */
-    public function input($name, $options = [])
+    protected $flash;
+    protected $_request;
+    protected $renderView;
+    protected static $module='';
+
+    public function __construct()
     {
-        $options[parent::OPTIONS_CSSCLASS]='form-control';
-        return parent::input($name,$options);
+        $this->_request=new Request(array('get'=>$_GET,'post'=>$_POST,'session'=>$_SESSION,'cookie'=>$_COOKIE));
+        $this->flash=new Flash();
+        $caller = '\\ES\\App\\Modules\\' . static::$module . '\\Render\\'. static::$module . 'RenderView';
+        $this->renderView=new $caller();
     }
 
-    public function input_password($name,$options = array())
-    {
-        $options[parent::OPTIONS_CSSCLASS]='form-control';
-        return parent::input_password($name,$options);
-    }
 
-    public function submit($name,$label,$options= [])
+    protected function view($page,$data)
     {
-        $options[parent::OPTIONS_CSSCLASS]='btn';
-        return parent::submit($name,$label,$options);
+        $this->renderView->render(
+            ES_ROOT_PATH_FAT_MODULES . static::$module .  '\\View\\'. $page .'.php',
+            $data);
     }
-
-    public function submit_primary($name,$label,$options= [])
-    {
-        $options[parent::OPTIONS_CSSCLASS]='btn btn-primary';
-        return parent::submit($name,$label,$options);
-    }
-
 }

@@ -95,7 +95,7 @@
                     <li>
                         <a href="##INDEX###about">A propos</a>
                     </li>
-                    <?php require ES_ROOT_PATH_FAT_MODULES .'Shared\\View\\Partial\\MenuPartialView.php';?>
+                    <?= isset($menuUser)?$menuUser:'';?>
                 </ul>
             </div>
         </div>

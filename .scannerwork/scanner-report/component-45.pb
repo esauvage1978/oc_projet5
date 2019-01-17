@@ -1,1 +1,1 @@
--Core/Model/AbstractManager.php 2phpXjhrCore/Model/AbstractManager.php
+-Core/Database :,=rCore/Database

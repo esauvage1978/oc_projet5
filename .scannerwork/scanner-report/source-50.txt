@@ -1,49 +1,141 @@
 <?php
 
-namespace ES\Core\Toolbox;
+namespace ES\Core\Model;
 
-class Flash{
+use \ES\Core\Database\BddAction;
 
-    private $_flash;
+abstract class AbstractManager
+{
+    /**
+     * Variable contenant la connexion à la bdd
+     * @var mixed
+     */
+    protected $req;
 
-    const ERREUR="alert-danger";
-    const SUCCES="alert-success";
-    const INFO="alert-info";
-    const WARNING="alert-warning";
+    protected static $table='';
+    protected static $order_by='';
+    protected static $id='';
 
-    public function __construct(){
+    protected $_selectAll;
+    protected $_selectFrom;
+    protected $_selectFromWhere;
 
-    }
-
-    public function writeError($message)
+    public function __construct()
     {
-        $this->write(self::ERREUR,$message);
-    }
-    public function writeInfo($message)
-    {
-        $this->write(self::INFO,$message);
-    }
-    public function writeSucces($message)
-    {
-        $this->write(self::SUCCES,$message);
-    }
-    public function writeWarning($message)
-    {
-        $this->write(self::WARNING,$message);
-    }
-    private function write($key, $message){
-        $_SESSION[$this->_flash][$key] = $message;
+        $this->_req=new BddAction();
+        $this->_selectAll='SELECT * FROM ';
+        $this->_selectFrom=$this->_selectAll . static::$table;
+        $this->_selectFromWhere=$this->_selectFrom . ' WHERE ';
+
     }
 
-    public function isPresent(){
-        return isset($_SESSION[$this->_flash]);
+    /**
+     * Fonction retournant l'ensemble des données de la table
+     * @return mixed
+     */
+    protected function getAll()
+    {
+        return $this->query($this->_selectFrom . ' order by ' . static::$order_by . ';');
     }
 
-    public function read(){
-        $retour = $_SESSION[$this->_flash];
-        unset( $_SESSION[$this->_flash]);
-        return $retour;
+    /**
+     * Summary of find : Recherche un enregistrement
+     * @param mixed $identifiant
+     * @return mixed
+     */
+    public function find($identifiant)
+    {
+        $tatement=$this->_selectFromWhere . static::$id . '=:id;';
+        $arguments=['id'=>$identifiant];
+        return $this->query ($tatement,$arguments,true);
+    }
+    public function findByField($field, $value)
+    {
+        $tatement=$this->_selectFromWhere . $field . '=:value;';
+        $arguments=['value'=>$value];
+        return $this->query ($tatement,$arguments,true);
     }
 
+    public function exist($filedName,$value)
+    {
+        $nbr_data = $this->query(
+            $this->_selectFromWhere . $filedName . '=:fieldName;'
+            , array('fieldName'=>$value ),
+            true);
+
+        return !($nbr_data===false);
+    }
+
+    public function create($datas)
+    {
+        $sql_parts = [];
+        $attributes = [];
+        foreach ($datas as $k => $v) {
+            $sql_parts[] = $k. '= ?';
+            $attributes[] = $v;
+        }
+        $sql_part =  implode(', ', $sql_parts);
+
+
+        if($this->query('INSERT INTO '. static::$table . ' SET ' . $sql_part, $attributes, true))
+        {
+            return $this->_req->lastInsertId();
+        }
+        return false;
+
+    }
+    public function update($id, $fields)
+    {
+        $sql_parts = [];
+        $attributes = [];
+        foreach ($fields as $k => $v) {
+            $sql_parts[] = $k . '= ?';
+            $attributes[] = $v;
+        }
+        $attributes[] = $id;
+        $sql_part =  implode(', ', $sql_parts);
+        return $this->query('UPDATE '. static::$table . ' SET '. $sql_part . ' WHERE ' . static::$id . '=? ', $attributes, true);
+    }
+
+    public function delete($id)
+    {
+        return $this->query('DELETE FROM '. static::$table . ' WHERE ' . static::$id . '= ?', [$id], true);
+    }
+    /**
+     * Summary of query : exécute une requête
+     * @param mixed $requete
+     * @param mixed $arguments
+     * @param mixed $only_one
+     * @return mixed
+     */
+    public function query($requete, $arguments=null,$only_one=false)
+    {
+        if (isset($arguments))
+        {
+            $datas=$this->_req->prepare($requete, $arguments, $only_one);
+        }
+        else
+        {
+            $datas=$this->_req->query($requete,$only_one);
+        }
+
+        $dataReturn=null;
+        if (isset($datas))
+        {
+            if($only_one)
+            {
+                $dataReturn = $datas;
+            }
+            else
+            {
+                $dataReturn=array();
+                foreach ($datas as $data)
+                {
+                    $dataReturn[] = $data;
+                }
+            }
+        }
+        return $dataReturn;
+    }
 
 }

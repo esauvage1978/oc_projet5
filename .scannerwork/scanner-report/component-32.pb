@@ -1,1 +1,1 @@
- Config/bdd.php 2phpXhrConfig/bdd.php
+ 'App/Modules/User/View/PwdForgetView.php 2phpXhr'App/Modules/User/View/PwdForgetView.php

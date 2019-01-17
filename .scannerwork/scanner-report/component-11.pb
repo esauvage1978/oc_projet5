@@ -1,1 +1,1 @@
-App/Modules/Shared/View :rApp/Modules/Shared/View
+<App/Modules/Shared/View/Partial/UserConnectedPartialView.php 2phpXhr<App/Modules/Shared/View/Partial/UserConnectedPartialView.php

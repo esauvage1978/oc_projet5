@@ -1,5 +1,0 @@
-<?php
-
-mail('emmanuel.sauvage@live.fr','Salut beau gosse','test de message');
-
-

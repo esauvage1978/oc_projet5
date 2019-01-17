@@ -1,1 +1,1 @@
-?Tests/FlashTest.php 2phpXhrTests/FlashTest.php
+?Public/index.php 2phpXhrPublic/index.php

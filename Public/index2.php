@@ -1,14 +1,24 @@
 <?php
+session_start();
 
-use ES\Core\Toolbox\Auth;
-require '../Core/Toolbox/Auth.php';
+use ES\Core\Autoloader\Autoloader;
+Use ES\Core\Toolbox\Request;
+
 require_once '../Config/constantes.php';
+require_once '../Core/Autoloader/Autoloader.php';
 
-$pwd=Auth::password_crypt('a');
-$pwd2='$2y$10$GlxsQCzAXWd7axLBORvi7.2YjWxl6EjVhjqCtYlsFr51BEIdGM8VO';
-var_dump($pwd);
-var_dump($pwd2);
-var_dump(Auth::password_compare('a',$pwd));
-var_dump(Auth::password_compare('a',$pwd2));
+use ES\App\Modules\User\Model\UserManager;
+use ES\App\Modules\User\Model\UserTable;
+use ES\App\Modules\User\Controler\UserControler;
 
+Autoloader::register();
+$request=new Request(array('get'=>$_GET,'post'=>$_POST,'session'=>$_SESSION,'cookie'=>$_COOKIE));
+$userManager=new UserManager();
+$userControler=new UserControler();
+$user=$userManager->findUserByLogin('Manuso');
+$userManager->connect ($user,$request);
+var_dump($user);
+//$userControler->valideAccessPageOwnerOrAdmin($user,'9');
+$userManager->identifiantExist('Manuso','9');
+$userManager->mailExist('emmanuel.sauvage@live.fr','9');
 

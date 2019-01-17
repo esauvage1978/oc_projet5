@@ -1,31 +1,71 @@
 <?php
-class Auth{
 
-    private $session;
+namespace ES\App\Modules\User\Form;
 
-    public function __construct($session){
-        $this->session = $session;
+use ES\Core\Form\BootStrapForm;
+/**
+ * UserForm short summary.
+ *
+ * UserForm description.
+ *
+ * @version 1.0
+ * @author ragus
+ */
+class UserForm extends BootStrapForm
+{
+    public function identifiant()
+    {
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=40;
+        $options[parent::OPTIONS_LABEL]='Identifiant';
+        $options[parent::OPTIONS_PLACEHOLDER]='Identifiant';
+        return parent::input('identifiant',$options);
     }
 
-    public function connect($user){
-        $this->session->write('auth', $user);
+    public function login()
+    {
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=100;
+        $options[parent::OPTIONS_LABEL]='Identifiant ou adresse mail';
+        $options[parent::OPTIONS_PLACEHOLDER]='Identifiant ou adresse mail';
+        return parent::input('login',$options);
     }
 
-    public function login($db, $username, $password){
-        $user = $db->query('SELECT * FROM users WHERE (username = :username OR email = :username) AND confirmed_at IS NOT NULL', ['username' => $username])->fetch();
-        if(password_verify($password, $user->password)){
-            $this->connect($user);
-            return $user;
-        }else{
-            return false;
-        }
+    public function hash()
+    {
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=100;
+        $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_HIDDEN;
+        return parent::input('hash',$options);
+    }
+    public function idHidden()
+    {
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=100;
+        $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_HIDDEN;
+        return parent::input('idHidden',$options);
+    }
+    public function mail()
+    {
+        $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_EMAIL;
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=100;
+        $options[parent::OPTIONS_LABEL]='Adresse mail';
+        $options[parent::OPTIONS_PLACEHOLDER]='Adresse mail';
+        return parent::input('mail',$options);
     }
 
-    public function restrict(){
-        if(!$this->session->read('auth')){
-            $this->session->setFlash('danger', "Vous n'avez pas le droit d'accéder à cette page");
-            header('Location: login.php');
-            exit();
-        }
+
+    public function password()
+    {
+        $options[parent::OPTIONS_LABEL]='Mot de passe';
+        $options[parent::OPTIONS_PLACEHOLDER]='Mot de passe';
+        return parent::input_password('pwd',$options);
+    }
+    public function passwordConfirmation()
+    {
+        $options[parent::OPTIONS_LABEL]='Confirmation du mot de passe';
+        $options[parent::OPTIONS_PLACEHOLDER]='Confirmation du mot de passe';
+        return parent::input_password('pwdConfirmation',$options);
     }
 }

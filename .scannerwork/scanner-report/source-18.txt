@@ -1,57 +1,332 @@
 <?php
 
-namespace ES\App\Modules\User\Form;
+namespace ES\App\Modules\User\Controler;
 
-use ES\Core\Form\BootStrapForm;
+use ES\App\Modules\Shared\Controler\SharedControler;
+use ES\App\Modules\User\Model\UserManager;
+use ES\App\Modules\User\Model\UserTable;
+use ES\App\Modules\User\Form\UserForm;
+Use ES\Core\ToolBox\Request;
+Use ES\Core\ToolBox\Auth;
+
 /**
- * UserForm short summary.
+ * userControler short summary.
  *
- * UserForm description.
+ * userControler description.
  *
  * @version 1.0
  * @author ragus
  */
-class UserForm extends BootStrapForm
+class UserControler extends SharedControler
 {
-    public function identifiant()
+    protected static $module='User';
+
+    public function connexion()
     {
-        $options[parent::OPTIONS_REQUIRED]='true';
-        $options[parent::OPTIONS_MAXLENGHT]=40;
-        $options[parent::OPTIONS_LABEL]='Identifiant';
-        $options[parent::OPTIONS_PLACEHOLDER]='Identifiant';
-        return parent::input('identifiant',$options);
+        if($this->_request->hasSessionValue('user'))
+        {
+            $this->flash->writeInfo('Vous ne pouvez pas vous rendre sur cette page en étant connecté.');
+            header('Location: index.php');
+            exit;
+        }
+
+        $datas=$this->_request;
+        $form =new UserForm($datas);
+
+        if($datas->hasPost())
+        {
+            $login=$datas->getPostValue('login');
+            $pwd=$datas->getPostValue('pwd');
+
+            $user_manager=new UserManager ();
+
+            try
+            {
+                $user=$user_manager->findUserByLogin($login);
+            }
+            catch(\InvalidArgumentException $e)
+            {
+                $this->flash->writeError( $e->getMessage());
+                $this->connexionView($form);
+                exit;
+            }
+
+            if (!Auth::password_compare($pwd, $user->getPassword()) )
+            {
+                $this->flash->writeError ('L\'identifiant ou le mot de passe sont incorrects. Veuillez réessayer.');
+            }
+            else if(is_null( $user->getValidAccountDate() ))
+            {
+                $this->flash->writeWarning ('Votre compte n\'est pas encore validé. Le mail est renvoyé.');
+                $user_manager->sendMailSignup($user);
+                header('Location: index.php');
+                exit;
+            }
+            else
+            {
+                $this->_request->setSessionValue('user',$user);
+                header('Location: index.php');
+                exit;
+            }
+        }
+        $this->connexionView($form);
+
+    }
+    public function deconnexion()
+    {
+        $this->_request->unsetSessionValue('user');
+        header('Location: index.php');
     }
 
-    public function login()
+    public function pwdforget()
     {
-        $options[parent::OPTIONS_REQUIRED]='true';
-        $options[parent::OPTIONS_MAXLENGHT]=100;
-        $options[parent::OPTIONS_LABEL]='Identifiant ou addresse mail';
-        $options[parent::OPTIONS_PLACEHOLDER]='Identifiant ou addresse mail';
-        return parent::input('login',$options);
+        $datas=$this->_request;
+        $form =new UserForm($datas);
+
+        if($datas->hasPost())
+        {
+            $login=$datas->getPostValue('login');
+
+            $user_manager=new UserManager ();
+
+            try
+            {
+                $user=$user_manager->findUserByLogin($login);
+            }
+            catch(\InvalidArgumentException $e)
+            {
+                $this->flash->writeError( $e->getMessage());
+                $this->pwdForgetView($form);
+                exit;
+            }
+            $user_manager->ForgetInit($user);
+            $user_manager->sendMailPwdForget($user);
+            $this->flash->writeSucces( 'Un mail de réinitialisation a été envoyé');
+            $this->connexionView($form);
+            exit;
+        }
+
+        $this->pwdForgetView($form);
+    }
+    public function pwdforgetchange()
+    {
+        $datas=$this->_request;
+
+
+        if($datas->hasPost())
+        {
+            $form =new UserForm($datas);
+            $forgetHash=$datas->getPostValue('hash');
+            $pwd=$datas->getPostValue('pwd');
+            $pwdConfirmation=$datas->getPostValue('pwdConfirmation');
+
+            $user_manager=new UserManager ();
+
+            try
+            {
+                $user=$user_manager->findByForgetHash($forgetHash);
+            }
+            catch(\InvalidArgumentException $e)
+            {
+                $this->flash->writeError( $e->getMessage());
+                $this->pwdConnexionView($form);
+                exit;
+            }
+            if ($pwd  != $pwdConfirmation)
+            {
+                $this->flash->writeError ('Le mot de passe et sa confirmation sont différents');
+            }
+            else
+            {
+                $user_manager->forgetReset($user,$pwd);
+                $this->flash->writeSucces( 'Mot de passe modifié');
+                $this->connexionView($form);
+                exit;
+            }
+        }
+        else
+        {
+            $pwdForget=$this->_request->getGetValue('mot');
+            if(!isset($pwdForget) || empty($pwdForget))
+            {
+                $this->connexionView(new UserForm($datas));
+                exit;
+            }
+            $form =new UserForm(['hash'=>$pwdForget]);
+        }
+        $this->pwdForgetChangeView($form);
     }
 
-    public function mail()
+    public function modify()
     {
-        $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_EMAIL;
-        $options[parent::OPTIONS_REQUIRED]='true';
-        $options[parent::OPTIONS_MAXLENGHT]=100;
-        $options[parent::OPTIONS_LABEL]='Addresse mail';
-        $options[parent::OPTIONS_PLACEHOLDER]='Addresse mail';
-        return parent::input('mail',$options);
+        $datas=$this->_request;
+
+
+        if($datas->hasPost())
+        {
+            $form =new UserForm($datas);
+            $pwdForget=$datas->getPostValue('pwdForget');
+            $pwd=$datas->getPostValue('pwd');
+            $pwdConfirmation=$datas->getPostValue('pwdConfirmation');
+
+            $user_manager=new UserManager ();
+
+            try
+            {
+                $user=$user_manager->findByForgetHash($pwdForget);
+            }
+            catch(\InvalidArgumentException $e)
+            {
+                $this->flash->writeError( $e->getMessage());
+                $this->pwdConnexionView($form);
+                exit;
+            }
+            if ($pwd  != $pwdConfirmation)
+            {
+                $this->flash->writeError ('Le mot de passe et sa confirmation sont différents');
+            }
+            else
+            {
+                $user_manager->forgetReset($user,$pwd);
+                $this->flash->writeSucces( 'Mot de passe modifié');
+                $this->connexionView($form);
+                exit;
+            }
+        }
+        else
+        {
+            $idHidden=$this->_request->getGetValue('p');
+            if(!isset($idHidden) || empty($idHidden))
+            {
+                $this->flash->writeError ('Adresse inccorecte');
+                $this->connexionView(new UserForm($datas));
+                exit;
+            }
+            $form =new UserForm(['$idHidden'=>$idHidden]);
+        }
+        $this->modifyView($form);
     }
 
 
-    public function password()
+    public function validaccount()
     {
-        $options[parent::OPTIONS_LABEL]='Mot de passe';
-        $options[parent::OPTIONS_PLACEHOLDER]='Mot de passe';
-        return parent::input_password('pwd',$options);
+        $hash=$this->_request->getGetValue('mot');
+        $user_manager=new UserManager();
+        try
+        {
+            $user=$user_manager->findByValidAccountHash($hash);
+        }
+        catch(\InvalidArgumentException $e)
+        {
+            $this->flash->writeError( $e->getMessage());
+            header('Location: index.php');
+            exit;
+        }
+        $user_manager->validAccountReset($user);
+        $this->flash->writeSucces('Votre compte est validé');
+        $this->connexion();
     }
-    public function passwordConfirmation()
+
+    public function signup()
     {
-        $options[parent::OPTIONS_LABEL]='Confirmation du mot de passe';
-        $options[parent::OPTIONS_PLACEHOLDER]='Confirmation du mot de passe';
-        return parent::input_password('pwdConfirmation',$options);
+        $datas=$this->_request;
+        $form =new UserForm($datas);
+
+        if($datas->hasPost())
+        {
+            $identifiant=$datas->getPostValue('identifiant');
+            $mail=$datas->getPostValue('mail',Request::TYPE_MAIL);
+            $pwd=$datas->getPostValue('pwd');
+            $pwdConfirmation=$datas->getPostValue('pwdConfirmation');
+            $userManager=new UserManager ();
+
+            try
+            {
+                $user=$userManager ->NewUser (
+                                        $identifiant,
+                                        $mail,
+                                        $pwd);
+            }
+            catch(\InvalidArgumentException $e)
+            {
+                $this->flash->writeError( $e->getMessage());
+                $this->signupView($form);
+                exit;
+            }
+
+
+            if ($pwd  != $pwdConfirmation)
+            {
+                $this->flash->writeError ('Le mot de passe et sa confirmation sont différents');
+            }
+            else if($userManager->identifiantExist ($identifiant))
+            {
+                $this->flash->writeError ('Cet identifiant est déjà utilisé.');
+            }
+            else if($userManager->mailExist ($mail))
+            {
+                $this->flash->writeError ('Cet e-mail est déjà utilisé.');
+            }
+            else
+            {
+                $id= $userManager->createUser($user);
+
+                if(!$id)
+                {
+                    $this->flash->writeError ('Erreur lors de l\'ajout de l\'utilisateur.');
+                    $this->signupView($form);
+                    exit;
+                }
+                $user->setId($id);
+                $userManager->sendMailSignup ($user);
+                $this->flash->writeSucces ("Utilisateur créé, un mail a été envoyé pour valider l'inscription") ;
+                header('Location: index.php');
+                exit;
+            }
+        }
+
+        $this->signupView($form);
+
+    }
+
+    private function signupView($form)
+    {
+        $this->view('SignupView',
+            [
+                'title'=>'Inscription',
+                'form'=>$form
+            ]);
+    }
+    private function connexionView($form)
+    {
+        $this->view('ConnexionView',
+            [
+                'title'=>'Connexion',
+                'form'=>$form
+            ]);
+    }
+    private function modifyView($form)
+    {
+        $this->view('ModifyView',
+            [
+                'title'=>'Modification des informations d\'un utilisateur',
+                'form'=>$form
+            ]);
+    }
+    private function pwdForgetView($form)
+    {
+        $this->view('PwdForgetView',
+            [
+                'title'=>'Mot de passe oublié ?',
+                'form'=>$form
+            ]);
+    }
+    private function pwdForgetChangeView($form)
+    {
+        $this->view('PwdForgetChangeView',
+        [
+            'title'=>'Modification du mot de passe',
+            'form'=>$form
+        ]);
     }
 }

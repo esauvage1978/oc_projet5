@@ -1,1 +1,1 @@
-$App/Modules/User/View/SignupView.php 2phpXhr$App/Modules/User/View/SignupView.php
+'App/Modules/User/View/ConnexionView.php 2phpXhr'App/Modules/User/View/ConnexionView.php

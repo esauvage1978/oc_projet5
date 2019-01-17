@@ -51,6 +51,7 @@ class Form
      */
     public function __construct($data)
     {
+        //Passage dans $data d'un tableau ou de la classe Request
         $this->_data = $data;
     }
 
@@ -58,10 +59,16 @@ class Form
     protected function getValue($index)
     {
         $data=null;
-        $data=is_array ( $this->_data)
-            ?(array_key_exists($index,$this->_data)?$this->_data[$index]:null)
-            :$this->_data->getPostValue($index);
-        
+
+        if(is_array ( $this->_data))
+        {
+            $data=array_key_exists($index,$this->_data)?$this->_data[$index]:null;
+        }
+        else
+        {
+            $data=$this->_data->getPostValue($index);
+        }
+
         return isset($data)? $data:null;
     }
 

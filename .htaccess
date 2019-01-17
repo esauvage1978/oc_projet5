@@ -1,0 +1,6 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteRule ^$   ./Public/index.php [L]
+RewriteRule ^([a-z]*.[a-z]*)$   ./Public/index.php?page=$1 [L]
+RewriteRule ^([a-z]*.[a-z]*)/([0-9]*)$   ./Public/index.php?page=$1&p=$2 [L]
+RewriteRule ^([a-z]*.[a-z]*)/([a-zA-Z0-9]*)$   ./Public/index.php?page=$1&mot=$2 [L]

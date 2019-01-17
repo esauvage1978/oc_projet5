@@ -16,11 +16,17 @@ abstract class AbstractManager
     protected static $order_by='';
     protected static $id='';
 
-    protected $_selectAll='SELECT * FROM ';
+    protected $_selectAll;
+    protected $_selectFrom;
+    protected $_selectFromWhere;
 
     public function __construct()
     {
         $this->_req=new BddAction();
+        $this->_selectAll='SELECT * FROM ';
+        $this->_selectFrom=$this->_selectAll . static::$table;
+        $this->_selectFromWhere=$this->_selectFrom . ' WHERE ';
+
     }
 
     /**
@@ -29,7 +35,7 @@ abstract class AbstractManager
      */
     protected function getAll()
     {
-        return $this->query($this->_selectAll . static::$table . ' order by ' . static::$order_by . ';');
+        return $this->query($this->_selectFrom . ' order by ' . static::$order_by . ';');
     }
 
     /**
@@ -39,25 +45,38 @@ abstract class AbstractManager
      */
     public function find($identifiant)
     {
-        $tatement=$this->_selectAll . static::$table . ' WHERE ' . static::$id . '=:id;';
+        $tatement=$this->_selectFromWhere . static::$id . '=:id;';
         $arguments=['id'=>$identifiant];
         return $this->query ($tatement,$arguments,true);
     }
     public function findByField($field, $value)
     {
-        $tatement=$this->_selectAll . static::$table . ' WHERE ' . $field . '=:value;';
+        $tatement=$this->_selectFromWhere . $field . '=:value;';
         $arguments=['value'=>$value];
         return $this->query ($tatement,$arguments,true);
     }
 
-    public function exist($filedName,$value)
+    public function exist($filedName,$value,$id=null):bool
     {
-        $nbr_data = $this->query(
-            $this->_selectAll . static::$table . ' WHERE ' . $filedName . '=:fieldName;'
-            , array('fieldName'=>$value ),
-            true);
+        if(isset($id))
+        {
+            $present = $this->query(
+                $this->_selectFromWhere . $filedName . '=:fieldName AND ' . static::$id . '!=:id;'
+                , [
+                'fieldName'=>$value ,
+                'id'=>$id
+                ],
+                true);
+        }
+        else
+        {
+            $present = $this->query(
+                $this->_selectFromWhere . $filedName . '=:fieldName;'
+                , ['fieldName'=>$value ],
+                true);
 
-        return !($nbr_data===false);
+        }
+        return $present;
     }
 
     public function create($datas)

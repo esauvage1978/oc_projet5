@@ -1,12 +1,28 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: ragus
+ * Date: 18/12/2018
+ * Time: 08:37
+ */
 
-use \ES\App\Modules\Shared\Services\Routeur;
+namespace core\toolbox;
 
-require '../App/Modules/Shared/Services/Routeur.php';
+/**
+ * Class ToolBox : Contient des méthodes statiques
+ * @package ES\Combat\Model
+ */
+class ToolBox
+{
 
-session_start();
-
-$routeur=new Routeur();
-$routeur->run();
 
 
+    public static function debug($myArray, $makeDie=false)
+    {
+        echo "<pre>" . print_r($myArray) . "</pre>";
+        if ($makeDie)
+        {
+            die();
+        }
+    }
+}

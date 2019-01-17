@@ -1,2 +1,2 @@
 
-App/Modules/Shared/View/Partial :	rApp/Modules/Shared/View/Partial
+App/Modules/Shared/View/Partial :	rApp/Modules/Shared/View/Partial

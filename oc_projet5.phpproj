@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
     <RuntimeVersion>7.1</RuntimeVersion>
-    <SpecificPageValue>Public/index.php</SpecificPageValue>
+    <SpecificPageValue>Public/index2.php</SpecificPageValue>
     <StartAction>SpecificPage</StartAction>
     <Runtime>PHP</Runtime>
     <SaveServerSettingsInUserFile>false</SaveServerSettingsInUserFile>
@@ -43,6 +43,8 @@
     <Compile Include="App\Modules\User\Model\UserManager.php" />
     <Compile Include="App\Modules\User\Render\UserRenderView.php" />
     <Compile Include="App\Modules\User\View\ConnexionView.php" />
+    <Compile Include="App\Modules\User\View\ModifyView.php" />
+    <Compile Include="App\Modules\User\View\PwdChange.php" />
     <Compile Include="App\Modules\User\View\PwdForgetChangeView.php" />
     <Compile Include="App\Modules\User\View\PwdForgetView.php" />
     <Compile Include="App\Modules\User\View\SignupView.php" />
@@ -91,24 +93,12 @@
     <Folder Include="Core\Model\" />
     <Folder Include="Core\Toolbox\" />
     <Folder Include="Core\Render\" />
+    <Folder Include="Public\images\avatar\" />
     <Folder Include="Tests\" />
     <Folder Include="Public\" />
     <Folder Include="Public\css\" />
     <Folder Include="Public\fonts\" />
     <Folder Include="Public\images\" />
-    <Folder Include="Public\images\bg\" />
-    <Folder Include="Public\images\ico\" />
-    <Folder Include="Public\images\logo\" />
-    <Folder Include="Public\images\overlays\" />
-    <Folder Include="Public\images\portfolio\" />
-    <Folder Include="Public\images\prettyPhoto\" />
-    <Folder Include="Public\images\prettyPhoto\dark_rounded\" />
-    <Folder Include="Public\images\prettyPhoto\dark_square\" />
-    <Folder Include="Public\images\prettyPhoto\default\" />
-    <Folder Include="Public\images\prettyPhoto\facebook\" />
-    <Folder Include="Public\images\prettyPhoto\light_rounded\" />
-    <Folder Include="Public\images\prettyPhoto\light_square\" />
-    <Folder Include="Public\images\team\" />
     <Folder Include="Public\js\" />
     <Folder Include="Public\vendor\" />
     <Folder Include="Public\vendor\bootstrap\" />
@@ -140,46 +130,6 @@
     <Content Include="Public\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="Public\fonts\Pe-icon-7-stroke.ttf" />
     <Content Include="Public\fonts\Pe-icon-7-stroke.woff" />
-    <Content Include="Public\images\bg\bg1.jpg" />
-    <Content Include="Public\images\bg\bg2.jpg" />
-    <Content Include="Public\images\bg\bg3.jpg" />
-    <Content Include="Public\images\bg\bg4.jpg" />
-    <Content Include="Public\images\bg\bg5.jpg" />
-    <Content Include="Public\images\bg\bg6.jpg" />
-    <Content Include="Public\images\bg\bg7.jpg" />
-    <Content Include="Public\images\ico\apple-touch-icon-114x114.png" />
-    <Content Include="Public\images\ico\apple-touch-icon-144x144.png" />
-    <Content Include="Public\images\ico\apple-touch-icon-57x57.png" />
-    <Content Include="Public\images\ico\apple-touch-icon-72x72.png" />
-    <Content Include="Public\images\ico\apple-touch-icon.png" />
-    <Content Include="Public\images\ico\avatar.png" />
-    <Content Include="Public\images\ico\favicon.ico" />
-    <Content Include="Public\images\loading.GIF" />
-    <Content Include="Public\images\logo.png" />
-    <Content Include="Public\images\marker.png" />
-    <Content Include="Public\images\portfolio\folio01.jpg" />
-    <Content Include="Public\images\portfolio\folio02.jpg" />
-    <Content Include="Public\images\portfolio\folio03.jpg" />
-    <Content Include="Public\images\portfolio\folio04.jpg" />
-    <Content Include="Public\images\portfolio\folio05.jpg" />
-    <Content Include="Public\images\portfolio\folio06.jpg" />
-    <Content Include="Public\images\portfolio\folio07.jpg" />
-    <Content Include="Public\images\portfolio\folio08.jpg" />
-    <Content Include="Public\images\portfolio\folio09.jpg" />
-    <Content Include="Public\images\portfolio\folio10.jpg" />
-    <Content Include="Public\images\portfolio\folio11.jpg" />
-    <Content Include="Public\images\portfolio\folio12.jpg" />
-    <Content Include="Public\images\portfolio\folio13.jpg" />
-    <Content Include="Public\images\portfolio\folio14.jpg" />
-    <Content Include="Public\images\portfolio\folio15.jpg" />
-    <Content Include="Public\images\portfolio\folio16.jpg" />
-    <Content Include="Public\images\portfolio\folio17.jpg" />
-    <Content Include="Public\images\portfolio\folio18.jpg" />
-    <Content Include="Public\images\team\team01.jpg" />
-    <Content Include="Public\images\team\team02.jpg" />
-    <Content Include="Public\images\team\team03.jpg" />
-    <Content Include="Public\images\team\team04.jpg" />
-    <Content Include="Public\images\world-map.png" />
     <Content Include="Public\vendor\bootstrap\bootstrap.min.css" />
     <Content Include="Public\vendor\bootstrap\bootstrap.min.js" />
     <Content Include="Public\vendor\bootstrap\css\bootstrap-grid.css" />

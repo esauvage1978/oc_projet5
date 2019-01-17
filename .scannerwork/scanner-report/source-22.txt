@@ -1,83 +1,31 @@
 <?php
+class Auth{
 
-namespace ES\App\Modules\User\Model;
+    private $session;
 
-use \ES\App\Modules\User\Render\UserRenderView;
-use \ES\Core\Model\AbstractTable;
-
-/**
- * User short summary.
- *
- * User description.
- *
- * @version 1.0
- * @author ragus
- */
-class UserTable extends AbstractTable
-{
-    protected static $_prefixe='u_';
-
-
-    private $u_id;
-    private $u_identifiant;
-    private $u_mail;
-    private $u_password;
-
-
-    #region CHECK DONNEES
-    public function getIdentifiant():string
-    {
-        return $this->u_identifiant;
+    public function __construct($session){
+        $this->session = $session;
     }
-    public function getMail():string
-    {
-        return $this->u_mail;
+
+    public function connect($user){
+        $this->session->write('auth', $user);
     }
-    public function getPassword():string
-    {
-        return $this->u_password;
-    }
-    public function setIdentifiant($value)
-    {
-        if(!isset($value) || empty($value) || !$value)
-        {
-            throw new \InvalidArgumentException('Les informations de l\'identifiant sont incorrectes.');
+
+    public function login($db, $username, $password){
+        $user = $db->query('SELECT * FROM users WHERE (username = :username OR email = :username) AND confirmed_at IS NOT NULL', ['username' => $username])->fetch();
+        if(password_verify($password, $user->password)){
+            $this->connect($user);
+            return $user;
+        }else{
+            return false;
         }
-        else if (strlen($value)<=3)
-        {
-            throw new \InvalidArgumentException('L\'identifiant doit avoir plus de 3 caractères.');
-        }
-        $this->u_identifiant=$value;
     }
 
-    public function setMail($value)
-    {
-        if(!isset($value) || empty($value) || !$value)
-        {
-            throw new \InvalidArgumentException('Les informations du mail sont incorrectes.');
+    public function restrict(){
+        if(!$this->session->read('auth')){
+            $this->session->setFlash('danger', "Vous n'avez pas le droit d'accéder à cette page");
+            header('Location: login.php');
+            exit();
         }
-        $this->u_mail=$value;
     }
-
-    public function setPassword($value)
-    {
-        if(!isset($value) || empty($value) || !$value)
-        {
-            throw new \InvalidArgumentException('Les informations du mot de passe sont incorrectes.');
-        }
-        else if (strlen($value)!=60)
-        {
-            throw new \InvalidArgumentException('La longueur du mot de passe est incorrecte. (' . strlen($value) . ' caractères)');
-        }
-        $this->u_password=$value;
-    }
-    public function setId($value)
-    {
-        if(!isset($value) || empty($value) || !$value || !is_int($value))
-        {
-            throw new \InvalidArgumentException('Les informations de l\'id sont incorrectes.');
-        }
-        $this->u_id=$value;
-    }
-    #endregion
 }
