@@ -3,6 +3,7 @@
 
 namespace ES\App\Modules\Shared\Render;
 use \ES\Core\Render\AbstractRenderView;
+use \ES\App\Modules\User\Model\UserManager;
 
 /**
  * BlogRenderView short summary.
@@ -27,10 +28,18 @@ class SharedRenderView  extends AbstractRenderView
     private function menuUser(): string
     {
         $fichier='UserNotConnected';
+        $menu='';
         if($this->_request->hasSessionValue('user'))
         {
             $fichier = 'UserConnected';
+            $userManager= new UserManager();
+            $user=$userManager->findById ($this->_request->getSessionValue('user') ) ;
+
+            $menu.=$this->genererFichier(ES_ROOT_PATH_FAT_MODULES. 'Shared\\View\\Partial\\' .$user->getAccreditation() . 'PartialView.php' ,null);
         }
-        return $this->genererFichier(ES_ROOT_PATH_FAT_MODULES. 'Shared\\View\\Partial\\' . $fichier . 'PartialView.php' ,null);
+
+
+        $menu.=$this->genererFichier(ES_ROOT_PATH_FAT_MODULES. 'Shared\\View\\Partial\\' . $fichier . 'PartialView.php' ,null);
+        return $menu;
     }
 }

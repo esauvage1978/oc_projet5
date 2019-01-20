@@ -1,6 +1,6 @@
 <?php
 
-namespace ES\Core\ToolBox;
+namespace ES\Core\Toolbox;
 
 /**
  * User short summary.
@@ -12,32 +12,40 @@ namespace ES\Core\ToolBox;
  */
 class Auth
 {
+    // Permet d'entourer le mot de passe de caractère pour réduire le risque de hack par disctionnaire
+    const SECRET_SALT_START='lmsqkf';
+    const SECRET_SALT_END='mplsqpojnfsmzs';
 
     /**
-     * @param String $password : Hash le password passé en paramètre en le bornant de SALT
+     * @param String $secret : Hash le password passé en paramètre
      * @return String
      */
-    public static function password_crypt(String $password): String
+    public static function passwordCrypt(String $secret): String
     {
-        return \password_hash(ES_PASSWORD_SALT_START. $password .ES_PASSWORD_SALT_END,PASSWORD_BCRYPT);
+        return \password_hash(self::SECRET_SALT_START . $secret . self::SECRET_SALT_END, PASSWORD_BCRYPT);
     }
 
     /**
-     * @param string $password_saisie
-     * @param string $password_bdd
-     * @return bool
-     * Vérifie le password saisie et le password en bdd
+     * Si hash est présent, compare le mot de passe hashé. SecretCompare doit être hashé
+     * @param string $secret
+     * @param string $secretCompare
+     * @param mixed $hash
+     * @return boolean
      */
-    public static function password_compare(string $password_saisie,string $password_bdd):bool
+    public static function passwordCompare(string $secret, string $secretCompare,bool $hash=true):bool
     {
-        return \password_verify(ES_PASSWORD_SALT_START. $password_saisie .ES_PASSWORD_SALT_END,$password_bdd);
+        if($hash) {
+            return \password_verify(self::SECRET_SALT_START . $secret . self::SECRET_SALT_END, $secretCompare);
+        } else {
+            return $secret === $secretCompare;
+        }
     }
 
     /**
      * @param int $lenght : Permet de générer une chaine de caractères aléatoire de 60 caractères par défaut
      * @return String
      */
-    public static function str_random(int $lenght = 60): String
+    public static function strRandom(int $lenght = 60): String
     {
         $alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return substr(str_shuffle(str_repeat($alphabet, $lenght)), 0, $lenght);

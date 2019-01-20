@@ -1,1 +1,1 @@
-?App/Modules/Shared/View/Partial/UserNotConnectedPartialView.php 2phpXhr?App/Modules/Shared/View/Partial/UserNotConnectedPartialView.php
+(App/Modules/Shared/View/TemplateView.php 2phpX…hr(App/Modules/Shared/View/TemplateView.php

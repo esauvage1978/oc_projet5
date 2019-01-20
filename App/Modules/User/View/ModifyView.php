@@ -1,22 +1,27 @@
-<div id="usuTop" class="col-sm-6 col-sm-push-3">
-    <h2 class="center">Modification des informations</h2>
-    <hr />
-    <form method="POST" action="##INDEX##user.modify">
-        <div class="form-group">
-            <?= $form->idHidden();?>
-        </div>
 
-        <div class="form-group">
-            <?= $form->identifiant();?>
+<div class="row">
+    <div class="col-md-8">
+        <div class="post-box">
+            <form method="POST" action="##INDEX##user.modify">
+                <div class="form-group">
+                    <?= $form->RenderIdHidden();?>
+                </div>
+
+                <div class="form-group">
+                    <?= $form->RenderIdentifiant();?>
+                </div>
+                <div class="form-group">
+                    <?= $form->RenderMail();?>
+                </div>
+                <?= $form->submit_primary('modify','Modifier');?>
+            </form>
+            <hr />
+            <div>
+                <a href="##INDEX##user.pwdchange">Changer mon mot de passe ?</a>
+            </div>
         </div>
-        <div class="form-group">
-            <?= $form->mail();?>
-        </div>
-        <?= $form->submit_primary('modify','Modifier');?>
-    </form>
-    <hr />
-    <div>
-        
-        <a href="##INDEX##user.pwdchange">Changer mon mot de passe ?</a>
+    </div>
+    <div class="col-md-4">
+        <?php require ES_ROOT_PATH_FAT_MODULES .'User\\View\\Partial\\WidgetUserConnectPartialView.php' ?>
     </div>
 </div>

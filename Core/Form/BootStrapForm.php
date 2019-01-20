@@ -41,4 +41,14 @@ class BootStrapForm extends Form
         return parent::submit($name,$label,$options);
     }
 
+    protected function chooseClassCssValid($check):string
+    {
+        $retour='';
+        if($check==Form::OPTIONS_VALID_YES) {
+            $retour =' is-valid ';
+        } else if($check==Form::OPTIONS_VALID_NO) {
+            $retour =' is-invalid ';
+        }
+        return $retour;
+    }
 }

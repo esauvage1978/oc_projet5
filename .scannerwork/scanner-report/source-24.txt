@@ -1,171 +1,251 @@
 <?php
 
-namespace ES\App\Modules\User\Model;
+namespace ES\App\Modules\User\Form;
 
-use ES\Core\Model\AbstractManager;
-use ES\App\Modules\User\Model\UserTable;
-Use ES\Core\ToolBox\Auth;
+use ES\Core\Form\BootStrapForm;
+use ES\Core\Toolbox\Auth;
+
 /**
- * UserManager short summary.
+ * UserForm short summary.
  *
- * UserManager description.
+ * UserForm description.
  *
  * @version 1.0
  * @author ragus
  */
-class UserManager extends AbstractManager
+class UserForm extends BootStrapForm
 {
-    protected static $table='ocp5_user';
-    protected static $order_by;
-    protected static $id=self::ID;
+    public static $formIdentifiant='identifiant';
+    public static $formLogin='identifiant';
+    public static $formHash='hash';
+    public static $formIdHidden='idHidden';
+    public static $formMail='mail';
+    public static $formSecretOld='secretOld';
+    public static $formSecretNew='secretNew';
+    public static $formSecret='secret';
+    public static $formSecretConfirm='secretConfirm';
 
-    const ID='u_id';
-    const IDENTIFIANT='u_identifiant';
-    const MAIL='u_mail';
-    const PASSWORD='u_password';
-    const FORGET_HASH='u_forget_hash';
-    const FORGET_DATE='u_forget_DATE';
-    const VALID_ACCOUNT_HASH='u_valid_account_hash';
-    const VALID_ACCOUNT_DATE='u_valid_account_date';
-    const ACCREDITATION='u_accreditation';
+    protected static $_loginInvalid='';
+    protected static $_identifiantInvalid='';
+    protected static $_mailInvalid='';
+    protected static $_secretInvalid='';
+    protected static $_secretNewInvalid='';
+    protected static $_secretConfirmInvalid='';
 
-    public function identifiantExist($identifiant)
+    #region LOGIN
+    public function RenderLogin()
     {
-        return parent::exist(self::IDENTIFIANT, $identifiant);
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=100;
+        $options[parent::OPTIONS_LABEL]='Identifiant ou adresse mail';
+        $options[parent::OPTIONS_VALID ]=$this::chooseClassCssValid(static::$_loginInvalid);
+        return parent::input(static::$formLogin,$options);
     }
-    public function mailExist($mail)
+    protected function checkLogin():bool
     {
-        return parent::exist(self::MAIL, $mail);
-    }
+        $field=UserForm::$formLogin;
+        $value=$this->getValue($field);
+        if( empty($value) ||
+            strlen($value)<=3 ||
+            strlen($value)>100 ||
+            !(string)filter_var($value)) {
 
-    public function findUserByLogin($login)
-    {
-        if(isset($login))
-        {
-            $retour= $this->query(
-            $this->_selectAll . static::$table . ' WHERE (' . self::IDENTIFIANT . '=:params1 OR '. self::MAIL .'=:params2) ;'
-            , [
-            'params1'=>$login,
-            'params2'=>$login]
-            ,
-            true);
-            if(!$retour)
-            {
-                throw new \InvalidArgumentException('Le login n\'a pass été trouvé');
-            }
-            else
-            {
-             return new UserTable($retour);
-            }
+            $this->flash->writeError('Le login est invalide');
+            $this->isInvalid($field);
+            return false;
         }
-        throw new \InvalidArgumentException('Le login est vide');
+        return true;
     }
-    public function findByForgetHash($key)
+    #endregion
+
+    #region IDENTIFIANT
+    public function RenderIdentifiant()
     {
-        if(isset($key))
-        {
-            $retour= $this->findByField(self::FORGET_HASH,$key);
-            if(!$retour)
-            {
-                throw new \InvalidArgumentException('Le compte n\'a pass été trouvé');
-            }
-            else
-            {
-                return new UserTable($retour);
-            }
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=40;
+        $options[parent::OPTIONS_LABEL]='Identifiant';
+        $options[parent::OPTIONS_VALID ]=$this::chooseClassCssValid(static::$_identifiantInvalid);
+        $options[parent::OPTIONS_HELP_BLOCK]='L\'identifiant doit avoir entre 4 et 45 caractères.';
+        return parent::input(static::$formIdentifiant,$options);
+    }
+
+    protected function checkIdentifiant():bool
+    {
+        $field=UserForm::$formIdentifiant;
+        $value=$this->getValue($field);
+        if( empty($value) ||
+            strlen($value)<=3 ||
+            strlen($value)>45 ||
+            !(string)filter_var($value)) {
+
+            $this->flash->writeError('L\'identifiant est invalide');
+            $this->isInvalid($field);
+            return false;
         }
-        throw new \InvalidArgumentException('L\'adresse est inccorecte');
+        return true;
     }
-    public function findByValidAccountHash($key)
+    #endregion
+
+    #region HASH
+    public function RenderHash()
     {
-        if(isset($key))
-        {
-            $retour= $this->findByField(self::VALID_ACCOUNT_HASH,$key);
-            if(!$retour)
-            {
-                throw new \InvalidArgumentException('Le compte n\'a pass été trouvé');
-            }
-            else
-            {
-                return new UserTable($retour);
-            }
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=100;
+        $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_HIDDEN;
+        return parent::input(static::$formHash,$options);
+    }
+
+    #endregion
+
+    #region IDHIDDEN
+    public function RenderIdHidden()
+    {
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=100;
+        $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_HIDDEN;
+        return parent::input(static::$formIdHidden,$options);
+    }
+    public function getIdHidden()
+    {
+        return $this->getValue(UserForm::$formIdHidden);
+    }
+    protected function checkIdHidden():bool
+    {
+        $field=UserForm::$formIdHidden;
+        $value=$this->getValue($field);
+        return !empty($value);
+    }
+    #endregion
+    #region MAIL
+    public function RenderMail()
+    {
+        $options[parent::OPTIONS_TYPE]=parent::OPTIONS_TYPE_EMAIL;
+        $options[parent::OPTIONS_REQUIRED]='true';
+        $options[parent::OPTIONS_MAXLENGHT]=100;
+        $options[parent::OPTIONS_LABEL]='Adresse mail';
+        $options[parent::OPTIONS_VALID ]=$this::chooseClassCssValid(static::$_mailInvalid);
+        return parent::input(static::$formMail,$options);
+    }
+
+    protected function checkMail():bool
+    {
+        $field=UserForm::$formMail;
+        $value=$this->getValue($field);
+        if( empty($value) ||
+            strlen($value)>100 ||
+            !filter_var($value,FILTER_VALIDATE_EMAIL)) {
+
+            $this->flash->writeError('Le mail est invalide');
+            $this->isInvalid($field);
+            return false;
         }
-        throw new \InvalidArgumentException('L\'adresse est inccorecte');
+        return true;
+    }
+    #endregion
+    #region SECRET
+    public function RenderSecret()
+    {
+        $options[parent::OPTIONS_LABEL]='Mot de passe';
+        $options[parent::OPTIONS_VALID ]=$this::chooseClassCssValid(static::$_secretInvalid);
+        return parent::input_password(static::$formSecret,$options);
     }
 
-    public function updateUser(UserTable $user):bool
+    protected function checkSecret():bool
     {
-        return $this->update($user->getId(),
-            [
-                self::IDENTIFIANT=>$user->getIdentifiant(),
-                self::MAIL=>$user->getMail(),
-                self::PASSWORD=>$user->getPassword(),
-                self::FORGET_HASH=>$user->getForgetHash(),
-                self::FORGET_DATE=>$user->getForgetDate(),
-                self::VALID_ACCOUNT_HASH=>$user->getValidAccountHash(),
-                self::VALID_ACCOUNT_DATE=>$user->getValidAccountDate(),
-                $user::ACCREDITATION=>$user->getAccreditation()
-            ]);
-    }
-    public function createUser(UserTable $user)
-    {
-        return $this->create(
-            [
-                self::IDENTIFIANT=>$user->getIdentifiant(),
-                self::MAIL=>$user->getMail(),
-                self::PASSWORD=>$user->getPassword(),
-                self::FORGET_HASH=>$user->getForgetHash(),
-                self::FORGET_DATE=>$user->getForgetDate(),
-                self::VALID_ACCOUNT_HASH=>$user->getValidAccountHash(),
-                self::VALID_ACCOUNT_DATE=>$user->getValidAccountDate(),
-                self::ACCREDITATION=>$user->getAccreditation()
-            ]);
-    }
-    public function NewUser($identifiant, $mail,$pwd):UserTable
-    {
-        return new UserTable
-                ([
-                    self::IDENTIFIANT=>$identifiant,
-                    self::MAIL=>$mail,
-                    self::PASSWORD=>Auth::password_crypt($pwd),
-                    self::FORGET_HASH=>null,
-                    self::FORGET_DATE=>null,
-                    self::VALID_ACCOUNT_HASH=>Auth::str_random(),
-                    self::VALID_ACCOUNT_DATE=>null,
-                    self::ACCREDITATION=>0
-                ]);
+        $field=UserForm::$formSecret;
+        $value=$this->getValue($field);
+        return !empty($value);
     }
 
-    public function validAccountReset(UserTable $user):bool
-    {
-        $user->setValidAccountHash(null);
-        $user->setValidAccountDate(date(ES_NOW));
+    #endregion
 
-        return $this->updateUser($user);
-    }
-    public function forgetInit(UserTable $user):bool
+    #region SECRET NEW
+    public function RenderSecretNew()
     {
-        $user->setForgetHash(Auth::str_random());
-        $user->setForgetDate(date(ES_NOW));
+        $options[parent::OPTIONS_LABEL]='Nouveau mot de passe';
+        $options[parent::OPTIONS_PLACEHOLDER]='Nouveau mot de passe';
+        $options[parent::OPTIONS_VALID ]=$this::chooseClassCssValid(static::$_secretNewInvalid);
+        $options[parent::OPTIONS_HELP_BLOCK]='Le mot de passe doit avoir au minimum 8 caractères et avoir les éléments suivants :<ul>
+            <li>Une lettre minuscule</li>
+            <li>Une lettre majuscule</li>
+            <li>Un chiffre</li></ul>';
 
-        return $this->updateUser($user);
+        return parent::input_password(static::$formSecretNew,$options);
     }
-    public function forgetReset(UserTable $user,$pwd):bool
-    {
-        $user->setForgetHash(null);
-        $user->setForgetDate(date(ES_NOW));
-        $user->setPassword (Auth::password_crypt($pwd));
 
-        return $this->updateUser($user);
-    }
-    public function sendMailSignup(UserTable $user)
+    protected function checkSecretNewAndConfirm():bool
     {
-        $content='<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '">Lien pour activer le compte</a>';
-        mail($user->getMail(),'Validation du compte',$content);
+        $field=UserForm::$formSecretNew;
+        $value=$this->getValue($field);
+        $fieldConfirm=UserForm::$formSecretConfirm;
+        $valueConfirm=$this->getValue($fieldConfirm);
+        if(empty($value) ||
+           empty($valueConfirm) ||
+           !Auth::passwordCompare($value,$valueConfirm,false)) {
+
+            $this->flash->writeError('Le mot de passe et/ou sa confirmation sont invalides' . $value. ' ' . $valueConfirm);
+            $this->isInvalid($field);
+            $this->isInvalid($fieldConfirm);
+            return false;
+        }
+        if(!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$#', $value) ) {
+
+            $this->flash->writeError('Le mot de passe ne correspond pas aux règles de complexité.');
+            $this->isInvalid($field);
+            return false;
+        }
+
+        return true;
     }
-    public function sendMailPwdForget(UserTable $user)
+    #endregion
+
+    #region SECRET CONFIRM
+    public function RenderSecretConfirm()
     {
-        $content='<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.pwdforgetchange/' . $user->getForgetHash() . '">Lien pour modifier le mot de passe</a>';
-        mail($user->getMail(),'Réinitialisation du mot de passe',$content);
+        $options[parent::OPTIONS_LABEL]='Confirmation du mot de passe';
+        $options[parent::OPTIONS_VALID ]=$this::chooseClassCssValid(static::$_secretConfirmInvalid);
+        return parent::input_password(static::$formSecretConfirm,$options);
     }
+
+
+    #endregion
+
+
+
+    public function isInvalid($field)
+    {
+        $option=parent::OPTIONS_VALID_NO;
+        switch ($field)
+        {
+            case self::$formLogin:
+                static::$_loginInvalid=$option;
+                break;
+            case self::$formIdentifiant:
+                static::$_identifiantInvalid=$option;
+                break;
+            case self::$formMail:
+                static::$_mailInvalid=$option;
+                break;
+            case self::$formSecret:
+                static::$_secretInvalid=$option;
+                break;
+            case self::$formSecretNew:
+                static::$_secretNewInvalid=$option;
+                break;
+            case self::$formSecretOld:
+                static::$_secretOldInvalid=$option;
+                break;
+            case self::$formSecretConfirm:
+                static::$_secretConfirmInvalid=$option;
+                break;
+            default:
+                throw new \InvalidArgumentException('Option incorrecte');
+
+        }
+
+    }
+
+
+
+
 }

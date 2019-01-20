@@ -1,12 +1,17 @@
 
-<div class="col-sm-4 col-sm-push-4">
-    <h2 class="center">Mot de passe oublié ?</h2>
-    <hr />
-    <form method="POST" action="##INDEX##user.pwdforget">
-        <div class="form-group">
-            <?= $form->login();?>
-        </div>
-        <?= $form->submit_primary('connexion','Récupérer');?>
-    </form>
+<div class="row justify-content-md-center">
+    <div class="col-md-6">
+        <div class="widget-sidebar">
+            <div class="sidebar-content">
 
+                <form method="POST" action="##INDEX##user.pwdforget">
+                    <div class="form-group">
+                        <?= $form->RenderLogin();?>
+                    </div>
+                    <?= $form->submit_primary('connexion','Récupérer');?>
+                </form>
+
+            </div>
+        </div>
+    </div>
 </div>

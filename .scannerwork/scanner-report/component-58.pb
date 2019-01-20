@@ -1,1 +1,1 @@
-:Core/Toolbox/Toolbox.php 2phpXhrCore/Toolbox/Toolbox.php
+:Core/Model/ITable.php 2phpXhrCore/Model/ITable.php

@@ -9,6 +9,7 @@
 namespace ES\Core\Form;
 
 use ES\Core\Toolbox\Request;
+Use ES\Core\Toolbox\Flash;
 
 /**
  * Class Form
@@ -24,6 +25,11 @@ class Form
     const OPTIONS_MAXLENGHT=5;
     const OPTIONS_PLACEHOLDER=6;
     const OPTIONS_LABEL=7;
+    const OPTIONS_VALID=8;
+    const OPTIONS_HELP_BLOCK=9;
+
+    const OPTIONS_VALID_YES=2;
+    const OPTIONS_VALID_NO=1;
 
     const OPTIONS_TYPE_TEXT='text';
     const OPTIONS_TYPE_EMAIL='email';
@@ -38,12 +44,15 @@ class Form
     private $_maxlenght;
     private $_placeholder;
     private $_label;
+    private $_helpBlock;
+
+    protected $flash;
 
     /**
      * Summary of $data
      * @var mixed
      */
-    private  $_data;
+    protected  $_data;
 
     /**
      * Form constructor.
@@ -51,25 +60,24 @@ class Form
      */
     public function __construct($data)
     {
+        $this->flash=new Flash();
+
         //Passage dans $data d'un tableau ou de la classe Request
         $this->_data = $data;
     }
 
 
-    protected function getValue($index)
+    public function getValue($index)
     {
         $data=null;
 
-        if(is_array ( $this->_data))
-        {
+        if(is_array ( $this->_data)) {
             $data=array_key_exists($index,$this->_data)?$this->_data[$index]:null;
-        }
-        else
-        {
+        } else {
             $data=$this->_data->getPostValue($index);
         }
 
-        return isset($data)? $data:null;
+        return $data;
     }
 
     #region Traitement des options
@@ -82,6 +90,7 @@ class Form
         $this->_maxlenght=self::getMaxLenght($options);
         $this->_placeholder =self::getPlaceholder($options);
         $this->_label =self::getLabel($options,$name);
+        $this->_helpBlock=self::getHelpBlock($options);
     }
 
     private static function getId($options,$name)
@@ -98,19 +107,39 @@ class Form
     }
     private static function getCssClass($options)
     {
-        return isset($options[self::OPTIONS_CSSCLASS]) ? ' class="'. $options[self::OPTIONS_CSSCLASS]. '" ' : '';
+        $valid=isset( $options[self::OPTIONS_VALID])?$options[self::OPTIONS_VALID]:'';
+        return isset($options[self::OPTIONS_CSSCLASS])
+            ?
+            ' class="'. $options[self::OPTIONS_CSSCLASS] . $valid . '" '
+            : '';
     }
     private static function getMaxlenght($options)
     {
-        return isset($options[self::OPTIONS_MAXLENGHT]) ? ' maxlenght="'. $options[self::OPTIONS_MAXLENGHT]. '" ' : '';
+        return isset($options[self::OPTIONS_MAXLENGHT])
+            ?
+            ' maxlenght="'. $options[self::OPTIONS_MAXLENGHT]. '" '
+            : '';
     }
     private static function getPlaceholder($options)
     {
-        return isset($options[self::OPTIONS_PLACEHOLDER]) ? ' placeholder="'. $options[self::OPTIONS_PLACEHOLDER]. '" ' : '';
+        return isset($options[self::OPTIONS_PLACEHOLDER])
+            ?
+            ' placeholder="'. $options[self::OPTIONS_PLACEHOLDER]. '" '
+            : '';
     }
     private static function getLabel($options,$name)
     {
-        return isset($options[self::OPTIONS_LABEL]) ? ' <label for="'. $name .'">' . $options[self::OPTIONS_LABEL] . '</label>' : '';
+        return isset($options[self::OPTIONS_LABEL])
+            ?
+            ' <label for="'. $name .'">' . $options[self::OPTIONS_LABEL] . '</label>'
+            :'';
+    }
+    private static function getHelpBlock($options)
+    {
+        return isset($options[self::OPTIONS_HELP_BLOCK])
+            ?
+            '<small id="passwordHelpBlock" class="form-text text-muted">' . $options[self::OPTIONS_HELP_BLOCK] . '</small>'
+            :'';
     }
 
     #endregion
@@ -143,7 +172,7 @@ class Form
                 $this->_maxlenght . $this->_required . $this->_id . $this->_cssClass . $this->_placeholder
                 . ' value="' . $this->getValue($name) . '" />';
         }
-        return $this->_label . $input;
+        return $this->_label . $input . $this->_helpBlock;
     }
     public function input_password($name, $options = [])
     {

@@ -1,21 +1,27 @@
 
-<div class="col-sm-4 col-sm-push-4">
-    <h2 class="center">Connexion</h2>
-    <hr/>
-    <form method="POST" action="##INDEX##user.connexion">
-        <div class="form-group">
-            <?= $form->login();?>
-        </div>
-        <div class="form-group">
-            <?= $form->password(); ?>
-        </div>
-        <?= $form->submit_primary('connexion','Connexion');?>
-        <a href="##INDEX##user.pwdforget"> Mot de passe oublié ?</a>
+<div class="row justify-content-md-center">
+    <div class="col-md-6">
+        <div class="widget-sidebar">
+            <div class="sidebar-content">
 
-    </form>
-    <hr />
-    <div>
-        Vous n'avez pas de compte ?
-        <a href="##INDEX##user.signup">Inscrivez-vous</a>
+                <form method="POST" action="##INDEX##user.connexion">
+                    <div class="form-group">
+                        <?= $form->RenderLogin();?>
+                    </div>
+                    <div class="form-group">
+                        <?= $form->RenderSecret(); ?>
+                    </div>
+                    <div class="btn-toolbar justify-content-between align-items-center" role="toolbar" aria-label="Toolbar with button groups">
+                        <?= $form->submit_primary('connexion','Connexion');?>
+                        <a href="##INDEX##user.pwdforget"> Mot de passe oublié ?</a>
+                    </div>
+                </form>
+                <hr />
+                <div>
+                    Vous n'avez pas de compte ?
+                    <a href="##INDEX##user.signup">Inscrivez-vous</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

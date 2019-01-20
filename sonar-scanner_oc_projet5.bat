@@ -1,1 +1,1 @@
-sonar-scanner.bat -X -D"sonar.projectKey=oc_projet5" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9002" -D"sonar.login=ca48782cd360e715b3addafbdf874c18c285891d" -D"sonar.exclusions=Public/vendor/**,vendor/**" 
+sonar-scanner.bat -X -D"sonar.projectKey=oc_projet5" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9002" -D"sonar.login=ca48782cd360e715b3addafbdf874c18c285891d" -D"sonar.exclusions=Public/vendor/**,vendor/**,Tests/**,TestsReport/**" -D"sonar.php.tests.reportPath=TestsReport/logfile.xml" -D"sonar.php.coverage.reportPaths=TestsReport/coverage.xml"

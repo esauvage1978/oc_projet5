@@ -1,1 +1,1 @@
- 'App/Modules/User/View/PwdForgetView.php 2phpXhr'App/Modules/User/View/PwdForgetView.php
+ -App/Modules/User/View/PwdForgetChangeView.php 2phpXhr-App/Modules/User/View/PwdForgetChangeView.php

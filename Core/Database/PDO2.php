@@ -23,16 +23,6 @@ class PDO2
      */
     private static $_instance;
 
-    /* Constructeur : héritage public obligatoire par héritage de PDO */
-    /**
-     * PDO2 constructor.
-     */
-    public function __construct()
-    {
-
-    }
-    // End of PDO2::__construct() */
-
     /* Singleton */
     /**
      * @return PDO ; création de l'instance de PDO - voir fichier parametre.php

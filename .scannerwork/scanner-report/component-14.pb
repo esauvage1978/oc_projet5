@@ -1,1 +1,1 @@
-App/Modules/Shared/Render :rApp/Modules/Shared/Render
+App/Modules/Shared/Controller :rApp/Modules/Shared/Controller

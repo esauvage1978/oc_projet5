@@ -17,25 +17,29 @@ abstract class AbstractManager
     protected static $id='';
 
     protected $_selectAll;
-    protected $_selectFrom;
-    protected $_selectFromWhere;
+    protected $_selectCount;
+    protected $where;
 
     public function __construct()
     {
-        $this->_req=new BddAction();
-        $this->_selectAll='SELECT * FROM ';
-        $this->_selectFrom=$this->_selectAll . static::$table;
-        $this->_selectFromWhere=$this->_selectFrom . ' WHERE ';
+        $select =' SELECT ';
+        $from=' FROM ';
+        $this->where=' WHERE ';
+        $all=' * ';
+        $count=' count(*) ';
 
+        $this->_req=new BddAction();
+        $this->_selectAll=$select . $all . $from . static::$table . $this->where;
+        $this->_selectCount= $select . $count . $from . static::$table . $this->where;
     }
 
     /**
      * Fonction retournant l'ensemble des données de la table
      * @return mixed
      */
-    protected function getAll()
+    public function getAll()
     {
-        return $this->query($this->_selectFrom . ' order by ' . static::$order_by . ';');
+        return $this->query($this->_selectAll . '1=1  ORDER BY ' . static::$order_by . ';');
     }
 
     /**
@@ -43,25 +47,31 @@ abstract class AbstractManager
      * @param mixed $identifiant
      * @return mixed
      */
-    public function find($identifiant)
+
+    public function findByField($field,$value)
     {
-        $tatement=$this->_selectFromWhere . static::$id . '=:id;';
-        $arguments=['id'=>$identifiant];
-        return $this->query ($tatement,$arguments,true);
-    }
-    public function findByField($field, $value)
-    {
-        $tatement=$this->_selectFromWhere . $field . '=:value;';
+
+        $tatement=$this->_selectAll . $field . '=:value;';
         $arguments=['value'=>$value];
-        return $this->query ($tatement,$arguments,true);
+        $retour= $this->query ($tatement,$arguments,true);
+        return $this->createClassTable($retour);
     }
 
-    public function exist($filedName,$value,$id=null):bool
+    public function createClassTable($data)
+    {
+        if(!$data) {
+            return new static::$classTable([]);
+        } else {
+            return new static::$classTable($data);
+        }
+    }
+
+    public function exist($fieldName,$value,$id=null):bool
     {
         if(isset($id))
         {
             $present = $this->query(
-                $this->_selectFromWhere . $filedName . '=:fieldName AND ' . static::$id . '!=:id;'
+                $this->_selectCount . $fieldName . '=:fieldName AND ' . static::$id . '!=:id;'
                 , [
                 'fieldName'=>$value ,
                 'id'=>$id
@@ -71,12 +81,12 @@ abstract class AbstractManager
         else
         {
             $present = $this->query(
-                $this->_selectFromWhere . $filedName . '=:fieldName;'
+                $this->_selectCount . $fieldName . '=:fieldName;'
                 , ['fieldName'=>$value ],
                 true);
-
         }
-        return $present;
+
+        return $present[array_keys($present)[0]];
     }
 
     public function create($datas)
@@ -107,12 +117,12 @@ abstract class AbstractManager
         }
         $attributes[] = $id;
         $sql_part =  implode(', ', $sql_parts);
-        return $this->query('UPDATE '. static::$table . ' SET '. $sql_part . ' WHERE ' . static::$id . '=? ', $attributes, true);
+        return $this->query('UPDATE '. static::$table . ' SET '. $sql_part . $this->where . static::$id . '=? ', $attributes, true);
     }
 
     public function delete($id)
     {
-        return $this->query('DELETE FROM '. static::$table . ' WHERE ' . static::$id . '= ?', [$id], true);
+        return $this->query('DELETE FROM '. static::$table . $this->where . static::$id . '= ?', [$id], true);
     }
     /**
      * Summary of query : exécute une requête
@@ -123,28 +133,20 @@ abstract class AbstractManager
      */
     public function query($requete, $arguments=null,$only_one=false)
     {
-        if (isset($arguments))
-        {
+        if (isset($arguments)) {
             $datas=$this->_req->prepare($requete, $arguments, $only_one);
-        }
-        else
-        {
+        } else {
             $datas=$this->_req->query($requete,$only_one);
         }
 
         $dataReturn=null;
-        if (isset($datas))
-        {
-            if($only_one)
-            {
+        if (isset($datas)) {
+            if($only_one) {
                 $dataReturn = $datas;
-            }
-            else
-            {
+            } else {
                 $dataReturn=array();
-                foreach ($datas as $data)
-                {
-                    $dataReturn[] = $data;
+                foreach ($datas as $data) {
+                    $dataReturn[] = $this->createClassTable($data);
                 }
             }
         }

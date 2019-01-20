@@ -1,27 +1,37 @@
 <?php
 
-namespace ES\App\Modules\Shared\Controler;
 
-
-use \ES\Core\Controler\AbstractControler;
+namespace ES\App\Modules\Shared\Render;
+use \ES\Core\Render\AbstractRenderView;
 
 /**
- * SharedControler short summary.
- * Controler frontal de base
- * SharedControler description.
+ * BlogRenderView short summary.
+ *
+ * BlogRenderView description.
  *
  * @version 1.0
  * @author ragus
  */
-class SharedControler extends AbstractControler
+class SharedRenderView  extends AbstractRenderView
 {
+
     protected static $module='Shared';
-    
-    public function homeShow()
+    protected static $modulesViewTemplate=false;
+
+    public function render($view,$data)
     {
-        $this->view('HomeView',
-            [
-                'title'=>'Page d\'accueil'
-            ]);
+        $data['menuUser']=$this->menuUser();
+        parent::render($view,$data);
+    }
+
+    private function menuUser(): string
+    {
+        $fichier='UserNotConnected';
+        if($this->_request->hasSessionValue('user'))
+        {
+            $fichier = 'UserConnected';
+        }
+
+        return $this->genererFichier(ES_ROOT_PATH_FAT_MODULES. 'Shared\\View\\Partial\\' . $fichier . 'PartialView.php' ,null);
     }
 }

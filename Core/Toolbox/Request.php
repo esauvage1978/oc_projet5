@@ -5,8 +5,6 @@ namespace ES\Core\Toolbox;
 class Request
 {
     private $_get;
-    public $_post;
-    private $_session;
     private $_cookie;
 
     const TYPE_STRING ='0';
@@ -14,27 +12,37 @@ class Request
     const TYPE_INT ='2';
     const TYPE_BOOLEAN='3';
     const TYPE_ARRAY='4';
+    const TYPE_HTMLENTITY='5';
 
-    public function __construct($datas=[])
+    public function __construct( $get=null, $post=null, $cookie=null)
     {
-        $this->_get = isset($datas['get'])?$datas['get']:null;
-        $this->_post = isset($datas['post'])?$datas['post']:null;
-        $this->_session = isset($datas['session'])?$datas['session']:null;
-        $this->_cookie = isset($datas['cookie'])?$datas['cookie']:null;
+        $this->_get = isset($get)?$get:null;
+        $this->_post = isset($post)?$post:null;
+        $this->_cookie = isset($cookie)?$cookie:null;
     }
-
-    public function getGetValue($key,$type=self::TYPE_STRING)
+    #region GET
+    public function getGetValue($key, $type=self::TYPE_STRING)
     {
         return isset($this->_get[$key])?$this->securise($this->_get[$key],$type):null;
     }
+    public function hasGetValue($key) :bool
+    {
+        return isset($this->_get[$key]);
+    }
+    public function unsetGet()
+    {
+        unset($this->_get);
+    }
+    #endregion
+
     #region POST
-    public function getPostValue($key,$type=self::TYPE_STRING)
+    public function getPostValue($key, $type=self::TYPE_STRING)
     {
         return isset($this->_post[$key])?$this->securise($this->_post[$key],$type):null;
     }
     public function hasPost()
     {
-        return (isset($this->_post) && !empty($this->_post));
+        return !empty($this->_post);
     }
     public function hasPostValue($key) :bool
     {
@@ -43,36 +51,39 @@ class Request
     #endregion
 
     #region session
-    public function getSessionValue($key,$type=self::TYPE_STRING)
+    public function getSessionValue($key, $type=self::TYPE_STRING)
     {
-        return isset($this->_session[$key])?$this->securise($this->_session[$key],$type):null;
+        return isset($_SESSION[$key])?$this->securise($_SESSION[$key],$type):null;
+    }
+    public function hasSession() :bool
+    {
+        return isset($_SESSION);
     }
     public function hasSessionValue($key) :bool
     {
-        return isset($this->_session[$key]);
+        return isset($_SESSION[$key]);
     }
     public function unsetSessionValue($key)
     {
-        unset($this->_session[$key]);
         unset($_SESSION[$key]);
     }
-    public function setSessionValue($key,$value)
+    public function setSessionValue($key, $value)
     {
         $_SESSION[$key]=$value;
-        $this->_session[$key]=$value;
     }
     #endregion
 
     private function securise($data, $type=self::TYPE_STRING)
     {
         $retour=null;
+        $erreur=false;
         switch($type)
         {
             case self::TYPE_STRING:
                 $retour=(string)filter_var($data);
                 break;
             case self::TYPE_ARRAY:
-                $retour=$data;
+                $retour=is_array($data)?$data:$erreur;
                 break;
             case self::TYPE_INT:
                 $retour=filter_var($data,FILTER_VALIDATE_INT );

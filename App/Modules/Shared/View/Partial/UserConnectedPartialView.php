@@ -1,14 +1,12 @@
-<li class="dropdown active">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Votre compte
-        <i class="icon-angle-down"></i>
     </a>
-    <ul class="dropdown-menu">
-        <li>
-            <a href="##INDEX##user.modify">Editer votre compte</a>
-        </li>
-        <li>
-            <a href="##INDEX##user.deconnexion">Déconnexion</a>
-        </li>
-    </ul>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+       <a class="dropdown-item" href="##INDEX##user.modify">
+            Editer votre compte
+       </a>
+       <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="##INDEX##user.deconnexion">Déconnexion</a>
+    </div>
 </li>

@@ -4,7 +4,7 @@
   * 10/01/2019
  */
 
-define('ES_APPLICATION_NOM','My lost univer');
+define('ES_APPLICATION_NOM','MY LOST UNIVER');
 
 
 define('ES_ROOT_PATH_FAT', dirname(__DIR__). '\\');
@@ -18,10 +18,10 @@ define('ES_ROOT_PATH_FAT_MODULES', ES_ROOT_PATH_FAT. 'App\\Modules\\');
 
 define('ES_ROOT_PATH_WEB_PUBLIC', ES_ROOT_PATH_WEB .'/Public/');
 define('ES_ROOT_PATH_WEB_VENDOR', ES_ROOT_PATH_WEB .'/Public/vendor/');
+define('ES_ROOT_PATH_WEB_COMPOSER', ES_ROOT_PATH_WEB .'/vendor/');
 
 define('ES_ROOT_PATH_REL_MODULES', '../App/Modules/');
 
-define('ES_PASSWORD_SALT_START','lmsqkf');
-define('ES_PASSWORD_SALT_END','mplsqpojnfsmzs');
+
 
 define('ES_NOW','Y-m-d H:i:s');

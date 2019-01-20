@@ -1,1 +1,1 @@
-DTests/FlashTest.php 2phpXhrTests/FlashTest.php
+Dphpunit.xml 2xmlX4hrphpunit.xml

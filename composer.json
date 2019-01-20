@@ -1,5 +1,5 @@
 {
-    "name": "ragus/oc_projet5",
+  "name": "ragus/oc_projet5",
   "authors": [
     {
       "name": "esauvage1978",
@@ -7,11 +7,19 @@
     }
   ],
   "autoload": {
-    "psr-4": {"ES\\Core\\Toolbox\\" : "Core/Toolbox/"}
+    "psr-4": {
+      "\\": "Config",
+      "ES\\Core\\Database\\": "Core/Database",
+      "ES\\Core\\Model\\": "Core/Model",
+      "ES\\Core\\Form\\": "Core/Form",
+      "ES\\Core\\Toolbox\\": "core/Toolbox",
+      "ES\\App\\Modules\\User\\Model\\": "App/Modules/User/Model",
+      "ES\\App\\Modules\\User\\Form\\": "App/Modules/User/Form"
+    } },
+  "require-dev": {
+    "phpunit/phpunit": "6.5.9"
   },
-
-    "require": {},
-    "require-dev": {
-      "phpunit/phpunit": "7"
-    }
+  "require": {
+    "twbs/bootstrap": "4.2.1"
   }
+}

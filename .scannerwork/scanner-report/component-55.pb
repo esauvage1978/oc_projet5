@@ -1,1 +1,1 @@
-7Core/Toolbox :689:rCore/Toolbox
+7Core/Model/AbstractManager.php 2phpXœhrCore/Model/AbstractManager.php

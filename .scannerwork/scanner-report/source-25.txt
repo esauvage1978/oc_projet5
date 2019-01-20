@@ -2,132 +2,211 @@
 
 namespace ES\App\Modules\User\Model;
 
-use \ES\App\Modules\User\Render\UserRenderView;
-use \ES\Core\Model\AbstractTable;
+use ES\Core\Model\AbstractManager;
+use ES\App\Modules\User\Model\UserTable;
+Use ES\Core\ToolBox\Auth;
 
 /**
- * User short summary.
+ * UserManager short summary.
  *
- * User description.
+ * UserManager description.
  *
  * @version 1.0
  * @author ragus
  */
-class UserTable extends AbstractTable
+class UserManager extends AbstractManager
 {
-    protected static $_prefixe='u_';
+    protected static $table='ocp5_user';
+    protected static $order_by=self::IDENTIFIANT. ' ASC ';
+    protected static $id=self::ID;
+    protected static $classTable='ES\App\Modules\User\Model\UserTable';
 
+    const ID='u_id';
+    const IDENTIFIANT='u_identifiant';
+    const MAIL='u_mail';
+    const SECRET='u_password';
+    const FORGET_HASH='u_forget_hash';
+    const FORGET_DATE='u_forget_date';
+    const VALID_ACCOUNT_HASH='u_valid_account_hash';
+    const VALID_ACCOUNT_DATE='u_valid_account_date';
+    const ACCREDITATION='u_accreditation';
 
-    private $_u_id;
-    private $_u_identifiant;
-    private $_u_mail;
-    private $_u_password;
-    private $_u_forget_hash;
-    private $_u_forget_date;
-    private $_u_valid_account_hash;
-    private $_u_valid_account_date;
-    private $_u_accreditation;
-
-
-    #region GET
-    public function getId():string
+    #region SESSION
+    public function connect($user,$request)
     {
-        return $this->_u_id;
+        $request->setSessionValue('user',$user->getId());
     }
-    public function getIdentifiant():string
+    public function disconnect($request)
     {
-        return $this->_u_identifiant;
+        $request->unsetSessionValue('user');
     }
-    public function getMail():string
+    public function getUserConnect($request) : userTable
     {
-        return $this->_u_mail;
-    }
-    public function getPassword():string
-    {
-        return $this->_u_password;
-    }
-    public function getForgetHash()
-    {
-        return $this->_u_forget_hash;
-    }
-    public function getForgetDate()
-    {
-        return $this->_u_forget_date;
-    }
-    public function getValidAccountHash()
-    {
-        return $this->_u_valid_account_hash;
-    }
-    public function getValidAccountDate()
-    {
-        return $this->_u_valid_account_date;
-    }
-    public function getAccreditation()
-    {
-        return $this->_u_accreditation;
+        return $this->findById($request->getSessionValue('user'));
     }
     #endregion
 
-    #region SETTER
-    public function setId($value)
+    #region CONTROLE
+    public function identifiantExist($identifiant, $id=null):bool
     {
-        if(!isset($value) || empty($value) || !$value)
+        return parent::exist(self::IDENTIFIANT, $identifiant, $id);
+    }
+
+    public function mailExist($mail,$id=null) :bool
+    {
+        return parent::exist(self::MAIL, $mail,$id) ;
+    }
+    #endregion
+
+    #region FIND
+    public function findById($key) :UserTable
+    {
+        return $this->findByField(self::ID,$key);
+    }
+    public function findUserByLogin($value):userTable
+    {
+        $retour= $this->query(
+            $this->_selectAll . ' (' . self::IDENTIFIANT . '=:params1 OR '. self::MAIL .'=:params2) ;'
+            , [
+            'params1'=>$value,
+            'params2'=>$value]
+            ,
+            true);
+        return $this->createClassTable ($retour);
+    }
+    public function findByForgetHash($key) :UserTable
+    {
+            $retour= $this->query(
+            $this->_selectAll . ' ' . self::FORGET_HASH . '=:params1 AND DATEDIFF( NOW() ,' . self::FORGET_DATE. ')<1;'
+            , [
+            'params1'=>$key
+            ]
+            ,
+            true);
+            return $this->createClassTable ($retour);
+    }
+    public function findByValidAccountHash($key):userTable
+    {
+        return $this->findByField(self::VALID_ACCOUNT_HASH,$key);
+    }
+    #endregion
+
+
+    public function updateUser(UserTable $user):bool
+    {
+        return $this->update($user->getId(),
+            [
+                self::IDENTIFIANT=>$user->getIdentifiant(),
+                self::MAIL=>$user->getMail(),
+                self::SECRET=>$user->getPassword(),
+                self::FORGET_HASH=>$user->getForgetHash(),
+                self::FORGET_DATE=>$user->getForgetDate(),
+                self::VALID_ACCOUNT_HASH=>$user->getValidAccountHash(),
+                self::VALID_ACCOUNT_DATE=>$user->getValidAccountDate(),
+                self::ACCREDITATION=>$user->getAccreditation()
+            ]);
+    }
+    public function createUser($identifiant, $mail,$secret):UserTable
+    {
+
+        $user= $this->NewUser($identifiant,$mail,$secret);
+
+        if($this->identifiantExist($identifiant) ||
+           $this->mailExist ($mail))
         {
-            throw new \InvalidArgumentException('Les informations de l\'id sont incorrectes.' );
+
+            $retour= $this->create(
+                [
+                    self::IDENTIFIANT=>$user->getIdentifiant(),
+                    self::MAIL=>$user->getMail(),
+                    self::SECRET=>$user->getPassword(),
+                    self::FORGET_HASH=>$user->getForgetHash(),
+                    self::FORGET_DATE=>$user->getForgetDate(),
+                    self::VALID_ACCOUNT_HASH=>$user->getValidAccountHash(),
+                    self::VALID_ACCOUNT_DATE=>$user->getValidAccountDate(),
+                    self::ACCREDITATION=>$user->getAccreditation()
+                ]);
+
+            if(!$retour) {
+                throw new \InvalidArgumentException('Erreur lors de la crÃ©ation de l\'utilisateur');
+            }
+            $user->setId($retour);
         }
-        $this->_u_id=$value;
+
+        return $user;
     }
-    public function setIdentifiant($value)
+    public function NewUser($identifiant, $mail,$secret):UserTable
     {
-        if(!isset($value) || empty($value) || !$value)
-        {
-            throw new \InvalidArgumentException('Les informations de l\'identifiant sont incorrectes.');
+        return new UserTable
+                ([
+                    self::IDENTIFIANT=>$identifiant,
+                    self::MAIL=>$mail,
+                    self::SECRET=>Auth::passwordCrypt($secret),
+                    self::FORGET_HASH=>null,
+                    self::FORGET_DATE=>null,
+                    self::VALID_ACCOUNT_HASH=>Auth::strRandom(),
+                    self::VALID_ACCOUNT_DATE=>null,
+                    self::ACCREDITATION=>0
+                ]);
+    }
+
+    public function isValidAccount(UserTable $user):bool
+    {
+        return !is_null( $user->getValidAccountDate() );
+    }
+
+    public function validAccountReset(UserTable $user):bool
+    {
+        $user->setValidAccountHash(null);
+        $user->setValidAccountDate(date(ES_NOW));
+
+        return $this->updateUser($user);
+    }
+
+    public function forgetInit(UserTable $user):bool
+    {
+        $user->setForgetHash(Auth::strRandom());
+        $user->setForgetDate(date(ES_NOW));
+
+        if(! $this->updateUser($user)) {
+            throw new \InvalidArgumentException('Erreur lors de la mise Ã  jour');
         }
-        else if (strlen($value)<=3)
-        {
-            throw new \InvalidArgumentException('L\'identifiant doit avoir plus de 3 caractères.');
+
+        return $this->sendMailPwdForget($user);
+
+    }
+    public function forgetReset(UserTable $user,$pwd):bool
+    {
+        $user->setForgetHash(null);
+        $user->setForgetDate(date(ES_NOW));
+        $user->setPassword (Auth::passwordCrypt($pwd));
+
+        return $this->updateUser($user);
+    }
+    public function updatePassword(UserTable $user,$pwd):bool
+    {
+        $user->setPassword (Auth::passwordCrypt($pwd));
+
+        return $this->updateUser($user);
+    }
+    #region MAIL
+    public function sendMailSignup(UserTable $user):bool
+    {
+        $content='<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '">Lien pour activer le compte</a>';
+        if(! mail($user->getMail(),'Validation du compte',$content)) {
+            throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail');
         }
-        $this->_u_identifiant=$value;
+        return true;
     }
-    public function setMail($value)
+    public function sendMailPwdForget(UserTable $user) :bool
     {
-        if(!isset($value) || empty($value) || !$value)
-        {
-            throw new \InvalidArgumentException('Les informations du mail sont incorrectes.');
+        $content='<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.pwdforgetchange/' . $user->getForgetHash() . '">Lien pour modifier le mot de passe</a>';
+        if(! mail($user->getMail(),'RÃ©initialisation du mot de passe',$content)) {
+            throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail pour le mail : ' .
+                $user->getMail()
+                );
         }
-        $this->_u_mail=$value;
-    }
-    public function setPassword($value)
-    {
-        if(!isset($value) || empty($value) || !$value)
-        {
-            throw new \InvalidArgumentException('Les informations du mot de passe sont incorrectes.');
-        }
-        else if (strlen($value)!=60)
-        {
-            throw new \InvalidArgumentException('La longueur du mot de passe est incorrecte. (' . strlen($value) . ' caractères)');
-        }
-        $this->_u_password=$value;
-    }
-    public function setForgetHash($value)
-    {
-        $this->_u_forget_hash=$value;
-    }
-    public function setForgetDate($value)
-    {
-        $this->_u_forget_date=$value;
-    }
-    public function setValidAccountHash($value)
-    {
-        $this->_u_valid_account_hash=$value;
-    }
-    public function setValidAccountDate($value)
-    {
-        $this->_u_valid_account_date=$value;
-    }
-    public function setAccreditation($value)
-    {
-        $this->_u_accreditation=$value;
+        return true;
     }
     #endregion
 }

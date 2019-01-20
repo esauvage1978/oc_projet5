@@ -5,6 +5,7 @@ namespace ES\App\Modules\User\Model;
 use ES\Core\Model\AbstractManager;
 use ES\App\Modules\User\Model\UserTable;
 Use ES\Core\ToolBox\Auth;
+
 /**
  * UserManager short summary.
  *
@@ -16,15 +17,16 @@ Use ES\Core\ToolBox\Auth;
 class UserManager extends AbstractManager
 {
     protected static $table='ocp5_user';
-    protected static $order_by;
+    protected static $order_by= self::IDENTIFIANT. ' ASC; ';
     protected static $id=self::ID;
+    protected static $classTable='ES\App\Modules\User\Model\UserTable';
 
     const ID='u_id';
     const IDENTIFIANT='u_identifiant';
     const MAIL='u_mail';
-    const PWD='u_password';
+    const SECRET='u_password';
     const FORGET_HASH='u_forget_hash';
-    const FORGET_DATE='u_forget_DATE';
+    const FORGET_DATE='u_forget_date';
     const VALID_ACCOUNT_HASH='u_valid_account_hash';
     const VALID_ACCOUNT_DATE='u_valid_account_date';
     const ACCREDITATION='u_accreditation';
@@ -42,117 +44,53 @@ class UserManager extends AbstractManager
     {
         return $this->findById($request->getSessionValue('user'));
     }
-
     #endregion
 
     #region CONTROLE
-    public function passwordCompare($pwd,$pwdCompare,$hash=false)
+    public function identifiantExist($identifiant, $id=null):bool
     {
-        if(!isset($pwd) || !isset($pwdCompare) )
-        {
-            throw new \InvalidArgumentException('Le mot de passe ou sa confirmations est vide');
-        }
-        else if ($hash && !Auth::password_compare($pwd, $pwdCompare))
-        {
-            throw new \InvalidArgumentException('Erreur de mot de passe');
-        }
-        else if (!$hash && $pwd != $pwdCompare  )
-        {
-            throw new \InvalidArgumentException('Le mot de passe et sa confirmations sont différent');
-        }
+        return parent::exist(self::IDENTIFIANT, $identifiant, $id);
     }
 
-    public function identifiantExist($identifiant,$id=null)
+    public function mailExist($mail,$id=null) :bool
     {
-        if( parent::exist(self::IDENTIFIANT, $identifiant,$id) )
-        {
-            throw new \InvalidArgumentException('L\'$identifiant existe déjà!!');
-        }
-    }
-    public function mailExist($mail,$id=null)
-    {
-        if( parent::exist(self::MAIL, $mail,$id) )
-        {
-            throw new \InvalidArgumentException('Le mail existe déjà!!');
-        }
+        return parent::exist(self::MAIL, $mail,$id) ;
     }
     #endregion
-    public function findById($key)
+
+    #region FIND
+    public function findById($key) :UserTable
     {
-        if(isset($key))
-        {
-            $retour= $this->findByField(self::ID,$key);
-            if(!$retour)
-            {
-                throw new \InvalidArgumentException('Le compte n\'a pass été trouvé');
-            }
-            else
-            {
-                return new UserTable($retour);
-            }
-        }
-        throw new \InvalidArgumentException('Les paramètres sont incorrects');
+        return $this->findByField(self::ID,$key);
     }
-    public function findUserByLogin($login)
+    public function findUserByLogin($value):userTable
     {
-        if(isset($login))
-        {
-            $retour= $this->query(
-            $this->_selectAll . static::$table . ' WHERE (' . self::IDENTIFIANT . '=:params1 OR '. self::MAIL .'=:params2) ;'
+        $retour= $this->query(
+            $this->_selectAll . ' (' . self::IDENTIFIANT . '=:params1 OR '. self::MAIL .'=:params2) ;'
             , [
-            'params1'=>$login,
-            'params2'=>$login]
+            'params1'=>$value,
+            'params2'=>$value]
             ,
             true);
-            if(!$retour)
-            {
-                throw new \InvalidArgumentException('Le login n\'a pas été trouvé');
-            }
-            else
-            {
-             return new UserTable($retour);
-            }
-        }
-        throw new \InvalidArgumentException('Le login est vide');
+        return $this->createClassTable ($retour);
     }
-    public function findByForgetHash($key)
+    public function findByForgetHash($key) :UserTable
     {
-        if(isset($key))
-        {
             $retour= $this->query(
-            $this->_selectFromWhere . ' ' . self::FORGET_HASH . '=:params1 AND DATEDIFF( NOW() ,' . self::FORGET_DATE. ')<1;'
+            $this->_selectAll . ' ' . self::FORGET_HASH . '=:params1 AND DATEDIFF( NOW() ,' . self::FORGET_DATE. ')<1;'
             , [
             'params1'=>$key
             ]
             ,
             true);
-            if(!$retour)
-            {
-                throw new \InvalidArgumentException('Le compte n\'a pas été trouvé ou le lien est périmé');
-            }
-            else
-            {
-                return new UserTable($retour);
-            }
-        }
-        throw new \InvalidArgumentException('L\'adresse est inccorecte');
+            return $this->createClassTable ($retour);
     }
-    public function findByValidAccountHash($key)
+    public function findByValidAccountHash($key):userTable
     {
-        if(isset($key))
-        {
-            $retour= $this->findByField(self::VALID_ACCOUNT_HASH,$key);
-            if(!$retour)
-            {
-                throw new \InvalidArgumentException('Le compte n\'a pas été trouvé');
-            }
-            else
-            {
-                return new UserTable($retour);
-            }
-        }
-        throw new \InvalidArgumentException('L\'adresse est inccorecte');
+        return $this->findByField(self::VALID_ACCOUNT_HASH,$key);
     }
+    #endregion
+
 
     public function updateUser(UserTable $user):bool
     {
@@ -160,7 +98,7 @@ class UserManager extends AbstractManager
             [
                 self::IDENTIFIANT=>$user->getIdentifiant(),
                 self::MAIL=>$user->getMail(),
-                self::PWD=>$user->getPassword(),
+                self::SECRET=>$user->getPassword(),
                 self::FORGET_HASH=>$user->getForgetHash(),
                 self::FORGET_DATE=>$user->getForgetDate(),
                 self::VALID_ACCOUNT_HASH=>$user->getValidAccountHash(),
@@ -168,96 +106,107 @@ class UserManager extends AbstractManager
                 self::ACCREDITATION=>$user->getAccreditation()
             ]);
     }
-    public function createUser(UserTable $user):UserTable
+    public function createUser($identifiant, $mail,$secret):UserTable
     {
-        $id= $this->create(
-            [
-                self::IDENTIFIANT=>$user->getIdentifiant(),
-                self::MAIL=>$user->getMail(),
-                self::PWD=>$user->getPassword(),
-                self::FORGET_HASH=>$user->getForgetHash(),
-                self::FORGET_DATE=>$user->getForgetDate(),
-                self::VALID_ACCOUNT_HASH=>$user->getValidAccountHash(),
-                self::VALID_ACCOUNT_DATE=>$user->getValidAccountDate(),
-                self::ACCREDITATION=>$user->getAccreditation()
-            ]);
-        if(!$id)
+
+        $user= $this->NewUser($identifiant,$mail,$secret);
+
+        if(!$this->identifiantExist($identifiant) &&
+          ! $this->mailExist ($mail))
         {
-            throw new \InvalidArgumentException('Erreur lors de la création de l\'utilisateur');
+
+            $retour= $this->create(
+                [
+                    self::IDENTIFIANT=>$user->getIdentifiant(),
+                    self::MAIL=>$user->getMail(),
+                    self::SECRET=>$user->getPassword(),
+                    self::FORGET_HASH=>$user->getForgetHash(),
+                    self::FORGET_DATE=>$user->getForgetDate(),
+                    self::VALID_ACCOUNT_HASH=>$user->getValidAccountHash(),
+                    self::VALID_ACCOUNT_DATE=>$user->getValidAccountDate(),
+                    self::ACCREDITATION=>$user->getAccreditation()
+                ]);
+
+            if(!$retour) {
+                throw new \InvalidArgumentException('Erreur lors de la création de l\'utilisateur');
+            }
+            $user->setId($retour);
         }
-        $user->setId($id);
+
         return $user;
     }
-    public function NewUser($identifiant, $mail,$pwd):UserTable
+    public function NewUser($identifiant, $mail,$secret):UserTable
     {
         return new UserTable
                 ([
                     self::IDENTIFIANT=>$identifiant,
                     self::MAIL=>$mail,
-                    self::PWD=>Auth::password_crypt($pwd),
+                    self::SECRET=>Auth::passwordCrypt($secret),
                     self::FORGET_HASH=>null,
                     self::FORGET_DATE=>null,
-                    self::VALID_ACCOUNT_HASH=>Auth::str_random(),
+                    self::VALID_ACCOUNT_HASH=>Auth::strRandom(),
                     self::VALID_ACCOUNT_DATE=>null,
-                    self::ACCREDITATION=>0
+                    self::ACCREDITATION=>1
                 ]);
     }
 
-    public function isValidAccount(UserTable $user)
+    public function isValidAccount(UserTable $user):bool
     {
-        if(is_null( $user->getValidAccountDate() ))
-        {
-            throw new \InvalidArgumentException('Le compte n\'est pas validé');
-        }
+        return !is_null( $user->getValidAccountDate() );
     }
-    public function validAccountReset(UserTable $user)
+
+    public function validAccountReset(UserTable $user):bool
     {
         $user->setValidAccountHash(null);
         $user->setValidAccountDate(date(ES_NOW));
 
-        if(! $this->updateUser($user))
-        {
-            throw new \InvalidArgumentException('Erreur lors de la validation du compte');
-        }
+        return $this->updateUser($user);
     }
-    public function forgetInit(UserTable $user)
+
+    public function forgetInit(UserTable $user):bool
     {
-        $user->setForgetHash(Auth::str_random());
+        $user->setForgetHash(Auth::strRandom());
         $user->setForgetDate(date(ES_NOW));
 
-        if(! $this->updateUser($user))
-        {
-            throw new \InvalidArgumentException('Erreur lors de l\'initialisation du forget');
+        if(! $this->updateUser($user)) {
+            throw new \InvalidArgumentException('Erreur lors de la mise à jour');
         }
+
+        return $this->sendMailPwdForget($user);
+
     }
-    public function forgetReset(UserTable $user,$pwd)
+    public function forgetReset(UserTable $user,$pwd):bool
     {
         $user->setForgetHash(null);
         $user->setForgetDate(date(ES_NOW));
-        $user->setPassword (Auth::password_crypt($pwd));
+        $user->setPassword (Auth::passwordCrypt($pwd));
 
-        if(! $this->updateUser($user))
-        {
-            throw new \InvalidArgumentException('Erreur lors de la réinitialisation du forget');
-        }
+        return $this->updateUser($user);
     }
+    public function updatePassword(UserTable $user,$pwd):bool
+    {
+        $user->setPassword (Auth::passwordCrypt($pwd));
 
+        return $this->updateUser($user);
+    }
     #region MAIL
-    public function sendMailSignup(UserTable $user)
+    public function sendMailSignup(UserTable $user):bool
     {
         $content='<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '">Lien pour activer le compte</a>';
-        if(! mail($user->getMail(),'Validation du compte',$content))
-        {
+        if(! mail($user->getMail(),'Validation du compte',$content)) {
             throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail');
         }
+        return true;
     }
-    public function sendMailPwdForget(UserTable $user)
+    public function sendMailPwdForget(UserTable $user) :bool
     {
         $content='<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.pwdforgetchange/' . $user->getForgetHash() . '">Lien pour modifier le mot de passe</a>';
-        if(!mail($user->getMail(),'Réinitialisation du mot de passe',$content))
-        {
-            throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail');
+        if(! mail($user->getMail(),'Réinitialisation du mot de passe',$content)) {
+            throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail pour le mail : ' .
+                $user->getMail()
+                );
         }
+        return true;
     }
     #endregion
 }

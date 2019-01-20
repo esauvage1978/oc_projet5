@@ -6,12 +6,6 @@
 
 namespace ES\App\Modules\Shared\Services;
 
-use ES\Core\Autoloader\Autoloader;
-Use ES\Core\Toolbox\Request;
-
-require_once '../Config/constantes.php';
-require_once '../Core/Autoloader/Autoloader.php';
-
 /**
  * Routeur de la structure MVC
  */
@@ -27,8 +21,8 @@ class Routeur
     private $_action;
     private $_admin;
 
-    private $_parametre_p=null;
-    private $_parametre_mot=null;
+    private $_paramP=null;
+    private $_paramWord=null;
 
     private $_moduleInstance;
     private $_moduleFunction;
@@ -44,12 +38,11 @@ class Routeur
      * Instanciation de la class Routeur
      * @return Routeur
      */
-    public static function getInstance() : Routeur
+    public static function getInstance($request) : Routeur
     {
         //design pattern SINGLETON
-        if (!isset(self::$_instance))
-        {
-            self::$_instance = new Routeur();
+        if (!isset(self::$_instance)){
+            self::$_instance = new Routeur($request);
         }
         return self::$_instance;
     }
@@ -57,11 +50,9 @@ class Routeur
     /**
      * Constructeur privé
      */
-    public function __construct()
+    public function __construct($request)
     {
-        Autoloader::register();
-        $this->_request=new Request(array('get'=>$_GET,'post'=>$_POST,'session'=>$_SESSION,'cookie'=>$_COOKIE));
-
+        $this->_request=$request;
     }
 
 
@@ -83,8 +74,6 @@ class Routeur
         $this->_section=self::SECTION_DEFAULT_VALUE;
         $this->_action=self::ACTION_DEFAULT_VALUE;
 
-
-
         $this->createModuleInstance();
         $this->createModuleFunction();
         $this->callModuleFunction();
@@ -94,17 +83,14 @@ class Routeur
     private function createModuleInstance() : bool
     {
         $retour=false;
-        if($this->check_module() )
-        {
-            $modulesClass='\\ES\\App\\Modules\\' . ucfirst($this->_module) . '\\Controler\\' . ucfirst($this->_module) . 'Controler' ;
-
-            if(class_exists($modulesClass ) )
-            {
+        if($this->checkModule()) {
+            $modulesClass='\\ES\\App\\Modules\\' . ucfirst($this->_module) 
+                . '\\Controller\\' . ucfirst($this->_module) . 'Controller' ;
+            if(class_exists($modulesClass )) {
                 $this->_moduleInstance=new $modulesClass();
                 $retour= true;
             }
         }
-
         return $retour;
     }
 
@@ -112,9 +98,7 @@ class Routeur
     {
         $this->_moduleFunction=$this->_section;
 
-
-        if(isset($this->_action))
-        {
+        if(isset($this->_action)) {
             $this->_moduleFunction .= ucfirst($this->_action);
         }
 
@@ -129,21 +113,15 @@ class Routeur
         $modulefonction=$this->_moduleFunction;
         $parametre=null;
 
-        if(isset($this->parametre_p))
-        {
-            $parametre=$this->parametre_p;
-        }
-        else if(isset($this->parametre_mot))
-        {
-            $parametre=$this->parametre_mot;
+        if(isset($this->paramP)) {
+            $parametre=$this->paramP;
+        } else if(isset($this->paramWord)) {
+            $parametre=$this->paramWord;
         }
 
-        if(isset($parametre))
-        {
+        if(isset($parametre)) {
             $moduleinstance->$modulefonction($parametre);
-        }
-        else
-        {
+        } else {
             $moduleinstance->$modulefonction();
         }
 
@@ -156,20 +134,15 @@ class Routeur
         $retour=false;
 
         $page=$this->_request->getGetValue('page');
-        $this->_parametre_p = $this->_request->getGetValue('p');
-        $this->_parametre_mot = $this->_request->getGetValue('word');
+        $this->_paramP = $this->_request->getGetValue('p');
+        $this->_paramWord = $this->_request->getGetValue('word');
 
-        if(isset($page) && !empty($page))
-        {
-            $page = ($page);
+        if(!empty($page)) {
             $pageExplode= explode('.',strtolower($page));
             $key=0;
-
-
-            if($pageExplode[0]=='admin' )
-            {
+            if($pageExplode[0] =='admin' ) {
                 $this->_admin='Admin';
-                $key=1;
+                $key++;
             }
 
             $this->_module=$pageExplode[$key];
@@ -183,11 +156,10 @@ class Routeur
     }
 
 
-    private function check_module():bool
+    private function checkModule():bool
     {
-
         $module=ucfirst($this->_module);
-        $file=ES_ROOT_PATH_FAT_MODULES . $module . '\\Controler\\' . $module . 'Controler.php';
+        $file=ES_ROOT_PATH_FAT_MODULES . $module . '\\Controller\\' . $module . 'Controller.php';
         return file_exists($file);
     }
 }

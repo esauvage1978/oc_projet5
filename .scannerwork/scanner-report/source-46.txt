@@ -1,44 +1,27 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: esauvage1978
- * Date: 28/12/2018
- * Time: 10:39
+  * User: esauvage1978
+  * 10/01/2019
  */
 
-namespace ES\Core\Form;
-
-use ES\Core\Form\Form;
+define('ES_APPLICATION_NOM','MY LOST UNIVER');
 
 
-class BootStrapForm extends Form
-{
-    /**
-     * @param $name
-     * @return string
-     */
-    public function input($name, $options = [])
-    {
-        $options[parent::OPTIONS_CSSCLASS]='form-control';
-        return parent::input($name,$options);
-    }
+define('ES_ROOT_PATH_FAT', dirname(__DIR__). '\\');
+define('ES_ROOT_PATH_WEB', 'http://localhost/oc_projet5');
 
-    public function input_password($name,$options = array())
-    {
-        $options[parent::OPTIONS_CSSCLASS]='form-control';
-        return parent::input_password($name,$options);
-    }
+define('ES_ROOT_PATH_FAT_INDEX', ES_ROOT_PATH_FAT. 'Public\\index.php');
+define('ES_ROOT_PATH_WEB_INDEX', ES_ROOT_PATH_WEB. '/');
 
-    public function submit($name,$label,$options= [])
-    {
-        $options[parent::OPTIONS_CSSCLASS]='btn';
-        return parent::submit($name,$label,$options);
-    }
+define('ES_ROOT_PATH_FAT_MODULES', ES_ROOT_PATH_FAT. 'App\\Modules\\');
 
-    public function submit_primary($name,$label,$options= [])
-    {
-        $options[parent::OPTIONS_CSSCLASS]='btn btn-primary';
-        return parent::submit($name,$label,$options);
-    }
 
-}
+define('ES_ROOT_PATH_WEB_PUBLIC', ES_ROOT_PATH_WEB .'/Public/');
+define('ES_ROOT_PATH_WEB_VENDOR', ES_ROOT_PATH_WEB .'/Public/vendor/');
+define('ES_ROOT_PATH_WEB_COMPOSER', ES_ROOT_PATH_WEB .'/vendor/');
+
+define('ES_ROOT_PATH_REL_MODULES', '../App/Modules/');
+
+
+
+define('ES_NOW','Y-m-d H:i:s');

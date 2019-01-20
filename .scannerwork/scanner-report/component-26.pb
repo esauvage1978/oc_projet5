@@ -1,1 +1,1 @@
-*App/Modules/User/Render/UserRenderView.php 2phpXhr*App/Modules/User/Render/UserRenderView.php
+App/Modules/User/Model :rApp/Modules/User/Model

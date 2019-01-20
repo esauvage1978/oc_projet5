@@ -25,7 +25,7 @@ class BddAction
 
     public function query($requete,$only_one=false)
     {
-        $pdoStatement = $this->_pdo()->query($requete);
+        $pdoStatement = $this->_pdo->query($requete);
         $data=null;
 
         if ( strpos($requete, 'UPDATE') === 0 ||

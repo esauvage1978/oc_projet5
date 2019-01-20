@@ -1,29 +1,17 @@
 <?php
+
+namespace ES\App\Modules\User\Render;
+use \ES\App\Modules\Shared\Render\SharedRenderView;
 /**
- * Created by PhpStorm.
- * User: esauvage1978
- * Date: 28/12/2018
- * Time: 11:42
+ * UserRenderView short summary.
+ *
+ * UserRenderView description.
+ *
+ * @version 1.0
+ * @author ragus
  */
-
-namespace ES\Core\Autoloader;
-
-
-class Autoloader
+class UserRenderView extends SharedRenderView
 {
-    static function register()
-    {
-        spl_autoload_register(array(__CLASS__, 'autoload'));
-    }
-
-    static function autoload($class_name)
-    {
-        $class_name = str_replace("ES\\", "", $class_name);
-        $class_name = str_replace("\\", "/", $class_name);
-        $fichier='../' . $class_name . '.php';
-        if (file_exists ($fichier))
-        {
-            require $fichier;
-        }
-    }
+    protected static $module='User';
+    protected static $modulesViewTemplate=true;
 }

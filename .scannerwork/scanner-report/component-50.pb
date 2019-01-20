@@ -1,1 +1,1 @@
-2Core/Model/AbstractManager.php 2phpXçhrCore/Model/AbstractManager.php
+2Core/Database/BddAction.php 2phpXFhrCore/Database/BddAction.php

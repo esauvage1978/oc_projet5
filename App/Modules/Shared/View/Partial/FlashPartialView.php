@@ -1,15 +1,19 @@
-<?php if($flash->isPresent()): ?>
-<section class="white"> 
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <?php foreach($flash->read() as $type=>$message): ?>
-                    <div class="alert <?= $type;?>" role="alert">
-                        <div><?= $message ?></div>
-                    </div>
-                <?php endforeach;?>
+<?php if($flash->hasFlash()): ?>
+
+
+    <div class="col-md-12">
+        <p>
+            <?php foreach($flash->read() as $type=>$message): ?>
+            <div class="alert <?= $type;?> alert-dismissible fade show" role="alert">
+                <?= isset($message)?$message:''; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        </div>
+
+            <?php endforeach;?>
+        </p>
     </div>
-</section>
+
+
 <?php endif;?>

@@ -1,9 +1,8 @@
 <?php
 
 namespace ES\App\Modules\User\Model;
-
-use \ES\App\Modules\User\Render\UserRenderView;
 use \ES\Core\Model\AbstractTable;
+use \ES\Core\Model\ITable;
 
 /**
  * User short summary.
@@ -13,121 +12,165 @@ use \ES\Core\Model\AbstractTable;
  * @version 1.0
  * @author ragus
  */
-class UserTable extends AbstractTable
+class UserTable extends AbstractTable implements ITable
 {
     protected static $_prefixe='u_';
 
-
-    private $_u_id;
-    private $_u_identifiant;
-    private $_u_mail;
-    private $_u_password;
-    private $_u_forget_hash;
-    private $_u_forget_date;
-    private $_u_valid_account_hash;
-    private $_u_valid_account_date;
-    private $_u_accreditation;
+    private $_id;
+    private $_identifiant;
+    private $_mail;
+    private $_secret;
+    private $_forgetHash;
+    private $_forgetDate;
+    private $_validAccountHash;
+    private $_validAccountDate;
+    private $_accreditation;
 
 
     #region GET
-    public function getId():string
+    public function getId()
     {
-        return $this->_u_id;
+        return $this->_id;
     }
-    public function getIdentifiant():string
+    public function getIdentifiant()
     {
-        return $this->_u_identifiant;
+        return $this->_identifiant;
     }
-    public function getMail():string
+    public function getMail()
     {
-        return $this->_u_mail;
+        return $this->_mail;
     }
-    public function getPassword():string
+    public function getPassword()
     {
-        return $this->_u_password;
+        return $this->_secret;
     }
     public function getForgetHash()
     {
-        return $this->_u_forget_hash;
+        return $this->_forgetHash;
     }
     public function getForgetDate()
     {
-        return $this->_u_forget_date;
+        return $this->_forgetDate;
     }
     public function getValidAccountHash()
     {
-        return $this->_u_valid_account_hash;
+        return $this->_validAccountHash;
     }
     public function getValidAccountDate()
     {
-        return $this->_u_valid_account_date;
+        return $this->_validAccountDate;
     }
     public function getAccreditation()
     {
-        return $this->_u_accreditation;
+        return $this->_accreditation;
+    }
+    public function getAccreditationLabel()
+    {
+        switch($this->_accreditation)
+        {
+            case 1:
+                return 'Connecté';
+            case 2:
+                return 'Rédacteur';
+            case 3:
+                return 'Modérateur';
+            case 4:
+                return 'Gestionnaire';
+            default:
+                return "Unknow";
+        }
     }
     #endregion
 
     #region SETTER
     public function setId($value)
     {
-        if(!isset($value) || empty($value) || !$value)
+        if(empty($value) ||
+           !filter_var($value,FILTER_VALIDATE_INT) )
         {
             throw new \InvalidArgumentException('Les informations de l\'id sont incorrectes.' );
         }
-        $this->_u_id=$value;
+        $this->_id=$value;
     }
     public function setIdentifiant($value)
     {
-        if(!isset($value) || empty($value) || !$value)
+        if( empty($value) ||
+            strlen($value)<=3 ||
+            strlen($value)>45 )
         {
-            throw new \InvalidArgumentException('Les informations de l\'identifiant sont incorrectes.');
+            throw new \InvalidArgumentException('La longueur de l\'identifiant doit être comprise entre 3 et 45 caractères.');
         }
-        else if (strlen($value)<=3)
-        {
-            throw new \InvalidArgumentException('L\'identifiant doit avoir plus de 3 caractères.');
-        }
-        $this->_u_identifiant=$value;
+        $this->_identifiant=$value;
     }
     public function setMail($value)
     {
-        if(!isset($value) || empty($value) || !$value)
+        if( empty($value) ||
+            strlen($value)>100 ||
+            !filter_var($value,FILTER_VALIDATE_EMAIL))
         {
             throw new \InvalidArgumentException('Les informations du mail sont incorrectes.');
         }
-        $this->_u_mail=$value;
+        $this->_mail=$value;
     }
     public function setPassword($value)
     {
-        if(!isset($value) || empty($value) || !$value)
-        {
-            throw new \InvalidArgumentException('Les informations du mot de passe sont incorrectes.');
-        }
-        else if (strlen($value)!=60)
+        if(empty($value) ||
+           strlen($value)!=60 )
         {
             throw new \InvalidArgumentException('La longueur du mot de passe est incorrecte. (' . strlen($value) . ' caractères)');
         }
-        $this->_u_password=$value;
+        $this->_secret=$value;
     }
     public function setForgetHash($value)
     {
-        $this->_u_forget_hash=$value;
+        if(!empty($value) &&
+            strlen($value)!=60 )
+        {
+            throw new \InvalidArgumentException('La longueur de la clé est incorrecte');
+        }
+        $this->_forgetHash=$value;
     }
     public function setForgetDate($value)
     {
-        $this->_u_forget_date=$value;
+        if(!empty($value) &&
+           !\DateTime::createFromFormat(ES_NOW, $value))
+        {
+            throw new \InvalidArgumentException('La date est incorrecte');
+        }
+
+        $this->_forgetDate=$value;
     }
     public function setValidAccountHash($value)
     {
-        $this->_u_valid_account_hash=$value;
+        if(!empty($value) &&
+    strlen($value)!=60 )
+        {
+            throw new \InvalidArgumentException('La longueur de la clé est incorrecte');
+        }
+        $this->_validAccountHash=$value;
     }
     public function setValidAccountDate($value)
     {
-        $this->_u_valid_account_date=$value;
+        if(!empty($value) &&
+           !\DateTime::createFromFormat(ES_NOW, $value))
+        {
+            throw new \InvalidArgumentException('La date est incorrecte');
+        }
+        $this->_validAccountDate=$value;
     }
     public function setAccreditation($value)
     {
-        $this->_u_accreditation=$value;
+        if(!filter_var($value,FILTER_VALIDATE_INT) ||
+            $value>4)
+        {
+            throw new \InvalidArgumentException('Les données d\'accrédication sont incorrectes.' . $value);
+        }
+        $this->_accreditation=$value;
     }
     #endregion
+
+    public function hasId():bool
+    {
+        return !empty($this->_id);
+    }
 }

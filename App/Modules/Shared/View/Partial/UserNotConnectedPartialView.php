@@ -1,6 +1,6 @@
 <?php 
     //if ($user_)
 ?>
-    <li>
-        <a href="##INDEX##user.connexion">Connexion</a>
-    </li>
+<li class="nav-item">
+    <a class="nav-link js-scroll" href="##INDEX##user.connexion">Connexion</a>
+</li>

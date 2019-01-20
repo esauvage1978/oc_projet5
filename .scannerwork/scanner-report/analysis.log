@@ -95,7 +95,7 @@ System properties:
   - sun.cpu.isalist=amd64
   - sun.desktop=windows
   - sun.io.unicode.encoding=UnicodeLittle
-  - sun.java.command=org.sonarsource.scanner.cli.Main -X -Dsonar.projectKey=oc_projet5 -Dsonar.sources=. -Dsonar.host.url=http://localhost:9002 -Dsonar.login=ca48782cd360e715b3addafbdf874c18c285891d -Dsonar.exclusions=Public/vendor/**,vendor/**
+  - sun.java.command=org.sonarsource.scanner.cli.Main -X -Dsonar.projectKey=oc_projet5 -Dsonar.sources=. -Dsonar.host.url=http://localhost:9002 -Dsonar.login=ca48782cd360e715b3addafbdf874c18c285891d -Dsonar.exclusions=Public/vendor/**,vendor/**,Tests/**,TestsReport/** -Dsonar.php.tests.reportPath=TestsReport/logfile.xml -Dsonar.php.coverage.reportPaths=TestsReport/coverage.xml
   - sun.java.launcher=SUN_STANDARD
   - sun.jnu.encoding=Cp1252
   - sun.management.compiler=HotSpot 64-Bit Tiered Compilers
@@ -131,11 +131,13 @@ SonarQube plugins:
   - SonarVB 7.9.1.7622 (vbnet)
 Global properties:
   - sonar.core.id=BF41A1F2-AWhBU2Gk-KOfOhJDRHFS
-  - sonar.core.startTime=2019-01-15T14:03:21+0100
+  - sonar.core.startTime=2019-01-17T20:24:02+0100
 Settings for module: oc_projet5
-  - sonar.exclusions=Public/vendor/**,vendor/**
+  - sonar.exclusions=Public/vendor/**,vendor/**,Tests/**,TestsReport/**
   - sonar.host.url=http://localhost:9002
   - sonar.login=******
+  - sonar.php.coverage.reportPaths=TestsReport/coverage.xml
+  - sonar.php.tests.reportPath=TestsReport/logfile.xml
   - sonar.projectBaseDir=C:\wamp64\www\oc_projet5
   - sonar.projectKey=oc_projet5
   - sonar.scanner.app=ScannerCli

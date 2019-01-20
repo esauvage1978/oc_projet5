@@ -1,26 +1,52 @@
-<?php
-
-
-require_once '../Core/Toolbox/Flash.php';
-
-use PHPUnit\Framework\TestCase;
-use ES\Core\ToolBox\Flash;
-
-class FlashTest extends TestCase
-{
-    public function testCanBeCreatedFromValidEmailAddress(): void
-    {
-        $flash=new Flash();
-        $this->assertInstanceOf(
-            Flash::class,
-            $flash
-        );
-    }
-
-    public function testWrite()
-    {
-        $flash =new Flash();
-        //$this->assertNotFalse ($flash->writeError('test'));
-    }
-
-}
+<phpunit
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.3/phpunit.xsd"
+         backupGlobals="true"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         cacheResult="false"
+         cacheTokens="false"
+         colors="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         forceCoversAnnotation="false"
+         printerClass="PHPUnit\TextUI\ResultPrinter"
+         stderr="true"
+         processIsolation="false"
+         stopOnError="false"
+         stopOnFailure="false"
+         stopOnIncomplete="false"
+         stopOnSkipped="false"
+         stopOnRisky="false"
+         testSuiteLoaderClass="PHPUnit\Runner\StandardTestSuiteLoader"
+        
+         timeoutForSmallTests="1"
+         timeoutForMediumTests="10"
+         timeoutForLargeTests="60"
+         verbose="true">
+    <filter>
+        <blacklist>
+            <directory suffix=".php">./vendor</directory>
+        </blacklist>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./Config/</directory>
+            <directory suffix=".php">./Core/Database/</directory>
+            <directory suffix=".php">./Core/Model/</directory>
+            <directory suffix=".php">./Core/Form/</directory>
+            <directory suffix=".php">./Core/Toolbox/</directory>
+            <directory suffix=".php">./App/Modules/User/Model/</directory>
+            <directory suffix=".php">./App/Modules/User/Form/</directory>
+        </whitelist>
+    </filter>
+  <logging>
+    <log type="coverage-html" target="TestsReport/Report" lowUpperBound="35"
+         highLowerBound="70"/>
+    <log type="coverage-clover" target="TestsReport/coverage.xml"/>
+    <log type="coverage-php" target="TestsReport/coverage.serialized"/>
+    <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+    <log type="junit" target="TestsReport/logfile.xml" logIncompleteSkipped="false"/>
+    <log type="testdox-html" target="TestsReport/testdox.html"/>
+    <log type="testdox-text" target="TestsReport/testdox.txt"/>
+  </logging>
+</phpunit>

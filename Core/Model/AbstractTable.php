@@ -27,24 +27,21 @@ abstract class AbstractTable
     /**
      * @param array $donnees
      */
-    private function hydrate(array $donnees)
+    private function hydrate(array $datas)
     {
-        foreach ($donnees as $key => $value)
-        {
-            if(strpos( $key, static::$_prefixe) === 0)
-            {
-                
+        foreach ($datas as $key => $value) {
+            if(strpos( $key, static::$_prefixe) === 0) {
+
                 $method = 'set' . str_replace(
                     ' ',
-                    '', 
-                    ucwords( 
+                    '',
+                    ucwords(
                         str_replace(
                                 '_',
                                 ' ',
                                 substr($key,strlen( static::$_prefixe)))));
 
-                if (method_exists($this, $method))
-                {
+                if (method_exists($this, $method)) {
                     $this->$method($value);
                 }
             }

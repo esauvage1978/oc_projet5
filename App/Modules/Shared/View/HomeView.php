@@ -1,4 +1,7 @@
-<section id="about" class="white">
+
+
+
+<section id="about" class="about-mf sect-pt4 route">
     <div class="container">
         <div class="gap"></div>
         <div class="row">

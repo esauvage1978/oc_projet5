@@ -1,20 +1,24 @@
-<div id="usuTop" class="col-sm-4 col-sm-push-4">
-    <h2 class="center">Inscrivez-vous</h2>
-    <hr />
-    <form method="POST" action="##INDEX##user.signup">
-        <div class="form-group">
-            <?= $form->identifiant();?>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-8">
+        <div class="widget-sidebar">
+            <div class="sidebar-content">
+                <form method="POST" action="##INDEX##user.signup">
+                    <div class="form-group">
+                        <?= $form->RenderIdentifiant();?>
+                    </div>
+                    <div class="form-group">
+                        <?= $form->RenderMail();?>
+                    </div>
+                    <div class="form-group">
+                        <?= $form->RenderSecretNew(); ?>
+                    </div>
+                    <div class="form-group">
+                        <?= $form->RenderSecretConfirm(); ?>
+                    </div>
+                    <?= $form->submit_primary('connexion','S\'inscrire');?>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <?= $form->mail();?>
-        </div>
-        <div class="form-group">
-            <?= $form->password(); ?>
-        </div>
-        <div class="form-group">
-            <?= $form->passwordConfirmation(); ?>
-        </div>
-        <?= $form->submit_primary('connexion','S\'inscrire');?>
-    </form>
-    <hr />
+    </div>
 </div>

@@ -11,6 +11,7 @@ abstract class AbstractRenderView
      * @var mixed
      */
     private $_title;
+    private $_home;
     /**
      * contenu des templates
      * @var mixed
@@ -23,16 +24,13 @@ abstract class AbstractRenderView
 
     public function __construct()
     {
-        $this->flash=new Flash();
-        $this->_request=new Request(
-            ['get'=>$_GET,
-            'post'=>$_POST,
-            'session'=>$_SESSION,
-            'cookie'=>$_COOKIE]);
+        $this->_request=new Request($_GET,$_POST,$_COOKIE);
+        $this->flash=new Flash($this->_request);
     }
 
     protected function render($view, $data)
     {
+
 
         $this->_content= array('content'=> $this->genererFichier(
             $view,
@@ -48,6 +46,8 @@ abstract class AbstractRenderView
         }
         $data['flash']=$this->flash;
         $this->_title=$data['title'];
+        $data['home']=(!stripos($view, 'home'))?false:true;
+
         echo $this->genererFichier(
             ES_ROOT_PATH_FAT_MODULES . 'Shared\\View\\TemplateView.php',
             $data
@@ -57,12 +57,14 @@ abstract class AbstractRenderView
     protected function genererFichier($fichier, $data)
     {
         $strFind=array(
+            '##DIR_COMPOSER##',
             '##DIR_VENDOR##',
             '##DIR_PUBLIC##',
             '##INDEX##',
             '##TITLE##'
             );
         $strReplace=array(
+            ES_ROOT_PATH_WEB_COMPOSER,
             ES_ROOT_PATH_WEB_VENDOR,
             ES_ROOT_PATH_WEB_PUBLIC,
             ES_ROOT_PATH_WEB_INDEX,
@@ -81,16 +83,22 @@ abstract class AbstractRenderView
                 }
                 isset($data)?extract($data):'';
 
+
+
                 ob_start();
                 require $fichier;
+
+
+
                 $fileContent= ob_get_clean();
+
                 return str_replace($strFind,$strReplace, $fileContent);
             }
-            throw new \ErrorException("Fichier ' . $fichier . ' introuvable");
+            throw new \InvalidArgumentException("Fichier ' . $fichier . ' introuvable");
         }
         catch (exception $e)
         {
-            throw new \ErrorException('Erreur dans la classe RenderView');
+            throw new \InvalidArgumentException('Erreur dans la classe RenderView');
         }
 
     }
