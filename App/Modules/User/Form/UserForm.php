@@ -16,7 +16,6 @@ use ES\Core\Toolbox\Auth;
 class UserForm extends BootStrapForm
 {
     public static $formIdentifiant='identifiant';
-    public static $formLogin='identifiant';
     public static $formHash='hash';
     public static $formIdHidden='idHidden';
     public static $formMail='mail';
@@ -25,7 +24,6 @@ class UserForm extends BootStrapForm
     public static $formSecret='secret';
     public static $formSecretConfirm='secretConfirm';
 
-    protected static $_loginInvalid='';
     protected static $_identifiantInvalid='';
     protected static $_mailInvalid='';
     protected static $_secretInvalid='';
@@ -33,31 +31,7 @@ class UserForm extends BootStrapForm
     protected static $_secretNewInvalid='';
     protected static $_secretConfirmInvalid='';
 
-    #region LOGIN
-    public function RenderLogin()
-    {
-        $options[parent::OPTIONS_REQUIRED]='true';
-        $options[parent::OPTIONS_MAXLENGHT]=100;
-        $options[parent::OPTIONS_LABEL]='Identifiant ou adresse mail';
-        $options[parent::OPTIONS_VALID ]=$this::chooseClassCssValid(static::$_loginInvalid);
-        return parent::input(static::$formLogin,$options);
-    }
-    protected function checkLogin():bool
-    {
-        $field=UserForm::$formLogin;
-        $value=$this->getValue($field);
-        if( empty($value) ||
-            strlen($value)<=3 ||
-            strlen($value)>100 ||
-            !(string)filter_var($value)) {
 
-            $this->flash->writeError('Le login est invalide');
-            $this->isInvalid($field);
-            return false;
-        }
-        return true;
-    }
-    #endregion
 
     #region IDENTIFIANT
     public function RenderIdentifiant()
@@ -70,21 +44,7 @@ class UserForm extends BootStrapForm
         return parent::input(static::$formIdentifiant,$options);
     }
 
-    protected function checkIdentifiant():bool
-    {
-        $field=UserForm::$formIdentifiant;
-        $value=$this->getValue($field);
-        if( empty($value) ||
-            strlen($value)<=3 ||
-            strlen($value)>45 ||
-            !(string)filter_var($value)) {
 
-            $this->flash->writeError('L\'identifiant est invalide');
-            $this->isInvalid($field);
-            return false;
-        }
-        return true;
-    }
     #endregion
 
     #region HASH
@@ -232,9 +192,6 @@ class UserForm extends BootStrapForm
         $option=parent::OPTIONS_VALID_NO;
         switch ($field)
         {
-            case self::$formLogin:
-                static::$_loginInvalid=$option;
-                break;
             case self::$formIdentifiant:
                 static::$_identifiantInvalid=$option;
                 break;

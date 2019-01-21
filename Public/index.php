@@ -11,6 +11,7 @@ require '../App/Modules/Shared/Services/Routeur.php';
 session_start();
 
 Autoloader::register();
+
 $request=new Request($_GET,$_POST,$_COOKIE);
 $routeur= new Routeur($request);
 $routeur->run();

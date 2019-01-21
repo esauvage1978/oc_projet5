@@ -6,9 +6,9 @@
 
                 <form method="POST" action="##INDEX##user.pwdforget">
                     <div class="form-group">
-                        <?= $form->RenderLogin();?>
+                        <?= $form->render($form::LOGIN);?>
                     </div>
-                    <?= $form->submit_primary('connexion','Récupérer');?>
+                    <?= $form->render($form::BUTTON);?>
                 </form>
 
             </div>

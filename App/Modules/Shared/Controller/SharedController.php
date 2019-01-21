@@ -18,8 +18,8 @@ class SharedController extends AbstractController
 
     const DECONNECTE='-1';
     const CONNECTE='1';
-    const MODERATEUR='2';
-    const REDACTEUR='3';
+    const REDACTEUR='2';
+    const MODERATEUR='3';
     const GESTIONNAIRE='4';
 
     public function homeShow()

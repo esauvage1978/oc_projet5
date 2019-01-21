@@ -5,11 +5,11 @@
             <div class="sidebar-content">
                 <form method="POST" action="##INDEX##user.pwdchange">
                     <div class="form-group">
-                        <?= $form->RenderSecretOld();?>
-                        <?= $form->RenderSecretNew();?>
-                        <?= $form->RenderSecretConfirm();?>
+                        <?= $form->render($form::SECRET_OLD);?>
+                        <?= $form->render($form::SECRET_NEW);?>
+                        <?= $form->render($form::SECRET_CONFIRM);?>
                     </div>
-                    <?= $form->submit_primary('connexion','Modifier');?>
+                    <?= $form->render($form::BUTTON);?>
                 </form>
             </div>
         </div>

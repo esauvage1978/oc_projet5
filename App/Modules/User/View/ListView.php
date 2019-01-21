@@ -9,21 +9,33 @@
                             <th>Identifiant</th>
                             <th>Accréditation</th>
                             <th>Compte validé</th>
+                            <th>Compte actif</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach($form as $data): ?>
                         <tr>
                             <td>
-                                <a href="##INDEX##user.modify/<?= $data->getId();?>">
-                                    <?= $data->getIdentifiant(); ?>
-                                </a>
+                                <small>
+                                    <a href="##INDEX##user.modify/<?= $data->getId();?>">
+                                        <?= $data->getIdentifiant(); ?>
+                                    </a>
+                                </small>
                             </td>
                             <td>
-                                <?= $data->getAccreditationLabel(); ?>
+                                <small>
+                                    <?= $data->getAccreditationLabel(); ?>
+                                </small>
                             </td>
                             <td>
-                                <?= $data->getValidAccountDate(); ?>
+                                <small>
+                                    <?= $data->getValidAccountDate(); ?>
+                                </small>
+                            </td>
+                            <td>
+                                <small>
+                                    <?= $data->getActifLabel(); ?>
+                                </small>
                             </td>
                         </tr>
                         <?php endforeach; ?>

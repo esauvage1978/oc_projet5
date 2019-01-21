@@ -25,3 +25,9 @@ define('ES_ROOT_PATH_REL_MODULES', '../App/Modules/');
 
 
 define('ES_NOW','Y-m-d H:i:s');
+
+define('ES_ACCREDITATION',
+    ['1'=>'Visiteur',
+     '2'=>'Rédacteur',
+     '3'=>'Modérateur',
+     '4'=>'Gestionnaire']);

@@ -25,6 +25,8 @@ class UserTable extends AbstractTable implements ITable
     private $_validAccountHash;
     private $_validAccountDate;
     private $_accreditation;
+    private $_actif;
+    private $_actif_date;
 
 
     #region GET
@@ -66,19 +68,23 @@ class UserTable extends AbstractTable implements ITable
     }
     public function getAccreditationLabel()
     {
-        switch($this->_accreditation)
-        {
-            case 1:
-                return 'Connecté';
-            case 2:
-                return 'Rédacteur';
-            case 3:
-                return 'Modérateur';
-            case 4:
-                return 'Gestionnaire';
-            default:
-                return "Unknow";
+        return ES_ACCREDITATION[$this->_accreditation];
+    }
+    public function getActif()
+    {
+        return $this->_actif;
+    }
+    public function getActifLabel()
+    {
+        if( $this->_actif) {
+            return "Compte actif";
+        } else {
+            return "Compte suspendu le " . $this->getactifDate() ;
         }
+    }
+    public function getActifDate()
+    {
+        return $this->_actif_date;
     }
     #endregion
 
@@ -166,6 +172,20 @@ class UserTable extends AbstractTable implements ITable
             throw new \InvalidArgumentException('Les données d\'accrédication sont incorrectes.' . $value);
         }
         $this->_accreditation=$value;
+    }
+    public function setActif($value)
+    {
+        $this->_actif=$value;
+    }
+    public function setActifDate($value)
+    {
+        if(!empty($value) &&
+           !\DateTime::createFromFormat(ES_NOW, $value))
+        {
+            throw new \InvalidArgumentException('La date est incorrecte');
+        }
+
+        $this->_actif_date=$value;
     }
     #endregion
 

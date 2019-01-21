@@ -6,11 +6,11 @@
 
                 <form method="POST" action="##INDEX##user.pwdforgetchange">
                     <div class="form-group">
-                        <?= $form->RenderHash();?>
-                        <?= $form->RenderSecretNew();?>
-                        <?= $form->RenderSecretConfirm();?>
+                        <?= $form->render($form::HASH);?>
+                        <?= $form->render($form::SECRET_NEW);?>
+                        <?= $form->render($form::SECRET_CONFIRM);?>
                     </div>
-                    <?= $form->submit_primary('connexion','Modifier');?>
+                    <?= $form->render($form::BUTTON);?>
                 </form>
             </div>
         </div>

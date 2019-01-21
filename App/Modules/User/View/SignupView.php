@@ -5,18 +5,18 @@
             <div class="sidebar-content">
                 <form method="POST" action="##INDEX##user.signup">
                     <div class="form-group">
-                        <?= $form->RenderIdentifiant();?>
+                        <?= $form->render($form::IDENTIFIANT);?>
                     </div>
                     <div class="form-group">
-                        <?= $form->RenderMail();?>
+                        <?= $form->render($form::MAIL);?>
                     </div>
                     <div class="form-group">
-                        <?= $form->RenderSecretNew(); ?>
+                        <?= $form->render($form::SECRET_NEW);?>
                     </div>
                     <div class="form-group">
-                        <?= $form->RenderSecretConfirm(); ?>
+                        <?= $form->render($form::SECRET_CONFIRM);?>
                     </div>
-                    <?= $form->submit_primary('connexion','S\'inscrire');?>
+                    <?= $form->render($form::BUTTON);?>
                 </form>
             </div>
         </div>

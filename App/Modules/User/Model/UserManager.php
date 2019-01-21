@@ -30,6 +30,8 @@ class UserManager extends AbstractManager
     const VALID_ACCOUNT_HASH='u_valid_account_hash';
     const VALID_ACCOUNT_DATE='u_valid_account_date';
     const ACCREDITATION='u_accreditation';
+    const ACTIF='u_actif';
+    const ACTIF_DATE='u_actif_date';
 
     #region SESSION
     public function connect($user,$request)
@@ -94,17 +96,7 @@ class UserManager extends AbstractManager
 
     public function updateUser(UserTable $user):bool
     {
-        return $this->update($user->getId(),
-            [
-                self::IDENTIFIANT=>$user->getIdentifiant(),
-                self::MAIL=>$user->getMail(),
-                self::SECRET=>$user->getPassword(),
-                self::FORGET_HASH=>$user->getForgetHash(),
-                self::FORGET_DATE=>$user->getForgetDate(),
-                self::VALID_ACCOUNT_HASH=>$user->getValidAccountHash(),
-                self::VALID_ACCOUNT_DATE=>$user->getValidAccountDate(),
-                self::ACCREDITATION=>$user->getAccreditation()
-            ]);
+        return $this->update($user->getId(),$this->UserToArray($user));
     }
     public function createUser($identifiant, $mail,$secret):UserTable
     {
@@ -115,17 +107,7 @@ class UserManager extends AbstractManager
           ! $this->mailExist ($mail))
         {
 
-            $retour= $this->create(
-                [
-                    self::IDENTIFIANT=>$user->getIdentifiant(),
-                    self::MAIL=>$user->getMail(),
-                    self::SECRET=>$user->getPassword(),
-                    self::FORGET_HASH=>$user->getForgetHash(),
-                    self::FORGET_DATE=>$user->getForgetDate(),
-                    self::VALID_ACCOUNT_HASH=>$user->getValidAccountHash(),
-                    self::VALID_ACCOUNT_DATE=>$user->getValidAccountDate(),
-                    self::ACCREDITATION=>$user->getAccreditation()
-                ]);
+            $retour= $this->create($this->UserToArray($user));
 
             if(!$retour) {
                 throw new \InvalidArgumentException('Erreur lors de la création de l\'utilisateur');
@@ -135,6 +117,23 @@ class UserManager extends AbstractManager
 
         return $user;
     }
+
+    private function UserToArray($user):array
+    {
+        return [
+                self::IDENTIFIANT=>$user->getIdentifiant(),
+                self::MAIL=>$user->getMail(),
+                self::SECRET=>$user->getPassword(),
+                self::FORGET_HASH=>$user->getForgetHash(),
+                self::FORGET_DATE=>$user->getForgetDate(),
+                self::VALID_ACCOUNT_HASH=>$user->getValidAccountHash(),
+                self::VALID_ACCOUNT_DATE=>$user->getValidAccountDate(),
+                self::ACCREDITATION=>$user->getAccreditation(),
+                self::ACTIF=>$user->getActif(),
+                self::ACTIF_DATE=>$user->getActifDate()
+            ];
+    }
+
     public function NewUser($identifiant, $mail,$secret):UserTable
     {
         return new UserTable
@@ -146,7 +145,9 @@ class UserManager extends AbstractManager
                     self::FORGET_DATE=>null,
                     self::VALID_ACCOUNT_HASH=>Auth::strRandom(),
                     self::VALID_ACCOUNT_DATE=>null,
-                    self::ACCREDITATION=>1
+                    self::ACCREDITATION=>1,
+                    self::ACTIF=>1,
+                    self::ACTIF_DATE=>date(ES_NOW)
                 ]);
     }
 
@@ -162,7 +163,14 @@ class UserManager extends AbstractManager
 
         return $this->updateUser($user);
     }
+    public function changeActifOfUser(UserTable $user):bool
+    {
 
+        $user->setActif(($user->getActif()=='1'?'0':'1'));
+        $user->setActifDate(date(ES_NOW));
+
+        return $this->updateUser($user);
+    }
     public function forgetInit(UserTable $user):bool
     {
         $user->setForgetHash(Auth::strRandom());
