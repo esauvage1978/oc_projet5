@@ -46,7 +46,12 @@ class UserManagerTest extends TestCase
         $num=9;
         $user=$this->userManager->findById ($num);
         $this->assertSame('Manuso',$user->getIdentifiant());
+    }
 
+    public function testGetAll()
+    {
+        $retour=$this->userManager->getAll(); 
+        $this->assertNotNull($retour);
     }
 
 }

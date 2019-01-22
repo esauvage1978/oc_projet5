@@ -17,6 +17,7 @@ class CoreToolboxAuthTest extends TestCase
     {
         $this->assertTrue(True);
     }
+
     public function testGenerateRandom()
     {
         $hash='';
@@ -44,5 +45,6 @@ class CoreToolboxAuthTest extends TestCase
         $this->assertSame(false, Auth::passwordCompare($value,$value2,false));
         $this->assertSame(true, Auth::passwordCompare($value,$value,false));
     }
+
 
 }

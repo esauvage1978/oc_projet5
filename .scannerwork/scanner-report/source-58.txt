@@ -1,16 +1,18 @@
-<?php
 
-namespace ES\Core\Model;
+<div class="row justify-content-md-center">
+    <div class="col-md-8">
+        <div class="widget-sidebar">
+            <div class="sidebar-content">
 
-/**
- * ITable short summary.
- *
- * ITable description.
- *
- * @version 1.0
- * @author ragus
- */
-interface ITable
-{
-    public function hasId():bool;
-}
+                <form method="POST" action="##INDEX##user.pwdforgetchange">
+                    <div class="form-group">
+                        <?= $form->render($form::HASH);?>
+                        <?= $form->render($form::SECRET_NEW);?>
+                        <?= $form->render($form::SECRET_CONFIRM);?>
+                    </div>
+                    <?= $form->render($form::BUTTON);?>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

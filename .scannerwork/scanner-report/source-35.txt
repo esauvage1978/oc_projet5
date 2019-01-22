@@ -1,29 +1,25 @@
 <?php
 
-namespace ES\App\Modules\User\Form;
+namespace ES\App\Modules\User\Form\WebControls;
 
-
-
+use ES\Core\Form\WebControls\WebControlsButtons;
 /**
- * UserConnexionForm short summary.
+ * ButtonsConnexion short summary.
  *
- * UserConnexionForm description.
+ * ButtonsConnexion description.
  *
  * @version 1.0
  * @author ragus
  */
-class UserForgetForm extends UserForm
+class ButtonModifier extends WebControlsButtons
 {
-    protected static $_loginInvalid;
+    private $_webControls;
 
-    public function checkForm():bool
+    public function __construct()
     {
-        $checkOK=true;
-
-        if(! $this->checkLogin()) {
-            $checkOK=false;
-        }
-
-        return $checkOK ;
+        $this->SetLabel('Modifier');
+        $this->setName('modif');
+        $this->addCssClass(parent::CSS_PRIMARY);
     }
+
 }

@@ -31,7 +31,6 @@ class UserTableTest extends TestCase
     {
         $value='test';
         $user=new UserTable([UserManager::IDENTIFIANT=>$value]);
-        $user->setIdentifiant($value);
         $this->assertSame($value,$user->getIdentifiant());
     }
     /**
@@ -378,6 +377,71 @@ class UserTableTest extends TestCase
         $user=new UserTable([]);
         $value=Null;
         $user->setAccreditation($value);
+    }
+    #endregion
+    #region Actif
+    public function testActifBySetter()
+    {
+        $user=new UserTable([]);
+        $value='1';
+        $user->setActif($value);
+        $this->assertSame($value,$user->getActif());
+    }
+    public function testActifByConstructor()
+    {
+        $value='0';
+        $user=new UserTable([UserManager::ACTIF=>$value]);
+        $this->assertSame($value,$user->getActif());
+    }
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testActifValue2()
+    {
+        $user=new UserTable([]);
+        $value='2';
+        $user->setActif($value);
+    }
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testActifValueNull()
+    {
+        $user=new UserTable([]);
+        $value=Null;
+        $user->setActif($value);
+        $this->assertNull($user->getActif());
+    }
+    #endregion
+    #region ValidAccountDate
+    public function testActifDateBySetter()
+    {
+        $user=new UserTable([]);
+        $value=date($this->es_now);
+        $user->setActifDate($value);
+        $this->assertSame($value,$user->getActifDate());
+    }
+    public function testActifDateByConstructor()
+    {
+        $value=date($this->es_now);
+        $user=new UserTable([UserManager::ACTIF_DATE=>$value]);
+        $this->assertSame($value,$user->getActifDate());
+    }
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testActifDateValueNotDate()
+    {
+        $user=new UserTable([]);
+        $value=Auth::strRandom(10);
+        $user->setActifDate($value);
+    }
+    public function testActifDateValueNull()
+    {
+        $user=new UserTable([]);
+        $value=Null;
+        $user->setActifDate($value);
+        $this->assertNull($user->getActifDate());
     }
     #endregion
 }

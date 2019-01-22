@@ -25,6 +25,6 @@
         </div>
     </div>
     <div class="col-md-4">
-        <?php require ES_ROOT_PATH_FAT_MODULES .'User\\View\\Partial\\WidgetUserConnectPartialView.php' ?>
+        <?php require ES_ROOT_PATH_FAT_MODULES .'User/View/Partial/WidgetUserConnectPartialView.php' ?>
     </div>
 </div>

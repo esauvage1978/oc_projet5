@@ -1,6 +1,6 @@
 
         
             
-            <?= isset($content)?$content:''; ?>
+<?= isset($content)?$content:''; ?>
 
 

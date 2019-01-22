@@ -13,7 +13,6 @@ use ES\Core\Form\WebControls\WebControlsButtons;
  */
 class ButtonConnexion extends WebControlsButtons
 {
-    private $_webControls;
 
     public function __construct()
     {

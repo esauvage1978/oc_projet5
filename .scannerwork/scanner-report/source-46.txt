@@ -1,27 +1,49 @@
 <?php
+
+namespace ES\App\Modules\User\Form\WebControls;
+
+use ES\Core\Form\WebControls\WebControlsInput;
 /**
-  * User: esauvage1978
-  * 10/01/2019
+ * ButtonsConnexion short summary.
+ *
+ * ButtonsConnexion description.
+ *
+ * @version 1.0
+ * @author ragus
  */
+class InputSecretNew extends WebControlsInput
+{
 
-define('ES_APPLICATION_NOM','MY LOST UNIVER');
+    public function __construct($data)
+    {
+        parent::__construct ($data);
+        $this->SetLabel('Nouveau mot de passe');
+        $this->SetType(WebControlsInput::TYPE_SECRET);
+        $this->setName('secretNew');
 
+        $this->setRequired();
+        $this->setMaxLength (100);
+        $this->SetHelpBlock ('Le mot de passe doit avoir au minimum 8 caractères et avoir les éléments suivants :<ul>
+            <li>Une lettre minuscule</li>
+            <li>Une lettre majuscule</li>
+            <li>Un chiffre</li></ul>');
+    }
 
-define('ES_ROOT_PATH_FAT', dirname(__DIR__). '\\');
-define('ES_ROOT_PATH_WEB', 'http://localhost/oc_projet5');
+    public function check():bool
+    {
+        $retour=true;
+        $value=$this->text();
+        if( empty($value)) {
 
-define('ES_ROOT_PATH_FAT_INDEX', ES_ROOT_PATH_FAT. 'Public\\index.php');
-define('ES_ROOT_PATH_WEB_INDEX', ES_ROOT_PATH_WEB. '/');
+            $this->setIsInvalid('Le mot de passe est vide.');
+            $retour=false;
 
-define('ES_ROOT_PATH_FAT_MODULES', ES_ROOT_PATH_FAT. 'App\\Modules\\');
+        }  else if(!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$#', $value) ) {
 
+            $this->setIsInvalid('Le mot de passe ne correspond pas aux règles de complexité.');
+            return false;
+        }
+        return $retour;
+    }
 
-define('ES_ROOT_PATH_WEB_PUBLIC', ES_ROOT_PATH_WEB .'/Public/');
-define('ES_ROOT_PATH_WEB_VENDOR', ES_ROOT_PATH_WEB .'/Public/vendor/');
-define('ES_ROOT_PATH_WEB_COMPOSER', ES_ROOT_PATH_WEB .'/vendor/');
-
-define('ES_ROOT_PATH_REL_MODULES', '../App/Modules/');
-
-
-
-define('ES_NOW','Y-m-d H:i:s');
+}

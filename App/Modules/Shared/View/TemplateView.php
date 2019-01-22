@@ -75,7 +75,7 @@
                     <!--<p class="display-6 color-d">Hello, world!</p>-->
                     <h1 class="intro-title mb-4">Je suis Emmanuel SAUVAGE</h1>
                     <p class="intro-subtitle">
-                        <span class="text-slider-items">Développeur DOTNET,Développeur Web,Frontend Developer</span>
+                        <span class="text-slider-items">Développeur Full Stack,Dotnet,PHP / Symfony</span>
                         <strong class="text-slider"></strong>
                     </p>
                     <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
@@ -85,10 +85,10 @@
     </div>
     <?php endif ?>
 
-    <section class="blog-wrapper sect-pt4" id="blog">
+    <section class="blog-wrapper sect-pt4" id="topsection">
         <div class="container">
             <div class="row">
-                <?php require ES_ROOT_PATH_FAT_MODULES .'Shared\\View\\Partial\\FlashPartialView.php';?>
+                <?php require ES_ROOT_PATH_FAT_MODULES .'Shared/View/Partial/FlashPartialView.php';?>
             </div>
             <?= $content??'Erreur, pas de contenu !!!'; ?>
 

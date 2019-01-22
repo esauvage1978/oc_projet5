@@ -1,1 +1,1 @@
-App/Modules/User/Model :rApp/Modules/User/Model
+App/Modules/User/Form : rApp/Modules/User/Form

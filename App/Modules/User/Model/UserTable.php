@@ -28,6 +28,7 @@ class UserTable extends AbstractTable implements ITable
     private $_actif;
     private $_actif_date;
 
+    private $_msgBadDate='La date est incorrecte.';
 
     #region GET
     public function getId()
@@ -141,7 +142,7 @@ class UserTable extends AbstractTable implements ITable
         if(!empty($value) &&
            !\DateTime::createFromFormat(ES_NOW, $value))
         {
-            throw new \InvalidArgumentException('La date est incorrecte');
+            throw new \InvalidArgumentException($this->_msgBadDate);
         }
 
         $this->_forgetDate=$value;
@@ -160,21 +161,23 @@ class UserTable extends AbstractTable implements ITable
         if(!empty($value) &&
            !\DateTime::createFromFormat(ES_NOW, $value))
         {
-            throw new \InvalidArgumentException('La date est incorrecte');
+            throw new \InvalidArgumentException($this->_msgBadDate);
         }
         $this->_validAccountDate=$value;
     }
     public function setAccreditation($value)
     {
         if(!filter_var($value,FILTER_VALIDATE_INT) ||
-            $value>4)
-        {
+            $value>4) {
             throw new \InvalidArgumentException('Les données d\'accrédication sont incorrectes.' . $value);
         }
         $this->_accreditation=$value;
     }
     public function setActif($value)
     {
+        if($value!='1' && $value!='0') {
+            throw new \InvalidArgumentException('la valeur du paramètre actif est incorrecte.' . $value);
+        }
         $this->_actif=$value;
     }
     public function setActifDate($value)
@@ -182,7 +185,7 @@ class UserTable extends AbstractTable implements ITable
         if(!empty($value) &&
            !\DateTime::createFromFormat(ES_NOW, $value))
         {
-            throw new \InvalidArgumentException('La date est incorrecte');
+            throw new \InvalidArgumentException($this->_msgBadDate);
         }
 
         $this->_actif_date=$value;

@@ -23,7 +23,7 @@ class WebControls
     protected $_isInvalid;
     protected $_readOnly;
 
-    private $data;
+    private $_data;
 
     public function __construct($data)
     {
@@ -32,15 +32,12 @@ class WebControls
 
     protected function getValue($index)
     {
-        $data=null;
 
         if(is_array ( $this->_data)) {
-            $data=array_key_exists($index,$this->_data)?$this->_data[$index]:null;
+            return array_key_exists($index,$this->_data)?$this->_data[$index]:null;
         } else {
-            $data=$this->_data->getPostValue($index);
+            return $this->_data->getPostValue($index);
         }
-
-        return $data;
     }
 
     #region SET

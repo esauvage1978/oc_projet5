@@ -1,28 +1,47 @@
+<?php
 
-<div class="row justify-content-md-center">
-    <div class="col-md-8">
-        <div class="widget-sidebar">
-            <div class="sidebar-content">
+namespace ES\App\Modules\User\Form;
 
-                <form method="POST" action="##INDEX##user.modify">
-                    <div class="form-group">
-                        <?= $form->RenderIdHidden();?>
-                    </div>
+use ES\Core\Form\Form;
+use ES\Core\Form\IForm;
+use ES\App\Modules\User\Form\WebControls\ButtonConnexion;
+use ES\App\Modules\User\Form\WebControls\InputLogin;
+use ES\App\Modules\User\Form\WebControls\InputSecret;
 
-                    <div class="form-group">
-                        <?= $form->RenderIdentifiant();?>
-                    </div>
-                    <div class="form-group">
-                        <?= $form->RenderMail();?>
-                    </div>
-                    <?= $form->submit_primary('modify','Modifier');?>
-                </form>
-                <hr />
-                <div>
+/**
+ * UserConnexionForm short summary.
+ *
+ * UserConnexionForm description.
+ *
+ * @version 1.0
+ * @author ragus
+ */
+class UserConnexionForm extends Form implements IForm
+{
 
-                    <a href="##INDEX##user.pwdchange">Changer mon mot de passe ?</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    const BUTTON=0;
+    const LOGIN=1;
+    const SECRET=2;
+
+    public function __construct($data)
+    {
+        $this->controls[self::BUTTON]=new ButtonConnexion();
+        $this->controls[self::LOGIN]=new InputLogin($data);
+        $this->controls[self::SECRET]=new InputSecret($data);
+    }
+
+    public function check():bool
+    {
+        $checkOK=true;
+
+        if(!$this->controls[self::LOGIN]->check()) {
+            $checkOK=false;
+        }
+
+        if(!$this->controls[self::SECRET]->check()) {
+            $checkOK=false;
+        }
+
+        return $checkOK ;
+    }
+}

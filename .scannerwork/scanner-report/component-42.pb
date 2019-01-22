@@ -1,1 +1,1 @@
-*Config/bdd.php 2phpXhrConfig/bdd.php
+*8App/Modules/User/Form/WebControls/InputSecretConfirm.php 2phpXhr8App/Modules/User/Form/WebControls/InputSecretConfirm.php

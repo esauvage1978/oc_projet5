@@ -34,6 +34,10 @@ class Auth
      */
     public static function passwordCompare(string $secret, string $secretCompare,bool $hash=true):bool
     {
+        if(empty($secret) || empty($secretCompare)) {
+            throw new \InvalidArgumentException('Les paramètres sont vides');
+        }
+
         if($hash) {
             return \password_verify(self::SECRET_SALT_START . $secret . self::SECRET_SALT_END, $secretCompare);
         } else {

@@ -1,1 +1,1 @@
-$App/Modules/User/Model/UserTable.php 2phpX hr$App/Modules/User/Model/UserTable.php
+(App/Modules/User/Form/UserForgetForm.php 2phpX*hr(App/Modules/User/Form/UserForgetForm.php

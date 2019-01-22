@@ -1,1 +1,1 @@
-@Core/Toolbox/Auth.php 2phpX5hrCore/Toolbox/Auth.php
+@$App/Modules/User/View/SignupView.php 2phpXhr$App/Modules/User/View/SignupView.php

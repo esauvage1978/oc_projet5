@@ -40,7 +40,7 @@ abstract class AbstractRenderView
         if(static::$modulesViewTemplate)
         {
             $this->_content = array('content'=>$this->genererFichier(
-                ES_ROOT_PATH_FAT_MODULES . '\\'. static::$module .'\\View\\' . static::$module .'TemplateView.php',
+                ES_ROOT_PATH_FAT_MODULES . '/'. static::$module .'/View/' . static::$module .'TemplateView.php',
                  $data
                 ));
         }
@@ -49,7 +49,7 @@ abstract class AbstractRenderView
         $data['home']=(!stripos($view, 'home'))?false:true;
 
         echo $this->genererFichier(
-            ES_ROOT_PATH_FAT_MODULES . 'Shared\\View\\TemplateView.php',
+            ES_ROOT_PATH_FAT_MODULES . 'Shared/View/TemplateView.php',
             $data
         );
     }

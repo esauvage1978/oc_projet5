@@ -1,1 +1,1 @@
-EPublic/index.php 2phpXhrPublic/index.php
+EConfig :BDrConfig

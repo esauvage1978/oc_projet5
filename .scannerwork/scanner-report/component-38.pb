@@ -1,1 +1,1 @@
-&*App/Modules/User/View/UserTemplateView.php 2phpXhr*App/Modules/User/View/UserTemplateView.php
+&4App/Modules/User/Form/WebControls/ButtonRecupere.php 2phpXhr4App/Modules/User/Form/WebControls/ButtonRecupere.php

@@ -16,37 +16,82 @@ $coverage->setData(array (
     array (
     ),
   ),
-  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Model\\UserManager.php' => 
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControlsButtons.php' => 
   array (
-    37 => 
-    array (
-    ),
-    38 => 
-    array (
-    ),
     41 => 
     array (
     ),
-    42 => 
+    48 => 
     array (
+      0 => 'UserConnexionFormTest::testRenderButton',
+      1 => 'UserForgetChangeFormTest::testRenderButton',
     ),
-    45 => 
+    49 => 
     array (
+      0 => 'UserConnexionFormTest::testRenderButton',
+      1 => 'UserForgetChangeFormTest::testRenderButton',
     ),
-    46 => NULL,
+    50 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderButton',
+      1 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
+    51 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderButton',
+      1 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
     52 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderButton',
+      1 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
+    53 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderButton',
+      1 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
+    54 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderButton',
+      1 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
+    55 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Model\\UserManager.php' => 
+  array (
+    41 => 
     array (
       0 => 'UserManagerTest::testIdentifiantExist',
     ),
-    53 => NULL,
-    57 => 
+    42 => NULL,
+    46 => 
     array (
       0 => 'UserManagerTest::testMailExist',
     ),
-    58 => NULL,
-    64 => 
+    47 => NULL,
+    53 => 
     array (
       0 => 'UserManagerTest::testFindById',
+    ),
+    54 => NULL,
+    57 => 
+    array (
+    ),
+    58 => 
+    array (
+    ),
+    60 => 
+    array (
+    ),
+    61 => 
+    array (
+    ),
+    63 => 
+    array (
+    ),
+    64 => 
+    array (
     ),
     65 => NULL,
     68 => 
@@ -56,9 +101,6 @@ $coverage->setData(array (
     array (
     ),
     71 => 
-    array (
-    ),
-    72 => 
     array (
     ),
     74 => 
@@ -71,23 +113,20 @@ $coverage->setData(array (
     79 => 
     array (
     ),
-    80 => 
-    array (
-    ),
-    82 => 
-    array (
-    ),
-    85 => 
-    array (
-    ),
+    80 => NULL,
     86 => 
     array (
     ),
     87 => NULL,
-    90 => 
+    91 => 
     array (
     ),
-    91 => NULL,
+    93 => 
+    array (
+    ),
+    94 => 
+    array (
+    ),
     97 => 
     array (
     ),
@@ -97,26 +136,20 @@ $coverage->setData(array (
     100 => 
     array (
     ),
-    101 => 
-    array (
-    ),
     102 => 
-    array (
-    ),
-    103 => 
-    array (
-    ),
-    104 => 
     array (
     ),
     105 => 
     array (
     ),
-    106 => 
+    106 => NULL,
+    111 => 
     array (
     ),
-    108 => NULL,
     112 => 
+    array (
+    ),
+    113 => 
     array (
     ),
     114 => 
@@ -125,31 +158,29 @@ $coverage->setData(array (
     115 => 
     array (
     ),
+    116 => 
+    array (
+    ),
+    117 => 
+    array (
+    ),
     118 => 
+    array (
+    ),
+    119 => 
     array (
     ),
     120 => 
     array (
     ),
-    121 => 
-    array (
-    ),
-    122 => 
-    array (
-    ),
-    123 => 
-    array (
-    ),
-    124 => 
-    array (
-    ),
-    125 => 
-    array (
-    ),
+    122 => NULL,
     126 => 
     array (
     ),
-    127 => 
+    128 => 
+    array (
+    ),
+    129 => 
     array (
     ),
     130 => 
@@ -158,120 +189,149 @@ $coverage->setData(array (
     131 => 
     array (
     ),
+    132 => 
+    array (
+    ),
     133 => 
+    array (
+    ),
+    134 => 
+    array (
+    ),
+    135 => 
     array (
     ),
     136 => 
     array (
     ),
-    137 => NULL,
-    140 => 
+    137 => 
     array (
     ),
-    142 => 
-    array (
-    ),
+    139 => NULL,
     143 => 
     array (
     ),
-    144 => 
-    array (
-    ),
-    145 => 
-    array (
-    ),
-    146 => 
-    array (
-    ),
-    147 => 
-    array (
-    ),
+    144 => NULL,
     148 => 
     array (
     ),
     149 => 
     array (
     ),
-    151 => NULL,
-    155 => 
+    151 => 
     array (
     ),
-    156 => NULL,
-    160 => 
+    152 => NULL,
+    156 => 
     array (
     ),
-    161 => 
+    157 => 
     array (
     ),
+    159 => 
+    array (
+    ),
+    160 => NULL,
     163 => 
     array (
     ),
-    164 => NULL,
-    168 => 
+    164 => 
     array (
     ),
-    169 => 
+    166 => 
     array (
     ),
-    171 => 
+    167 => 
     array (
     ),
-    172 => 
+    170 => 
     array (
     ),
+    172 => NULL,
     175 => 
     array (
     ),
-    177 => NULL,
-    180 => 
+    176 => 
     array (
     ),
-    181 => 
+    177 => 
     array (
     ),
-    182 => 
+    179 => 
     array (
     ),
-    184 => 
+    180 => NULL,
+    183 => 
     array (
     ),
-    185 => NULL,
-    188 => 
+    185 => 
     array (
     ),
+    186 => NULL,
     190 => 
     array (
     ),
-    191 => NULL,
-    195 => 
+    191 => 
     array (
     ),
-    196 => 
+    192 => 
     array (
     ),
-    197 => 
+    194 => 
+    array (
+    ),
+    195 => NULL,
+    198 => 
     array (
     ),
     199 => 
     array (
     ),
-    200 => NULL,
-    203 => 
+    200 => 
+    array (
+    ),
+    201 => 
     array (
     ),
     204 => 
     array (
     ),
-    205 => 
+    205 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\ButtonModifier.php' => 
+  array (
+    20 => 
     array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
-    206 => 
+    21 => 
     array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
-    209 => 
+    22 => 
     array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
-    210 => NULL,
+    23 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
   ),
   'C:\\wamp64\\www\\oc_projet5\\Core\\Database\\PDO2.php' => 
   array (
@@ -280,35 +340,96 @@ $coverage->setData(array (
     ),
     32 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     34 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
+      0 => 'UserConnectTest::testUserConnectInstance',
     ),
     35 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
+      0 => 'UserConnectTest::testUserConnectInstance',
     ),
     36 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
+      0 => 'UserConnectTest::testUserConnectInstance',
     ),
     38 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     39 => NULL,
   ),
-  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserConnexionForm.php' => 
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputSecret.php' => 
   array (
     19 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    20 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    21 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    22 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    23 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    24 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    25 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputSecretOld.php' => 
+  array (
+    19 => 
+    array (
+    ),
+    20 => 
     array (
     ),
     21 => 
@@ -317,16 +438,465 @@ $coverage->setData(array (
     22 => 
     array (
     ),
+    23 => 
+    array (
+    ),
+    24 => 
+    array (
+    ),
     25 => 
     array (
     ),
-    27 => 
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControls.php' => 
+  array (
+    30 => 
     array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    31 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    36 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderLogin',
+      4 => 'UserForgetChangeFormTest::testRenderSecret',
+      5 => 'UserForgetChangeFormTest::testcheckForm',
+      6 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    37 => 
+    array (
+    ),
+    39 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderLogin',
+      4 => 'UserForgetChangeFormTest::testRenderSecret',
+      5 => 'UserForgetChangeFormTest::testcheckForm',
+      6 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    41 => NULL,
+    46 => 
+    array (
+    ),
+    47 => 
+    array (
+    ),
+    50 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    51 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    54 => 
+    array (
+    ),
+    55 => 
+    array (
+    ),
+    58 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    59 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    62 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    63 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    66 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    67 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    70 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    71 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    74 => 
+    array (
+    ),
+    75 => 
+    array (
+    ),
+    76 => 
+    array (
+    ),
+    79 => 
+    array (
+    ),
+    80 => 
+    array (
+    ),
+    83 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckForm',
+    ),
+    84 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckForm',
+    ),
+    85 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckForm',
+    ),
+    91 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    92 => NULL,
+    95 => 
+    array (
+    ),
+    96 => NULL,
+    99 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testRenderButton',
+      3 => 'UserForgetChangeFormTest::testRenderLogin',
+      4 => 'UserForgetChangeFormTest::testRenderSecret',
+      5 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
+    100 => NULL,
+    103 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testRenderButton',
+      3 => 'UserForgetChangeFormTest::testRenderLogin',
+      4 => 'UserForgetChangeFormTest::testRenderSecret',
+      5 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
+    104 => NULL,
+    107 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testRenderButton',
+      3 => 'UserForgetChangeFormTest::testRenderLogin',
+      4 => 'UserForgetChangeFormTest::testRenderSecret',
+      5 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
+    108 => NULL,
+    111 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    112 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+    ),
+    113 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    114 => NULL,
+    117 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testRenderButton',
+      3 => 'UserForgetChangeFormTest::testRenderLogin',
+      4 => 'UserForgetChangeFormTest::testRenderSecret',
+      5 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
+    118 => 
+    array (
+    ),
+    120 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testRenderButton',
+      3 => 'UserForgetChangeFormTest::testRenderLogin',
+      4 => 'UserForgetChangeFormTest::testRenderSecret',
+      5 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
+    123 => NULL,
+    126 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testRenderButton',
+      3 => 'UserForgetChangeFormTest::testRenderLogin',
+      4 => 'UserForgetChangeFormTest::testRenderSecret',
+      5 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
+    127 => NULL,
+    130 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    131 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    133 => 
+    array (
+    ),
+    135 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    137 => 
+    array (
+    ),
+    139 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    141 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserConnexionForm.php' => 
+  array (
+    28 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    29 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
     ),
     30 => 
     array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
     ),
-    31 => NULL,
+    31 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    35 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+    ),
+    37 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+    ),
+    38 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+    ),
+    41 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+    ),
+    42 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+    ),
+    45 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+    ),
+    46 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\IForm.php' => 
+  array (
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputHash.php' => 
+  array (
+    20 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    21 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    22 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    23 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    24 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\CheckboxActif.php' => 
+  array (
+    20 => 
+    array (
+    ),
+    21 => 
+    array (
+    ),
+    22 => 
+    array (
+    ),
+    23 => 
+    array (
+    ),
   ),
   'C:\\wamp64\\www\\oc_projet5\\Core\\Toolbox\\Auth.php' => 
   array (
@@ -339,18 +909,29 @@ $coverage->setData(array (
     array (
       0 => 'CoreToolboxAuthTest::testPwdHashCompare',
       1 => 'CoreToolboxAuthTest::testPwdNotHashCompare',
+      2 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
     38 => 
     array (
-      0 => 'CoreToolboxAuthTest::testPwdHashCompare',
     ),
-    40 => 
+    41 => 
     array (
       0 => 'CoreToolboxAuthTest::testPwdHashCompare',
       1 => 'CoreToolboxAuthTest::testPwdNotHashCompare',
+      2 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
-    42 => NULL,
-    50 => 
+    42 => 
+    array (
+      0 => 'CoreToolboxAuthTest::testPwdHashCompare',
+    ),
+    44 => 
+    array (
+      0 => 'CoreToolboxAuthTest::testPwdHashCompare',
+      1 => 'CoreToolboxAuthTest::testPwdNotHashCompare',
+      2 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    46 => NULL,
+    54 => 
     array (
       0 => 'CoreToolboxAuthTest::testGenerateRandom',
       1 => 'UserManagerTest::testIdentifiantExist',
@@ -375,8 +956,9 @@ $coverage->setData(array (
       20 => 'UserTableTest::testValidAccountHashValue3',
       21 => 'UserTableTest::testValidAccountDateValueNotDate',
       22 => 'UserTableTest::testAccreditationValueNotInt',
+      23 => 'UserTableTest::testActifDateValueNotDate',
     ),
-    51 => 
+    55 => 
     array (
       0 => 'CoreToolboxAuthTest::testGenerateRandom',
       1 => 'UserManagerTest::testIdentifiantExist',
@@ -401,716 +983,190 @@ $coverage->setData(array (
       20 => 'UserTableTest::testValidAccountHashValue3',
       21 => 'UserTableTest::testValidAccountDateValueNotDate',
       22 => 'UserTableTest::testAccreditationValueNotInt',
+      23 => 'UserTableTest::testActifDateValueNotDate',
     ),
-    52 => NULL,
+    56 => NULL,
   ),
   'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserSignupForm.php' => 
   array (
-    20 => 
-    array (
-    ),
-    22 => 
-    array (
-    ),
-    23 => 
-    array (
-    ),
-    26 => 
-    array (
-    ),
-    27 => 
-    array (
-    ),
-    30 => 
-    array (
-    ),
-    31 => 
-    array (
-    ),
     34 => 
     array (
     ),
-    35 => NULL,
+    35 => 
+    array (
+    ),
+    36 => 
+    array (
+    ),
+    37 => 
+    array (
+    ),
+    38 => 
+    array (
+    ),
+    39 => 
+    array (
+    ),
+    43 => 
+    array (
+    ),
+    45 => 
+    array (
+    ),
+    47 => 
+    array (
+    ),
+    48 => 
+    array (
+    ),
+    51 => 
+    array (
+    ),
+    52 => 
+    array (
+    ),
+    56 => 
+    array (
+    ),
+    57 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\checkSecret.php' => 
+  array (
+    18 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    20 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    21 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+    ),
+    24 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    25 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+    ),
+    28 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    29 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    30 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    31 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    33 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+    ),
+    34 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+    ),
+    36 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    37 => NULL,
   ),
   'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserModifyForm.php' => 
   array (
+    36 => 
+    array (
+    ),
+    37 => 
+    array (
+    ),
+    38 => 
+    array (
+    ),
+    39 => 
+    array (
+    ),
+    40 => 
+    array (
+    ),
+    41 => 
+    array (
+    ),
+    42 => 
+    array (
+    ),
+    46 => 
+    array (
+    ),
+    48 => 
+    array (
+    ),
+    49 => 
+    array (
+    ),
+    52 => 
+    array (
+    ),
+    53 => 
+    array (
+    ),
+    56 => 
+    array (
+    ),
+    57 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\ButtonConnexion.php' => 
+  array (
+    19 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
     20 => 
     array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    21 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
     ),
     22 => 
     array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
     ),
-    23 => 
-    array (
-    ),
-    26 => 
-    array (
-    ),
-    27 => 
-    array (
-    ),
-    30 => 
-    array (
-    ),
-    31 => 
-    array (
-    ),
-    34 => 
-    array (
-    ),
-    35 => NULL,
   ),
-  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Model\\UserTable.php' => 
-  array (
-    33 => 
-    array (
-      0 => 'UserTableTest::testIDBySetter',
-      1 => 'UserTableTest::testIdByConstructor',
-    ),
-    34 => NULL,
-    37 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantBySetter',
-      2 => 'UserTableTest::testIdentifiantByConstructor',
-    ),
-    38 => NULL,
-    41 => 
-    array (
-      0 => 'UserTableTest::testMailBySetter',
-      1 => 'UserTableTest::testMailByConstructor',
-    ),
-    42 => NULL,
-    45 => 
-    array (
-      0 => 'UserTableTest::testSecretBySetter',
-      1 => 'UserTableTest::testSecretByConstructor',
-    ),
-    46 => NULL,
-    49 => 
-    array (
-      0 => 'UserTableTest::testForgetHashBySetter',
-      1 => 'UserTableTest::testForgetHashByConstructor',
-      2 => 'UserTableTest::testForgetHashValueNull',
-    ),
-    50 => NULL,
-    53 => 
-    array (
-      0 => 'UserTableTest::testForgetDateBySetter',
-      1 => 'UserTableTest::testForgetDateByConstructor',
-      2 => 'UserTableTest::testForgetDateValueNull',
-    ),
-    54 => NULL,
-    57 => 
-    array (
-      0 => 'UserTableTest::testValidAccountHashBySetter',
-      1 => 'UserTableTest::testValidAccountHashByConstructor',
-      2 => 'UserTableTest::testValidAccountHashValueNull',
-    ),
-    58 => NULL,
-    61 => 
-    array (
-      0 => 'UserTableTest::testValidAccountDateBySetter',
-      1 => 'UserTableTest::testValidAccountDateByConstructor',
-      2 => 'UserTableTest::testValidAccountDateValueNull',
-    ),
-    62 => NULL,
-    65 => 
-    array (
-      0 => 'UserTableTest::testAccreditationBySetter',
-      1 => 'UserTableTest::testAccreditationByConstructor',
-    ),
-    66 => NULL,
-    69 => 
-    array (
-    ),
-    71 => 
-    array (
-    ),
-    72 => 
-    array (
-    ),
-    73 => 
-    array (
-    ),
-    74 => 
-    array (
-    ),
-    75 => 
-    array (
-    ),
-    76 => 
-    array (
-    ),
-    77 => 
-    array (
-    ),
-    78 => 
-    array (
-    ),
-    80 => 
-    array (
-    ),
-    82 => NULL,
-    88 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIDBySetter',
-      2 => 'UserTableTest::testIdByConstructor',
-      3 => 'UserTableTest::testHasId',
-      4 => 'UserTableTest::testIdValueNotId',
-      5 => 'UserTableTest::testIdValueNull',
-    ),
-    89 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIDBySetter',
-      2 => 'UserTableTest::testIdByConstructor',
-      3 => 'UserTableTest::testHasId',
-      4 => 'UserTableTest::testIdValueNotId',
-      5 => 'UserTableTest::testIdValueNull',
-    ),
-    91 => 
-    array (
-      0 => 'UserTableTest::testIdValueNotId',
-      1 => 'UserTableTest::testIdValueNull',
-    ),
-    93 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIDBySetter',
-      2 => 'UserTableTest::testIdByConstructor',
-      3 => 'UserTableTest::testHasId',
-    ),
-    94 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIDBySetter',
-      2 => 'UserTableTest::testIdByConstructor',
-      3 => 'UserTableTest::testHasId',
-    ),
-    97 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantBySetter',
-      2 => 'UserTableTest::testIdentifiantByConstructor',
-      3 => 'UserTableTest::testIdentifiantValue60',
-      4 => 'UserTableTest::testIdentifiantValue3',
-      5 => 'UserTableTest::testIdentifiantValueNull',
-    ),
-    98 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantBySetter',
-      2 => 'UserTableTest::testIdentifiantByConstructor',
-      3 => 'UserTableTest::testIdentifiantValue60',
-      4 => 'UserTableTest::testIdentifiantValue3',
-    ),
-    99 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantBySetter',
-      2 => 'UserTableTest::testIdentifiantByConstructor',
-      3 => 'UserTableTest::testIdentifiantValue60',
-      4 => 'UserTableTest::testIdentifiantValue3',
-      5 => 'UserTableTest::testIdentifiantValueNull',
-    ),
-    101 => 
-    array (
-      0 => 'UserTableTest::testIdentifiantValue60',
-      1 => 'UserTableTest::testIdentifiantValue3',
-      2 => 'UserTableTest::testIdentifiantValueNull',
-    ),
-    103 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantBySetter',
-      2 => 'UserTableTest::testIdentifiantByConstructor',
-    ),
-    104 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantBySetter',
-      2 => 'UserTableTest::testIdentifiantByConstructor',
-    ),
-    107 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testMailBySetter',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testMailValue100',
-      4 => 'UserTableTest::testMailValueNotMail',
-      5 => 'UserTableTest::testMailValueNull',
-    ),
-    108 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testMailBySetter',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testMailValue100',
-      4 => 'UserTableTest::testMailValueNotMail',
-    ),
-    109 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testMailBySetter',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testMailValue100',
-      4 => 'UserTableTest::testMailValueNotMail',
-      5 => 'UserTableTest::testMailValueNull',
-    ),
-    111 => 
-    array (
-      0 => 'UserTableTest::testMailValue100',
-      1 => 'UserTableTest::testMailValueNotMail',
-      2 => 'UserTableTest::testMailValueNull',
-    ),
-    113 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testMailBySetter',
-      2 => 'UserTableTest::testMailByConstructor',
-    ),
-    114 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testMailBySetter',
-      2 => 'UserTableTest::testMailByConstructor',
-    ),
-    117 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testSecretBySetter',
-      2 => 'UserTableTest::testSecretByConstructor',
-      3 => 'UserTableTest::testSecretValue100',
-      4 => 'UserTableTest::testSecretValue3',
-      5 => 'UserTableTest::testSecretValueNull',
-    ),
-    118 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testSecretBySetter',
-      2 => 'UserTableTest::testSecretByConstructor',
-      3 => 'UserTableTest::testSecretValue100',
-      4 => 'UserTableTest::testSecretValue3',
-      5 => 'UserTableTest::testSecretValueNull',
-    ),
-    120 => 
-    array (
-      0 => 'UserTableTest::testSecretValue100',
-      1 => 'UserTableTest::testSecretValue3',
-      2 => 'UserTableTest::testSecretValueNull',
-    ),
-    122 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testSecretBySetter',
-      2 => 'UserTableTest::testSecretByConstructor',
-    ),
-    123 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testSecretBySetter',
-      2 => 'UserTableTest::testSecretByConstructor',
-    ),
-    126 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testForgetHashBySetter',
-      2 => 'UserTableTest::testForgetHashByConstructor',
-      3 => 'UserTableTest::testForgetHashValue100',
-      4 => 'UserTableTest::testForgetHashValue3',
-      5 => 'UserTableTest::testForgetHashValueNull',
-    ),
-    127 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testForgetHashBySetter',
-      2 => 'UserTableTest::testForgetHashByConstructor',
-      3 => 'UserTableTest::testForgetHashValue100',
-      4 => 'UserTableTest::testForgetHashValue3',
-      5 => 'UserTableTest::testForgetHashValueNull',
-    ),
-    129 => 
-    array (
-      0 => 'UserTableTest::testForgetHashValue100',
-      1 => 'UserTableTest::testForgetHashValue3',
-    ),
-    131 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testForgetHashBySetter',
-      2 => 'UserTableTest::testForgetHashByConstructor',
-      3 => 'UserTableTest::testForgetHashValueNull',
-    ),
-    132 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testForgetHashBySetter',
-      2 => 'UserTableTest::testForgetHashByConstructor',
-      3 => 'UserTableTest::testForgetHashValueNull',
-    ),
-    135 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testForgetDateBySetter',
-      2 => 'UserTableTest::testForgetDateByConstructor',
-      3 => 'UserTableTest::testForgetDateValueNotDate',
-      4 => 'UserTableTest::testForgetDateValueNull',
-    ),
-    136 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testForgetDateBySetter',
-      2 => 'UserTableTest::testForgetDateByConstructor',
-      3 => 'UserTableTest::testForgetDateValueNotDate',
-      4 => 'UserTableTest::testForgetDateValueNull',
-    ),
-    138 => 
-    array (
-      0 => 'UserTableTest::testForgetDateValueNotDate',
-    ),
-    141 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testForgetDateBySetter',
-      2 => 'UserTableTest::testForgetDateByConstructor',
-      3 => 'UserTableTest::testForgetDateValueNull',
-    ),
-    142 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testForgetDateBySetter',
-      2 => 'UserTableTest::testForgetDateByConstructor',
-      3 => 'UserTableTest::testForgetDateValueNull',
-    ),
-    145 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testValidAccountHashBySetter',
-      2 => 'UserTableTest::testValidAccountHashByConstructor',
-      3 => 'UserTableTest::testValidAccountHashValue100',
-      4 => 'UserTableTest::testValidAccountHashValue3',
-      5 => 'UserTableTest::testValidAccountHashValueNull',
-    ),
-    146 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testValidAccountHashBySetter',
-      2 => 'UserTableTest::testValidAccountHashByConstructor',
-      3 => 'UserTableTest::testValidAccountHashValue100',
-      4 => 'UserTableTest::testValidAccountHashValue3',
-      5 => 'UserTableTest::testValidAccountHashValueNull',
-    ),
-    148 => 
-    array (
-      0 => 'UserTableTest::testValidAccountHashValue100',
-      1 => 'UserTableTest::testValidAccountHashValue3',
-    ),
-    150 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testValidAccountHashBySetter',
-      2 => 'UserTableTest::testValidAccountHashByConstructor',
-      3 => 'UserTableTest::testValidAccountHashValueNull',
-    ),
-    151 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testValidAccountHashBySetter',
-      2 => 'UserTableTest::testValidAccountHashByConstructor',
-      3 => 'UserTableTest::testValidAccountHashValueNull',
-    ),
-    154 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testValidAccountDateBySetter',
-      2 => 'UserTableTest::testValidAccountDateByConstructor',
-      3 => 'UserTableTest::testValidAccountDateValueNotDate',
-      4 => 'UserTableTest::testValidAccountDateValueNull',
-    ),
-    155 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testValidAccountDateBySetter',
-      2 => 'UserTableTest::testValidAccountDateByConstructor',
-      3 => 'UserTableTest::testValidAccountDateValueNotDate',
-      4 => 'UserTableTest::testValidAccountDateValueNull',
-    ),
-    157 => 
-    array (
-      0 => 'UserTableTest::testValidAccountDateValueNotDate',
-    ),
-    159 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testValidAccountDateBySetter',
-      2 => 'UserTableTest::testValidAccountDateByConstructor',
-      3 => 'UserTableTest::testValidAccountDateValueNull',
-    ),
-    160 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testValidAccountDateBySetter',
-      2 => 'UserTableTest::testValidAccountDateByConstructor',
-      3 => 'UserTableTest::testValidAccountDateValueNull',
-    ),
-    163 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testAccreditationBySetter',
-      2 => 'UserTableTest::testAccreditationByConstructor',
-      3 => 'UserTableTest::testAccreditationValueNotInt',
-      4 => 'UserTableTest::testAccreditationValueInt6',
-      5 => 'UserTableTest::testAccreditationValueNull',
-    ),
-    164 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testAccreditationBySetter',
-      2 => 'UserTableTest::testAccreditationByConstructor',
-      3 => 'UserTableTest::testAccreditationValueNotInt',
-      4 => 'UserTableTest::testAccreditationValueInt6',
-      5 => 'UserTableTest::testAccreditationValueNull',
-    ),
-    166 => 
-    array (
-      0 => 'UserTableTest::testAccreditationValueNotInt',
-      1 => 'UserTableTest::testAccreditationValueInt6',
-      2 => 'UserTableTest::testAccreditationValueNull',
-    ),
-    168 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testAccreditationBySetter',
-      2 => 'UserTableTest::testAccreditationByConstructor',
-    ),
-    169 => 
-    array (
-      0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testAccreditationBySetter',
-      2 => 'UserTableTest::testAccreditationByConstructor',
-    ),
-    174 => 
-    array (
-      0 => 'UserTableTest::testHasId',
-    ),
-    175 => NULL,
-  ),
-  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\Form.php' => 
-  array (
-    63 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    66 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    67 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    72 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    74 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    75 => 
-    array (
-    ),
-    77 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    80 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    81 => NULL,
-    86 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    87 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    88 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    89 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    90 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    91 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    92 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    93 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    94 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    98 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    99 => NULL,
-    102 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    103 => NULL,
-    106 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    107 => NULL,
-    110 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    111 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    113 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    114 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    115 => NULL,
-    118 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    120 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    121 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    122 => NULL,
-    125 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    127 => 
-    array (
-    ),
-    128 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    129 => NULL,
-    132 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    134 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    135 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    136 => NULL,
-    139 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    141 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    142 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    143 => NULL,
-    153 => 
-    array (
-    ),
-    155 => 
-    array (
-    ),
-    156 => NULL,
-    159 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    162 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    164 => 
-    array (
-    ),
-    165 => 
-    array (
-    ),
-    166 => 
-    array (
-    ),
-    167 => 
-    array (
-    ),
-    171 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    172 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    173 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    175 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    176 => NULL,
-    179 => 
-    array (
-    ),
-    180 => 
-    array (
-    ),
-    181 => 
-    array (
-    ),
-    182 => 
-    array (
-    ),
-    183 => NULL,
-  ),
-  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserForgetForm.php' => 
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControlsSelect.php' => 
   array (
     21 => 
+    array (
+    ),
+    22 => 
     array (
     ),
     23 => 
@@ -1119,10 +1175,777 @@ $coverage->setData(array (
     24 => 
     array (
     ),
+    25 => 
+    array (
+    ),
+    26 => 
+    array (
+    ),
+    27 => 
+    array (
+    ),
+    28 => 
+    array (
+    ),
+    29 => 
+    array (
+    ),
+    30 => 
+    array (
+    ),
+    31 => 
+    array (
+    ),
+    32 => 
+    array (
+    ),
+    34 => 
+    array (
+    ),
+    36 => 
+    array (
+    ),
+    37 => 
+    array (
+    ),
+    39 => NULL,
+    45 => 
+    array (
+    ),
+    46 => 
+    array (
+    ),
+    53 => 
+    array (
+    ),
+    54 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Model\\UserConnect.php' => 
+  array (
+    24 => 
+    array (
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+    ),
+    25 => 
+    array (
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+    ),
+    26 => 
+    array (
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+    ),
+    31 => 
+    array (
+    ),
+    32 => 
+    array (
+    ),
+    35 => 
+    array (
+    ),
+    36 => 
+    array (
+    ),
+    39 => 
+    array (
+    ),
+    40 => NULL,
+    43 => 
+    array (
+      0 => 'UserConnectTest::testUserConnectIsConnect',
+    ),
+    44 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Model\\UserTable.php' => 
+  array (
+    36 => 
+    array (
+      0 => 'UserTableTest::testIDBySetter',
+      1 => 'UserTableTest::testIdByConstructor',
+    ),
+    37 => NULL,
+    40 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserTableTest::testIdentifiantBySetter',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+    ),
+    41 => NULL,
+    44 => 
+    array (
+      0 => 'UserTableTest::testMailBySetter',
+      1 => 'UserTableTest::testMailByConstructor',
+    ),
+    45 => NULL,
+    48 => 
+    array (
+      0 => 'UserTableTest::testSecretBySetter',
+      1 => 'UserTableTest::testSecretByConstructor',
+    ),
+    49 => NULL,
+    52 => 
+    array (
+      0 => 'UserTableTest::testForgetHashBySetter',
+      1 => 'UserTableTest::testForgetHashByConstructor',
+      2 => 'UserTableTest::testForgetHashValueNull',
+    ),
+    53 => NULL,
+    56 => 
+    array (
+      0 => 'UserTableTest::testForgetDateBySetter',
+      1 => 'UserTableTest::testForgetDateByConstructor',
+      2 => 'UserTableTest::testForgetDateValueNull',
+    ),
+    57 => NULL,
+    60 => 
+    array (
+      0 => 'UserTableTest::testValidAccountHashBySetter',
+      1 => 'UserTableTest::testValidAccountHashByConstructor',
+      2 => 'UserTableTest::testValidAccountHashValueNull',
+    ),
+    61 => NULL,
+    64 => 
+    array (
+      0 => 'UserTableTest::testValidAccountDateBySetter',
+      1 => 'UserTableTest::testValidAccountDateByConstructor',
+      2 => 'UserTableTest::testValidAccountDateValueNull',
+    ),
+    65 => NULL,
+    68 => 
+    array (
+      0 => 'UserTableTest::testAccreditationBySetter',
+      1 => 'UserTableTest::testAccreditationByConstructor',
+    ),
+    69 => NULL,
+    72 => 
+    array (
+    ),
+    73 => NULL,
+    76 => 
+    array (
+      0 => 'UserTableTest::testActifBySetter',
+      1 => 'UserTableTest::testActifByConstructor',
+    ),
+    77 => NULL,
+    80 => 
+    array (
+    ),
+    81 => 
+    array (
+    ),
+    83 => 
+    array (
+    ),
+    85 => NULL,
+    88 => 
+    array (
+      0 => 'UserTableTest::testActifDateBySetter',
+      1 => 'UserTableTest::testActifDateByConstructor',
+      2 => 'UserTableTest::testActifDateValueNull',
+    ),
+    89 => NULL,
+    95 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIDBySetter',
+      3 => 'UserTableTest::testIdByConstructor',
+      4 => 'UserTableTest::testHasId',
+      5 => 'UserTableTest::testIdValueNotId',
+      6 => 'UserTableTest::testIdValueNull',
+    ),
+    96 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIDBySetter',
+      3 => 'UserTableTest::testIdByConstructor',
+      4 => 'UserTableTest::testHasId',
+      5 => 'UserTableTest::testIdValueNotId',
+      6 => 'UserTableTest::testIdValueNull',
+    ),
+    98 => 
+    array (
+      0 => 'UserTableTest::testIdValueNotId',
+      1 => 'UserTableTest::testIdValueNull',
+    ),
+    100 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIDBySetter',
+      3 => 'UserTableTest::testIdByConstructor',
+      4 => 'UserTableTest::testHasId',
+    ),
+    101 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIDBySetter',
+      3 => 'UserTableTest::testIdByConstructor',
+      4 => 'UserTableTest::testHasId',
+    ),
+    104 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantBySetter',
+      3 => 'UserTableTest::testIdentifiantByConstructor',
+      4 => 'UserTableTest::testIdentifiantValue60',
+      5 => 'UserTableTest::testIdentifiantValue3',
+      6 => 'UserTableTest::testIdentifiantValueNull',
+    ),
+    105 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantBySetter',
+      3 => 'UserTableTest::testIdentifiantByConstructor',
+      4 => 'UserTableTest::testIdentifiantValue60',
+      5 => 'UserTableTest::testIdentifiantValue3',
+    ),
+    106 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantBySetter',
+      3 => 'UserTableTest::testIdentifiantByConstructor',
+      4 => 'UserTableTest::testIdentifiantValue60',
+      5 => 'UserTableTest::testIdentifiantValue3',
+      6 => 'UserTableTest::testIdentifiantValueNull',
+    ),
+    108 => 
+    array (
+      0 => 'UserTableTest::testIdentifiantValue60',
+      1 => 'UserTableTest::testIdentifiantValue3',
+      2 => 'UserTableTest::testIdentifiantValueNull',
+    ),
+    110 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantBySetter',
+      3 => 'UserTableTest::testIdentifiantByConstructor',
+    ),
+    111 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantBySetter',
+      3 => 'UserTableTest::testIdentifiantByConstructor',
+    ),
+    114 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testMailBySetter',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testMailValue100',
+      5 => 'UserTableTest::testMailValueNotMail',
+      6 => 'UserTableTest::testMailValueNull',
+    ),
+    115 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testMailBySetter',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testMailValue100',
+      5 => 'UserTableTest::testMailValueNotMail',
+    ),
+    116 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testMailBySetter',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testMailValue100',
+      5 => 'UserTableTest::testMailValueNotMail',
+      6 => 'UserTableTest::testMailValueNull',
+    ),
+    118 => 
+    array (
+      0 => 'UserTableTest::testMailValue100',
+      1 => 'UserTableTest::testMailValueNotMail',
+      2 => 'UserTableTest::testMailValueNull',
+    ),
+    120 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testMailBySetter',
+      3 => 'UserTableTest::testMailByConstructor',
+    ),
+    121 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testMailBySetter',
+      3 => 'UserTableTest::testMailByConstructor',
+    ),
+    124 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testSecretBySetter',
+      3 => 'UserTableTest::testSecretByConstructor',
+      4 => 'UserTableTest::testSecretValue100',
+      5 => 'UserTableTest::testSecretValue3',
+      6 => 'UserTableTest::testSecretValueNull',
+    ),
+    125 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testSecretBySetter',
+      3 => 'UserTableTest::testSecretByConstructor',
+      4 => 'UserTableTest::testSecretValue100',
+      5 => 'UserTableTest::testSecretValue3',
+      6 => 'UserTableTest::testSecretValueNull',
+    ),
+    127 => 
+    array (
+      0 => 'UserTableTest::testSecretValue100',
+      1 => 'UserTableTest::testSecretValue3',
+      2 => 'UserTableTest::testSecretValueNull',
+    ),
+    129 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testSecretBySetter',
+      3 => 'UserTableTest::testSecretByConstructor',
+    ),
+    130 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testSecretBySetter',
+      3 => 'UserTableTest::testSecretByConstructor',
+    ),
+    133 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testForgetHashBySetter',
+      3 => 'UserTableTest::testForgetHashByConstructor',
+      4 => 'UserTableTest::testForgetHashValue100',
+      5 => 'UserTableTest::testForgetHashValue3',
+      6 => 'UserTableTest::testForgetHashValueNull',
+    ),
+    134 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testForgetHashBySetter',
+      3 => 'UserTableTest::testForgetHashByConstructor',
+      4 => 'UserTableTest::testForgetHashValue100',
+      5 => 'UserTableTest::testForgetHashValue3',
+      6 => 'UserTableTest::testForgetHashValueNull',
+    ),
+    136 => 
+    array (
+      0 => 'UserTableTest::testForgetHashValue100',
+      1 => 'UserTableTest::testForgetHashValue3',
+    ),
+    138 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testForgetHashBySetter',
+      3 => 'UserTableTest::testForgetHashByConstructor',
+      4 => 'UserTableTest::testForgetHashValueNull',
+    ),
+    139 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testForgetHashBySetter',
+      3 => 'UserTableTest::testForgetHashByConstructor',
+      4 => 'UserTableTest::testForgetHashValueNull',
+    ),
+    142 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testForgetDateBySetter',
+      3 => 'UserTableTest::testForgetDateByConstructor',
+      4 => 'UserTableTest::testForgetDateValueNotDate',
+      5 => 'UserTableTest::testForgetDateValueNull',
+    ),
+    143 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testForgetDateBySetter',
+      3 => 'UserTableTest::testForgetDateByConstructor',
+      4 => 'UserTableTest::testForgetDateValueNotDate',
+      5 => 'UserTableTest::testForgetDateValueNull',
+    ),
+    145 => 
+    array (
+      0 => 'UserTableTest::testForgetDateValueNotDate',
+    ),
+    148 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testForgetDateBySetter',
+      3 => 'UserTableTest::testForgetDateByConstructor',
+      4 => 'UserTableTest::testForgetDateValueNull',
+    ),
+    149 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testForgetDateBySetter',
+      3 => 'UserTableTest::testForgetDateByConstructor',
+      4 => 'UserTableTest::testForgetDateValueNull',
+    ),
+    152 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testValidAccountHashBySetter',
+      3 => 'UserTableTest::testValidAccountHashByConstructor',
+      4 => 'UserTableTest::testValidAccountHashValue100',
+      5 => 'UserTableTest::testValidAccountHashValue3',
+      6 => 'UserTableTest::testValidAccountHashValueNull',
+    ),
+    153 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testValidAccountHashBySetter',
+      3 => 'UserTableTest::testValidAccountHashByConstructor',
+      4 => 'UserTableTest::testValidAccountHashValue100',
+      5 => 'UserTableTest::testValidAccountHashValue3',
+      6 => 'UserTableTest::testValidAccountHashValueNull',
+    ),
+    155 => 
+    array (
+      0 => 'UserTableTest::testValidAccountHashValue100',
+      1 => 'UserTableTest::testValidAccountHashValue3',
+    ),
+    157 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testValidAccountHashBySetter',
+      3 => 'UserTableTest::testValidAccountHashByConstructor',
+      4 => 'UserTableTest::testValidAccountHashValueNull',
+    ),
+    158 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testValidAccountHashBySetter',
+      3 => 'UserTableTest::testValidAccountHashByConstructor',
+      4 => 'UserTableTest::testValidAccountHashValueNull',
+    ),
+    161 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testValidAccountDateBySetter',
+      3 => 'UserTableTest::testValidAccountDateByConstructor',
+      4 => 'UserTableTest::testValidAccountDateValueNotDate',
+      5 => 'UserTableTest::testValidAccountDateValueNull',
+    ),
+    162 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testValidAccountDateBySetter',
+      3 => 'UserTableTest::testValidAccountDateByConstructor',
+      4 => 'UserTableTest::testValidAccountDateValueNotDate',
+      5 => 'UserTableTest::testValidAccountDateValueNull',
+    ),
+    164 => 
+    array (
+      0 => 'UserTableTest::testValidAccountDateValueNotDate',
+    ),
+    166 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testValidAccountDateBySetter',
+      3 => 'UserTableTest::testValidAccountDateByConstructor',
+      4 => 'UserTableTest::testValidAccountDateValueNull',
+    ),
+    167 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testValidAccountDateBySetter',
+      3 => 'UserTableTest::testValidAccountDateByConstructor',
+      4 => 'UserTableTest::testValidAccountDateValueNull',
+    ),
+    170 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testAccreditationBySetter',
+      3 => 'UserTableTest::testAccreditationByConstructor',
+      4 => 'UserTableTest::testAccreditationValueNotInt',
+      5 => 'UserTableTest::testAccreditationValueInt6',
+      6 => 'UserTableTest::testAccreditationValueNull',
+    ),
+    171 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testAccreditationBySetter',
+      3 => 'UserTableTest::testAccreditationByConstructor',
+      4 => 'UserTableTest::testAccreditationValueNotInt',
+      5 => 'UserTableTest::testAccreditationValueInt6',
+      6 => 'UserTableTest::testAccreditationValueNull',
+    ),
+    172 => 
+    array (
+      0 => 'UserTableTest::testAccreditationValueNotInt',
+      1 => 'UserTableTest::testAccreditationValueInt6',
+      2 => 'UserTableTest::testAccreditationValueNull',
+    ),
+    174 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testAccreditationBySetter',
+      3 => 'UserTableTest::testAccreditationByConstructor',
+    ),
+    175 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testAccreditationBySetter',
+      3 => 'UserTableTest::testAccreditationByConstructor',
+    ),
+    178 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testActifBySetter',
+      3 => 'UserTableTest::testActifByConstructor',
+      4 => 'UserTableTest::testActifValue2',
+      5 => 'UserTableTest::testActifValueNull',
+    ),
+    179 => 
+    array (
+      0 => 'UserTableTest::testActifValue2',
+      1 => 'UserTableTest::testActifValueNull',
+    ),
+    181 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testActifBySetter',
+      3 => 'UserTableTest::testActifByConstructor',
+    ),
+    182 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testActifBySetter',
+      3 => 'UserTableTest::testActifByConstructor',
+    ),
+    185 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testActifDateBySetter',
+      3 => 'UserTableTest::testActifDateByConstructor',
+      4 => 'UserTableTest::testActifDateValueNotDate',
+      5 => 'UserTableTest::testActifDateValueNull',
+    ),
+    186 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testActifDateBySetter',
+      3 => 'UserTableTest::testActifDateByConstructor',
+      4 => 'UserTableTest::testActifDateValueNotDate',
+      5 => 'UserTableTest::testActifDateValueNull',
+    ),
+    188 => 
+    array (
+      0 => 'UserTableTest::testActifDateValueNotDate',
+    ),
+    191 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testActifDateBySetter',
+      3 => 'UserTableTest::testActifDateByConstructor',
+      4 => 'UserTableTest::testActifDateValueNull',
+    ),
+    192 => 
+    array (
+      0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testActifDateBySetter',
+      3 => 'UserTableTest::testActifDateByConstructor',
+      4 => 'UserTableTest::testActifDateValueNull',
+    ),
+    197 => 
+    array (
+      0 => 'UserTableTest::testHasId',
+    ),
+    198 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\Form.php' => 
+  array (
+    22 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testRenderButton',
+      3 => 'UserForgetChangeFormTest::testRenderLogin',
+      4 => 'UserForgetChangeFormTest::testRenderSecret',
+      5 => 'UserForgetChangeFormTest::testRenderButton',
+    ),
+    23 => NULL,
     27 => 
     array (
     ),
     28 => NULL,
+    32 => 
+    array (
+    ),
+    36 => 
+    array (
+    ),
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControlsTextaera.php' => 
+  array (
+    21 => 
+    array (
+    ),
+    22 => 
+    array (
+    ),
+    23 => 
+    array (
+    ),
+    24 => 
+    array (
+    ),
+    25 => 
+    array (
+    ),
+    26 => 
+    array (
+    ),
+    27 => 
+    array (
+    ),
+    28 => 
+    array (
+    ),
+    29 => 
+    array (
+    ),
+    30 => 
+    array (
+    ),
+    32 => NULL,
+    38 => 
+    array (
+    ),
+    39 => 
+    array (
+    ),
+    46 => 
+    array (
+    ),
+    47 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserForgetForm.php' => 
+  array (
+    27 => 
+    array (
+    ),
+    28 => 
+    array (
+    ),
+    29 => 
+    array (
+    ),
+    33 => 
+    array (
+    ),
+    35 => 
+    array (
+    ),
+    36 => 
+    array (
+    ),
+    39 => 
+    array (
+    ),
+    40 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputSecretConfirm.php' => 
+  array (
+    19 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    20 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    21 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    22 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    23 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    24 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    25 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
   ),
   'C:\\wamp64\\www\\oc_projet5\\Core\\Toolbox\\Flash.php' => 
   array (
@@ -1133,7 +1956,6 @@ $coverage->setData(array (
       2 => 'CoreToolboxFlashTest::testWriteSuccess',
       3 => 'CoreToolboxFlashTest::testWriteInfoAndError',
       4 => 'CoreToolboxFlashTest::testWriteWarning',
-      5 => 'UserFormTest::testIdentifiant',
     ),
     18 => 
     array (
@@ -1142,7 +1964,6 @@ $coverage->setData(array (
       2 => 'CoreToolboxFlashTest::testWriteSuccess',
       3 => 'CoreToolboxFlashTest::testWriteInfoAndError',
       4 => 'CoreToolboxFlashTest::testWriteWarning',
-      5 => 'UserFormTest::testIdentifiant',
     ),
     19 => 
     array (
@@ -1151,7 +1972,6 @@ $coverage->setData(array (
       2 => 'CoreToolboxFlashTest::testWriteSuccess',
       3 => 'CoreToolboxFlashTest::testWriteInfoAndError',
       4 => 'CoreToolboxFlashTest::testWriteWarning',
-      5 => 'UserFormTest::testIdentifiant',
     ),
     23 => 
     array (
@@ -1244,120 +2064,157 @@ $coverage->setData(array (
     ),
     57 => NULL,
   ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputIdHidden.php' => 
+  array (
+    20 => 
+    array (
+    ),
+    21 => 
+    array (
+    ),
+    22 => 
+    array (
+    ),
+    23 => 
+    array (
+    ),
+  ),
   'C:\\wamp64\\www\\oc_projet5\\Core\\Model\\AbstractManager.php' => 
   array (
     25 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     26 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     27 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     28 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     29 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     31 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     32 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     33 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     34 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     42 => 
     array (
+      0 => 'UserManagerTest::testGetAll',
     ),
-    43 => NULL,
-    54 => 
+    43 => 
+    array (
+    ),
+    45 => 
+    array (
+      0 => 'UserManagerTest::testGetAll',
+    ),
+    47 => NULL,
+    58 => 
     array (
       0 => 'UserManagerTest::testFindById',
     ),
-    55 => 
+    59 => 
     array (
       0 => 'UserManagerTest::testFindById',
     ),
-    56 => 
+    60 => 
     array (
       0 => 'UserManagerTest::testFindById',
     ),
-    57 => 
+    61 => 
     array (
       0 => 'UserManagerTest::testFindById',
     ),
-    58 => NULL,
-    62 => 
+    62 => NULL,
+    66 => 
     array (
       0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
     ),
-    63 => 
+    67 => 
     array (
     ),
-    65 => 
+    69 => 
     array (
       0 => 'UserManagerTest::testFindById',
+      1 => 'UserManagerTest::testGetAll',
     ),
-    67 => NULL,
-    71 => 
-    array (
-      0 => 'UserManagerTest::testIdentifiantExist',
-      1 => 'UserManagerTest::testMailExist',
-    ),
-    73 => 
-    array (
-      0 => 'UserManagerTest::testIdentifiantExist',
-      1 => 'UserManagerTest::testMailExist',
-    ),
-    74 => 
-    array (
-      0 => 'UserManagerTest::testIdentifiantExist',
-      1 => 'UserManagerTest::testMailExist',
-    ),
-    76 => 
+    71 => NULL,
+    75 => 
     array (
       0 => 'UserManagerTest::testIdentifiantExist',
       1 => 'UserManagerTest::testMailExist',
@@ -1367,7 +2224,17 @@ $coverage->setData(array (
       0 => 'UserManagerTest::testIdentifiantExist',
       1 => 'UserManagerTest::testMailExist',
     ),
-    79 => 
+    78 => 
+    array (
+      0 => 'UserManagerTest::testIdentifiantExist',
+      1 => 'UserManagerTest::testMailExist',
+    ),
+    80 => 
+    array (
+      0 => 'UserManagerTest::testIdentifiantExist',
+      1 => 'UserManagerTest::testMailExist',
+    ),
+    81 => 
     array (
       0 => 'UserManagerTest::testIdentifiantExist',
       1 => 'UserManagerTest::testMailExist',
@@ -1377,17 +2244,12 @@ $coverage->setData(array (
       0 => 'UserManagerTest::testIdentifiantExist',
       1 => 'UserManagerTest::testMailExist',
     ),
-    84 => 
+    87 => 
     array (
       0 => 'UserManagerTest::testIdentifiantExist',
       1 => 'UserManagerTest::testMailExist',
     ),
-    85 => 
-    array (
-      0 => 'UserManagerTest::testIdentifiantExist',
-      1 => 'UserManagerTest::testMailExist',
-    ),
-    86 => 
+    88 => 
     array (
       0 => 'UserManagerTest::testIdentifiantExist',
       1 => 'UserManagerTest::testMailExist',
@@ -1397,48 +2259,49 @@ $coverage->setData(array (
       0 => 'UserManagerTest::testIdentifiantExist',
       1 => 'UserManagerTest::testMailExist',
     ),
-    90 => NULL,
-    94 => 
+    90 => 
     array (
+      0 => 'UserManagerTest::testIdentifiantExist',
+      1 => 'UserManagerTest::testMailExist',
     ),
-    95 => 
+    93 => 
     array (
+      0 => 'UserManagerTest::testIdentifiantExist',
+      1 => 'UserManagerTest::testMailExist',
     ),
-    96 => 
-    array (
-    ),
-    97 => 
-    array (
-    ),
+    94 => NULL,
     98 => 
+    array (
+    ),
+    99 => 
     array (
     ),
     100 => 
     array (
     ),
-    103 => 
+    101 => 
     array (
     ),
-    105 => 
+    102 => 
+    array (
+    ),
+    104 => 
     array (
     ),
     107 => 
     array (
     ),
-    109 => NULL,
-    112 => 
+    109 => 
     array (
     ),
-    113 => 
+    111 => 
     array (
     ),
-    114 => 
-    array (
-    ),
-    115 => 
-    array (
-    ),
+    113 => NULL,
     116 => 
+    array (
+    ),
+    117 => 
     array (
     ),
     118 => 
@@ -1450,27 +2313,28 @@ $coverage->setData(array (
     120 => 
     array (
     ),
-    121 => NULL,
-    125 => 
+    122 => 
     array (
     ),
-    126 => NULL,
-    136 => 
+    123 => 
+    array (
+    ),
+    124 => 
+    array (
+    ),
+    125 => NULL,
+    129 => 
+    array (
+    ),
+    130 => NULL,
+    140 => 
     array (
       0 => 'UserManagerTest::testIdentifiantExist',
       1 => 'UserManagerTest::testMailExist',
       2 => 'UserManagerTest::testFindById',
+      3 => 'UserManagerTest::testGetAll',
     ),
-    137 => 
-    array (
-      0 => 'UserManagerTest::testIdentifiantExist',
-      1 => 'UserManagerTest::testMailExist',
-      2 => 'UserManagerTest::testFindById',
-    ),
-    139 => 
-    array (
-    ),
-    142 => 
+    141 => 
     array (
       0 => 'UserManagerTest::testIdentifiantExist',
       1 => 'UserManagerTest::testMailExist',
@@ -1478,38 +2342,278 @@ $coverage->setData(array (
     ),
     143 => 
     array (
-      0 => 'UserManagerTest::testIdentifiantExist',
-      1 => 'UserManagerTest::testMailExist',
-      2 => 'UserManagerTest::testFindById',
+      0 => 'UserManagerTest::testGetAll',
     ),
-    144 => 
+    146 => 
     array (
       0 => 'UserManagerTest::testIdentifiantExist',
       1 => 'UserManagerTest::testMailExist',
       2 => 'UserManagerTest::testFindById',
-    ),
-    145 => 
-    array (
-      0 => 'UserManagerTest::testIdentifiantExist',
-      1 => 'UserManagerTest::testMailExist',
-      2 => 'UserManagerTest::testFindById',
+      3 => 'UserManagerTest::testGetAll',
     ),
     147 => 
     array (
+      0 => 'UserManagerTest::testIdentifiantExist',
+      1 => 'UserManagerTest::testMailExist',
+      2 => 'UserManagerTest::testFindById',
+      3 => 'UserManagerTest::testGetAll',
     ),
     148 => 
     array (
+      0 => 'UserManagerTest::testIdentifiantExist',
+      1 => 'UserManagerTest::testMailExist',
+      2 => 'UserManagerTest::testFindById',
+      3 => 'UserManagerTest::testGetAll',
     ),
     149 => 
-    array (
-    ),
-    153 => 
     array (
       0 => 'UserManagerTest::testIdentifiantExist',
       1 => 'UserManagerTest::testMailExist',
       2 => 'UserManagerTest::testFindById',
     ),
-    154 => NULL,
+    151 => 
+    array (
+      0 => 'UserManagerTest::testGetAll',
+    ),
+    152 => 
+    array (
+      0 => 'UserManagerTest::testGetAll',
+    ),
+    153 => 
+    array (
+      0 => 'UserManagerTest::testGetAll',
+    ),
+    157 => 
+    array (
+      0 => 'UserManagerTest::testIdentifiantExist',
+      1 => 'UserManagerTest::testMailExist',
+      2 => 'UserManagerTest::testFindById',
+      3 => 'UserManagerTest::testGetAll',
+    ),
+    158 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControlsInput.php' => 
+  array (
+    34 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    35 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    36 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    37 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    38 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    39 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    40 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    41 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    42 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    43 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    44 => NULL,
+    48 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckForm',
+      2 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    49 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckForm',
+      2 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    50 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckForm',
+      2 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    52 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckForm',
+    ),
+    53 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckForm',
+    ),
+    56 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckForm',
+      2 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    57 => NULL,
+    61 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    62 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    65 => 
+    array (
+    ),
+    66 => 
+    array (
+    ),
+    69 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    70 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testRenderButton',
+      8 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    76 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    77 => NULL,
+    80 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    81 => NULL,
+    84 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    85 => NULL,
+    88 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderLogin',
+      4 => 'UserForgetChangeFormTest::testRenderSecret',
+      5 => 'UserForgetChangeFormTest::testcheckForm',
+      6 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    89 => NULL,
+    92 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    94 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    95 => 
+    array (
+    ),
+    98 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testRenderLogin',
+      3 => 'UserForgetChangeFormTest::testRenderSecret',
+    ),
+    99 => NULL,
   ),
   'C:\\wamp64\\www\\oc_projet5\\Core\\Toolbox\\Request.php' => 
   array (
@@ -1535,7 +2639,18 @@ $coverage->setData(array (
       17 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       18 => 'CoreToolboxRequestTest::testSetSessionValueArray',
       19 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
-      20 => 'UserFormTest::testIdentifiant',
+      20 => 'CoreToolboxRequestTest::testUnsetSession',
+      21 => 'UserConnectTest::testUserConnectInstance',
+      22 => 'UserConnectTest::testUserConnectIsConnect',
+      23 => 'UserConnexionFormTest::testRenderLogin',
+      24 => 'UserConnexionFormTest::testRenderSecret',
+      25 => 'UserConnexionFormTest::testcheckForm',
+      26 => 'UserConnexionFormTest::testRenderButton',
+      27 => 'UserForgetChangeFormTest::testRenderLogin',
+      28 => 'UserForgetChangeFormTest::testRenderSecret',
+      29 => 'UserForgetChangeFormTest::testcheckForm',
+      30 => 'UserForgetChangeFormTest::testRenderButton',
+      31 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
     20 => 
     array (
@@ -1559,7 +2674,18 @@ $coverage->setData(array (
       17 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       18 => 'CoreToolboxRequestTest::testSetSessionValueArray',
       19 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
-      20 => 'UserFormTest::testIdentifiant',
+      20 => 'CoreToolboxRequestTest::testUnsetSession',
+      21 => 'UserConnectTest::testUserConnectInstance',
+      22 => 'UserConnectTest::testUserConnectIsConnect',
+      23 => 'UserConnexionFormTest::testRenderLogin',
+      24 => 'UserConnexionFormTest::testRenderSecret',
+      25 => 'UserConnexionFormTest::testcheckForm',
+      26 => 'UserConnexionFormTest::testRenderButton',
+      27 => 'UserForgetChangeFormTest::testRenderLogin',
+      28 => 'UserForgetChangeFormTest::testRenderSecret',
+      29 => 'UserForgetChangeFormTest::testcheckForm',
+      30 => 'UserForgetChangeFormTest::testRenderButton',
+      31 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
     21 => 
     array (
@@ -1583,7 +2709,18 @@ $coverage->setData(array (
       17 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       18 => 'CoreToolboxRequestTest::testSetSessionValueArray',
       19 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
-      20 => 'UserFormTest::testIdentifiant',
+      20 => 'CoreToolboxRequestTest::testUnsetSession',
+      21 => 'UserConnectTest::testUserConnectInstance',
+      22 => 'UserConnectTest::testUserConnectIsConnect',
+      23 => 'UserConnexionFormTest::testRenderLogin',
+      24 => 'UserConnexionFormTest::testRenderSecret',
+      25 => 'UserConnexionFormTest::testcheckForm',
+      26 => 'UserConnexionFormTest::testRenderButton',
+      27 => 'UserForgetChangeFormTest::testRenderLogin',
+      28 => 'UserForgetChangeFormTest::testRenderSecret',
+      29 => 'UserForgetChangeFormTest::testcheckForm',
+      30 => 'UserForgetChangeFormTest::testRenderButton',
+      31 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
     22 => 
     array (
@@ -1607,7 +2744,18 @@ $coverage->setData(array (
       17 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       18 => 'CoreToolboxRequestTest::testSetSessionValueArray',
       19 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
-      20 => 'UserFormTest::testIdentifiant',
+      20 => 'CoreToolboxRequestTest::testUnsetSession',
+      21 => 'UserConnectTest::testUserConnectInstance',
+      22 => 'UserConnectTest::testUserConnectIsConnect',
+      23 => 'UserConnexionFormTest::testRenderLogin',
+      24 => 'UserConnexionFormTest::testRenderSecret',
+      25 => 'UserConnexionFormTest::testcheckForm',
+      26 => 'UserConnexionFormTest::testRenderButton',
+      27 => 'UserForgetChangeFormTest::testRenderLogin',
+      28 => 'UserForgetChangeFormTest::testRenderSecret',
+      29 => 'UserForgetChangeFormTest::testcheckForm',
+      30 => 'UserForgetChangeFormTest::testRenderButton',
+      31 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
     26 => 
     array (
@@ -1619,29 +2767,29 @@ $coverage->setData(array (
       0 => 'CoreToolboxRequestTest::testHasGetValue',
     ),
     31 => NULL,
-    34 => 
-    array (
-    ),
-    35 => 
-    array (
-    ),
-    41 => 
+    38 => 
     array (
       0 => 'CoreToolboxRequestTest::testGetPostValue',
-      1 => 'UserFormTest::testIdentifiant',
+      1 => 'UserConnexionFormTest::testRenderLogin',
+      2 => 'UserConnexionFormTest::testRenderSecret',
+      3 => 'UserConnexionFormTest::testcheckForm',
+      4 => 'UserForgetChangeFormTest::testRenderLogin',
+      5 => 'UserForgetChangeFormTest::testRenderSecret',
+      6 => 'UserForgetChangeFormTest::testcheckForm',
+      7 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
-    42 => NULL,
-    45 => 
+    39 => NULL,
+    42 => 
     array (
       0 => 'CoreToolboxRequestTest::testHasPost',
     ),
-    46 => NULL,
-    49 => 
+    43 => NULL,
+    46 => 
     array (
       0 => 'CoreToolboxRequestTest::testHasPostValue',
     ),
-    50 => NULL,
-    56 => 
+    47 => NULL,
+    53 => 
     array (
       0 => 'CoreToolboxFlashTest::testReadEmpty',
       1 => 'CoreToolboxFlashTest::testWriteSuccess',
@@ -1655,14 +2803,14 @@ $coverage->setData(array (
       9 => 'CoreToolboxRequestTest::testSetSessionValueArray',
       10 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
     ),
-    57 => NULL,
-    60 => 
+    54 => NULL,
+    57 => 
     array (
       0 => 'CoreToolboxRequestTest::testHasSession',
       1 => 'CoreToolboxRequestTest::testSetSessionValueString',
     ),
-    61 => NULL,
-    64 => 
+    58 => NULL,
+    61 => 
     array (
       0 => 'CoreToolboxFlashTest::testHasFlash',
       1 => 'CoreToolboxFlashTest::testWriteSuccess',
@@ -1670,25 +2818,42 @@ $coverage->setData(array (
       3 => 'CoreToolboxFlashTest::testWriteWarning',
       4 => 'CoreToolboxRequestTest::testHasSessionValue',
       5 => 'CoreToolboxRequestTest::testSetSessionValueString',
+      6 => 'CoreToolboxRequestTest::testUnsetSession',
+      7 => 'UserConnectTest::testUserConnectIsConnect',
     ),
-    65 => NULL,
-    68 => 
+    62 => NULL,
+    65 => 
     array (
       0 => 'CoreToolboxFlashTest::testReadEmpty',
       1 => 'CoreToolboxFlashTest::testWriteSuccess',
       2 => 'CoreToolboxFlashTest::testWriteInfoAndError',
       3 => 'CoreToolboxFlashTest::testWriteWarning',
       4 => 'CoreToolboxRequestTest::testSetSessionValueString',
+      5 => 'CoreToolboxRequestTest::testUnsetSession',
+    ),
+    66 => 
+    array (
+      0 => 'CoreToolboxFlashTest::testReadEmpty',
+      1 => 'CoreToolboxFlashTest::testWriteSuccess',
+      2 => 'CoreToolboxFlashTest::testWriteInfoAndError',
+      3 => 'CoreToolboxFlashTest::testWriteWarning',
+      4 => 'CoreToolboxRequestTest::testSetSessionValueString',
+      5 => 'CoreToolboxRequestTest::testUnsetSession',
     ),
     69 => 
     array (
-      0 => 'CoreToolboxFlashTest::testReadEmpty',
-      1 => 'CoreToolboxFlashTest::testWriteSuccess',
-      2 => 'CoreToolboxFlashTest::testWriteInfoAndError',
-      3 => 'CoreToolboxFlashTest::testWriteWarning',
-      4 => 'CoreToolboxRequestTest::testSetSessionValueString',
+      0 => 'CoreToolboxFlashTest::testWriteSuccess',
+      1 => 'CoreToolboxFlashTest::testWriteInfoAndError',
+      2 => 'CoreToolboxFlashTest::testWriteWarning',
+      3 => 'CoreToolboxRequestTest::testSetSessionValueString',
+      4 => 'CoreToolboxRequestTest::testSetSessionValueInt',
+      5 => 'CoreToolboxRequestTest::testSetSessionValueMail',
+      6 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
+      7 => 'CoreToolboxRequestTest::testSetSessionValueArray',
+      8 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
+      9 => 'CoreToolboxRequestTest::testUnsetSession',
     ),
-    72 => 
+    70 => 
     array (
       0 => 'CoreToolboxFlashTest::testWriteSuccess',
       1 => 'CoreToolboxFlashTest::testWriteInfoAndError',
@@ -1699,8 +2864,9 @@ $coverage->setData(array (
       6 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       7 => 'CoreToolboxRequestTest::testSetSessionValueArray',
       8 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
+      9 => 'CoreToolboxRequestTest::testUnsetSession',
     ),
-    73 => 
+    75 => 
     array (
       0 => 'CoreToolboxFlashTest::testWriteSuccess',
       1 => 'CoreToolboxFlashTest::testWriteInfoAndError',
@@ -1711,8 +2877,9 @@ $coverage->setData(array (
       6 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       7 => 'CoreToolboxRequestTest::testSetSessionValueArray',
       8 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
+      9 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
-    78 => 
+    76 => 
     array (
       0 => 'CoreToolboxFlashTest::testWriteSuccess',
       1 => 'CoreToolboxFlashTest::testWriteInfoAndError',
@@ -1723,6 +2890,7 @@ $coverage->setData(array (
       6 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       7 => 'CoreToolboxRequestTest::testSetSessionValueArray',
       8 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
+      9 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
     79 => 
     array (
@@ -1735,28 +2903,19 @@ $coverage->setData(array (
       6 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       7 => 'CoreToolboxRequestTest::testSetSessionValueArray',
       8 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
+      9 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    80 => 
+    array (
+      0 => 'CoreToolboxRequestTest::testSetSessionValueString',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    81 => 
+    array (
+      0 => 'CoreToolboxRequestTest::testSetSessionValueString',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
     82 => 
-    array (
-      0 => 'CoreToolboxFlashTest::testWriteSuccess',
-      1 => 'CoreToolboxFlashTest::testWriteInfoAndError',
-      2 => 'CoreToolboxFlashTest::testWriteWarning',
-      3 => 'CoreToolboxRequestTest::testSetSessionValueString',
-      4 => 'CoreToolboxRequestTest::testSetSessionValueInt',
-      5 => 'CoreToolboxRequestTest::testSetSessionValueMail',
-      6 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
-      7 => 'CoreToolboxRequestTest::testSetSessionValueArray',
-      8 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
-    ),
-    83 => 
-    array (
-      0 => 'CoreToolboxRequestTest::testSetSessionValueString',
-    ),
-    84 => 
-    array (
-      0 => 'CoreToolboxRequestTest::testSetSessionValueString',
-    ),
-    85 => 
     array (
       0 => 'CoreToolboxFlashTest::testWriteSuccess',
       1 => 'CoreToolboxFlashTest::testWriteInfoAndError',
@@ -1767,71 +2926,71 @@ $coverage->setData(array (
       6 => 'CoreToolboxRequestTest::testSetSessionValueArray',
       7 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
     ),
-    86 => 
+    83 => 
     array (
       0 => 'CoreToolboxFlashTest::testWriteSuccess',
       1 => 'CoreToolboxFlashTest::testWriteInfoAndError',
       2 => 'CoreToolboxFlashTest::testWriteWarning',
       3 => 'CoreToolboxRequestTest::testSetSessionValueArray',
     ),
-    87 => 
+    84 => 
     array (
       0 => 'CoreToolboxFlashTest::testWriteSuccess',
       1 => 'CoreToolboxFlashTest::testWriteInfoAndError',
       2 => 'CoreToolboxFlashTest::testWriteWarning',
       3 => 'CoreToolboxRequestTest::testSetSessionValueArray',
     ),
-    88 => 
+    85 => 
     array (
       0 => 'CoreToolboxRequestTest::testSetSessionValueInt',
       1 => 'CoreToolboxRequestTest::testSetSessionValueMail',
       2 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       3 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
     ),
-    89 => 
+    86 => 
     array (
       0 => 'CoreToolboxRequestTest::testSetSessionValueInt',
     ),
-    90 => 
+    87 => 
     array (
       0 => 'CoreToolboxRequestTest::testSetSessionValueInt',
     ),
-    91 => 
+    88 => 
     array (
       0 => 'CoreToolboxRequestTest::testSetSessionValueMail',
       1 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       2 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
     ),
-    92 => 
+    89 => 
     array (
       0 => 'CoreToolboxRequestTest::testSetSessionValueMail',
     ),
-    93 => 
+    90 => 
     array (
       0 => 'CoreToolboxRequestTest::testSetSessionValueMail',
     ),
-    94 => 
+    91 => 
     array (
       0 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       1 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
     ),
-    95 => 
+    92 => 
     array (
       0 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
+    ),
+    93 => 
+    array (
+      0 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
+    ),
+    95 => 
+    array (
+      0 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
     ),
     96 => 
     array (
-      0 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
+      0 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
     ),
     98 => 
-    array (
-      0 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
-    ),
-    99 => 
-    array (
-      0 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
-    ),
-    101 => 
     array (
       0 => 'CoreToolboxFlashTest::testWriteSuccess',
       1 => 'CoreToolboxFlashTest::testWriteInfoAndError',
@@ -1842,54 +3001,69 @@ $coverage->setData(array (
       6 => 'CoreToolboxRequestTest::testSetSessionValueBoolean',
       7 => 'CoreToolboxRequestTest::testSetSessionValueArray',
       8 => 'CoreToolboxRequestTest::testSetSessionValueHtmlEntity',
+      9 => 'UserForgetChangeFormTest::testcheckFormWithValue',
     ),
-    102 => NULL,
+    99 => NULL,
   ),
   'C:\\wamp64\\www\\oc_projet5\\Core\\Database\\BddAction.php' => 
   array (
     23 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     24 => 
     array (
-      0 => 'UserManagerTest::testUserManager',
-      1 => 'UserManagerTest::testIdentifiantExist',
-      2 => 'UserManagerTest::testMailExist',
-      3 => 'UserManagerTest::testFindById',
+      0 => 'UserConnectTest::testUserConnectInstance',
+      1 => 'UserConnectTest::testUserConnectIsConnect',
+      2 => 'UserManagerTest::testUserManager',
+      3 => 'UserManagerTest::testIdentifiantExist',
+      4 => 'UserManagerTest::testMailExist',
+      5 => 'UserManagerTest::testFindById',
+      6 => 'UserManagerTest::testGetAll',
     ),
     28 => 
     array (
+      0 => 'UserManagerTest::testGetAll',
     ),
     29 => 
     array (
+      0 => 'UserManagerTest::testGetAll',
     ),
     31 => 
     array (
+      0 => 'UserManagerTest::testGetAll',
     ),
     32 => 
     array (
+      0 => 'UserManagerTest::testGetAll',
     ),
     33 => 
     array (
+      0 => 'UserManagerTest::testGetAll',
     ),
     35 => 
     array (
     ),
     39 => 
     array (
+      0 => 'UserManagerTest::testGetAll',
     ),
     41 => 
     array (
     ),
     43 => 
     array (
+      0 => 'UserManagerTest::testGetAll',
     ),
     45 => 
     array (
+      0 => 'UserManagerTest::testGetAll',
     ),
     46 => NULL,
     50 => 
@@ -1949,12 +3123,9 @@ $coverage->setData(array (
     ),
     69 => NULL,
   ),
-  'C:\\wamp64\\www\\oc_projet5\\Core\\Model\\ITable.php' => 
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControlsCheckbox.php' => 
   array (
-  ),
-  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserForgetChangeForm.php' => 
-  array (
-    21 => 
+    22 => 
     array (
     ),
     23 => 
@@ -1963,20 +3134,10 @@ $coverage->setData(array (
     24 => 
     array (
     ),
-    27 => 
+    25 => 
     array (
     ),
-    28 => NULL,
-  ),
-  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserPwdChangeForm.php' => 
-  array (
-    21 => 
-    array (
-    ),
-    23 => 
-    array (
-    ),
-    24 => 
+    26 => 
     array (
     ),
     27 => 
@@ -1985,45 +3146,41 @@ $coverage->setData(array (
     28 => 
     array (
     ),
-    32 => 
+    29 => 
     array (
     ),
-    33 => NULL,
-  ),
-  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserForm.php' => 
-  array (
-    39 => 
+    30 => 
     array (
     ),
+    31 => 
+    array (
+    ),
+    32 => NULL,
+    36 => 
+    array (
+    ),
+    37 => NULL,
     40 => 
     array (
     ),
     41 => 
     array (
     ),
-    42 => 
+    42 => NULL,
+    45 => 
     array (
     ),
-    43 => 
+    46 => 
     array (
     ),
-    44 => NULL,
     47 => 
-    array (
-    ),
-    48 => 
     array (
     ),
     49 => 
     array (
     ),
-    50 => 
-    array (
-    ),
-    51 => 
-    array (
-    ),
-    52 => 
+    50 => NULL,
+    53 => 
     array (
     ),
     54 => 
@@ -2032,750 +3189,869 @@ $coverage->setData(array (
     55 => 
     array (
     ),
-    56 => 
+    57 => 
     array (
     ),
-    58 => 
-    array (
-    ),
-    59 => NULL,
-    65 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    66 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    67 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    68 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    69 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    70 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    71 => NULL,
-    75 => 
-    array (
-    ),
-    76 => 
-    array (
-    ),
-    77 => 
-    array (
-    ),
-    78 => 
-    array (
-    ),
-    79 => 
-    array (
-    ),
-    80 => 
-    array (
-    ),
-    82 => 
-    array (
-    ),
-    83 => 
-    array (
-    ),
-    84 => 
-    array (
-    ),
-    86 => 
-    array (
-    ),
-    87 => NULL,
-    93 => 
-    array (
-    ),
-    94 => 
-    array (
-    ),
-    95 => 
-    array (
-    ),
-    96 => 
-    array (
-    ),
-    97 => NULL,
-    104 => 
-    array (
-    ),
-    105 => 
-    array (
-    ),
-    106 => 
-    array (
-    ),
-    107 => 
-    array (
-    ),
-    108 => NULL,
-    111 => 
-    array (
-    ),
-    112 => NULL,
-    115 => 
-    array (
-    ),
-    116 => 
-    array (
-    ),
-    117 => 
-    array (
-    ),
-    118 => NULL,
-    123 => 
-    array (
-    ),
-    124 => 
-    array (
-    ),
-    125 => 
-    array (
-    ),
-    126 => 
-    array (
-    ),
-    127 => 
-    array (
-    ),
-    128 => 
-    array (
-    ),
-    129 => NULL,
-    133 => 
-    array (
-    ),
-    134 => 
-    array (
-    ),
-    135 => 
-    array (
-    ),
-    136 => 
-    array (
-    ),
-    137 => 
-    array (
-    ),
-    139 => 
-    array (
-    ),
-    140 => 
-    array (
-    ),
-    141 => 
-    array (
-    ),
-    143 => 
-    array (
-    ),
-    144 => NULL,
-    149 => 
-    array (
-    ),
-    150 => 
-    array (
-    ),
-    151 => 
-    array (
-    ),
-    152 => NULL,
-    156 => 
-    array (
-    ),
-    157 => 
-    array (
-    ),
-    158 => 
-    array (
-    ),
-    159 => NULL,
-    165 => 
-    array (
-    ),
-    166 => 
-    array (
-    ),
-    167 => 
-    array (
-    ),
-    168 => NULL,
-    172 => 
-    array (
-    ),
-    173 => 
-    array (
-    ),
-    174 => 
-    array (
-    ),
-    175 => NULL,
-    181 => 
-    array (
-    ),
-    182 => 
-    array (
-    ),
-    183 => 
-    array (
-    ),
-    188 => 
-    array (
-    ),
-    189 => NULL,
-    193 => 
-    array (
-    ),
-    194 => 
-    array (
-    ),
-    195 => 
-    array (
-    ),
-    196 => 
-    array (
-    ),
-    197 => 
-    array (
-    ),
-    198 => 
-    array (
-    ),
-    199 => 
-    array (
-    ),
-    201 => 
-    array (
-    ),
-    202 => 
-    array (
-    ),
-    203 => 
-    array (
-    ),
-    204 => 
-    array (
-    ),
-    206 => 
-    array (
-    ),
-    208 => 
-    array (
-    ),
-    209 => 
-    array (
-    ),
-    210 => 
-    array (
-    ),
-    213 => 
-    array (
-    ),
-    214 => NULL,
-    220 => 
-    array (
-    ),
-    221 => 
-    array (
-    ),
-    222 => 
-    array (
-    ),
-    223 => NULL,
-    232 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    235 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    236 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    237 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    238 => 
-    array (
-    ),
-    239 => 
-    array (
-    ),
-    240 => 
-    array (
-    ),
-    241 => 
-    array (
-    ),
-    242 => 
-    array (
-    ),
-    243 => 
-    array (
-    ),
-    244 => 
-    array (
-    ),
-    245 => 
-    array (
-    ),
-    246 => 
-    array (
-    ),
-    247 => 
-    array (
-    ),
-    248 => 
-    array (
-    ),
-    249 => 
-    array (
-    ),
-    250 => 
-    array (
-    ),
-    251 => 
-    array (
-    ),
-    252 => 
-    array (
-    ),
-    253 => 
-    array (
-    ),
-    254 => 
-    array (
-    ),
-    255 => 
-    array (
-    ),
-    257 => 
-    array (
-    ),
-    261 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
+    58 => NULL,
   ),
-  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\BootStrapForm.php' => 
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\ButtonRecupere.php' => 
   array (
+    19 => 
+    array (
+    ),
+    20 => 
+    array (
+    ),
+    21 => 
+    array (
+    ),
     22 => 
     array (
-      0 => 'UserFormTest::testIdentifiant',
+    ),
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputLogin.php' => 
+  array (
+    19 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    20 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    21 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
+    22 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
     ),
     23 => 
     array (
-      0 => 'UserFormTest::testIdentifiant',
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
     ),
-    24 => NULL,
+    24 => 
+    array (
+      0 => 'UserConnexionFormTest::testRenderLogin',
+      1 => 'UserConnexionFormTest::testRenderSecret',
+      2 => 'UserConnexionFormTest::testcheckForm',
+      3 => 'UserConnexionFormTest::testRenderButton',
+    ),
     28 => 
     array (
+      0 => 'UserConnexionFormTest::testcheckForm',
     ),
     29 => 
     array (
+      0 => 'UserConnexionFormTest::testcheckForm',
     ),
-    30 => NULL,
+    30 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+    ),
+    32 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+    ),
+    33 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+    ),
+    35 => 
+    array (
+    ),
+    36 => 
+    array (
+    ),
+    38 => 
+    array (
+    ),
+    39 => 
+    array (
+    ),
+    41 => 
+    array (
+    ),
+    43 => 
+    array (
+    ),
+    44 => 
+    array (
+    ),
+    46 => 
+    array (
+      0 => 'UserConnexionFormTest::testcheckForm',
+    ),
+    47 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Model\\ITable.php' => 
+  array (
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserForgetChangeForm.php' => 
+  array (
+    31 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    32 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    33 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    34 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    35 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    41 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    42 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserPwdChangeForm.php' => 
+  array (
+    31 => 
+    array (
+    ),
+    32 => 
+    array (
+    ),
+    33 => 
+    array (
+    ),
     34 => 
     array (
     ),
     35 => 
     array (
     ),
-    36 => NULL,
+    40 => 
+    array (
+    ),
+    42 => 
+    array (
+    ),
+    44 => 
+    array (
+    ),
+    45 => 
+    array (
+    ),
+    49 => 
+    array (
+    ),
+    50 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\SelectAccreditation.php' => 
+  array (
+    20 => 
+    array (
+    ),
+    21 => 
+    array (
+    ),
+    22 => 
+    array (
+    ),
+    23 => 
+    array (
+    ),
+    24 => 
+    array (
+    ),
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputIdentifiant.php' => 
+  array (
+    20 => 
+    array (
+    ),
+    21 => 
+    array (
+    ),
+    22 => 
+    array (
+    ),
+    23 => 
+    array (
+    ),
+    24 => 
+    array (
+    ),
+    25 => 
+    array (
+    ),
+    26 => 
+    array (
+    ),
+    30 => 
+    array (
+    ),
+    31 => 
+    array (
+    ),
+    32 => 
+    array (
+    ),
+    34 => 
+    array (
+    ),
+    35 => 
+    array (
+    ),
+    37 => 
+    array (
+    ),
+    38 => 
+    array (
+    ),
     40 => 
     array (
     ),
     41 => 
     array (
     ),
-    42 => NULL,
+    43 => 
+    array (
+    ),
+    45 => 
+    array (
+    ),
     46 => 
     array (
-      0 => 'UserFormTest::testIdentifiant',
-    ),
-    47 => 
-    array (
-      0 => 'UserFormTest::testIdentifiant',
     ),
     48 => 
     array (
     ),
-    49 => 
+    49 => NULL,
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputMail.php' => 
+  array (
+    20 => 
     array (
-      0 => 'UserFormTest::testIdentifiant',
     ),
-    50 => 
+    21 => 
     array (
     ),
-    52 => 
+    22 => 
     array (
-      0 => 'UserFormTest::testIdentifiant',
     ),
-    53 => NULL,
+    23 => 
+    array (
+    ),
+    24 => 
+    array (
+    ),
+    25 => 
+    array (
+    ),
+    26 => 
+    array (
+    ),
+    30 => 
+    array (
+    ),
+    31 => 
+    array (
+    ),
+    32 => 
+    array (
+    ),
+    34 => 
+    array (
+    ),
+    35 => 
+    array (
+    ),
+    38 => 
+    array (
+    ),
+    40 => 
+    array (
+    ),
+    41 => 
+    array (
+    ),
+    43 => 
+    array (
+    ),
+    45 => 
+    array (
+    ),
+    46 => 
+    array (
+    ),
+    48 => 
+    array (
+    ),
+    49 => NULL,
   ),
   'C:\\wamp64\\www\\oc_projet5\\Core\\Model\\AbstractTable.php' => 
   array (
     24 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testUserInstanceVide',
-      2 => 'UserTableTest::testIdentifiantBySetter',
-      3 => 'UserTableTest::testIdentifiantByConstructor',
-      4 => 'UserTableTest::testIdentifiantValue60',
-      5 => 'UserTableTest::testIdentifiantValue3',
-      6 => 'UserTableTest::testIdentifiantValueNull',
-      7 => 'UserTableTest::testMailBySetter',
-      8 => 'UserTableTest::testMailByConstructor',
-      9 => 'UserTableTest::testMailValue100',
-      10 => 'UserTableTest::testMailValueNotMail',
-      11 => 'UserTableTest::testMailValueNull',
-      12 => 'UserTableTest::testIDBySetter',
-      13 => 'UserTableTest::testIdByConstructor',
-      14 => 'UserTableTest::testHasId',
-      15 => 'UserTableTest::testIdValueNotId',
-      16 => 'UserTableTest::testIdValueNull',
-      17 => 'UserTableTest::testSecretBySetter',
-      18 => 'UserTableTest::testSecretByConstructor',
-      19 => 'UserTableTest::testSecretValue100',
-      20 => 'UserTableTest::testSecretValue3',
-      21 => 'UserTableTest::testSecretValueNull',
-      22 => 'UserTableTest::testForgetHashBySetter',
-      23 => 'UserTableTest::testForgetHashByConstructor',
-      24 => 'UserTableTest::testForgetHashValue100',
-      25 => 'UserTableTest::testForgetHashValue3',
-      26 => 'UserTableTest::testForgetHashValueNull',
-      27 => 'UserTableTest::testForgetDateBySetter',
-      28 => 'UserTableTest::testForgetDateByConstructor',
-      29 => 'UserTableTest::testForgetDateValueNotDate',
-      30 => 'UserTableTest::testForgetDateValueNull',
-      31 => 'UserTableTest::testValidAccountHashBySetter',
-      32 => 'UserTableTest::testValidAccountHashByConstructor',
-      33 => 'UserTableTest::testValidAccountHashValue100',
-      34 => 'UserTableTest::testValidAccountHashValue3',
-      35 => 'UserTableTest::testValidAccountHashValueNull',
-      36 => 'UserTableTest::testValidAccountDateBySetter',
-      37 => 'UserTableTest::testValidAccountDateByConstructor',
-      38 => 'UserTableTest::testValidAccountDateValueNotDate',
-      39 => 'UserTableTest::testValidAccountDateValueNull',
-      40 => 'UserTableTest::testAccreditationBySetter',
-      41 => 'UserTableTest::testAccreditationByConstructor',
-      42 => 'UserTableTest::testAccreditationValueNotInt',
-      43 => 'UserTableTest::testAccreditationValueInt6',
-      44 => 'UserTableTest::testAccreditationValueNull',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testUserInstanceVide',
+      3 => 'UserTableTest::testIdentifiantBySetter',
+      4 => 'UserTableTest::testIdentifiantByConstructor',
+      5 => 'UserTableTest::testIdentifiantValue60',
+      6 => 'UserTableTest::testIdentifiantValue3',
+      7 => 'UserTableTest::testIdentifiantValueNull',
+      8 => 'UserTableTest::testMailBySetter',
+      9 => 'UserTableTest::testMailByConstructor',
+      10 => 'UserTableTest::testMailValue100',
+      11 => 'UserTableTest::testMailValueNotMail',
+      12 => 'UserTableTest::testMailValueNull',
+      13 => 'UserTableTest::testIDBySetter',
+      14 => 'UserTableTest::testIdByConstructor',
+      15 => 'UserTableTest::testHasId',
+      16 => 'UserTableTest::testIdValueNotId',
+      17 => 'UserTableTest::testIdValueNull',
+      18 => 'UserTableTest::testSecretBySetter',
+      19 => 'UserTableTest::testSecretByConstructor',
+      20 => 'UserTableTest::testSecretValue100',
+      21 => 'UserTableTest::testSecretValue3',
+      22 => 'UserTableTest::testSecretValueNull',
+      23 => 'UserTableTest::testForgetHashBySetter',
+      24 => 'UserTableTest::testForgetHashByConstructor',
+      25 => 'UserTableTest::testForgetHashValue100',
+      26 => 'UserTableTest::testForgetHashValue3',
+      27 => 'UserTableTest::testForgetHashValueNull',
+      28 => 'UserTableTest::testForgetDateBySetter',
+      29 => 'UserTableTest::testForgetDateByConstructor',
+      30 => 'UserTableTest::testForgetDateValueNotDate',
+      31 => 'UserTableTest::testForgetDateValueNull',
+      32 => 'UserTableTest::testValidAccountHashBySetter',
+      33 => 'UserTableTest::testValidAccountHashByConstructor',
+      34 => 'UserTableTest::testValidAccountHashValue100',
+      35 => 'UserTableTest::testValidAccountHashValue3',
+      36 => 'UserTableTest::testValidAccountHashValueNull',
+      37 => 'UserTableTest::testValidAccountDateBySetter',
+      38 => 'UserTableTest::testValidAccountDateByConstructor',
+      39 => 'UserTableTest::testValidAccountDateValueNotDate',
+      40 => 'UserTableTest::testValidAccountDateValueNull',
+      41 => 'UserTableTest::testAccreditationBySetter',
+      42 => 'UserTableTest::testAccreditationByConstructor',
+      43 => 'UserTableTest::testAccreditationValueNotInt',
+      44 => 'UserTableTest::testAccreditationValueInt6',
+      45 => 'UserTableTest::testAccreditationValueNull',
+      46 => 'UserTableTest::testActifBySetter',
+      47 => 'UserTableTest::testActifByConstructor',
+      48 => 'UserTableTest::testActifValue2',
+      49 => 'UserTableTest::testActifValueNull',
+      50 => 'UserTableTest::testActifDateBySetter',
+      51 => 'UserTableTest::testActifDateByConstructor',
+      52 => 'UserTableTest::testActifDateValueNotDate',
+      53 => 'UserTableTest::testActifDateValueNull',
     ),
     25 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testUserInstanceVide',
-      2 => 'UserTableTest::testIdentifiantBySetter',
-      3 => 'UserTableTest::testIdentifiantByConstructor',
-      4 => 'UserTableTest::testIdentifiantValue60',
-      5 => 'UserTableTest::testIdentifiantValue3',
-      6 => 'UserTableTest::testIdentifiantValueNull',
-      7 => 'UserTableTest::testMailBySetter',
-      8 => 'UserTableTest::testMailByConstructor',
-      9 => 'UserTableTest::testMailValue100',
-      10 => 'UserTableTest::testMailValueNotMail',
-      11 => 'UserTableTest::testMailValueNull',
-      12 => 'UserTableTest::testIDBySetter',
-      13 => 'UserTableTest::testIdByConstructor',
-      14 => 'UserTableTest::testHasId',
-      15 => 'UserTableTest::testIdValueNotId',
-      16 => 'UserTableTest::testIdValueNull',
-      17 => 'UserTableTest::testSecretBySetter',
-      18 => 'UserTableTest::testSecretByConstructor',
-      19 => 'UserTableTest::testSecretValue100',
-      20 => 'UserTableTest::testSecretValue3',
-      21 => 'UserTableTest::testSecretValueNull',
-      22 => 'UserTableTest::testForgetHashBySetter',
-      23 => 'UserTableTest::testForgetHashByConstructor',
-      24 => 'UserTableTest::testForgetHashValue100',
-      25 => 'UserTableTest::testForgetHashValue3',
-      26 => 'UserTableTest::testForgetHashValueNull',
-      27 => 'UserTableTest::testForgetDateBySetter',
-      28 => 'UserTableTest::testForgetDateByConstructor',
-      29 => 'UserTableTest::testForgetDateValueNotDate',
-      30 => 'UserTableTest::testForgetDateValueNull',
-      31 => 'UserTableTest::testValidAccountHashBySetter',
-      32 => 'UserTableTest::testValidAccountHashByConstructor',
-      33 => 'UserTableTest::testValidAccountHashValue100',
-      34 => 'UserTableTest::testValidAccountHashValue3',
-      35 => 'UserTableTest::testValidAccountHashValueNull',
-      36 => 'UserTableTest::testValidAccountDateBySetter',
-      37 => 'UserTableTest::testValidAccountDateByConstructor',
-      38 => 'UserTableTest::testValidAccountDateValueNotDate',
-      39 => 'UserTableTest::testValidAccountDateValueNull',
-      40 => 'UserTableTest::testAccreditationBySetter',
-      41 => 'UserTableTest::testAccreditationByConstructor',
-      42 => 'UserTableTest::testAccreditationValueNotInt',
-      43 => 'UserTableTest::testAccreditationValueInt6',
-      44 => 'UserTableTest::testAccreditationValueNull',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testUserInstanceVide',
+      3 => 'UserTableTest::testIdentifiantBySetter',
+      4 => 'UserTableTest::testIdentifiantByConstructor',
+      5 => 'UserTableTest::testIdentifiantValue60',
+      6 => 'UserTableTest::testIdentifiantValue3',
+      7 => 'UserTableTest::testIdentifiantValueNull',
+      8 => 'UserTableTest::testMailBySetter',
+      9 => 'UserTableTest::testMailByConstructor',
+      10 => 'UserTableTest::testMailValue100',
+      11 => 'UserTableTest::testMailValueNotMail',
+      12 => 'UserTableTest::testMailValueNull',
+      13 => 'UserTableTest::testIDBySetter',
+      14 => 'UserTableTest::testIdByConstructor',
+      15 => 'UserTableTest::testHasId',
+      16 => 'UserTableTest::testIdValueNotId',
+      17 => 'UserTableTest::testIdValueNull',
+      18 => 'UserTableTest::testSecretBySetter',
+      19 => 'UserTableTest::testSecretByConstructor',
+      20 => 'UserTableTest::testSecretValue100',
+      21 => 'UserTableTest::testSecretValue3',
+      22 => 'UserTableTest::testSecretValueNull',
+      23 => 'UserTableTest::testForgetHashBySetter',
+      24 => 'UserTableTest::testForgetHashByConstructor',
+      25 => 'UserTableTest::testForgetHashValue100',
+      26 => 'UserTableTest::testForgetHashValue3',
+      27 => 'UserTableTest::testForgetHashValueNull',
+      28 => 'UserTableTest::testForgetDateBySetter',
+      29 => 'UserTableTest::testForgetDateByConstructor',
+      30 => 'UserTableTest::testForgetDateValueNotDate',
+      31 => 'UserTableTest::testForgetDateValueNull',
+      32 => 'UserTableTest::testValidAccountHashBySetter',
+      33 => 'UserTableTest::testValidAccountHashByConstructor',
+      34 => 'UserTableTest::testValidAccountHashValue100',
+      35 => 'UserTableTest::testValidAccountHashValue3',
+      36 => 'UserTableTest::testValidAccountHashValueNull',
+      37 => 'UserTableTest::testValidAccountDateBySetter',
+      38 => 'UserTableTest::testValidAccountDateByConstructor',
+      39 => 'UserTableTest::testValidAccountDateValueNotDate',
+      40 => 'UserTableTest::testValidAccountDateValueNull',
+      41 => 'UserTableTest::testAccreditationBySetter',
+      42 => 'UserTableTest::testAccreditationByConstructor',
+      43 => 'UserTableTest::testAccreditationValueNotInt',
+      44 => 'UserTableTest::testAccreditationValueInt6',
+      45 => 'UserTableTest::testAccreditationValueNull',
+      46 => 'UserTableTest::testActifBySetter',
+      47 => 'UserTableTest::testActifByConstructor',
+      48 => 'UserTableTest::testActifValue2',
+      49 => 'UserTableTest::testActifValueNull',
+      50 => 'UserTableTest::testActifDateBySetter',
+      51 => 'UserTableTest::testActifDateByConstructor',
+      52 => 'UserTableTest::testActifDateValueNotDate',
+      53 => 'UserTableTest::testActifDateValueNull',
     ),
     32 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testUserInstanceVide',
-      2 => 'UserTableTest::testIdentifiantBySetter',
-      3 => 'UserTableTest::testIdentifiantByConstructor',
-      4 => 'UserTableTest::testIdentifiantValue60',
-      5 => 'UserTableTest::testIdentifiantValue3',
-      6 => 'UserTableTest::testIdentifiantValueNull',
-      7 => 'UserTableTest::testMailBySetter',
-      8 => 'UserTableTest::testMailByConstructor',
-      9 => 'UserTableTest::testMailValue100',
-      10 => 'UserTableTest::testMailValueNotMail',
-      11 => 'UserTableTest::testMailValueNull',
-      12 => 'UserTableTest::testIDBySetter',
-      13 => 'UserTableTest::testIdByConstructor',
-      14 => 'UserTableTest::testHasId',
-      15 => 'UserTableTest::testIdValueNotId',
-      16 => 'UserTableTest::testIdValueNull',
-      17 => 'UserTableTest::testSecretBySetter',
-      18 => 'UserTableTest::testSecretByConstructor',
-      19 => 'UserTableTest::testSecretValue100',
-      20 => 'UserTableTest::testSecretValue3',
-      21 => 'UserTableTest::testSecretValueNull',
-      22 => 'UserTableTest::testForgetHashBySetter',
-      23 => 'UserTableTest::testForgetHashByConstructor',
-      24 => 'UserTableTest::testForgetHashValue100',
-      25 => 'UserTableTest::testForgetHashValue3',
-      26 => 'UserTableTest::testForgetHashValueNull',
-      27 => 'UserTableTest::testForgetDateBySetter',
-      28 => 'UserTableTest::testForgetDateByConstructor',
-      29 => 'UserTableTest::testForgetDateValueNotDate',
-      30 => 'UserTableTest::testForgetDateValueNull',
-      31 => 'UserTableTest::testValidAccountHashBySetter',
-      32 => 'UserTableTest::testValidAccountHashByConstructor',
-      33 => 'UserTableTest::testValidAccountHashValue100',
-      34 => 'UserTableTest::testValidAccountHashValue3',
-      35 => 'UserTableTest::testValidAccountHashValueNull',
-      36 => 'UserTableTest::testValidAccountDateBySetter',
-      37 => 'UserTableTest::testValidAccountDateByConstructor',
-      38 => 'UserTableTest::testValidAccountDateValueNotDate',
-      39 => 'UserTableTest::testValidAccountDateValueNull',
-      40 => 'UserTableTest::testAccreditationBySetter',
-      41 => 'UserTableTest::testAccreditationByConstructor',
-      42 => 'UserTableTest::testAccreditationValueNotInt',
-      43 => 'UserTableTest::testAccreditationValueInt6',
-      44 => 'UserTableTest::testAccreditationValueNull',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testUserInstanceVide',
+      3 => 'UserTableTest::testIdentifiantBySetter',
+      4 => 'UserTableTest::testIdentifiantByConstructor',
+      5 => 'UserTableTest::testIdentifiantValue60',
+      6 => 'UserTableTest::testIdentifiantValue3',
+      7 => 'UserTableTest::testIdentifiantValueNull',
+      8 => 'UserTableTest::testMailBySetter',
+      9 => 'UserTableTest::testMailByConstructor',
+      10 => 'UserTableTest::testMailValue100',
+      11 => 'UserTableTest::testMailValueNotMail',
+      12 => 'UserTableTest::testMailValueNull',
+      13 => 'UserTableTest::testIDBySetter',
+      14 => 'UserTableTest::testIdByConstructor',
+      15 => 'UserTableTest::testHasId',
+      16 => 'UserTableTest::testIdValueNotId',
+      17 => 'UserTableTest::testIdValueNull',
+      18 => 'UserTableTest::testSecretBySetter',
+      19 => 'UserTableTest::testSecretByConstructor',
+      20 => 'UserTableTest::testSecretValue100',
+      21 => 'UserTableTest::testSecretValue3',
+      22 => 'UserTableTest::testSecretValueNull',
+      23 => 'UserTableTest::testForgetHashBySetter',
+      24 => 'UserTableTest::testForgetHashByConstructor',
+      25 => 'UserTableTest::testForgetHashValue100',
+      26 => 'UserTableTest::testForgetHashValue3',
+      27 => 'UserTableTest::testForgetHashValueNull',
+      28 => 'UserTableTest::testForgetDateBySetter',
+      29 => 'UserTableTest::testForgetDateByConstructor',
+      30 => 'UserTableTest::testForgetDateValueNotDate',
+      31 => 'UserTableTest::testForgetDateValueNull',
+      32 => 'UserTableTest::testValidAccountHashBySetter',
+      33 => 'UserTableTest::testValidAccountHashByConstructor',
+      34 => 'UserTableTest::testValidAccountHashValue100',
+      35 => 'UserTableTest::testValidAccountHashValue3',
+      36 => 'UserTableTest::testValidAccountHashValueNull',
+      37 => 'UserTableTest::testValidAccountDateBySetter',
+      38 => 'UserTableTest::testValidAccountDateByConstructor',
+      39 => 'UserTableTest::testValidAccountDateValueNotDate',
+      40 => 'UserTableTest::testValidAccountDateValueNull',
+      41 => 'UserTableTest::testAccreditationBySetter',
+      42 => 'UserTableTest::testAccreditationByConstructor',
+      43 => 'UserTableTest::testAccreditationValueNotInt',
+      44 => 'UserTableTest::testAccreditationValueInt6',
+      45 => 'UserTableTest::testAccreditationValueNull',
+      46 => 'UserTableTest::testActifBySetter',
+      47 => 'UserTableTest::testActifByConstructor',
+      48 => 'UserTableTest::testActifValue2',
+      49 => 'UserTableTest::testActifValueNull',
+      50 => 'UserTableTest::testActifDateBySetter',
+      51 => 'UserTableTest::testActifDateByConstructor',
+      52 => 'UserTableTest::testActifDateValueNotDate',
+      53 => 'UserTableTest::testActifDateValueNull',
     ),
     33 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantByConstructor',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testIdByConstructor',
-      4 => 'UserTableTest::testHasId',
-      5 => 'UserTableTest::testSecretByConstructor',
-      6 => 'UserTableTest::testForgetHashByConstructor',
-      7 => 'UserTableTest::testForgetDateByConstructor',
-      8 => 'UserTableTest::testValidAccountHashByConstructor',
-      9 => 'UserTableTest::testValidAccountDateByConstructor',
-      10 => 'UserTableTest::testAccreditationByConstructor',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testIdByConstructor',
+      5 => 'UserTableTest::testHasId',
+      6 => 'UserTableTest::testSecretByConstructor',
+      7 => 'UserTableTest::testForgetHashByConstructor',
+      8 => 'UserTableTest::testForgetDateByConstructor',
+      9 => 'UserTableTest::testValidAccountHashByConstructor',
+      10 => 'UserTableTest::testValidAccountDateByConstructor',
+      11 => 'UserTableTest::testAccreditationByConstructor',
+      12 => 'UserTableTest::testActifByConstructor',
+      13 => 'UserTableTest::testActifDateByConstructor',
     ),
     35 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantByConstructor',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testIdByConstructor',
-      4 => 'UserTableTest::testHasId',
-      5 => 'UserTableTest::testSecretByConstructor',
-      6 => 'UserTableTest::testForgetHashByConstructor',
-      7 => 'UserTableTest::testForgetDateByConstructor',
-      8 => 'UserTableTest::testValidAccountHashByConstructor',
-      9 => 'UserTableTest::testValidAccountDateByConstructor',
-      10 => 'UserTableTest::testAccreditationByConstructor',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testIdByConstructor',
+      5 => 'UserTableTest::testHasId',
+      6 => 'UserTableTest::testSecretByConstructor',
+      7 => 'UserTableTest::testForgetHashByConstructor',
+      8 => 'UserTableTest::testForgetDateByConstructor',
+      9 => 'UserTableTest::testValidAccountHashByConstructor',
+      10 => 'UserTableTest::testValidAccountDateByConstructor',
+      11 => 'UserTableTest::testAccreditationByConstructor',
+      12 => 'UserTableTest::testActifByConstructor',
+      13 => 'UserTableTest::testActifDateByConstructor',
     ),
     36 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantByConstructor',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testIdByConstructor',
-      4 => 'UserTableTest::testHasId',
-      5 => 'UserTableTest::testSecretByConstructor',
-      6 => 'UserTableTest::testForgetHashByConstructor',
-      7 => 'UserTableTest::testForgetDateByConstructor',
-      8 => 'UserTableTest::testValidAccountHashByConstructor',
-      9 => 'UserTableTest::testValidAccountDateByConstructor',
-      10 => 'UserTableTest::testAccreditationByConstructor',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testIdByConstructor',
+      5 => 'UserTableTest::testHasId',
+      6 => 'UserTableTest::testSecretByConstructor',
+      7 => 'UserTableTest::testForgetHashByConstructor',
+      8 => 'UserTableTest::testForgetDateByConstructor',
+      9 => 'UserTableTest::testValidAccountHashByConstructor',
+      10 => 'UserTableTest::testValidAccountDateByConstructor',
+      11 => 'UserTableTest::testAccreditationByConstructor',
+      12 => 'UserTableTest::testActifByConstructor',
+      13 => 'UserTableTest::testActifDateByConstructor',
     ),
     37 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantByConstructor',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testIdByConstructor',
-      4 => 'UserTableTest::testHasId',
-      5 => 'UserTableTest::testSecretByConstructor',
-      6 => 'UserTableTest::testForgetHashByConstructor',
-      7 => 'UserTableTest::testForgetDateByConstructor',
-      8 => 'UserTableTest::testValidAccountHashByConstructor',
-      9 => 'UserTableTest::testValidAccountDateByConstructor',
-      10 => 'UserTableTest::testAccreditationByConstructor',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testIdByConstructor',
+      5 => 'UserTableTest::testHasId',
+      6 => 'UserTableTest::testSecretByConstructor',
+      7 => 'UserTableTest::testForgetHashByConstructor',
+      8 => 'UserTableTest::testForgetDateByConstructor',
+      9 => 'UserTableTest::testValidAccountHashByConstructor',
+      10 => 'UserTableTest::testValidAccountDateByConstructor',
+      11 => 'UserTableTest::testAccreditationByConstructor',
+      12 => 'UserTableTest::testActifByConstructor',
+      13 => 'UserTableTest::testActifDateByConstructor',
     ),
     38 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantByConstructor',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testIdByConstructor',
-      4 => 'UserTableTest::testHasId',
-      5 => 'UserTableTest::testSecretByConstructor',
-      6 => 'UserTableTest::testForgetHashByConstructor',
-      7 => 'UserTableTest::testForgetDateByConstructor',
-      8 => 'UserTableTest::testValidAccountHashByConstructor',
-      9 => 'UserTableTest::testValidAccountDateByConstructor',
-      10 => 'UserTableTest::testAccreditationByConstructor',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testIdByConstructor',
+      5 => 'UserTableTest::testHasId',
+      6 => 'UserTableTest::testSecretByConstructor',
+      7 => 'UserTableTest::testForgetHashByConstructor',
+      8 => 'UserTableTest::testForgetDateByConstructor',
+      9 => 'UserTableTest::testValidAccountHashByConstructor',
+      10 => 'UserTableTest::testValidAccountDateByConstructor',
+      11 => 'UserTableTest::testAccreditationByConstructor',
+      12 => 'UserTableTest::testActifByConstructor',
+      13 => 'UserTableTest::testActifDateByConstructor',
     ),
     39 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantByConstructor',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testIdByConstructor',
-      4 => 'UserTableTest::testHasId',
-      5 => 'UserTableTest::testSecretByConstructor',
-      6 => 'UserTableTest::testForgetHashByConstructor',
-      7 => 'UserTableTest::testForgetDateByConstructor',
-      8 => 'UserTableTest::testValidAccountHashByConstructor',
-      9 => 'UserTableTest::testValidAccountDateByConstructor',
-      10 => 'UserTableTest::testAccreditationByConstructor',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testIdByConstructor',
+      5 => 'UserTableTest::testHasId',
+      6 => 'UserTableTest::testSecretByConstructor',
+      7 => 'UserTableTest::testForgetHashByConstructor',
+      8 => 'UserTableTest::testForgetDateByConstructor',
+      9 => 'UserTableTest::testValidAccountHashByConstructor',
+      10 => 'UserTableTest::testValidAccountDateByConstructor',
+      11 => 'UserTableTest::testAccreditationByConstructor',
+      12 => 'UserTableTest::testActifByConstructor',
+      13 => 'UserTableTest::testActifDateByConstructor',
     ),
     40 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantByConstructor',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testIdByConstructor',
-      4 => 'UserTableTest::testHasId',
-      5 => 'UserTableTest::testSecretByConstructor',
-      6 => 'UserTableTest::testForgetHashByConstructor',
-      7 => 'UserTableTest::testForgetDateByConstructor',
-      8 => 'UserTableTest::testValidAccountHashByConstructor',
-      9 => 'UserTableTest::testValidAccountDateByConstructor',
-      10 => 'UserTableTest::testAccreditationByConstructor',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testIdByConstructor',
+      5 => 'UserTableTest::testHasId',
+      6 => 'UserTableTest::testSecretByConstructor',
+      7 => 'UserTableTest::testForgetHashByConstructor',
+      8 => 'UserTableTest::testForgetDateByConstructor',
+      9 => 'UserTableTest::testValidAccountHashByConstructor',
+      10 => 'UserTableTest::testValidAccountDateByConstructor',
+      11 => 'UserTableTest::testAccreditationByConstructor',
+      12 => 'UserTableTest::testActifByConstructor',
+      13 => 'UserTableTest::testActifDateByConstructor',
     ),
     41 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantByConstructor',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testIdByConstructor',
-      4 => 'UserTableTest::testHasId',
-      5 => 'UserTableTest::testSecretByConstructor',
-      6 => 'UserTableTest::testForgetHashByConstructor',
-      7 => 'UserTableTest::testForgetDateByConstructor',
-      8 => 'UserTableTest::testValidAccountHashByConstructor',
-      9 => 'UserTableTest::testValidAccountDateByConstructor',
-      10 => 'UserTableTest::testAccreditationByConstructor',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testIdByConstructor',
+      5 => 'UserTableTest::testHasId',
+      6 => 'UserTableTest::testSecretByConstructor',
+      7 => 'UserTableTest::testForgetHashByConstructor',
+      8 => 'UserTableTest::testForgetDateByConstructor',
+      9 => 'UserTableTest::testValidAccountHashByConstructor',
+      10 => 'UserTableTest::testValidAccountDateByConstructor',
+      11 => 'UserTableTest::testAccreditationByConstructor',
+      12 => 'UserTableTest::testActifByConstructor',
+      13 => 'UserTableTest::testActifDateByConstructor',
     ),
     42 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantByConstructor',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testIdByConstructor',
-      4 => 'UserTableTest::testHasId',
-      5 => 'UserTableTest::testSecretByConstructor',
-      6 => 'UserTableTest::testForgetHashByConstructor',
-      7 => 'UserTableTest::testForgetDateByConstructor',
-      8 => 'UserTableTest::testValidAccountHashByConstructor',
-      9 => 'UserTableTest::testValidAccountDateByConstructor',
-      10 => 'UserTableTest::testAccreditationByConstructor',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testIdByConstructor',
+      5 => 'UserTableTest::testHasId',
+      6 => 'UserTableTest::testSecretByConstructor',
+      7 => 'UserTableTest::testForgetHashByConstructor',
+      8 => 'UserTableTest::testForgetDateByConstructor',
+      9 => 'UserTableTest::testValidAccountHashByConstructor',
+      10 => 'UserTableTest::testValidAccountDateByConstructor',
+      11 => 'UserTableTest::testAccreditationByConstructor',
+      12 => 'UserTableTest::testActifByConstructor',
+      13 => 'UserTableTest::testActifDateByConstructor',
     ),
     44 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantByConstructor',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testIdByConstructor',
-      4 => 'UserTableTest::testHasId',
-      5 => 'UserTableTest::testSecretByConstructor',
-      6 => 'UserTableTest::testForgetHashByConstructor',
-      7 => 'UserTableTest::testForgetDateByConstructor',
-      8 => 'UserTableTest::testValidAccountHashByConstructor',
-      9 => 'UserTableTest::testValidAccountDateByConstructor',
-      10 => 'UserTableTest::testAccreditationByConstructor',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testIdByConstructor',
+      5 => 'UserTableTest::testHasId',
+      6 => 'UserTableTest::testSecretByConstructor',
+      7 => 'UserTableTest::testForgetHashByConstructor',
+      8 => 'UserTableTest::testForgetDateByConstructor',
+      9 => 'UserTableTest::testValidAccountHashByConstructor',
+      10 => 'UserTableTest::testValidAccountDateByConstructor',
+      11 => 'UserTableTest::testAccreditationByConstructor',
+      12 => 'UserTableTest::testActifByConstructor',
+      13 => 'UserTableTest::testActifDateByConstructor',
     ),
     45 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testIdentifiantByConstructor',
-      2 => 'UserTableTest::testMailByConstructor',
-      3 => 'UserTableTest::testIdByConstructor',
-      4 => 'UserTableTest::testHasId',
-      5 => 'UserTableTest::testSecretByConstructor',
-      6 => 'UserTableTest::testForgetHashByConstructor',
-      7 => 'UserTableTest::testForgetDateByConstructor',
-      8 => 'UserTableTest::testValidAccountHashByConstructor',
-      9 => 'UserTableTest::testValidAccountDateByConstructor',
-      10 => 'UserTableTest::testAccreditationByConstructor',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testIdentifiantByConstructor',
+      3 => 'UserTableTest::testMailByConstructor',
+      4 => 'UserTableTest::testIdByConstructor',
+      5 => 'UserTableTest::testHasId',
+      6 => 'UserTableTest::testSecretByConstructor',
+      7 => 'UserTableTest::testForgetHashByConstructor',
+      8 => 'UserTableTest::testForgetDateByConstructor',
+      9 => 'UserTableTest::testValidAccountHashByConstructor',
+      10 => 'UserTableTest::testValidAccountDateByConstructor',
+      11 => 'UserTableTest::testAccreditationByConstructor',
+      12 => 'UserTableTest::testActifByConstructor',
+      13 => 'UserTableTest::testActifDateByConstructor',
     ),
     49 => 
     array (
       0 => 'UserManagerTest::testFindById',
-      1 => 'UserTableTest::testUserInstanceVide',
-      2 => 'UserTableTest::testIdentifiantBySetter',
-      3 => 'UserTableTest::testIdentifiantByConstructor',
-      4 => 'UserTableTest::testIdentifiantValue60',
-      5 => 'UserTableTest::testIdentifiantValue3',
-      6 => 'UserTableTest::testIdentifiantValueNull',
-      7 => 'UserTableTest::testMailBySetter',
-      8 => 'UserTableTest::testMailByConstructor',
-      9 => 'UserTableTest::testMailValue100',
-      10 => 'UserTableTest::testMailValueNotMail',
-      11 => 'UserTableTest::testMailValueNull',
-      12 => 'UserTableTest::testIDBySetter',
-      13 => 'UserTableTest::testIdByConstructor',
-      14 => 'UserTableTest::testHasId',
-      15 => 'UserTableTest::testIdValueNotId',
-      16 => 'UserTableTest::testIdValueNull',
-      17 => 'UserTableTest::testSecretBySetter',
-      18 => 'UserTableTest::testSecretByConstructor',
-      19 => 'UserTableTest::testSecretValue100',
-      20 => 'UserTableTest::testSecretValue3',
-      21 => 'UserTableTest::testSecretValueNull',
-      22 => 'UserTableTest::testForgetHashBySetter',
-      23 => 'UserTableTest::testForgetHashByConstructor',
-      24 => 'UserTableTest::testForgetHashValue100',
-      25 => 'UserTableTest::testForgetHashValue3',
-      26 => 'UserTableTest::testForgetHashValueNull',
-      27 => 'UserTableTest::testForgetDateBySetter',
-      28 => 'UserTableTest::testForgetDateByConstructor',
-      29 => 'UserTableTest::testForgetDateValueNotDate',
-      30 => 'UserTableTest::testForgetDateValueNull',
-      31 => 'UserTableTest::testValidAccountHashBySetter',
-      32 => 'UserTableTest::testValidAccountHashByConstructor',
-      33 => 'UserTableTest::testValidAccountHashValue100',
-      34 => 'UserTableTest::testValidAccountHashValue3',
-      35 => 'UserTableTest::testValidAccountHashValueNull',
-      36 => 'UserTableTest::testValidAccountDateBySetter',
-      37 => 'UserTableTest::testValidAccountDateByConstructor',
-      38 => 'UserTableTest::testValidAccountDateValueNotDate',
-      39 => 'UserTableTest::testValidAccountDateValueNull',
-      40 => 'UserTableTest::testAccreditationBySetter',
-      41 => 'UserTableTest::testAccreditationByConstructor',
-      42 => 'UserTableTest::testAccreditationValueNotInt',
-      43 => 'UserTableTest::testAccreditationValueInt6',
-      44 => 'UserTableTest::testAccreditationValueNull',
+      1 => 'UserManagerTest::testGetAll',
+      2 => 'UserTableTest::testUserInstanceVide',
+      3 => 'UserTableTest::testIdentifiantBySetter',
+      4 => 'UserTableTest::testIdentifiantByConstructor',
+      5 => 'UserTableTest::testIdentifiantValue60',
+      6 => 'UserTableTest::testIdentifiantValue3',
+      7 => 'UserTableTest::testIdentifiantValueNull',
+      8 => 'UserTableTest::testMailBySetter',
+      9 => 'UserTableTest::testMailByConstructor',
+      10 => 'UserTableTest::testMailValue100',
+      11 => 'UserTableTest::testMailValueNotMail',
+      12 => 'UserTableTest::testMailValueNull',
+      13 => 'UserTableTest::testIDBySetter',
+      14 => 'UserTableTest::testIdByConstructor',
+      15 => 'UserTableTest::testHasId',
+      16 => 'UserTableTest::testIdValueNotId',
+      17 => 'UserTableTest::testIdValueNull',
+      18 => 'UserTableTest::testSecretBySetter',
+      19 => 'UserTableTest::testSecretByConstructor',
+      20 => 'UserTableTest::testSecretValue100',
+      21 => 'UserTableTest::testSecretValue3',
+      22 => 'UserTableTest::testSecretValueNull',
+      23 => 'UserTableTest::testForgetHashBySetter',
+      24 => 'UserTableTest::testForgetHashByConstructor',
+      25 => 'UserTableTest::testForgetHashValue100',
+      26 => 'UserTableTest::testForgetHashValue3',
+      27 => 'UserTableTest::testForgetHashValueNull',
+      28 => 'UserTableTest::testForgetDateBySetter',
+      29 => 'UserTableTest::testForgetDateByConstructor',
+      30 => 'UserTableTest::testForgetDateValueNotDate',
+      31 => 'UserTableTest::testForgetDateValueNull',
+      32 => 'UserTableTest::testValidAccountHashBySetter',
+      33 => 'UserTableTest::testValidAccountHashByConstructor',
+      34 => 'UserTableTest::testValidAccountHashValue100',
+      35 => 'UserTableTest::testValidAccountHashValue3',
+      36 => 'UserTableTest::testValidAccountHashValueNull',
+      37 => 'UserTableTest::testValidAccountDateBySetter',
+      38 => 'UserTableTest::testValidAccountDateByConstructor',
+      39 => 'UserTableTest::testValidAccountDateValueNotDate',
+      40 => 'UserTableTest::testValidAccountDateValueNull',
+      41 => 'UserTableTest::testAccreditationBySetter',
+      42 => 'UserTableTest::testAccreditationByConstructor',
+      43 => 'UserTableTest::testAccreditationValueNotInt',
+      44 => 'UserTableTest::testAccreditationValueInt6',
+      45 => 'UserTableTest::testAccreditationValueNull',
+      46 => 'UserTableTest::testActifBySetter',
+      47 => 'UserTableTest::testActifByConstructor',
+      48 => 'UserTableTest::testActifValue2',
+      49 => 'UserTableTest::testActifValueNull',
+      50 => 'UserTableTest::testActifDateBySetter',
+      51 => 'UserTableTest::testActifDateByConstructor',
+      52 => 'UserTableTest::testActifDateValueNotDate',
+      53 => 'UserTableTest::testActifDateValueNull',
     ),
+  ),
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputSecretNew.php' => 
+  array (
+    19 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    20 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    21 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    22 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    24 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    25 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    26 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    30 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testRenderLogin',
+      1 => 'UserForgetChangeFormTest::testRenderSecret',
+      2 => 'UserForgetChangeFormTest::testcheckForm',
+      3 => 'UserForgetChangeFormTest::testRenderButton',
+      4 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    34 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    35 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    36 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    38 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+    ),
+    39 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+    ),
+    41 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    43 => 
+    array (
+    ),
+    44 => 
+    array (
+    ),
+    46 => 
+    array (
+      0 => 'UserForgetChangeFormTest::testcheckForm',
+      1 => 'UserForgetChangeFormTest::testcheckFormWithValue',
+    ),
+    47 => NULL,
   ),
   'C:\\wamp64\\www\\oc_projet5\\Config\\constantes.php' => 
   array (
@@ -2810,6 +4086,33 @@ $coverage->setData(array (
     array (
     ),
     27 => 
+    array (
+    ),
+    29 => 
+    array (
+    ),
+    30 => 
+    array (
+    ),
+    31 => 
+    array (
+    ),
+    32 => 
+    array (
+    ),
+    33 => 
+    array (
+    ),
+    34 => 
+    array (
+    ),
+    35 => 
+    array (
+    ),
+    36 => 
+    array (
+    ),
+    37 => 
     array (
     ),
   ),
@@ -2935,10 +4238,20 @@ $coverage->setTests(array (
     'size' => 'unknown',
     'status' => 0,
   ),
-  'UserFormTest::testIdentifiant' => 
+  'CoreToolboxRequestTest::testUnsetSession' => 
   array (
     'size' => 'unknown',
-    'status' => 3,
+    'status' => 0,
+  ),
+  'UserConnectTest::testUserConnectInstance' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserConnectTest::testUserConnectIsConnect' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
   ),
   'UserManagerTest::testUserManager' => 
   array (
@@ -2956,6 +4269,11 @@ $coverage->setTests(array (
     'status' => 0,
   ),
   'UserManagerTest::testFindById' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserManagerTest::testGetAll' => 
   array (
     'size' => 'unknown',
     'status' => 0,
@@ -3180,6 +4498,91 @@ $coverage->setTests(array (
     'size' => 'unknown',
     'status' => 0,
   ),
+  'UserTableTest::testActifBySetter' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserTableTest::testActifByConstructor' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserTableTest::testActifValue2' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserTableTest::testActifValueNull' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserTableTest::testActifDateBySetter' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserTableTest::testActifDateByConstructor' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserTableTest::testActifDateValueNotDate' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserTableTest::testActifDateValueNull' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserConnexionFormTest::testRenderLogin' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserConnexionFormTest::testRenderSecret' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserConnexionFormTest::testcheckForm' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserConnexionFormTest::testRenderButton' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserForgetChangeFormTest::testRenderLogin' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserForgetChangeFormTest::testRenderSecret' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserForgetChangeFormTest::testcheckForm' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserForgetChangeFormTest::testRenderButton' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
+  'UserForgetChangeFormTest::testcheckFormWithValue' => 
+  array (
+    'size' => 'unknown',
+    'status' => 0,
+  ),
 ));
 
 $filter = $coverage->filter();
@@ -3191,20 +4594,41 @@ $filter->setWhitelistedFiles(array (
   'C:\\wamp64\\www\\oc_projet5\\Core\\Model\\AbstractManager.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\Core\\Model\\AbstractTable.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\Core\\Model\\ITable.php' => true,
-  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\BootStrapForm.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\Form.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\IForm.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControls.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControlsButtons.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControlsCheckbox.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControlsInput.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControlsSelect.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\Core\\Form\\WebControls\\WebControlsTextaera.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\Core\\Toolbox\\Auth.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\Core\\Toolbox\\Flash.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\Core\\Toolbox\\Request.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Model\\UserConnect.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Model\\UserManager.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Model\\UserTable.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserConnexionForm.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserForgetChangeForm.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserForgetForm.php' => true,
-  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserForm.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserModifyForm.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserPwdChangeForm.php' => true,
   'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\UserSignupForm.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\ButtonConnexion.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\ButtonModifier.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\ButtonRecupere.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\CheckboxActif.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputHash.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputIdHidden.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputIdentifiant.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputLogin.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputMail.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputSecret.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputSecretConfirm.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputSecretNew.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\InputSecretOld.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\WebControls\\SelectAccreditation.php' => true,
+  'C:\\wamp64\\www\\oc_projet5\\App\\Modules\\User\\Form\\checkSecret.php' => true,
 ));
 
 return $coverage;

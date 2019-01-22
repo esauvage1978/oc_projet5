@@ -7,13 +7,13 @@
 define('ES_APPLICATION_NOM','MY LOST UNIVER');
 
 
-define('ES_ROOT_PATH_FAT', dirname(__DIR__). '\\');
-define('ES_ROOT_PATH_WEB', 'http://localhost/oc_projet5');
+define('ES_ROOT_PATH_FAT', dirname(__DIR__). '/');
+define('ES_ROOT_PATH_WEB', 'https://mylostuniver.com');
 
-define('ES_ROOT_PATH_FAT_INDEX', ES_ROOT_PATH_FAT. 'Public\\index.php');
+define('ES_ROOT_PATH_FAT_INDEX', ES_ROOT_PATH_FAT. 'Public/index.php');
 define('ES_ROOT_PATH_WEB_INDEX', ES_ROOT_PATH_WEB. '/');
 
-define('ES_ROOT_PATH_FAT_MODULES', ES_ROOT_PATH_FAT. 'App\\Modules\\');
+define('ES_ROOT_PATH_FAT_MODULES', ES_ROOT_PATH_FAT. 'App/Modules/');
 
 
 define('ES_ROOT_PATH_WEB_PUBLIC', ES_ROOT_PATH_WEB .'/Public/');
@@ -31,3 +31,7 @@ define('ES_ACCREDITATION',
      '2'=>'Rédacteur',
      '3'=>'Modérateur',
      '4'=>'Gestionnaire']);
+define('ES_GESTIONNAIRE',4);
+define('ES_MODERATEUR',3);
+define('ES_REDACTEUR',2);
+define('ES_VISITEUR',1);

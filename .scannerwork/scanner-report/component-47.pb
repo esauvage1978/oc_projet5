@@ -1,1 +1,1 @@
-/Core/Autoloader :-rCore/Autoloader
+/&App/Modules/User/Model/UserManager.php 2phpXÏhr&App/Modules/User/Model/UserManager.php

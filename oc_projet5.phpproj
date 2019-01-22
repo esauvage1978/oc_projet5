@@ -29,26 +29,25 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="App\Modules\Shared\Controller\restrictControler.php" />
     <Compile Include="App\Modules\Shared\Controller\SharedController.php" />
+    <Compile Include="App\Modules\Shared\Render\MenuRender.php" />
     <Compile Include="App\Modules\Shared\Render\SharedRenderView.php" />
     <Compile Include="App\Modules\Shared\View\HomeView.php" />
     <Compile Include="App\Modules\Shared\View\Partial\1PartialView.php" />
     <Compile Include="App\Modules\Shared\View\Partial\2PartialView.php" />
     <Compile Include="App\Modules\Shared\View\Partial\3PartialView.php" />
     <Compile Include="App\Modules\Shared\View\Partial\FlashPartialView.php" />
-    <Compile Include="App\Modules\Shared\View\Partial\UserConnectedPartialView.php" />
-    <Compile Include="App\Modules\Shared\View\Partial\UserNotConnectedPartialView.php" />
     <Compile Include="App\Modules\Shared\View\TemplateView.php" />
     <Compile Include="App\Modules\Shared\Services\Routeur.php" />
-    <Compile Include="App\Modules\Shared\View\test.php" />
     <Compile Include="App\Modules\User\Controller\UserController.php" />
+    <Compile Include="App\Modules\User\Form\checkSecret.php" />
     <Compile Include="App\Modules\User\Form\WebControls\ButtonModifier.php" />
     <Compile Include="App\Modules\User\Form\WebControls\ButtonRecupere.php" />
     <Compile Include="App\Modules\User\Form\WebControls\ButtonConnexion.php" />
     <Compile Include="App\Modules\User\Form\UserConnexionForm.php" />
     <Compile Include="App\Modules\User\Form\UserForgetChangeForm.php" />
     <Compile Include="App\Modules\User\Form\UserForgetForm.php" />
-    <Compile Include="App\Modules\User\Form\UserForm.php" />
     <Compile Include="App\Modules\User\Form\UserModifyForm.php" />
     <Compile Include="App\Modules\User\Form\UserPwdChangeForm.php" />
     <Compile Include="App\Modules\User\Form\UserSignupForm.php" />
@@ -63,13 +62,14 @@
     <Compile Include="App\Modules\User\Form\WebControls\InputSecretNew.php" />
     <Compile Include="App\Modules\User\Form\WebControls\InputSecretOld.php" />
     <Compile Include="App\Modules\User\Form\WebControls\SelectAccreditation.php" />
+    <Compile Include="App\Modules\User\Model\UserConnect.php" />
     <Compile Include="App\Modules\User\Model\UserTable.php" />
     <Compile Include="App\Modules\User\Model\UserManager.php" />
     <Compile Include="App\Modules\User\Render\UserRenderView.php" />
     <Compile Include="App\Modules\User\View\ConnexionView.php" />
     <Compile Include="App\Modules\User\View\ModifyView.php" />
     <Compile Include="App\Modules\User\View\ListView.php" />
-    <Compile Include="App\Modules\User\View\partial\WidgetUserConnectPartialView.php" />
+    <Compile Include="App\Modules\User\View\Partial\WidgetUserConnectPartialView.php" />
     <Compile Include="App\Modules\User\View\PwdChangeView.php" />
     <Compile Include="App\Modules\User\View\PwdForgetChangeView.php" />
     <Compile Include="App\Modules\User\View\PwdForgetView.php" />
@@ -98,12 +98,15 @@
     <Compile Include="Core\Toolbox\Auth.php" />
     <Compile Include="Public\index.php" />
     <Compile Include="Public\vendor\devfolio-master\lib\lightbox\links.php" />
-    <Compile Include="Tests\UserFormTest.php" />
+    <Compile Include="index.php" />
+    <Compile Include="Tests\CoreToolboxAuthTest.php" />
+    <Compile Include="Tests\CoreToolboxFlashTest.php" />
+    <Compile Include="Tests\CoreToolboxRequestTest.php" />
+    <Compile Include="Tests\UserConnectTest.php" />
+    <Compile Include="Tests\userForm\UserConnexionFormTest.php" />
+    <Compile Include="Tests\userForm\UserForgetChangeFormTest.php" />
     <Compile Include="Tests\UserManagerTest.php" />
     <Compile Include="Tests\UserTableTest.php" />
-    <Compile Include="Tests\CoreToolboxAuthTest.php" />
-    <Compile Include="Tests\CoreToolboxRequestTest.php" />
-    <Compile Include="Tests\CoreToolboxFlashTest.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".scannerwork\" />
@@ -123,7 +126,7 @@
     <Folder Include="App\Modules\User\Form\" />
     <Folder Include="App\Modules\User\Render\" />
     <Folder Include="App\Modules\User\View\" />
-    <Folder Include="App\Modules\User\View\partial\" />
+    <Folder Include="App\Modules\User\View\Partial\" />
     <Folder Include="Config\" />
     <Folder Include="Core\" />
     <Folder Include="Core\Autoloader\" />
@@ -134,6 +137,7 @@
     <Folder Include="Core\Model\" />
     <Folder Include="Core\Toolbox\" />
     <Folder Include="Core\Render\" />
+    <Folder Include="PLaylist\" />
     <Folder Include="oc_projet5\" />
     <Folder Include="Public\images\avatar\" />
     <Folder Include="Public\vendor\devfolio-master\" />
@@ -180,6 +184,7 @@
     <Folder Include="Public\vendor\jquery\" />
     <Folder Include="Public\vendor\trumbowyg\" />
     <Folder Include="Public\vendor\trumbowyg\ui\" />
+    <Folder Include="Tests\userForm\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".scannerwork\.gitignore" />
@@ -488,6 +493,7 @@
     <Content Include="App\Modules\Shared\View\Partial\4PartialView.php" />
     <Content Include="composer.json" />
     <Content Include="phpunit.xml" />
+    <Content Include="PLaylist\Core.playlist" />
     <Content Include="Public\fonts\fontawesome-webfont.eot" />
     <Content Include="Public\fonts\fontawesome-webfont.svg" />
     <Content Include="Public\fonts\fontawesome-webfont.ttf" />

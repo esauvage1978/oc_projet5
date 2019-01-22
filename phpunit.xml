@@ -34,9 +34,11 @@
             <directory suffix=".php">./Core/Database/</directory>
             <directory suffix=".php">./Core/Model/</directory>
             <directory suffix=".php">./Core/Form/</directory>
+            <directory suffix=".php">./Core/Form/WebControls/</directory>
             <directory suffix=".php">./Core/Toolbox/</directory>
             <directory suffix=".php">./App/Modules/User/Model/</directory>
             <directory suffix=".php">./App/Modules/User/Form/</directory>
+            <directory suffix=".php">./App/Modules/User/Form/WebControls/</directory>
         </whitelist>
     </filter>
   <logging>

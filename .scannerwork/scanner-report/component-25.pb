@@ -1,1 +1,1 @@
-&App/Modules/User/Model/UserManager.php 2phpXÔhr&App/Modules/User/Model/UserManager.php
+%App/Modules/User/Form/checkSecret.php 2phpX&hr%App/Modules/User/Form/checkSecret.php

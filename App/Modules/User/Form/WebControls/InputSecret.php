@@ -13,7 +13,6 @@ use ES\Core\Form\WebControls\WebControlsInput;
  */
 class InputSecret extends WebControlsInput
 {
-    private $_webControls;
 
     public function __construct($data)
     {

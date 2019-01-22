@@ -2,5 +2,5 @@ projectKey=oc_projet5
 serverUrl=http://localhost:9002
 serverVersion=7.5.0.20543
 dashboardUrl=http://localhost:9002/dashboard?id=oc_projet5
-ceTaskId=AWhsWcN_R4hRyy67_MpT
-ceTaskUrl=http://localhost:9002/api/ce/task?id=AWhsWcN_R4hRyy67_MpT
+ceTaskId=AWh2W5gvR4hRyy67_Mpe
+ceTaskUrl=http://localhost:9002/api/ce/task?id=AWh2W5gvR4hRyy67_Mpe

@@ -24,6 +24,7 @@ class UserPwdChangeForm extends Form implements IForm
     const SECRET_CONFIRM=2;
     const SECRET_OLD=3;
 
+    use checkSecret;
 
     public function __construct($data)
     {
@@ -33,29 +34,18 @@ class UserPwdChangeForm extends Form implements IForm
         $this->controls[self::SECRET_OLD]=new InputSecretOld($data);
     }
 
+
     public function check():bool
     {
         $checkOK=true;
 
+        $checkOK=$this->checkSecretNewAndConfirm();
 
         if(!$this->controls[self::SECRET_OLD]->check()) {
             $checkOK=false;
         }
 
-        if(!$this->controls[self::SECRET_NEW]->check()) {
-            $checkOK=false;
-        }
 
-        if(!$this->controls[self::SECRET_CONFIRM]->check()) {
-            $checkOK=false;
-        }
-
-        if(!Auth::passwordCompare($this->controls[self::SECRET_NEW]->text(),
-            $this->controls[self::SECRET_CONFIRM]->text(),false)) {
-
-            $this->controls[self::SECRET_NEW]->setIsInvalid('Le mot de passe et/ou sa confirmation sont invalides' );
-            return false;
-        }
         return $checkOK ;
     }
 }

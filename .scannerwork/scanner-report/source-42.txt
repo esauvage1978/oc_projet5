@@ -1,10 +1,28 @@
 <?php
-/**
- * User: esauvage1978
- * 10/01/2019
- */
 
-define('ES_DB_HOST', 'localhost');
-define('ES_DB_NAME', 'oc_projet5');
-define('ES_DB_USERNAME', 'root');
-define('ES_DB_PASSWORD', 'palmier');
+namespace ES\App\Modules\User\Form\WebControls;
+
+use ES\Core\Form\WebControls\WebControlsInput;
+/**
+ * ButtonsConnexion short summary.
+ *
+ * ButtonsConnexion description.
+ *
+ * @version 1.0
+ * @author ragus
+ */
+class InputSecretConfirm extends WebControlsInput
+{
+
+    public function __construct($data)
+    {
+        parent::__construct ($data);
+        $this->SetLabel('Confirmation du mot de passe');
+        $this->SetType(WebControlsInput::TYPE_SECRET);
+        $this->setName('secretConfirm');
+        $this->setRequired();
+        $this->setMaxLength (100);
+    }
+
+
+}

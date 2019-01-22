@@ -10,8 +10,12 @@
                         <?= $form->render($form::SECRET_CONFIRM);?>
                     </div>
                     <?= $form->render($form::BUTTON);?>
+                    <a href="##INDEX##user.modify" class="btn btn-secondary">Retour</a>
                 </form>
             </div>
         </div>
+    </div>
+    <div class="col-md-4">
+        <?php require ES_ROOT_PATH_FAT_MODULES .'User/View/Partial/WidgetUserConnectPartialView.php' ?>
     </div>
 </div>

@@ -1,1 +1,1 @@
-	4App/Modules/Shared/View/Partial/FlashPartialView.php 2phpXhr4App/Modules/Shared/View/Partial/FlashPartialView.php
+	App/Modules/Shared/Render :rApp/Modules/Shared/Render

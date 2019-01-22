@@ -127,5 +127,13 @@ class CoreToolboxRequestTest extends TestCase
         $this->request->setSessionValue('test',$value);
         $this->assertSame('a&lt;br&gt;', $this->request->getSessionValue('test',Request::TYPE_HTMLENTITY));
     }
+    public function testUnsetSession()
+    {
+        $value=true;
+        $this->request->setSessionValue('test',$value);
+        $this->assertSame(true, $this->request->hasSessionValue('test'));
+        $this->request->unsetSessionValue ('test');
+        $this->assertSame(false, $this->request->hasSessionValue('test'));
+    }
     #endregion
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace ES\App\Modules\User\Render;
+
 use \ES\App\Modules\Shared\Render\SharedRenderView;
 /**
  * UserRenderView short summary.

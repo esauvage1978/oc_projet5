@@ -27,6 +27,7 @@ class UserSignupForm extends Form implements IForm
     const MAIL=3;
     const IDENTIFIANT=4;
 
+    use checkSecret;
 
     public function __construct($data)
     {
@@ -41,6 +42,8 @@ class UserSignupForm extends Form implements IForm
     {
         $checkOK=true;
 
+        $checkOK=$this->checkSecretNewAndConfirm();
+
         if(!$this->controls[self::IDENTIFIANT]->check()) {
             $checkOK=false;
         }
@@ -49,20 +52,7 @@ class UserSignupForm extends Form implements IForm
             $checkOK=false;
         }
 
-        if(!$this->controls[self::SECRET_NEW]->check()) {
-            $checkOK=false;
-        }
 
-        if(!$this->controls[self::SECRET_CONFIRM]->check()) {
-            $checkOK=false;
-        }
-
-        if(!Auth::passwordCompare($this->controls[self::SECRET_NEW]->text(),
-            $this->controls[self::SECRET_CONFIRM]->text(),false)) {
-
-            $this->controls[self::SECRET_NEW]->setIsInvalid('Le mot de passe et/ou sa confirmation sont invalides' );
-            return false;
-        }
         return $checkOK ;
     }
 

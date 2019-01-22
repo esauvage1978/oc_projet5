@@ -1,1 +1,1 @@
-2Core/Database/BddAction.php 2phpXFhrCore/Database/BddAction.php
+2'App/Modules/User/View/ConnexionView.php 2phpXhr'App/Modules/User/View/ConnexionView.php

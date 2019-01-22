@@ -1,1 +1,1 @@
-?Core/Toolbox :>@GrCore/Toolbox
+?*App/Modules/User/View/UserTemplateView.php 2phpXhr*App/Modules/User/View/UserTemplateView.php

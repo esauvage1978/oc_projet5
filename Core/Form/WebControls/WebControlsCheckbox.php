@@ -43,8 +43,9 @@ class WebControlsCheckbox extends WebControls
     public function getChecked()
     {
         $retour=$this->text();
-        if($retour=='1' || $retour=='on' )
+        if($retour=='1' || $retour=='on' ) {
             return 'checked';
+        }
         return '';
     }
     public function isChecked() :bool

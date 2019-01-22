@@ -29,10 +29,7 @@ class Request
     {
         return isset($this->_get[$key]);
     }
-    public function unsetGet()
-    {
-        unset($this->_get);
-    }
+
     #endregion
 
     #region POST

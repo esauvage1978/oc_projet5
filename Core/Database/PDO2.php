@@ -10,7 +10,7 @@ namespace ES\Core\Database;
 
 use PDO;
 
-require_once ES_ROOT_PATH_FAT . 'config\\bdd.php';
+require_once ES_ROOT_PATH_FAT . 'Config/bdd.php';
 
 /**
  * Classe implémentant le singleton pour PDO

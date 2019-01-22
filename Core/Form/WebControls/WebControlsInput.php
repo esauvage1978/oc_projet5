@@ -91,8 +91,9 @@ class WebControlsInput extends WebControls
     {
         $retour= '<label for="' . $this->_name . '">'. parent::getLabel()  .'</label>';
 
-        if($this->_type==self::TYPE_HIDDEN)
+        if($this->_type==self::TYPE_HIDDEN) {
             $retour='';
+        }
 
         return $retour;
     }

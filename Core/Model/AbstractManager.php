@@ -37,9 +37,13 @@ abstract class AbstractManager
      * Fonction retournant l'ensemble des données de la table
      * @return mixed
      */
-    public function getAll()
+    public function getAll($key=null,$value=null)
     {
-        return $this->query($this->_selectAll . '1=1  ORDER BY ' . static::$order_by . ';');
+        if(isset($key) && isset($value)) {
+            return $this->query($this->_selectAll . 'u_' . $key .'=' . $value . ' ORDER BY ' . static::$order_by . ';');
+        } else {
+            return $this->query($this->_selectAll . '1=1  ORDER BY ' . static::$order_by . ';');
+        }
     }
 
     /**

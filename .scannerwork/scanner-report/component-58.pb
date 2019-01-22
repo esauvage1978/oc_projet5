@@ -1,1 +1,1 @@
-:Core/Model/ITable.php 2phpXhrCore/Model/ITable.php
+:-App/Modules/User/View/PwdForgetChangeView.php 2phpXhr-App/Modules/User/View/PwdForgetChangeView.php

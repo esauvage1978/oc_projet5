@@ -33,7 +33,7 @@ class AbstractController
     protected function view($page,$data)
     {
         $this->renderView->render(
-            ES_ROOT_PATH_FAT_MODULES . static::$module .  '\\View\\'. $page .'.php',
+            ES_ROOT_PATH_FAT_MODULES . static::$module .  '/View/'. $page .'.php',
             $data);
     }
 }

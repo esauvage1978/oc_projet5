@@ -1,1 +1,1 @@
-7Core/Model/AbstractManager.php 2phpXœhrCore/Model/AbstractManager.php
+7$App/Modules/User/View/ModifyView.php 2phpXhr$App/Modules/User/View/ModifyView.php
