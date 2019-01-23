@@ -20,6 +20,7 @@
     "phpunit/phpunit": "6.5.9"
   },
   "require": {
-    "twbs/bootstrap": "4.2.1"
+    "twbs/bootstrap": "4.2.1",
+    "phpmailer/phpmailer": "^6.0"
   }
 }

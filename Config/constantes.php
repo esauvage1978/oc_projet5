@@ -8,7 +8,7 @@ define('ES_APPLICATION_NOM','MY LOST UNIVER');
 
 
 define('ES_ROOT_PATH_FAT', dirname(__DIR__). '/');
-define('ES_ROOT_PATH_WEB', 'https://mylostuniver.com');
+define('ES_ROOT_PATH_WEB', 'http://localhost/oc_projet5');
 
 define('ES_ROOT_PATH_FAT_INDEX', ES_ROOT_PATH_FAT. 'Public/index.php');
 define('ES_ROOT_PATH_WEB_INDEX', ES_ROOT_PATH_WEB. '/');
@@ -35,3 +35,12 @@ define('ES_GESTIONNAIRE',4);
 define('ES_MODERATEUR',3);
 define('ES_REDACTEUR',2);
 define('ES_VISITEUR',1);
+
+
+//PHPMAILER
+
+define('SMTP_HOST','pro1.mail.ovh.net');
+define('SMTP_PORT','587');
+define('SMTP_USER_MAIL','emmanuel.sauvage@mylostuniver.com');
+define('SMTP_USER_NAME','Emmanuel SAUVAGE');
+define('SMTP_USER_PASSWORD','Fckgwrhqq101');

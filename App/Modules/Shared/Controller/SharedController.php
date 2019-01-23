@@ -3,6 +3,7 @@
 namespace ES\App\Modules\Shared\Controller;
 
 use \ES\Core\Controller\AbstractController;
+use \ES\App\Modules\User\Controller\UserController;
 
 
 /**
@@ -25,5 +26,15 @@ class SharedController extends AbstractController
             ]);
     }
 
+    public function dashboard()
+    {
+        $userController=new UserController();
+        $contentDashboard=$userController->getWidgetDashboard ();
+        $this->view('DashboardView',
+    [
+        'title'=>'Tableau de bord',
+        'contentDashboard'=>$contentDashboard
+            ]);
+    }
 
 }

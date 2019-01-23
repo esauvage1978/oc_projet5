@@ -43,6 +43,9 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll" href="##INDEX###about">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll" href="##INDEX###about">Home</a>
+                    </li>
                     <?= isset($menuUser)?$menuUser:'';?>
                 </ul>
             </div>
@@ -85,59 +88,57 @@
     </div>
     <?php endif ?>
 
-    <section class="blog-wrapper sect-pt4" id="topsection">
-        <div class="container">
-            <div class="row">
-                <?php require ES_ROOT_PATH_FAT_MODULES .'Shared/View/Partial/FlashPartialView.php';?>
-            </div>
-            <?= $content??'Erreur, pas de contenu !!!'; ?>
-
+    <div class="container">
+        <div class="row">
+            <?php require ES_ROOT_PATH_FAT_MODULES .'Shared/View/Partial/FlashPartialView.php';?>
         </div>
-    </section>
+        </div>
+        <?= $content??'Erreur, pas de contenu !!!'; ?>
 
 
 
-    <!--/ Section Contact-Footer Star /-->
-    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(##DIR_VENDOR##devfolio-master/img/bg1.jpg)">
-        <div class="overlay-mf"></div>
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="copyright-box">
-                            <p class="copyright">
-                                &copy; Copyright
-                                <strong>Emmanuel SAUVAGE</strong>. Tous droit réservé.
-                            </p>
+
+        <!--/ Section Contact-Footer Star /-->
+        <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(##DIR_VENDOR##devfolio-master/img/bg1.jpg)">
+            <div class="overlay-mf"></div>
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="copyright-box">
+                                <p class="copyright">
+                                    &copy; Copyright
+                                    <strong>Emmanuel SAUVAGE</strong>. Tous droit réservé.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-    </section>
-    <!--/ Section Contact-footer End /-->
+            </footer>
+        </section>
+        <!--/ Section Contact-footer End /-->
 
-    <a href="#" class="back-to-top">
-        <i class="fa fa-chevron-up"></i>
-    </a>
-    <div id="preloader"></div>
-
+        <a href="#" class="back-to-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+        <div id="preloader"></div>
 
 
-    <!-- JavaScript Libraries -->
-    <script src="##DIR_VENDOR##devfolio-master/lib/jquery/jquery.min.js"></script>
-    <script src="##DIR_VENDOR##devfolio-master/lib/jquery/jquery-migrate.min.js"></script>
-    <script src="##DIR_VENDOR##devfolio-master/lib/popper/popper.min.js"></script>
-    <script src="##DIR_VENDOR##devfolio-master/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="##DIR_VENDOR##devfolio-master/lib/easing/easing.min.js"></script>
-    <script src="##DIR_VENDOR##devfolio-master/lib/counterup/jquery.waypoints.min.js"></script>
-    <script src="##DIR_VENDOR##devfolio-master/lib/counterup/jquery.counterup.js"></script>
-    <script src="##DIR_VENDOR##devfolio-master/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="##DIR_VENDOR##devfolio-master/lib/lightbox/js/lightbox.min.js"></script>
-    <script src="##DIR_VENDOR##devfolio-master/lib/typed/typed.min.js"></script>
+
+        <!-- JavaScript Libraries -->
+        <script src="##DIR_VENDOR##devfolio-master/lib/jquery/jquery.min.js"></script>
+        <script src="##DIR_VENDOR##devfolio-master/lib/jquery/jquery-migrate.min.js"></script>
+        <script src="##DIR_VENDOR##devfolio-master/lib/popper/popper.min.js"></script>
+        <script src="##DIR_VENDOR##devfolio-master/lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="##DIR_VENDOR##devfolio-master/lib/easing/easing.min.js"></script>
+        <script src="##DIR_VENDOR##devfolio-master/lib/counterup/jquery.waypoints.min.js"></script>
+        <script src="##DIR_VENDOR##devfolio-master/lib/counterup/jquery.counterup.js"></script>
+        <script src="##DIR_VENDOR##devfolio-master/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="##DIR_VENDOR##devfolio-master/lib/lightbox/js/lightbox.min.js"></script>
+        <script src="##DIR_VENDOR##devfolio-master/lib/typed/typed.min.js"></script>
 
 
-    <!-- Template Main Javascript File -->
-    <script src="##DIR_VENDOR##devfolio-master/js/main.js"></script>
+        <!-- Template Main Javascript File -->
+        <script src="##DIR_VENDOR##devfolio-master/js/main.js"></script>
 </body>
 </html>

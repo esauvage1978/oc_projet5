@@ -39,13 +39,30 @@ abstract class AbstractManager
      */
     public function getAll($key=null,$value=null)
     {
-        if(isset($key) && isset($value)) {
-            return $this->query($this->_selectAll . 'u_' . $key .'=' . $value . ' ORDER BY ' . static::$order_by . ';');
+        if($key==='validaccount' && $value===0) {
+            $retour= $this->query($this->_selectAll . ' u_valid_account_date is null ORDER BY ' . static::$order_by . ';');
+        } else if($key==='validaccount' && $value===1) {
+            $retour= $this->query($this->_selectAll . ' u_valid_account_date is not null ORDER BY ' . static::$order_by . ';');
+        } else if(isset($key) && isset($value)) {
+            $retour= $this->query($this->_selectAll . 'u_' . $key .'=' . $value . ' ORDER BY ' . static::$order_by . ';');
         } else {
-            return $this->query($this->_selectAll . '1=1  ORDER BY ' . static::$order_by . ';');
+            $retour= $this->query($this->_selectAll . '1=1  ORDER BY ' . static::$order_by . ';');
         }
+        return $retour;
     }
-
+    public function count($key=null,$value=null)
+    {
+        if($key==='validaccount' && $value===0) {
+            $retour= $this->query($this->_selectCount . ' u_valid_account_date is null ;',null,true);
+        } else if($key==='validaccount' && $value===1) {
+            $retour= $this->query($this->_selectCount . ' u_valid_account_date is not null ;',null,true);
+        } else if(isset($key) && isset($value)) {
+            $retour= $this->query($this->_selectCount . 'u_' . $key .'=' . $value . ';',null,true);
+        } else {
+            $retour= $this->query($this->_selectCount . '1=1  ;',null,true);
+        }
+        return $retour['count(*)'];
+    }
     /**
      * Summary of find : Recherche un enregistrement
      * @param mixed $identifiant

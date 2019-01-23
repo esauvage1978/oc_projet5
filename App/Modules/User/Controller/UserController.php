@@ -51,6 +51,22 @@ class UserController extends AbstractController
 
     }
 
+    public function getWidgetDashboard():string
+    {
+        $numberTotal=$this->_userManager->count();
+        $numberNotActive=$this->_userManager->count('validaccount',0);
+        $numberSuspendu=$this->_userManager->count ('actif',0);
+        $numberGestionnaire=$this->_userManager->count ('accreditation',4);
+        $data=[
+            'numberTotal'=>$numberTotal,
+            'numberNotActive'=>$numberNotActive,
+            'numberSuspendu'=>$numberSuspendu,
+            'numberGestionnaire'=>$numberGestionnaire
+            ];
+        $fichier=ES_ROOT_PATH_FAT_MODULES . '/'. static::$module .'/View/Partial/WidgetDashboard.php';
+        return $this->renderView->genererFichier($fichier, $data);
+    }
+
     #region CONNEXION
 
     public function connexion()
@@ -292,7 +308,7 @@ class UserController extends AbstractController
 
             $list=null;
             if(isset($filtre) && isset($number)) {
-                $filtreOK=['accreditation','actif'];
+                $filtreOK=['accreditation','actif','validaccount'];
                 if( in_array ($filtre,$filtreOK)) {
                         $list=$this->_userManager->getAll($filtre,$number);
                 } else {

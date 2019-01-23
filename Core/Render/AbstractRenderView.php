@@ -54,7 +54,7 @@ abstract class AbstractRenderView
         );
     }
 
-    protected function genererFichier($fichier, $data)
+    public function genererFichier($fichier, $data)
     {
         $strFind=array(
             '##DIR_COMPOSER##',

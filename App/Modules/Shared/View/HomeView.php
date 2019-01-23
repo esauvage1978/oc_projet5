@@ -1,9 +1,7 @@
 
 
-
-<section id="about" class="about-mf sect-pt4 route">
-    <div class="container">
-        <div class="gap"></div>
+    <section class="blog-wrapper sect-pt4" id="topsection">
+        <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="center gap fade-down section-heading">

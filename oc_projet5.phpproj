@@ -33,10 +33,8 @@
     <Compile Include="App\Modules\Shared\Controller\SharedController.php" />
     <Compile Include="App\Modules\Shared\Render\MenuRender.php" />
     <Compile Include="App\Modules\Shared\Render\SharedRenderView.php" />
+    <Compile Include="App\Modules\Shared\View\DashboardView.php" />
     <Compile Include="App\Modules\Shared\View\HomeView.php" />
-    <Compile Include="App\Modules\Shared\View\Partial\1PartialView.php" />
-    <Compile Include="App\Modules\Shared\View\Partial\2PartialView.php" />
-    <Compile Include="App\Modules\Shared\View\Partial\3PartialView.php" />
     <Compile Include="App\Modules\Shared\View\Partial\FlashPartialView.php" />
     <Compile Include="App\Modules\Shared\View\TemplateView.php" />
     <Compile Include="App\Modules\Shared\Services\Routeur.php" />
@@ -69,6 +67,7 @@
     <Compile Include="App\Modules\User\View\ConnexionView.php" />
     <Compile Include="App\Modules\User\View\ModifyView.php" />
     <Compile Include="App\Modules\User\View\ListView.php" />
+    <Compile Include="App\Modules\User\View\Partial\WidgetDashboard.php" />
     <Compile Include="App\Modules\User\View\Partial\WidgetUserConnectPartialView.php" />
     <Compile Include="App\Modules\User\View\PwdChangeView.php" />
     <Compile Include="App\Modules\User\View\PwdForgetChangeView.php" />
@@ -86,6 +85,7 @@
     <Compile Include="Core\Form\WebControls\WebControlsButtons.php" />
     <Compile Include="Core\Form\WebControls\WebControlsSelect.php" />
     <Compile Include="Core\Form\WebControls\WebControlsTextaera.php" />
+    <Compile Include="Core\Mail\Mail.php" />
     <Compile Include="Core\Model\AbstractManager.php" />
     <Compile Include="Core\Model\AbstractTable.php" />
     <Compile Include="Core\Database\BddAction.php" />
@@ -135,6 +135,7 @@
     <Folder Include="Core\Controller\" />
     <Folder Include="Core\Form\WebControls\" />
     <Folder Include="Core\Model\" />
+    <Folder Include="Core\Mail\" />
     <Folder Include="Core\Toolbox\" />
     <Folder Include="Core\Render\" />
     <Folder Include="PLaylist\" />
@@ -490,7 +491,6 @@
     <Content Include=".scannerwork\scanner-report\syntax-highlightings-68.pb" />
     <Content Include=".scannerwork\scanner-report\syntax-highlightings-8.pb" />
     <Content Include=".scannerwork\scanner-report\syntax-highlightings-9.pb" />
-    <Content Include="App\Modules\Shared\View\Partial\4PartialView.php" />
     <Content Include="composer.json" />
     <Content Include="phpunit.xml" />
     <Content Include="PLaylist\Core.playlist" />

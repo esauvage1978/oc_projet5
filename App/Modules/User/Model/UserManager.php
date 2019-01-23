@@ -5,6 +5,7 @@ namespace ES\App\Modules\User\Model;
 use ES\Core\Model\AbstractManager;
 use ES\App\Modules\User\Model\UserTable;
 Use ES\Core\Toolbox\Auth;
+use ES\Core\Mail\Mail;
 
 /**
  * UserManager short summary.
@@ -188,18 +189,18 @@ class UserManager extends AbstractManager
     public function sendMailSignup(UserTable $user):bool
     {
         $content='<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '">Lien pour activer le compte</a>';
-        if(! mail($user->getMail(),'Validation du compte',$content)) {
-            throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail. Bon en attendant de trouver comment envoyer des mails, voici le lien :'.
-            '<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '">Lien pour activer le compte</a>');
+        $mail=new Mail();
+        if(! $mail->send($user->getMail(),'Validation du compte',$content)) {
+            throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail.');
         }
         return true;
     }
     public function sendMailPwdForget(UserTable $user) :bool
     {
         $content='<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.pwdforgetchange/' . $user->getForgetHash() . '">Lien pour modifier le mot de passe</a>';
-        if(! mail($user->getMail(),'Réinitialisation du mot de passe',$content)) {
-            throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail. Bon en attendant de trouver comment envoyer des mails, voici le lien :'.
-            '<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.pwdforgetchange/' . $user->getForgetHash() . '">Lien pour modifier le mot de passe</a>');
+        $mail=new Mail();
+        if(! $mail->send($user->getMail(),'Réinitialisation du mot de passe',$content)) {
+            throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail. ');
         }
         return true;
     }
