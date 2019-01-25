@@ -15,34 +15,18 @@ class InputIdentifiant extends WebControlsInput
 {
     const NAME='identifiant';
 
-    public function __construct($data)
+    public function __construct()
     {
-        parent::__construct ($data);
-        $this->SetLabel('Identifiant');
-        $this->setName(self::NAME);
-        $this->setRequired();
-        $this->SetHelpBlock('L\'identifiant doit avoir entre 4 et 45 caractères.');
-        $this->setMaxLength (45);
+        $this->label ='Identifiant';
+        $this->name=self::NAME;
+        $this->helpBlock='L\'identifiant doit avoir entre 4 et 45 caractères.';
+        $this->maxLength=45;
     }
 
     public function check():bool
     {
         $retour=true;
-        $value=$this->text();
-        if( empty($value)) {
-
-            $this->setIsInvalid('L\'identifiant est vide');
-            $retour=false;
-
-        } else if (strlen($value)<=3 ||
-            strlen($value)>45 ) {
-
-            $this->setIsInvalid('La saisie doit être entre 4 et 45 caractères.');
-            $retour=false;
-
-        } else if (!(string)filter_var($value)) {
-
-            $this->setIsInvalid('L\'identifiant est invalide');
+        if( !parent::check()|| !parent::checkLenght(4,$this->maxLength) ) {
             $retour=false;
         }
         return $retour;

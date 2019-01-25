@@ -22,7 +22,8 @@
                 <div class="col-sm-3 col-lg-3">
                     <div class="counter-box">
                         <div class="counter-ico">
-                            <span class="ico-circle"><i class="ion-checkmark-round"></i></span>
+                            <span class="ico-circle">
+<i class="ion-chatbubbles"></i></span>
                         </div>
                         <div class="counter-num">
                             <p class="counter">450</p>
@@ -33,7 +34,7 @@
                 <div class="col-sm-3 col-lg-3">
                     <div class="counter-box pt-4 pt-md-0">
                         <div class="counter-ico">
-                            <span class="ico-circle"><i class="ion-ios-calendar-outline"></i></span>
+                            <span class="ico-circle"><i class="ion-eye"></i></span>
                         </div>
                         <div class="counter-num">
                             <p class="counter">15</p>
@@ -44,7 +45,9 @@
                 <div class="col-sm-3 col-lg-3">
                     <div class="counter-box pt-4 pt-md-0">
                         <div class="counter-ico">
-                            <span class="ico-circle"><i class="ion-ios-people"></i></span>
+                            <span class="ico-circle">
+                                <i class="ion-thumbsdown"></i>
+                            </span>
                         </div>
                         <div class="counter-num">
                             <p class="counter">550</p>
@@ -55,7 +58,9 @@
                 <div class="col-sm-3 col-lg-3">
                     <div class="counter-box pt-4 pt-md-0">
                         <div class="counter-ico">
-                            <span class="ico-circle"><i class="ion-ribbon-a"></i></span>
+                            <span class="ico-circle">
+                                <i class="ion-thumbsup"></i>
+                            </span>
                         </div>
                         <div class="counter-num">
                             <p class="counter">36</p>

@@ -1,1 +1,1 @@
-&4App/Modules/User/Form/WebControls/ButtonRecupere.php 2phpXhr4App/Modules/User/Form/WebControls/ButtonRecupere.php
+&App/Modules/User/Controller :%rApp/Modules/User/Controller

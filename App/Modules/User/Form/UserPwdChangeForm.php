@@ -4,11 +4,11 @@ namespace ES\App\Modules\User\Form;
 
 use ES\Core\Form\Form;
 use ES\Core\Form\IForm;
-use ES\Core\Toolbox\Auth;
-use ES\App\Modules\User\Form\WebControls\ButtonModifier;
-use ES\App\Modules\User\Form\WebControls\InputSecretNew;
-use ES\App\Modules\User\Form\WebControls\InputSecretConfirm;
-use ES\App\Modules\User\Form\WebControls\InputSecretOld;
+use ES\Core\Form\WebControlsStandard\ButtonModifier;
+use ES\Core\Form\WebControlsStandard\InputSecretNew;
+use ES\Core\Form\WebControlsStandard\InputSecretConfirm;
+use ES\Core\Form\WebControlsStandard\InputSecretOld;
+use ES\Core\Form\WebControlsStandard\checkSecret;
 /**
  * UserConnexionForm short summary.
  *
@@ -26,12 +26,14 @@ class UserPwdChangeForm extends Form implements IForm
 
     use checkSecret;
 
-    public function __construct($data)
+    public function __construct($datas=[])
     {
         $this->controls[self::BUTTON]=new ButtonModifier();
-        $this->controls[self::SECRET_NEW]=new InputSecretNew($data);
-        $this->controls[self::SECRET_CONFIRM]=new InputSecretConfirm($data);
-        $this->controls[self::SECRET_OLD]=new InputSecretOld($data);
+        $this->controls[self::SECRET_NEW]=new InputSecretNew();
+        $this->controls[self::SECRET_CONFIRM]=new InputSecretConfirm();
+        $this->controls[self::SECRET_OLD]=new InputSecretOld();
+
+        $this->setText($datas) ;
     }
 
 

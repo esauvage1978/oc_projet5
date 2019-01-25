@@ -12,132 +12,120 @@ namespace ES\Core\Form\WebControls;
  */
 class WebControls
 {
-    protected $_name='name';
-    protected $_id;
-    protected $_label;
-    protected $_cssClass;
-    protected $_disabled;
-    protected $_type;
-    protected $_helpBlock;
-    protected $_isValid;
-    protected $_isInvalid;
-    protected $_readOnly;
+    /**
+     * Nom du contrôle
+     * @var mixed
+     */
+    public $name='name';
+    /**
+     * Prefixe du formulaire pour compléter la variable name
+     * @var mixed
+     */
+    public $prefixeFormName;
+    /**
+     * id du contrôle = variable name si absent
+     * @var mixed
+     */
+    public $id;
+    /**
+     * Label affiché pour le contrôle
+     * @var mixed
+     */
+    public $label;
+    /**
+     * Affichage d'un commentaire d'aide à la saisie
+     * @var mixed
+     */
+    public $helpBlock;
+    /**
+     * Permet de définir si le champ est
+     * @var bool
+     */
+    public $disabled=false;
 
-    private $_data;
+    const PARAMS_NOT_FOUND="Paramètre non trouvé";
 
-    public function __construct($data)
+    /**
+     * liste des feuilles de style du contrôle
+     * @var mixed
+     */
+    private $_css;
+    /**
+     * Type de contrôle
+     * @var mixed
+     */
+    public $type;
+
+    protected static $buildParamsName='name';
+    protected static $buildParamsType='type';
+    protected static $buildParamsCSS='css';
+    protected static $buildParamsHelBlock='helpBlock';
+    protected static $buildParamsId='id';
+    protected static $buildParamsLabel='label';
+    protected static $buildParamsDisabled='disabled';
+
+    protected function buildParams($keys=[]):string
     {
-        $this->_data = $data;
-    }
+        $params='';
+        $param='';
+        foreach($keys as $key)
+        {
+            switch ($key)
+            {
+                case self::$buildParamsName:
+                    $param='name="'. $this->getName() . '"';
+                    break;
+                case self::$buildParamsType:
+                    $param='type="'. $this->type . '"';
+                    break;
+                case self::$buildParamsCSS:
+                    $param='class="' . $this->_css . '" ';
+                    break;
+                case self::$buildParamsDisabled:
+                    if ($this->disabled) {
+                        $param='	disabled';
+                    }
+                    break;
+                case self::$buildParamsLabel:
+                    $param=$this->label;
+                    break;
+                case self::$buildParamsHelBlock:
+                    if(isset($this->helpBlock)) {
+                        $param='<small class="form-text text-muted">'. $this->helpBlock . '</small>';
+                    }
+                    break;
+                case self::$buildParamsId:
+                    if(isset($this->id)) {
+                        $param='id="'.$this->id . '" ';
+                    } else {
+                        $param='id="'. $this->getName()  . '" ';
+                    }
+                    break;
+                default:
+                    $param=self::PARAMS_NOT_FOUND;
+                    break;
+            }
 
-    protected function getValue($index)
-    {
-
-        if(is_array ( $this->_data)) {
-            return array_key_exists($index,$this->_data)?$this->_data[$index]:null;
-        } else {
-            return $this->_data->getPostValue($index);
+            if($param!=self::PARAMS_NOT_FOUND && !empty($param)) {
+                $param .=' ';
+            }
+            $params .= $param;
         }
+        return $params;
     }
 
-    #region SET
-    public function setReadOnly()
-    {
-        $this->_readOnly='readonly';
-    }
-    public function SetName($value)
-    {
-        $this->_name =$value;
-    }
-    public function SetId($value)
-    {
-        $this->_id =$value;
-    }
-    public function SetLabel($value)
-    {
-        $this->_label=$value;
-    }
-    public function SetType($value)
-    {
-        $this->_type=$value;
-    }
+    #region CSS
     public function addCssClass($value)
     {
-        $this->_cssClass.= ' '. $value;
-    }
-    public function SetHelpBlock($value)
-    {
-        $this->_helpBlock=$value;
-    }
-    public function setIsValid($value)
-    {
-        $this->addCssClass ('is-valid');
-        $this->_isValid=$value;
-    }
-    public function setDisabled()
-    {
-        $this->_disabled= 'disabled';
-    }
-    public function setIsInvalid($value)
-    {
-        $this->addCssClass ('is-invalid');
-        $this->_isInvalid=$value;
+        $this->_css.= $value . ' ';
     }
     #endregion
 
-    #region GET
-    public function getReadOnly():string
+    #region NAME
+    public function getName()
     {
-        return $this->_readOnly. ' ';
-    }
-    public function getDisabled():string
-    {
-        return $this->_disabled. ' ';
-    }
-    protected function getCssClass()
-    {
-        return 'class="' . $this->_cssClass . '" ';
-    }
-    protected function getType()
-    {
-        return 'type="' . $this->_type . '" ';
-    }
-    protected function getName()
-    {
-        return 'name="'. $this->_name . '" ';
-    }
-    protected function getHelpBlock()
-    {
-        return isset($this->_helpBlock)
-            ? '<small class="form-text text-muted">'. $this->_helpBlock . '</small>'
-            :'';
-    }
-    protected function getId()
-    {
-        if(isset($this->_id)) {
-            return 'id="'.$this->_id . '" ';
-        } else {
-            return 'id="'. $this->_name . '" ';
-        }
-
-    }
-    public function getLabel()
-    {
-        return isset($this->_label)?$this->_label:$this->_name . ' ';
-    }
-    protected function getValid()
-    {
-        $retour='';
-        if (isset($this->_isValid))
-        {
-            $retour='<div class="valid-feedback">' . $this->_isValid . '</div>';
-        }
-        else if (isset($this->_isInvalid))
-        {
-            $retour='<div class="invalid-feedback">' . $this->_isInvalid . '</div>';
-        }
-        return  $retour;
-
+        return (isset($this->prefixeFormName)?$this->prefixeFormName . '_':'') . $this->name;
     }
     #endregion
+
 }

@@ -20,10 +20,7 @@ class SharedController extends AbstractController
 
     public function homeShow()
     {
-        $this->view('HomeView',
-            [
-                'title'=>'Page d\'accueil'
-            ]);
+        $this->view('HomeView',['title'=>'Page d\'accueil']);
     }
 
     public function dashboard()

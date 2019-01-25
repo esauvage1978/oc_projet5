@@ -1,6 +1,7 @@
 <?php
 
 namespace ES\App\Modules\User\Model;
+
 use \ES\Core\Model\AbstractTable;
 use \ES\Core\Model\ITable;
 
@@ -26,70 +27,31 @@ class UserTable extends AbstractTable implements ITable
     private $_validAccountDate;
     private $_accreditation;
     private $_actif;
-    private $_actif_date;
+    private $_actifDate;
+
+    const ID='u_id';
+    const IDENTIFIANT='u_identifiant';
+    const MAIL='u_mail';
+    const SECRET='u_password';
+    const FORGET_HASH='u_forget_hash';
+    const FORGET_DATE='u_forget_date';
+    const VALID_ACCOUNT_HASH='u_valid_account_hash';
+    const VALID_ACCOUNT_DATE='u_valid_account_date';
+    const ACCREDITATION='u_accreditation';
+    const ACTIF='u_actif';
+    const ACTIF_DATE='u_actif_date';
 
     private $_msgBadDate='La date est incorrecte.';
 
-    #region GET
+    #region ID
+    public function hasId():bool
+    {
+        return !empty($this->_id);
+    }
     public function getId()
     {
         return $this->_id;
     }
-    public function getIdentifiant()
-    {
-        return $this->_identifiant;
-    }
-    public function getMail()
-    {
-        return $this->_mail;
-    }
-    public function getPassword()
-    {
-        return $this->_secret;
-    }
-    public function getForgetHash()
-    {
-        return $this->_forgetHash;
-    }
-    public function getForgetDate()
-    {
-        return $this->_forgetDate;
-    }
-    public function getValidAccountHash()
-    {
-        return $this->_validAccountHash;
-    }
-    public function getValidAccountDate()
-    {
-        return $this->_validAccountDate;
-    }
-    public function getAccreditation()
-    {
-        return $this->_accreditation;
-    }
-    public function getAccreditationLabel()
-    {
-        return ES_ACCREDITATION[$this->_accreditation];
-    }
-    public function getActif()
-    {
-        return $this->_actif;
-    }
-    public function getActifLabel()
-    {
-        if( $this->_actif) {
-            return "Compte actif";
-        } else {
-            return "Compte suspendu le " . $this->getactifDate() ;
-        }
-    }
-    public function getActifDate()
-    {
-        return $this->_actif_date;
-    }
-    #endregion
-
-    #region SETTER
     public function setId($value)
     {
         if(empty($value) ||
@@ -98,6 +60,12 @@ class UserTable extends AbstractTable implements ITable
             throw new \InvalidArgumentException('Les informations de l\'id sont incorrectes.' );
         }
         $this->_id=$value;
+    }
+    #endregion
+    #region IDENTIFIANT
+    public function getIdentifiant()
+    {
+        return $this->_identifiant;
     }
     public function setIdentifiant($value)
     {
@@ -109,6 +77,12 @@ class UserTable extends AbstractTable implements ITable
         }
         $this->_identifiant=$value;
     }
+    #endregion
+    #region MAIL
+    public function getMail()
+    {
+        return $this->_mail;
+    }
     public function setMail($value)
     {
         if( empty($value) ||
@@ -119,6 +93,12 @@ class UserTable extends AbstractTable implements ITable
         }
         $this->_mail=$value;
     }
+    #endregion
+    #region SECRET
+    public function getPassword()
+    {
+        return $this->_secret;
+    }
     public function setPassword($value)
     {
         if(empty($value) ||
@@ -127,6 +107,12 @@ class UserTable extends AbstractTable implements ITable
             throw new \InvalidArgumentException('La longueur du mot de passe est incorrecte. (' . strlen($value) . ' caractères)');
         }
         $this->_secret=$value;
+    }
+    #endregion
+    #region FORGET
+    public function getForgetHash()
+    {
+        return $this->_forgetHash;
     }
     public function setForgetHash($value)
     {
@@ -137,6 +123,10 @@ class UserTable extends AbstractTable implements ITable
         }
         $this->_forgetHash=$value;
     }
+    public function getForgetDate()
+    {
+        return $this->_forgetDate;
+    }
     public function setForgetDate($value)
     {
         if(!empty($value) &&
@@ -146,6 +136,12 @@ class UserTable extends AbstractTable implements ITable
         }
 
         $this->_forgetDate=$value;
+    }
+    #endregion
+    #region VALID ACCOUNT HASH
+    public function getValidAccountHash()
+    {
+        return $this->_validAccountHash;
     }
     public function setValidAccountHash($value)
     {
@@ -165,6 +161,20 @@ class UserTable extends AbstractTable implements ITable
         }
         $this->_validAccountDate=$value;
     }
+    public function getValidAccountDate()
+    {
+        return $this->_validAccountDate;
+    }
+    #endregion
+    #region ACCREDITATION
+    public function getAccreditation()
+    {
+        return $this->_accreditation;
+    }
+    Public function getAccreditationLabel()
+    {
+        return ES_ACCREDITATION[$this->_accreditation];
+    }
     public function setAccreditation($value)
     {
         if(!filter_var($value,FILTER_VALIDATE_INT) ||
@@ -172,6 +182,24 @@ class UserTable extends AbstractTable implements ITable
             throw new \InvalidArgumentException('Les données d\'accrédication sont incorrectes.' . $value);
         }
         $this->_accreditation=$value;
+    }
+    #endregion
+    #region ACTIF
+    public function getActif()
+    {
+        return $this->_actif;
+    }
+    public function getActifLabel()
+    {
+        if( $this->_actif) {
+            return "Compte actif";
+        } else {
+            return "Compte suspendu le " . $this->getactifDate() ;
+        }
+    }
+    public function getActifDate()
+    {
+        return $this->_actifDate;
     }
     public function setActif($value)
     {
@@ -188,12 +216,27 @@ class UserTable extends AbstractTable implements ITable
             throw new \InvalidArgumentException($this->_msgBadDate);
         }
 
-        $this->_actif_date=$value;
+        $this->_actifDate=$value;
     }
     #endregion
 
-    public function hasId():bool
+    public function toArray():array
     {
-        return !empty($this->_id);
+        return [
+                self::IDENTIFIANT=>$this->getIdentifiant(),
+                self::MAIL=>$this->getMail(),
+                self::SECRET=>$this->getPassword(),
+                self::FORGET_HASH=>$this->getForgetHash(),
+                self::FORGET_DATE=>$this->getForgetDate(),
+                self::VALID_ACCOUNT_HASH=>$this->getValidAccountHash(),
+                self::VALID_ACCOUNT_DATE=>$this->getValidAccountDate(),
+                self::ACCREDITATION=>$this->getAccreditation(),
+                self::ACTIF=>$this->getActif(),
+                self::ACTIF_DATE=>$this->getActifDate()
+            ];
+    }
+    public function isValidAccount():bool
+    {
+        return !is_null( $this->getValidAccountDate() );
     }
 }

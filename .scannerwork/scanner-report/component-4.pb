@@ -1,1 +1,1 @@
-3App/Modules/Shared/Controller/restrictControler.php 2phpX-hr3App/Modules/Shared/Controller/restrictControler.php
+.App/Modules/Blog/Controller/BlogController.php 2phpXfhr.App/Modules/Blog/Controller/BlogController.php

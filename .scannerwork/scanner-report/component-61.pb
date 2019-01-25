@@ -1,1 +1,1 @@
-='App/Modules/User/View/PwdForgetView.php 2phpXhr'App/Modules/User/View/PwdForgetView.php
+=4App/Modules/User/Form/WebControls/InputSecretNew.php 2phpX1hr4App/Modules/User/Form/WebControls/InputSecretNew.php

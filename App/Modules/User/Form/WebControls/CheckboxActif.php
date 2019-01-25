@@ -15,11 +15,10 @@ class CheckboxActif extends WebControlsCheckbox
 {
     const NAME='chkactif';
 
-    public function __construct($data)
+    public function __construct()
     {
-        parent::__construct ($data);
-        $this->SetLabel('Compte actif');
-        $this->setName(self::NAME);
+        //$this->label='Compte actif';
+        $this->name=self::NAME;
     }
 
 }

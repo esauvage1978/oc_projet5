@@ -9,18 +9,38 @@
   "autoload": {
     "psr-4": {
       "\\": "Config",
+      "ES\\Core\\Controller\\": "Core/Controller",
       "ES\\Core\\Database\\": "Core/Database",
-      "ES\\Core\\Model\\": "Core/Model",
       "ES\\Core\\Form\\": "Core/Form",
+      "ES\\Core\\Form\\WebControls\\": "Core/Form/WebControls",
+      "ES\\Core\\Form\\WebControlsStandard\\": "Core/Form/WebControlsStandard",
+      "ES\\Core\\Mail\\": "Core/Mail",
+      "ES\\Core\\Model\\": "Core/Model",
+      "ES\\Core\\Render\\": "core/Render",
       "ES\\Core\\Toolbox\\": "core/Toolbox",
+      "ES\\App\\Modules\\Blog\\Controller\\": "App/Modules/Blog/Controller",
+      "ES\\App\\Modules\\Blog\\Form\\": "App/Modules/Blog/Form",
+      "ES\\App\\Modules\\Blog\\Form\\WebControls\\": "App/Modules/Blog/Form/WebControls",
+      "ES\\App\\Modules\\Blog\\Model\\": "App/Modules/Blog/Model",
+      "ES\\App\\Modules\\Blog\\Render\\": "App/Modules/Blog/Render",
+      "ES\\App\\Modules\\Blog\\View\\": "App/Modules/Blog/View",
+      "ES\\App\\Modules\\Shared\\Controller\\": "App/Modules/Shared/Controller",
+      "ES\\App\\Modules\\Shared\\Render\\": "App/Modules/Shared/Render",
+      "ES\\App\\Modules\\Shared\\Services\\": "App/Modules/Shared/Services",
+      "ES\\App\\Modules\\Shared\\View\\": "App/Modules/Shared/View",
+      "ES\\App\\Modules\\Shared\\View\\Partial\\": "App/Modules/Shared/View/Partial",
+      "ES\\App\\Modules\\User\\Controller\\": "App/Modules/User/Controller",
+      "ES\\App\\Modules\\User\\Form\\": "App/Modules/User/Form",
+      "ES\\App\\Modules\\User\\Form\\WebControls\\": "App/Modules/User/Form/WebControls",
       "ES\\App\\Modules\\User\\Model\\": "App/Modules/User/Model",
-      "ES\\App\\Modules\\User\\Form\\": "App/Modules/User/Form"
+      "ES\\App\\Modules\\User\\Render\\": "App/Modules/User/Render",
+      "ES\\App\\Modules\\User\\View\\": "App/Modules/User/View",
+      "ES\\App\\Modules\\User\\View\\Partial\\": "App/Modules/User/View/Partial"
     } },
   "require-dev": {
     "phpunit/phpunit": "6.5.9"
   },
   "require": {
-    "twbs/bootstrap": "4.2.1",
     "phpmailer/phpmailer": "^6.0"
   }
 }

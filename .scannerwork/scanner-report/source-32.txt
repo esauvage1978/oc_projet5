@@ -1,51 +1,24 @@
-<?php
-
-namespace ES\App\Modules\User\Form;
-
-use ES\Core\Form\Form;
-use ES\Core\Form\IForm;
-use ES\Core\Toolbox\Auth;
-use ES\App\Modules\User\Form\WebControls\ButtonModifier;
-use ES\App\Modules\User\Form\WebControls\InputSecretNew;
-use ES\App\Modules\User\Form\WebControls\InputSecretConfirm;
-use ES\App\Modules\User\Form\WebControls\InputSecretOld;
-/**
- * UserConnexionForm short summary.
- *
- * UserConnexionForm description.
- *
- * @version 1.0
- * @author ragus
- */
-class UserPwdChangeForm extends Form implements IForm
-{
-    const BUTTON=0;
-    const SECRET_NEW=1;
-    const SECRET_CONFIRM=2;
-    const SECRET_OLD=3;
-
-    use checkSecret;
-
-    public function __construct($data)
-    {
-        $this->controls[self::BUTTON]=new ButtonModifier();
-        $this->controls[self::SECRET_NEW]=new InputSecretNew($data);
-        $this->controls[self::SECRET_CONFIRM]=new InputSecretConfirm($data);
-        $this->controls[self::SECRET_OLD]=new InputSecretOld($data);
-    }
 
 
-    public function check():bool
-    {
-        $checkOK=true;
+    <section class="blog-wrapper sect-pt4" id="topsection">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="center gap fade-down section-heading">
+                    <h2 class="main-title">A propos de moi</h2>
+                    <hr>
+                    <p>Je suis développeur et ceci est ma page d'accueil.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 fade-up">
+                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.</p>
 
-        $checkOK=$this->checkSecretNewAndConfirm();
-
-        if(!$this->controls[self::SECRET_OLD]->check()) {
-            $checkOK=false;
-        }
-
-
-        return $checkOK ;
-    }
-}
+                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.</p>
+                
+            </div>
+            
+        </div>
+    </div>
+</section>

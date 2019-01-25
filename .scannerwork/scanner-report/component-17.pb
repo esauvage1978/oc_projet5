@@ -1,1 +1,2 @@
-App/Modules/Shared/View/Partial :rApp/Modules/Shared/View/Partial
+*App/Modules/Blog/View/BlogTemplateView.php 2phpX
+hr*App/Modules/Blog/View/BlogTemplateView.php

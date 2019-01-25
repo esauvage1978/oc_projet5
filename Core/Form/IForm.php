@@ -12,6 +12,6 @@ namespace ES\Core\Form;
  */
 interface IForm
 {
-    public function __construct($data);
+    public function __construct($datas=[]);
     public function check():bool;
 }

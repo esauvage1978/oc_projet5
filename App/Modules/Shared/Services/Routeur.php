@@ -30,7 +30,6 @@ class Routeur
     const MODULE_DEFAULT_VALUE='Shared';
     const SECTION_DEFAULT_VALUE='home';
     const ACTION_DEFAULT_VALUE='Show';
-    const ADMIN_DEFAULT_VALUE=false;
 
     /**
      * Instanciation de la class Routeur
@@ -69,7 +68,6 @@ class Routeur
     {
 
 
-        $this->_admin=self::ADMIN_DEFAULT_VALUE;
         $this->_module=self::MODULE_DEFAULT_VALUE;
         $this->_section=self::SECTION_DEFAULT_VALUE;
         $this->_action=self::ACTION_DEFAULT_VALUE;
@@ -140,15 +138,10 @@ class Routeur
 
         if(!empty($page)) {
             $pageExplode= explode('.',strtolower($page));
-            $key=0;
-            if($pageExplode[0] =='admin' ) {
-                $this->_admin='Admin';
-                $key++;
-            }
 
-            $this->_module=$pageExplode[$key];
-            $this->_section= (isset($pageExplode[$key+1]))?$pageExplode[$key+1]:null;
-            $this->_action= (isset($pageExplode[$key+2]))?$pageExplode[$key+2]:null;
+            $this->_module=$pageExplode[0];
+            $this->_section= (isset($pageExplode[1]))?$pageExplode[1]:null;
+            $this->_action= (isset($pageExplode[2]))?$pageExplode[2]:null;
 
             $retour=true;
         }

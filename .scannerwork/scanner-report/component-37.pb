@@ -1,1 +1,1 @@
-%/App/Modules/User/Form/WebControls/InputHash.php 2phpXhr/App/Modules/User/Form/WebControls/InputHash.php
+%.App/Modules/User/Controller/UserController.php 2phpX“hr.App/Modules/User/Controller/UserController.php

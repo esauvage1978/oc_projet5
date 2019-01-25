@@ -1,1 +1,1 @@
-!5App/Modules/User/Form/WebControls/ButtonConnexion.php 2phpXhr5App/Modules/User/Form/WebControls/ButtonConnexion.php
+!App/Modules/Shared/View/Partial :rApp/Modules/Shared/View/Partial

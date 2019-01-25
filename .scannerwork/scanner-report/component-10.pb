@@ -1,2 +1,2 @@
 
-App/Modules/Shared/Controller :rApp/Modules/Shared/Controller
+App/Modules/Blog/Model :	rApp/Modules/Blog/Model

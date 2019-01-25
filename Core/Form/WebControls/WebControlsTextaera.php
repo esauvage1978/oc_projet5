@@ -2,7 +2,6 @@
 
 namespace ES\Core\Form\WebControls;
 
-use ES\Core\Form\WebControls\WebControlsInput;
 /**
  * WebControlsTextaera short summary.
  *

@@ -37,31 +37,13 @@ abstract class AbstractManager
      * Fonction retournant l'ensemble des données de la table
      * @return mixed
      */
-    public function getAll($key=null,$value=null)
+    public function getAll()
     {
-        if($key==='validaccount' && $value===0) {
-            $retour= $this->query($this->_selectAll . ' u_valid_account_date is null ORDER BY ' . static::$order_by . ';');
-        } else if($key==='validaccount' && $value===1) {
-            $retour= $this->query($this->_selectAll . ' u_valid_account_date is not null ORDER BY ' . static::$order_by . ';');
-        } else if(isset($key) && isset($value)) {
-            $retour= $this->query($this->_selectAll . 'u_' . $key .'=' . $value . ' ORDER BY ' . static::$order_by . ';');
-        } else {
-            $retour= $this->query($this->_selectAll . '1=1  ORDER BY ' . static::$order_by . ';');
-        }
-        return $retour;
+        return $this->query($this->_selectAll . '1=1  ORDER BY ' . static::$order_by . ';');
     }
-    public function count($key=null,$value=null)
+    public function count()
     {
-        if($key==='validaccount' && $value===0) {
-            $retour= $this->query($this->_selectCount . ' u_valid_account_date is null ;',null,true);
-        } else if($key==='validaccount' && $value===1) {
-            $retour= $this->query($this->_selectCount . ' u_valid_account_date is not null ;',null,true);
-        } else if(isset($key) && isset($value)) {
-            $retour= $this->query($this->_selectCount . 'u_' . $key .'=' . $value . ';',null,true);
-        } else {
-            $retour= $this->query($this->_selectCount . '1=1  ;',null,true);
-        }
-        return $retour['count(*)'];
+        return $this->query($this->_selectCount . '1=1  ;',null,true)['count(*)'];
     }
     /**
      * Summary of find : Recherche un enregistrement
@@ -152,22 +134,26 @@ abstract class AbstractManager
      * @param mixed $only_one
      * @return mixed
      */
-    public function query($requete, $arguments=null,$only_one=false)
+    public function query($requete, $arguments=null,$onlyOne=false,$createClass=true)
     {
         if (isset($arguments)) {
-            $datas=$this->_req->prepare($requete, $arguments, $only_one);
+            $datas=$this->_req->prepare($requete, $arguments, $onlyOne);
         } else {
-            $datas=$this->_req->query($requete,$only_one);
+            $datas=$this->_req->query($requete,$onlyOne);
         }
 
         $dataReturn=null;
         if (isset($datas)) {
-            if($only_one) {
+            if($onlyOne) {
                 $dataReturn = $datas;
             } else {
                 $dataReturn=array();
-                foreach ($datas as $data) {
-                    $dataReturn[] = $this->createClassTable($data);
+                if($createClass) {
+                    foreach ($datas as $data) {
+                        $dataReturn[] = $this->createClassTable($data);
+                    }
+                } else {
+                    $dataReturn=$datas;
                 }
             }
         }

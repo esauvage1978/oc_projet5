@@ -24,13 +24,19 @@ class Form
 
     public function text($key)
     {
-        return $this->controls[$key]->text();
+        return $this->controls[$key]->text;
     }
 
-    public function select($name, $options = [])
+    protected function setText($datas=[])
     {
-        $this->makeOptions($options,$name);
+        foreach($datas as $name=>$value) {
+            foreach($this->controls as $control) {
+                if( $control->getName() === $name) {
+                    $control->text=$value;
+                }
+            }
 
+        }
 
 
     }

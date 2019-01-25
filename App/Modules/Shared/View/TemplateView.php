@@ -20,10 +20,16 @@
     <link href="##DIR_VENDOR##devfolio-master/lib/ionicons/css/ionicons.min.css" rel="stylesheet" />
     <link href="##DIR_VENDOR##devfolio-master/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
     <link href="##DIR_VENDOR##devfolio-master/lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
-
+    <link href="##DIR_VENDOR##DataTables/datatables.min.css" rel="stylesheet" type="text/css" />
     <!-- Main Stylesheet File -->
     <link href="##DIR_VENDOR##devfolio-master/css/style.css" rel="stylesheet" />
-
+    
+    <script src="##DIR_VENDOR##devfolio-master/lib/jquery/jquery.min.js"></script>
+    <script src="##DIR_VENDOR##DataTables/datatables.min.js"></script>
+    
+    <script src="##DIR_PUBLIC##js/liste.js"></script>
+    
+    
 </head><!--/head-->
 <body id="page-top">
     <!--/ Nav Star /-->
@@ -41,10 +47,10 @@
             <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll" href="##INDEX###about">Home</a>
+                        <a class="nav-link js-scroll" href="##INDEX###topContent">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll" href="##INDEX###about">Home</a>
+                        <a class="nav-link js-scroll" href="##INDEX##blog.list#blogtopsection">Blog</a>
                     </li>
                     <?= isset($menuUser)?$menuUser:'';?>
                 </ul>
@@ -88,57 +94,57 @@
     </div>
     <?php endif ?>
 
-    <div class="container">
+    <div class="container" id="topContent">
         <div class="row">
             <?php require ES_ROOT_PATH_FAT_MODULES .'Shared/View/Partial/FlashPartialView.php';?>
         </div>
-        </div>
-        <?= $content??'Erreur, pas de contenu !!!'; ?>
+    </div>
+    <?= $content??'Erreur, pas de contenu !!!'; ?>
 
 
 
 
-        <!--/ Section Contact-Footer Star /-->
-        <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(##DIR_VENDOR##devfolio-master/img/bg1.jpg)">
-            <div class="overlay-mf"></div>
-            <footer>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="copyright-box">
-                                <p class="copyright">
-                                    &copy; Copyright
-                                    <strong>Emmanuel SAUVAGE</strong>. Tous droit réservé.
-                                </p>
-                            </div>
+    <!--/ Section Contact-Footer Star /-->
+    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(##DIR_VENDOR##devfolio-master/img/bg1.jpg)">
+        <div class="overlay-mf"></div>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="copyright-box">
+                            <p class="copyright">
+                                &copy; Copyright
+                                <strong>Emmanuel SAUVAGE</strong>. Tous droit réservé.
+                            </p>
                         </div>
                     </div>
                 </div>
-            </footer>
-        </section>
-        <!--/ Section Contact-footer End /-->
+            </div>
+        </footer>
+    </section>
+    <!--/ Section Contact-footer End /-->
 
-        <a href="#" class="back-to-top">
-            <i class="fa fa-chevron-up"></i>
-        </a>
-        <div id="preloader"></div>
-
-
-
-        <!-- JavaScript Libraries -->
-        <script src="##DIR_VENDOR##devfolio-master/lib/jquery/jquery.min.js"></script>
-        <script src="##DIR_VENDOR##devfolio-master/lib/jquery/jquery-migrate.min.js"></script>
-        <script src="##DIR_VENDOR##devfolio-master/lib/popper/popper.min.js"></script>
-        <script src="##DIR_VENDOR##devfolio-master/lib/bootstrap/js/bootstrap.min.js"></script>
-        <script src="##DIR_VENDOR##devfolio-master/lib/easing/easing.min.js"></script>
-        <script src="##DIR_VENDOR##devfolio-master/lib/counterup/jquery.waypoints.min.js"></script>
-        <script src="##DIR_VENDOR##devfolio-master/lib/counterup/jquery.counterup.js"></script>
-        <script src="##DIR_VENDOR##devfolio-master/lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="##DIR_VENDOR##devfolio-master/lib/lightbox/js/lightbox.min.js"></script>
-        <script src="##DIR_VENDOR##devfolio-master/lib/typed/typed.min.js"></script>
+    <a href="#" class="back-to-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+    <div id="preloader"></div>
 
 
-        <!-- Template Main Javascript File -->
-        <script src="##DIR_VENDOR##devfolio-master/js/main.js"></script>
+
+    <!-- JavaScript Libraries -->
+
+    <script src="##DIR_VENDOR##devfolio-master/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="##DIR_VENDOR##devfolio-master/lib/popper/popper.min.js"></script>
+    <script src="##DIR_VENDOR##devfolio-master/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="##DIR_VENDOR##devfolio-master/lib/easing/easing.min.js"></script>
+    <script src="##DIR_VENDOR##devfolio-master/lib/counterup/jquery.waypoints.min.js"></script>
+    <script src="##DIR_VENDOR##devfolio-master/lib/counterup/jquery.counterup.js"></script>
+    <script src="##DIR_VENDOR##devfolio-master/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="##DIR_VENDOR##devfolio-master/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="##DIR_VENDOR##devfolio-master/lib/typed/typed.min.js"></script>
+
+
+    <!-- Template Main Javascript File -->
+    <script src="##DIR_VENDOR##devfolio-master/js/main.js"></script>
 </body>
 </html>

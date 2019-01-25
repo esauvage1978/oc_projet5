@@ -1,1 +1,1 @@
-(App/Modules/User/Form/UserForgetForm.php 2phpX*hr(App/Modules/User/Form/UserForgetForm.php
+)App/Modules/Shared/View/DashboardView.php 2phpXJhr)App/Modules/Shared/View/DashboardView.php

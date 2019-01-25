@@ -2,7 +2,7 @@
 
 namespace ES\Core\Form\WebControls;
 
-use ES\Core\Form\WebControls\WebControlsInput;
+
 /**
  * WebControlsTextaera short summary.
  *
@@ -13,47 +13,85 @@ use ES\Core\Form\WebControls\WebControlsInput;
  */
 class WebControlsCheckbox extends WebControls
 {
-    protected $_liste;
-    protected $_cssClass='custom-control-input';
+    use Valid ;
+
+    /**
+     * Donnée saisie dans le champ text
+     * @var mixed
+     */
+    public $text;
+
+    protected static $buildParamsChecked='checked';
 
     public function render()
     {
-        return '<div class="custom-control custom-checkbox"><input type="checkbox"  '.
-           $this->getName() .
-           $this->getReadOnly() .
-           $this->getId() .
-           $this->getCssClass() .
-           $this->getDisabled().
-           $this->getChecked() .
+        $this->type='checkbox';
+        $this->addCssClass ('custom-control-input');
+
+        return '<div class="custom-control custom-checkbox"><input '.
+            $this->buildParams([
+                self::$buildParamsCSS,
+                self::$buildParamsType,
+                self::$buildParamsName,
+                self::$buildParamsId,
+                self::$buildParamsDisabled,
+                self::$buildParamsChecked]) .
             '>' .
-            $this->getLabel()  .
-            $this->getHelpBlock() .
-            '</div>';
+            $this->buildParams([
+                self::$buildParamsLabel,
+                self::$buildParamsHelBlock]) .
+            '</div>'.
+            $this->buildParams([
+                self::$buildParamsValid
+                ]) ;
+
     }
 
-    public function text()
+    protected function buildParams($keys=[]):string
     {
-        return $this->getValue($this->_name);
-    }
-    public function getLabel()
-    {
-        return '<label class="custom-control-label" for="' . $this->_name . '">'
-            . $this->_label  . '</label>';
-    }
-    public function getChecked()
-    {
-        $retour=$this->text();
-        if($retour=='1' || $retour=='on' ) {
-            return 'checked';
+        $params='';
+        $param='';
+        foreach($keys as $key)
+        {
+            switch ($key)
+            {
+
+                case self::$buildParamsChecked:
+                    if(isset($this->text) && ($this->text =='1' || $this->text =='on' )) {
+                        $param ='checked';
+                    }
+                    break;
+                case self::$buildParamsLabel:
+                    if(isset($this->label)) {
+                        $param= '<label class="custom-control-label" for="' . $this->name . '">'. $this->label  .'</label>';
+                    }
+                    break;
+                case self::$buildParamsValid:
+                    if ($this->_showIsValid) {
+                        $param='<div class="valid-feedback">' . $this->_validMessage . '</div>';
+                    } else if ($this->_showIsInvalid) {
+                        $param='<div class="invalid-feedback">' . $this->_validMessage . '</div>';
+                    }
+                    break;
+                default:
+                    $param=parent::buildParams([$key]);
+                    break;
+            }
+
+            if($param!=self::PARAMS_NOT_FOUND && !empty($param)) {
+                $param .=' ';
+            }
+            $params .= $param;
         }
-        return '';
+        return $params;
     }
+
     public function isChecked() :bool
     {
-        $retour=$this->render();
-        if(! strstr($retour, 'checked')) {
-            return false;
+        $retour=false;
+        if($retour=='1' || $retour=='on' ) {
+            return true;
         }
-        return true;
+        return $retour;
     }
 }

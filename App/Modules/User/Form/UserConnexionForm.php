@@ -4,9 +4,9 @@ namespace ES\App\Modules\User\Form;
 
 use ES\Core\Form\Form;
 use ES\Core\Form\IForm;
-use ES\App\Modules\User\Form\WebControls\ButtonConnexion;
-use ES\App\Modules\User\Form\WebControls\InputLogin;
-use ES\App\Modules\User\Form\WebControls\InputSecret;
+use ES\Core\Form\WebControlsStandard\ButtonConnexion;
+use ES\Core\Form\WebControlsStandard\InputLogin;
+use ES\Core\Form\WebControlsStandard\InputSecret;
 
 /**
  * UserConnexionForm short summary.
@@ -23,11 +23,13 @@ class UserConnexionForm extends Form implements IForm
     const LOGIN=1;
     const SECRET=2;
 
-    public function __construct($data)
+    public function __construct($datas=[])
     {
         $this->controls[self::BUTTON]=new ButtonConnexion();
-        $this->controls[self::LOGIN]=new InputLogin($data);
-        $this->controls[self::SECRET]=new InputSecret($data);
+        $this->controls[self::LOGIN]=new InputLogin();
+        $this->controls[self::SECRET]=new InputSecret();
+
+        $this->setText($datas) ;
     }
 
     public function check():bool

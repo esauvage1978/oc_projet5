@@ -18,45 +18,32 @@ use ES\Core\Mail\Mail;
 class UserManager extends AbstractManager
 {
     protected static $table='ocp5_user';
-    protected static $order_by= self::IDENTIFIANT. ' ASC; ';
-    protected static $id=self::ID;
+    protected static $order_by= UserTable::IDENTIFIANT. ' ASC; ';
+    protected static $id=UserTable::ID;
     protected static $classTable='ES\App\Modules\User\Model\UserTable';
-
-    const ID='u_id';
-    const IDENTIFIANT='u_identifiant';
-    const MAIL='u_mail';
-    const SECRET='u_password';
-    const FORGET_HASH='u_forget_hash';
-    const FORGET_DATE='u_forget_date';
-    const VALID_ACCOUNT_HASH='u_valid_account_hash';
-    const VALID_ACCOUNT_DATE='u_valid_account_date';
-    const ACCREDITATION='u_accreditation';
-    const ACTIF='u_actif';
-    const ACTIF_DATE='u_actif_date';
-
 
 
     #region CONTROLE
     public function identifiantExist($identifiant, $id=null):bool
     {
-        return parent::exist(self::IDENTIFIANT, $identifiant, $id);
+        return parent::exist(UserTable::IDENTIFIANT, $identifiant, $id);
     }
 
     public function mailExist($mail,$id=null) :bool
     {
-        return parent::exist(self::MAIL, $mail,$id) ;
+        return parent::exist(UserTable::MAIL, $mail,$id) ;
     }
     #endregion
 
     #region FIND
     public function findById($key) :UserTable
     {
-        return $this->findByField(self::ID,$key);
+        return $this->findByField(UserTable::ID,$key);
     }
     public function findUserByLogin($value):userTable
     {
         $retour= $this->query(
-            $this->_selectAll . ' (' . self::IDENTIFIANT . '=:params1 OR '. self::MAIL .'=:params2) ;'
+            $this->_selectAll . ' (' . UserTable::IDENTIFIANT . '=:params1 OR '. UserTable::MAIL .'=:params2) ;'
             , [
             'params1'=>$value,
             'params2'=>$value]
@@ -67,7 +54,7 @@ class UserManager extends AbstractManager
     public function findByForgetHash($key) :UserTable
     {
             $retour= $this->query(
-            $this->_selectAll . ' ' . self::FORGET_HASH . '=:params1 AND DATEDIFF( NOW() ,' . self::FORGET_DATE. ')<1;'
+            $this->_selectAll . ' ' . UserTable::FORGET_HASH . '=:params1 AND DATEDIFF( NOW() ,' . UserTable::FORGET_DATE. ')<1;'
             , [
             'params1'=>$key
             ]
@@ -77,25 +64,54 @@ class UserManager extends AbstractManager
     }
     public function findByValidAccountHash($key):userTable
     {
-        return $this->findByField(self::VALID_ACCOUNT_HASH,$key);
+        return $this->findByField(UserTable::VALID_ACCOUNT_HASH,$key);
     }
     #endregion
 
+    #region get *
+    public function getUsers($key=null,$value=null)
+    {
+        if($key==='validaccount' && $value===0) {
+            $retour= $this->query($this->_selectAll . ' u_valid_account_date is null ORDER BY ' . static::$order_by . ';');
+        } else if($key==='validaccount' && $value===1) {
+            $retour= $this->query($this->_selectAll . ' u_valid_account_date is not null ORDER BY ' . static::$order_by . ';');
+        } else if(isset($key) && isset($value)) {
+                $retour= $this->query($this->_selectAll . 'u_' . $key .'=:value ORDER BY ' . static::$order_by . ';',['value'=>$value]);
+        } else {
+            $retour= $this->getAll();
+        }
+        return $retour;
+    }
+    #endregion
+    #region count
+    public function countUsers($key=null,$value=null)
+    {
+        if($key==='validaccount' && $value===0) {
+            $retour= $this->query($this->_selectCount . ' u_valid_account_date is null ORDER BY ' . static::$order_by . ';',null, true)['count(*)'];
+        } else if($key==='validaccount' && $value===1) {
+            $retour= $this->query($this->_selectCount . ' u_valid_account_date is not null ORDER BY ' . static::$order_by . ';',true)['count(*)'];
+        } else if(isset($key) && isset($value)) {
+            $retour= $this->query($this->_selectCount . 'u_' . $key .'=:value ORDER BY ' . static::$order_by . ';',['value'=>$value],true)['count(*)'];
+        } else {
+            $retour= $this->Count();
+        }
+        return $retour;
+    }
+    #endregion
 
     public function updateUser(UserTable $user):bool
     {
-        return $this->update($user->getId(),$this->UserToArray($user));
+        return $this->update($user->getId(),$user->ToArray());
     }
     public function createUser($identifiant, $mail,$secret):UserTable
     {
-
         $user= $this->NewUser($identifiant,$mail,$secret);
 
         if(!$this->identifiantExist($identifiant) &&
           ! $this->mailExist ($mail))
         {
 
-            $retour= $this->create($this->UserToArray($user));
+            $retour= $this->create($user->ToArray());
 
             if(!$retour) {
                 throw new \InvalidArgumentException('Erreur lors de la création de l\'utilisateur');
@@ -106,43 +122,18 @@ class UserManager extends AbstractManager
         return $user;
     }
 
-    private function UserToArray($user):array
-    {
-        return [
-                self::IDENTIFIANT=>$user->getIdentifiant(),
-                self::MAIL=>$user->getMail(),
-                self::SECRET=>$user->getPassword(),
-                self::FORGET_HASH=>$user->getForgetHash(),
-                self::FORGET_DATE=>$user->getForgetDate(),
-                self::VALID_ACCOUNT_HASH=>$user->getValidAccountHash(),
-                self::VALID_ACCOUNT_DATE=>$user->getValidAccountDate(),
-                self::ACCREDITATION=>$user->getAccreditation(),
-                self::ACTIF=>$user->getActif(),
-                self::ACTIF_DATE=>$user->getActifDate()
-            ];
-    }
+
 
     public function NewUser($identifiant, $mail,$secret):UserTable
     {
-        return new UserTable
-                ([
-                    self::IDENTIFIANT=>$identifiant,
-                    self::MAIL=>$mail,
-                    self::SECRET=>Auth::passwordCrypt($secret),
-                    self::FORGET_HASH=>null,
-                    self::FORGET_DATE=>null,
-                    self::VALID_ACCOUNT_HASH=>Auth::strRandom(),
-                    self::VALID_ACCOUNT_DATE=>null,
-                    self::ACCREDITATION=>1,
-                    self::ACTIF=>1,
-                    self::ACTIF_DATE=>date(ES_NOW)
-                ]);
+        $user = new UserTable([]);
+        $user->setIdentifiant($identifiant);
+        $user->setMail($mail);
+        $user->setPassword(Auth::passwordCrypt($secret));
+        return $user;
     }
 
-    public function isValidAccount(UserTable $user):bool
-    {
-        return !is_null( $user->getValidAccountDate() );
-    }
+
 
     public function validAccountReset(UserTable $user):bool
     {

@@ -104,6 +104,8 @@ class MenuRender
                $this->menuDashbord() .
                 $this->_dropdowDivideur .
                $this->createDropDownLink ('user.list','Liste des utilisateurs') .
+                $this->_dropdowDivideur .
+               $this->createDropDownLink ('blog.categorylist','Gestion des catégories') .
                $this->_dropdownEnd;
     }
     private function renderMenuModerateur()
@@ -113,6 +115,7 @@ class MenuRender
                $this->_dropdownMiddle .
                $this->menuDashbord() .
                 $this->_dropdowDivideur .
+               $this->createDropDownLink ('blog.categorylist','Gestion des catégories') .
 
                $this->_dropdownEnd;
     }
@@ -123,6 +126,7 @@ class MenuRender
                $this->_dropdownMiddle .
                $this->menuDashbord() .
                 $this->_dropdowDivideur .
+               $this->createDropDownLink ('blog.categorylist','Gestion des catégories') .
 
                $this->_dropdownEnd;
     }

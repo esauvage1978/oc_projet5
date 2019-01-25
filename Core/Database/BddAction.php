@@ -34,7 +34,7 @@ class BddAction
         {
             $data= $pdoStatement;
         }
-        else 
+        else
         {
             ($only_one)
                     ?

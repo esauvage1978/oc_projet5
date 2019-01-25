@@ -15,10 +15,10 @@ use ES\App\Modules\User\Form\UserSignupForm;
 use ES\App\Modules\User\Form\UserForgetChangeForm;
 use ES\App\Modules\User\Form\UserModifyForm;
 
-use ES\App\Modules\User\Form\WebControls\InputHash;
-use ES\App\Modules\User\Form\WebControls\InputIdHidden;
+use ES\Core\Form\WebControlsStandard\InputHash;
+use ES\Core\Form\WebControlsStandard\InputIdHidden;
 use ES\App\Modules\User\Form\WebControls\InputIdentifiant;
-use ES\App\Modules\User\Form\WebControls\InputMail;
+use ES\Core\Form\WebControlsStandard\InputMail;
 use ES\App\Modules\User\Form\WebControls\SelectAccreditation;
 use ES\App\Modules\User\Form\WebControls\CheckboxActif;
 
@@ -53,10 +53,10 @@ class UserController extends AbstractController
 
     public function getWidgetDashboard():string
     {
-        $numberTotal=$this->_userManager->count();
-        $numberNotActive=$this->_userManager->count('validaccount',0);
-        $numberSuspendu=$this->_userManager->count ('actif',0);
-        $numberGestionnaire=$this->_userManager->count ('accreditation',4);
+        $numberTotal=$this->_userManager->countUsers();
+        $numberNotActive=$this->_userManager->countUsers('validaccount',0);
+        $numberSuspendu=$this->_userManager->countUsers ('actif',0);
+        $numberGestionnaire=$this->_userManager->countUsers ('accreditation',4);
         $data=[
             'numberTotal'=>$numberTotal,
             'numberNotActive'=>$numberNotActive,
@@ -72,7 +72,7 @@ class UserController extends AbstractController
     public function connexion()
     {
 
-        $form =new UserConnexionForm($this->_request);
+        $form =new UserConnexionForm($this->_request->getPost() );
 
         try
         {
@@ -86,9 +86,9 @@ class UserController extends AbstractController
             if($this->_request->hasPost()) {
 
 
+
                 //contrôle si les champs du formulaire sont renseignés
-                $form->check() ||
-                     $this->connexionView ($form,true);
+                $form->check() || $this->connexionView ($form,true);
 
                 //Vérification
                 $user=$this->_userManager->findUserByLogin($form->text($form::LOGIN));
@@ -104,7 +104,7 @@ class UserController extends AbstractController
                 }
 
                 //Contrôle si le compte est valide
-                if (!$this->_userManager->isValidAccount($user))  {
+                if (!$user->isValidAccount())  {
 
                     $this->_userManager->sendMailSignup($user);
                     $this->flash->writeWarning('Vous n\'avez pas validé votre compte. Le mail d\'activation est renvoyé.');
@@ -258,14 +258,14 @@ class UserController extends AbstractController
 
         //Initialisation du formulaire
         $form =new UserModifyForm([
-            InputIdHidden::NAME=>$user->getId(),
-            InputIdentifiant::NAME=>$user->getIdentifiant(),
-            InputMail::NAME=>$user->getMail(),
-            SelectAccreditation::NAME=>$user->getAccreditation(),
-            CheckboxActif::NAME=>$user->getActif()
+            UserModifyForm::$name_idHidden=>$user->getId(),
+            UserModifyForm::$name_identifiant=>$user->getIdentifiant(),
+            UserModifyForm::$name_mail=>$user->getMail(),
+            UserModifyForm::$name_accreditation=>$user->getAccreditation(),
+            UserModifyForm::$name_actif=>$user->getActif()
             ]);
 
-        $form->controls[$form::ACTIF]->setLabel($user->getActifLabel());
+        $form->controls[$form::ACTIF]->label=$user->getActifLabel();
 
         $this->modifyView($form,true);
 
@@ -304,21 +304,17 @@ class UserController extends AbstractController
                 $this->AccueilView(true) ;
             }
 
-
-
             $list=null;
             if(isset($filtre) && isset($number)) {
                 $filtreOK=['accreditation','actif','validaccount'];
                 if( in_array ($filtre,$filtreOK)) {
-                        $list=$this->_userManager->getAll($filtre,$number);
+                        $list=$this->_userManager->getUsers($filtre,$number);
                 } else {
-                        $list=$this->_userManager->getAll();
+                        $list=$this->_userManager->getUsers();
                 }
             } else {
-                $list=$this->_userManager->getAll();
+                $list=$this->_userManager->getUsers();
             }
-
-
 
             $this->listView($list,true);
         }
@@ -359,7 +355,7 @@ class UserController extends AbstractController
                 $this->AccueilView(true) ;
             }
 
-            $form =new UserForgetForm($this->_request);
+            $form =new UserForgetForm($this->_request->getPost() );
 
             if($this->_request->hasPost())
             {
@@ -426,7 +422,7 @@ class UserController extends AbstractController
             if($this->_request->hasPost())
             {
                 //récupération des paramètres
-                $form =new UserForgetChangeForm($this->_request);
+                $form =new UserForgetChangeForm($this->_request->getPost());
                 $this->pwdforgetchangeAfterPost($form);
             }
             else
@@ -460,7 +456,7 @@ class UserController extends AbstractController
         }
 
         //initialisation du formulaire
-        return new UserForgetChangeForm([InputHash::NAME=>$hash]);
+        return new UserForgetChangeForm([UserForgetChangeForm::$controlHashName=>$hash]);
     }
     public function pwdforgetchangeAfterPost($form)
     {
@@ -507,7 +503,7 @@ class UserController extends AbstractController
                 $this->AccueilView(true);
             }
 
-            $form =new UserPwdChangeForm($this->_request);
+            $form =new UserPwdChangeForm($this->_request->getPost());
 
 
             if($this->_request->hasPost()) {
@@ -596,7 +592,7 @@ class UserController extends AbstractController
     public function signup()
     {
 
-        $form =new UsersignupForm($this->_request);
+        $form =new UsersignupForm($this->_request->getPost());
 
         try
         {

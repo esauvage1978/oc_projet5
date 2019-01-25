@@ -1,1 +1,1 @@
-0App/Modules/Shared/View/Partial/2PartialView.php 2phpXhr0App/Modules/Shared/View/Partial/2PartialView.php
+App/Modules/Blog/View :rApp/Modules/Blog/View

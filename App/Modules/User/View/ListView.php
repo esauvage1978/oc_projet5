@@ -1,9 +1,13 @@
 
+<script>
+
+</script>
+
 <div id="user.list" class="row">
     <div class="col-md-8">
         <div class="post-box">
             <div class="table-responsive">
-                <table class="table table-striped table-hover table-sm">
+                <table class="table table-striped table-hover table-sm" style="width:100%" id="userlist">
                     <thead>
                         <tr>
                             <th>Identifiant</th>
@@ -102,6 +106,8 @@
                 </ul>
             </div>
         </div>
+
+
 
 
 

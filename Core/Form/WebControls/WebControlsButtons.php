@@ -2,7 +2,6 @@
 
 namespace ES\Core\Form\WebControls;
 
-use ES\Core\Form\WebControls\WebControls;
 
 /**
  * WebControlsSubmit short summary.
@@ -14,11 +13,7 @@ use ES\Core\Form\WebControls\WebControls;
  */
 class WebControlsButtons extends WebControls
 {
-
-    protected $_cssClass='btn';
-
-    protected $_type=self::TYPE_SUBMIT;
-
+    /* CSS propre aux boutons */
     const CSS_PRIMARY='btn-primary';
     const CSS_SECONDARY='btn-secondary';
     const CSS_SUCCESS='btn-success';
@@ -28,30 +23,26 @@ class WebControlsButtons extends WebControls
     const CSS_LIGHT='btn-light';
     const CSS_DARK='btn-dark';
     const CSS_LINK='btn-link';
-
-    const TYPE_SUBMIT='submit';
-    const TYPE_BUTTON='button';
-    const TYPE_RESET='reset';
-
     const CSS_LARGE='btn-lg';
     const CSS_BLOCK='btn-block';
 
-    public function __construct()
-    {
-    }
-
-
-
     public function render()
     {
+        $this->addCssClass('btn');
+        $this->type='submit';
+
         return '<button ' .
-            $this->getCssClass() .
-            $this->getType() .
-            $this->getName() .
-            $this->getId() .
+            $this->buildParams([
+                self::$buildParamsCSS,
+                self::$buildParamsType,
+                self::$buildParamsName,
+                self::$buildParamsId,
+                self::$buildParamsCSS,
+                self::$buildParamsDisabled]) .
             '>'.
-            $this->getLabel()
-            . '</button>';
+            $this->buildParams([self::$buildParamsLabel]) .
+            '</button>' .
+            $this->buildParams([self::$buildParamsHelBlock]) ;
     }
 
 

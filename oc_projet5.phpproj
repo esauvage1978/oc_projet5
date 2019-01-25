@@ -29,6 +29,23 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="App\Modules\Blog\Controller\BlogController.php" />
+    <Compile Include="App\Modules\Blog\Form\CategoryAddForm.php" />
+    <Compile Include="App\Modules\Blog\Form\CategoryModifyForm.php" />
+    <Compile Include="App\Modules\Blog\View\CategoryCRUD.php" />
+    <Compile Include="Core\Form\WebControlsStandard\ButtonSupprimer.php" />
+    <Compile Include="Core\Form\WebControlsStandard\ButtonAjouter.php" />
+    <Compile Include="App\Modules\Blog\Form\WebControls\InputCategory.php" />
+    <Compile Include="App\Modules\Blog\Model\ArticleFactory.php" />
+    <Compile Include="App\Modules\Blog\Model\ArticleManager.php" />
+    <Compile Include="App\Modules\Blog\Model\ArticleTable.php" />
+    <Compile Include="App\Modules\Blog\Model\CategoryManager.php" />
+    <Compile Include="App\Modules\Blog\Model\CategoryTable.php" />
+    <Compile Include="App\Modules\Blog\Model\CommentTable.php" />
+    <Compile Include="App\Modules\Blog\Render\BlogRenderView.php" />
+    <Compile Include="App\Modules\Blog\View\BlogTemplateView.php" />
+    <Compile Include="App\Modules\Blog\View\ListView.php" />
+    <Compile Include="App\Modules\Blog\View\ShowView.php" />
     <Compile Include="App\Modules\Shared\Controller\restrictControler.php" />
     <Compile Include="App\Modules\Shared\Controller\SharedController.php" />
     <Compile Include="App\Modules\Shared\Render\MenuRender.php" />
@@ -39,10 +56,10 @@
     <Compile Include="App\Modules\Shared\View\TemplateView.php" />
     <Compile Include="App\Modules\Shared\Services\Routeur.php" />
     <Compile Include="App\Modules\User\Controller\UserController.php" />
-    <Compile Include="App\Modules\User\Form\checkSecret.php" />
-    <Compile Include="App\Modules\User\Form\WebControls\ButtonModifier.php" />
-    <Compile Include="App\Modules\User\Form\WebControls\ButtonRecupere.php" />
-    <Compile Include="App\Modules\User\Form\WebControls\ButtonConnexion.php" />
+    <Compile Include="Core\Form\WebControlsStandard\checkSecret.php" />
+    <Compile Include="Core\Form\WebControlsStandard\ButtonModifier.php" />
+    <Compile Include="Core\Form\WebControlsStandard\ButtonRecupere.php" />
+    <Compile Include="Core\Form\WebControlsStandard\ButtonConnexion.php" />
     <Compile Include="App\Modules\User\Form\UserConnexionForm.php" />
     <Compile Include="App\Modules\User\Form\UserForgetChangeForm.php" />
     <Compile Include="App\Modules\User\Form\UserForgetForm.php" />
@@ -50,15 +67,15 @@
     <Compile Include="App\Modules\User\Form\UserPwdChangeForm.php" />
     <Compile Include="App\Modules\User\Form\UserSignupForm.php" />
     <Compile Include="App\Modules\User\Form\WebControls\CheckboxActif.php" />
-    <Compile Include="App\Modules\User\Form\WebControls\InputHash.php" />
+    <Compile Include="Core\Form\WebControlsStandard\InputHash.php" />
     <Compile Include="App\Modules\User\Form\WebControls\InputIdentifiant.php" />
-    <Compile Include="App\Modules\User\Form\WebControls\InputIdHidden.php" />
-    <Compile Include="App\Modules\User\Form\WebControls\InputLogin.php" />
-    <Compile Include="App\Modules\User\Form\WebControls\InputMail.php" />
-    <Compile Include="App\Modules\User\Form\WebControls\InputSecret.php" />
-    <Compile Include="App\Modules\User\Form\WebControls\InputSecretConfirm.php" />
-    <Compile Include="App\Modules\User\Form\WebControls\InputSecretNew.php" />
-    <Compile Include="App\Modules\User\Form\WebControls\InputSecretOld.php" />
+    <Compile Include="Core\Form\WebControlsStandard\InputIdHidden.php" />
+    <Compile Include="Core\Form\WebControlsStandard\InputLogin.php" />
+    <Compile Include="Core\Form\WebControlsStandard\InputMail.php" />
+    <Compile Include="Core\Form\WebControlsStandard\InputSecret.php" />
+    <Compile Include="Core\Form\WebControlsStandard\InputSecretConfirm.php" />
+    <Compile Include="Core\Form\WebControlsStandard\InputSecretNew.php" />
+    <Compile Include="Core\Form\WebControlsStandard\InputSecretOld.php" />
     <Compile Include="App\Modules\User\Form\WebControls\SelectAccreditation.php" />
     <Compile Include="App\Modules\User\Model\UserConnect.php" />
     <Compile Include="App\Modules\User\Model\UserTable.php" />
@@ -79,6 +96,7 @@
     <Compile Include="Core\Autoloader\Autoloader.php" />
     <Compile Include="Core\Controller\AbstractController.php" />
     <Compile Include="Core\Form\IForm.php" />
+    <Compile Include="Core\Form\WebControls\Valid.php" />
     <Compile Include="Core\Form\WebControls\WebControls.php" />
     <Compile Include="Core\Form\WebControls\WebControlsCheckbox.php" />
     <Compile Include="Core\Form\WebControls\WebControlsInput.php" />
@@ -98,21 +116,34 @@
     <Compile Include="Core\Toolbox\Auth.php" />
     <Compile Include="Public\index.php" />
     <Compile Include="Public\vendor\devfolio-master\lib\lightbox\links.php" />
-    <Compile Include="index.php" />
-    <Compile Include="Tests\CoreToolboxAuthTest.php" />
-    <Compile Include="Tests\CoreToolboxFlashTest.php" />
-    <Compile Include="Tests\CoreToolboxRequestTest.php" />
-    <Compile Include="Tests\UserConnectTest.php" />
+    <Compile Include="Tests\BlogCategory\CategoryManagerTest.php" />
+    <Compile Include="Tests\BlogCategory\CategoryTableTest.php" />
+    <Compile Include="Tests\Core\AuthTest.php">
+      <Publishable>False</Publishable>
+    </Compile>
+    <Compile Include="Tests\Core\FlashTest.php">
+      <Publishable>False</Publishable>
+    </Compile>
+    <Compile Include="Tests\Core\RequestTest.php" />
+    <Compile Include="Tests\User\UserConnectTest.php" />
     <Compile Include="Tests\userForm\UserConnexionFormTest.php" />
     <Compile Include="Tests\userForm\UserForgetChangeFormTest.php" />
-    <Compile Include="Tests\UserManagerTest.php" />
-    <Compile Include="Tests\UserTableTest.php" />
+    <Compile Include="Tests\User\UserManagerTest.php" />
+    <Compile Include="Tests\User\UserTableTest.php" />
+    <Compile Include="vendor\phpunit\phpunit\src\Util\Test.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".scannerwork\" />
     <Folder Include=".scannerwork\scanner-report\" />
     <Folder Include="App\" />
     <Folder Include="App\Modules\" />
+    <Folder Include="App\Modules\Blog\" />
+    <Folder Include="App\Modules\Blog\Controller\" />
+    <Folder Include="App\Modules\Blog\Form\WebControls\" />
+    <Folder Include="App\Modules\Blog\Model\" />
+    <Folder Include="App\Modules\Blog\Form\" />
+    <Folder Include="App\Modules\Blog\View\" />
+    <Folder Include="App\Modules\Blog\Render\" />
     <Folder Include="App\Modules\Shared\View\Partial\" />
     <Folder Include="App\Modules\User\" />
     <Folder Include="App\Modules\Shared\" />
@@ -133,6 +164,7 @@
     <Folder Include="Core\Database\" />
     <Folder Include="Core\Form\" />
     <Folder Include="Core\Controller\" />
+    <Folder Include="Core\Form\WebControlsStandard\" />
     <Folder Include="Core\Form\WebControls\" />
     <Folder Include="Core\Model\" />
     <Folder Include="Core\Mail\" />
@@ -141,6 +173,7 @@
     <Folder Include="PLaylist\" />
     <Folder Include="oc_projet5\" />
     <Folder Include="Public\images\avatar\" />
+    <Folder Include="Public\images\blog\" />
     <Folder Include="Public\vendor\devfolio-master\" />
     <Folder Include="Public\vendor\devfolio-master\contactform\" />
     <Folder Include="Public\vendor\devfolio-master\css\" />
@@ -185,7 +218,15 @@
     <Folder Include="Public\vendor\jquery\" />
     <Folder Include="Public\vendor\trumbowyg\" />
     <Folder Include="Public\vendor\trumbowyg\ui\" />
+    <Folder Include="Tests\Core\" />
+    <Folder Include="Tests\BlogCategory\" />
+    <Folder Include="Tests\User\" />
     <Folder Include="Tests\userForm\" />
+    <Folder Include="vendor\" />
+    <Folder Include="vendor\phpunit\" />
+    <Folder Include="vendor\phpunit\phpunit\" />
+    <Folder Include="vendor\phpunit\phpunit\src\" />
+    <Folder Include="vendor\phpunit\phpunit\src\Util\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".scannerwork\.gitignore" />
@@ -508,6 +549,7 @@
     <Content Include="Public\fonts\Pe-icon-7-stroke.ttf" />
     <Content Include="Public\fonts\Pe-icon-7-stroke.woff" />
     <Content Include="Public\HTMLPage1.html" />
+    <Content Include="Public\js\liste.js" />
     <Content Include="Public\vendor\bootstrap\bootstrap.min.css" />
     <Content Include="Public\vendor\bootstrap\bootstrap.min.js" />
     <Content Include="Public\vendor\bootstrap\css\bootstrap-grid.css" />
@@ -619,7 +661,6 @@
     <Content Include="Public\vendor\trumbowyg\trumbowyg.min.js" />
     <Content Include="Public\vendor\trumbowyg\ui\icons.svg" />
     <Content Include="Public\vendor\trumbowyg\ui\trumbowyg.min.css" />
-    <Content Include="TestsReport\clover.xml" />
     <Content Include="TestsReport\logfile.xml" />
   </ItemGroup>
 </Project>

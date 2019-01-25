@@ -1,41 +1,74 @@
-<?php
-
-namespace ES\App\Modules\User\Form;
-
-use ES\Core\Form\Form;
-use ES\App\Modules\User\Form\WebControls\ButtonRecupere;
-use ES\App\Modules\User\Form\WebControls\InputLogin;
-
-
-/**
- * UserConnexionForm short summary.
- *
- * UserConnexionForm description.
- *
- * @version 1.0
- * @author ragus
- */
-class UserForgetForm extends Form
-{
-
-    const BUTTON=0;
-    const LOGIN=1;
-
-
-    public function __construct($data)
-    {
-        $this->controls[self::BUTTON]=new ButtonRecupere();
-        $this->controls[self::LOGIN]=new InputLogin($data);
-    }
-
-    public function check():bool
-    {
-        $checkOK=true;
-
-        if(!$this->controls[self::LOGIN]->check()) {
-            $checkOK=false;
-        }
-
-        return $checkOK ;
-    }
-}
+<?= $contentDashboard; ?>
+<section class="blog-wrapper sect-pt4" id="topsection">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="title-box text-center">
+                    <h3 class="title-a">
+                        Commentaires
+                    </h3>
+                    <p class="subtitle-a">
+                        Action à réaliser sur les commentaires
+                    </p>
+                    <div class="line-mf"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-counter paralax-mf bg-image" style="background-image: url(img/counters-bg.jpg)">
+        <div class="overlay-mf"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-lg-3">
+                    <div class="counter-box">
+                        <div class="counter-ico">
+                            <span class="ico-circle">
+<i class="ion-chatbubbles"></i></span>
+                        </div>
+                        <div class="counter-num">
+                            <p class="counter">450</p>
+                            <span class="counter-text">TOTAL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-lg-3">
+                    <div class="counter-box pt-4 pt-md-0">
+                        <div class="counter-ico">
+                            <span class="ico-circle"><i class="ion-eye"></i></span>
+                        </div>
+                        <div class="counter-num">
+                            <p class="counter">15</p>
+                            <span class="counter-text">A MODERER</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-lg-3">
+                    <div class="counter-box pt-4 pt-md-0">
+                        <div class="counter-ico">
+                            <span class="ico-circle">
+                                <i class="ion-thumbsdown"></i>
+                            </span>
+                        </div>
+                        <div class="counter-num">
+                            <p class="counter">550</p>
+                            <span class="counter-text">REJETE</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-lg-3">
+                    <div class="counter-box pt-4 pt-md-0">
+                        <div class="counter-ico">
+                            <span class="ico-circle">
+                                <i class="ion-thumbsup"></i>
+                            </span>
+                        </div>
+                        <div class="counter-num">
+                            <p class="counter">36</p>
+                            <span class="counter-text">VALIDE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

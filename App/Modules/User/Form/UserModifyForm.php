@@ -4,12 +4,11 @@ namespace ES\App\Modules\User\Form;
 
 use ES\Core\Form\Form;
 use ES\Core\Form\IForm;
-use ES\Core\Toolbox\Auth;
-use ES\App\Modules\User\Form\WebControls\ButtonModifier;
-use ES\App\Modules\User\Form\WebControls\InputMail;
+use ES\Core\Form\WebControlsStandard\ButtonModifier;
+use ES\Core\Form\WebControlsStandard\InputMail;
 use ES\App\Modules\User\Form\WebControls\InputIdentifiant;
 use ES\App\Modules\User\Form\WebControls\SelectAccreditation;
-use ES\App\Modules\User\Form\WebControls\InputIdHidden;
+use ES\Core\Form\WebControlsStandard\InputIdHidden;
 use ES\App\Modules\User\Form\WebControls\CheckboxActif;
 
 /**
@@ -31,14 +30,22 @@ class UserModifyForm extends Form implements IForm
     const ID_HIDDEN=4;
     const ACTIF=5;
 
-    public function __construct($data)
+    public static $name_idHidden=InputIdHidden::NAME;
+    public static $name_identifiant=InputIdentifiant::NAME;
+    public static $name_mail=InputMail::NAME;
+    public static $name_accreditation=SelectAccreditation::NAME;
+    public static $name_actif=CheckboxActif::NAME;
+
+    public function __construct($datas=[])
     {
         $this->controls[self::BUTTON]=new ButtonModifier();
-        $this->controls[self::IDENTIFIANT]=new InputIdentifiant($data);
-        $this->controls[self::MAIL]=new InputMail($data);
-        $this->controls[self::ACCREDITATION]=new SelectAccreditation($data);
-        $this->controls[self::ID_HIDDEN]=new InputIdHidden($data);
-        $this->controls[self::ACTIF]=new CheckboxActif($data);
+        $this->controls[self::IDENTIFIANT]=new InputIdentifiant();
+        $this->controls[self::MAIL]=new InputMail();
+        $this->controls[self::ACCREDITATION]=new SelectAccreditation();
+        $this->controls[self::ID_HIDDEN]=new InputIdHidden();
+        $this->controls[self::ACTIF]=new CheckboxActif();
+
+        $this->setText($datas) ;
     }
 
     public function check():bool

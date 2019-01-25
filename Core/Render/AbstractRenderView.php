@@ -61,14 +61,18 @@ abstract class AbstractRenderView
             '##DIR_VENDOR##',
             '##DIR_PUBLIC##',
             '##INDEX##',
-            '##TITLE##'
+            '##TITLE##',
+            '##IMGBLOG##',
+            '##IMGAVATAR##'
             );
         $strReplace=array(
             ES_ROOT_PATH_WEB_COMPOSER,
             ES_ROOT_PATH_WEB_VENDOR,
             ES_ROOT_PATH_WEB_PUBLIC,
             ES_ROOT_PATH_WEB_INDEX,
-            $this->_title
+            $this->_title,
+            ES_ROOT_PATH_WEB_IMGBLOG,
+            ES_ROOT_PATH_WEB_IMGAVATAR
             );
 
 

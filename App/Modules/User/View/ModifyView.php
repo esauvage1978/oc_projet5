@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-8">
         <div class="post-box">
-            <form method="POST" action="##INDEX##user.modify/<?= $form->controls[$form::ID_HIDDEN]->text();?>">
+            <form method="POST" action="##INDEX##user.modify/<?= $form->controls[$form::ID_HIDDEN]->text;?>">
                 <?= $form->render($form::ID_HIDDEN);?>
                 <div class="form-group">
                     <?= $form->render($form::IDENTIFIANT);?>

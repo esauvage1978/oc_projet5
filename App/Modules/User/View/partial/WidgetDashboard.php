@@ -8,7 +8,7 @@
                         Utilisateur
                     </h3>
                     <p class="subtitle-a">
-                        Vision globale des utilisateurs du site : Nombre total d'utilisateur
+                        Vision globale des utilisateurs du site
                     </p>
                     <div class="line-mf"></div>
                 </div>
@@ -26,7 +26,7 @@
                         <div class="counter-box">
                             <div class="counter-ico">
                                 <span class="ico-circle">
-                                    <i class="ion-checkmark-round"></i>
+                                    <i class="ion-ios-people"></i>
                                 </span>
                             </div>
                             <div class="counter-num">
@@ -44,7 +44,7 @@
                         <div class="counter-box pt-4 pt-md-0">
                             <div class="counter-ico">
                                 <span class="ico-circle">
-                                    <i class="ion-ios-calendar-outline"></i>
+                                    <i class="ion-locked"></i>
                                 </span>
                             </div>
                             <div class="counter-num">
@@ -62,7 +62,7 @@
                         <div class="counter-box pt-4 pt-md-0">
                             <div class="counter-ico">
                                 <span class="ico-circle">
-                                    <i class="ion-ios-people"></i>
+                                    <i class="ion-pause"></i>
                                 </span>
                             </div>
                             <div class="counter-num">
@@ -80,11 +80,11 @@
                         <div class="counter-box pt-4 pt-md-0">
                             <div class="counter-ico">
                                 <span class="ico-circle">
-                                    <i class="ion-ribbon-a"></i>
+                                    <i class="ion-university"></i>
                                 </span>
                             </div>
                             <div class="counter-num">
-                                <p class="counter"><?= $numberGestionnaire; ?></p>
+                                <p class="counter"><?= empty($numberGestionnaire)?'':$numberGestionnaire; ?></p>
                                 <span class="counter-text"><?= ES_ACCREDITATION[ES_GESTIONNAIRE]; ?></span>
                                 <p>
                                     <small>Gestionnaire du site</small>

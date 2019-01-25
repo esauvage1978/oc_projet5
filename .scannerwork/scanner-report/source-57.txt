@@ -1,18 +1,26 @@
+<?php
 
-<div class="row justify-content-md-center">
-    <div class="col-md-8">
-        <div class="widget-sidebar">
-            <div class="sidebar-content">
-                <form method="POST" action="##INDEX##user.pwdchange">
-                    <div class="form-group">
-                        <?= $form->render($form::SECRET_OLD);?>
-                        <?= $form->render($form::SECRET_NEW);?>
-                        <?= $form->render($form::SECRET_CONFIRM);?>
-                    </div>
-                    <?= $form->render($form::BUTTON);?>
-                    <a href="##INDEX##user.modify" class="btn btn-secondary">Retour</a>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+namespace ES\App\Modules\User\Form\WebControls;
+
+use ES\Core\Form\WebControls\WebControlsSelect;
+/**
+ * ButtonsConnexion short summary.
+ *
+ * ButtonsConnexion description.
+ *
+ * @version 1.0
+ * @author ragus
+ */
+class SelectAccreditation extends WebControlsSelect
+{
+    const NAME='habil';
+
+    public function __construct($data)
+    {
+        parent::__construct ($data);
+        $this->SetLabel('Habilitation');
+        $this->setName(self::NAME);
+        $this->setListe(ES_ACCREDITATION);
+    }
+
+}

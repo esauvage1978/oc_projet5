@@ -1,1 +1,1 @@
-(App/Modules/Shared/Render/MenuRender.php 2phpX‹hr(App/Modules/Shared/Render/MenuRender.php
+)App/Modules/Blog/Model/ArticleFactory.php 2phpX*hr)App/Modules/Blog/Model/ArticleFactory.php

@@ -4,11 +4,11 @@ namespace ES\App\Modules\User\Form;
 
 use ES\Core\Form\Form;
 use ES\Core\Form\IForm;
-use ES\Core\Toolbox\Auth;
-use ES\App\Modules\User\Form\WebControls\ButtonModifier;
-use ES\App\Modules\User\Form\WebControls\InputSecretNew;
-use ES\App\Modules\User\Form\WebControls\InputSecretConfirm;
-use ES\App\Modules\User\Form\WebControls\InputMail;
+use ES\Core\Form\WebControlsStandard\checkSecret;
+use ES\Core\Form\WebControlsStandard\ButtonModifier;
+use ES\Core\Form\WebControlsStandard\InputSecretNew;
+use ES\Core\Form\WebControlsStandard\InputSecretConfirm;
+use ES\Core\Form\WebControlsStandard\InputMail;
 use ES\App\Modules\User\Form\WebControls\InputIdentifiant;
 
 /**
@@ -27,15 +27,19 @@ class UserSignupForm extends Form implements IForm
     const MAIL=3;
     const IDENTIFIANT=4;
 
+    public static $name_identifiant=InputIdentifiant::NAME;
+
     use checkSecret;
 
-    public function __construct($data)
+    public function __construct($datas=[])
     {
         $this->controls[self::BUTTON]=new ButtonModifier();
-        $this->controls[self::SECRET_NEW]=new InputSecretNew($data);
-        $this->controls[self::SECRET_CONFIRM]=new InputSecretConfirm($data);
-        $this->controls[self::MAIL]=new InputMail($data);
-        $this->controls[self::IDENTIFIANT]=new InputIdentifiant($data);
+        $this->controls[self::SECRET_NEW]=new InputSecretNew();
+        $this->controls[self::SECRET_CONFIRM]=new InputSecretConfirm();
+        $this->controls[self::MAIL]=new InputMail();
+        $this->controls[self::IDENTIFIANT]=new InputIdentifiant();
+
+        $this->setText($datas) ;
     }
 
     public function check():bool

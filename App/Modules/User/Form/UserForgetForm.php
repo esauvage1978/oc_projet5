@@ -3,8 +3,8 @@
 namespace ES\App\Modules\User\Form;
 
 use ES\Core\Form\Form;
-use ES\App\Modules\User\Form\WebControls\ButtonRecupere;
-use ES\App\Modules\User\Form\WebControls\InputLogin;
+use ES\Core\Form\WebControlsStandard\ButtonRecupere;
+use ES\Core\Form\WebControlsStandard\InputLogin;
 
 
 /**
@@ -21,11 +21,12 @@ class UserForgetForm extends Form
     const BUTTON=0;
     const LOGIN=1;
 
-
-    public function __construct($data)
+    public function __construct($datas=[])
     {
         $this->controls[self::BUTTON]=new ButtonRecupere();
-        $this->controls[self::LOGIN]=new InputLogin($data);
+        $this->controls[self::LOGIN]=new InputLogin();
+
+        $this->setText($datas);
     }
 
     public function check():bool

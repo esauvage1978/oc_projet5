@@ -1,50 +1,43 @@
 <?php
 
-namespace ES\App\Modules\User\Form\WebControls;
+namespace ES\App\Modules\User\Form;
 
-use ES\Core\Form\WebControls\WebControlsInput;
+use ES\Core\Form\Form;
+use ES\Core\Form\IForm;
+
+use ES\App\Modules\User\Form\WebControls\ButtonModifier;
+use ES\App\Modules\User\Form\WebControls\InputSecretNew;
+use ES\App\Modules\User\Form\WebControls\InputSecretConfirm;
+use ES\App\Modules\User\Form\WebControls\InputHash;
+
 /**
- * ButtonsConnexion short summary.
+ * UserConnexionForm short summary.
  *
- * ButtonsConnexion description.
+ * UserConnexionForm description.
  *
  * @version 1.0
  * @author ragus
  */
-class InputMail extends WebControlsInput
+class UserForgetChangeForm extends Form implements IForm
 {
-    const NAME='mail';
+    const BUTTON=0;
+    const SECRET_NEW=1;
+    const SECRET_CONFIRM=2;
+    const HASH=3;
+
 
     public function __construct($data)
     {
-        parent::__construct ($data);
-        $this->SetLabel('Adresse mail');
-        $this->setName(self::NAME);
-        $this->SetType(parent::TYPE_EMAIL);
-        $this->setRequired();
-        $this->setMaxLength (100);
+        $this->controls[self::BUTTON]=new ButtonModifier();
+        $this->controls[self::SECRET_NEW]=new InputSecretNew($data);
+        $this->controls[self::SECRET_CONFIRM]=new InputSecretConfirm($data);
+        $this->controls[self::HASH]=new InputHash($data);
     }
+
+    use checkSecret;
 
     public function check():bool
     {
-        $retour=true;
-        $value=$this->text();
-        if( empty($value)) {
-
-            $this->setIsInvalid('Le mail est vide');
-            $retour=false;
-
-        } else if (
-            strlen($value)>100 ) {
-
-            $this->setIsInvalid('La longueur maximale est de 100 caractères.');
-            $retour=false;
-
-        } else if (!filter_var($value,FILTER_VALIDATE_EMAIL)) {
-
-            $this->setIsInvalid('Le mail est invalide');
-            $retour=false;
-        }
-        return $retour;
+        return $this->checkSecretNewAndConfirm(); 
     }
 }

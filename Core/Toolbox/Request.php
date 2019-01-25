@@ -5,6 +5,7 @@ namespace ES\Core\Toolbox;
 class Request
 {
     private $_get;
+    private $_post;
     private $_cookie;
 
     const TYPE_STRING ='0';
@@ -44,6 +45,10 @@ class Request
     public function hasPostValue($key) :bool
     {
         return isset($this->_post[$key]);
+    }
+    public function getPost()
+    {
+        return $this->_post;
     }
     #endregion
 

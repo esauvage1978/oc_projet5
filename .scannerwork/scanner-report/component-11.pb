@@ -1,1 +1,1 @@
-$App/Modules/Shared/View/HomeView.php 2phpXhr$App/Modules/Shared/View/HomeView.php
+App/Modules/Blog/Controller :rApp/Modules/Blog/Controller

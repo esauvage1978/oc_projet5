@@ -1,1 +1,1 @@
-.App/Modules/Shared/Render/SharedRenderView.php 2phpXhr.App/Modules/Shared/Render/SharedRenderView.php
+'App/Modules/Blog/Model/ArticleTable.php 2phpXÇhr'App/Modules/Blog/Model/ArticleTable.php

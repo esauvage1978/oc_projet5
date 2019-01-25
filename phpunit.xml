@@ -1,18 +1,16 @@
 ﻿<phpunit
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.3/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="phpunit.xsd"
          backupGlobals="true"
          backupStaticAttributes="false"
          bootstrap="vendor/autoload.php"
-         cacheResult="false"
          cacheTokens="false"
-         colors="false"
+         colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          forceCoversAnnotation="false"
          printerClass="PHPUnit\TextUI\ResultPrinter"
-         stderr="true"
          processIsolation="false"
          stopOnError="false"
          stopOnFailure="false"
@@ -20,34 +18,42 @@
          stopOnSkipped="false"
          stopOnRisky="false"
          testSuiteLoaderClass="PHPUnit\Runner\StandardTestSuiteLoader"
-        
-         timeoutForSmallTests="1"
+         timeoutForSmallTests="2"
          timeoutForMediumTests="10"
          timeoutForLargeTests="60"
          verbose="true">
     <filter>
-        <blacklist>
-            <directory suffix=".php">./vendor</directory>
-        </blacklist>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./Config/</directory>
-            <directory suffix=".php">./Core/Database/</directory>
-            <directory suffix=".php">./Core/Model/</directory>
-            <directory suffix=".php">./Core/Form/</directory>
-            <directory suffix=".php">./Core/Form/WebControls/</directory>
-            <directory suffix=".php">./Core/Toolbox/</directory>
-            <directory suffix=".php">./App/Modules/User/Model/</directory>
-            <directory suffix=".php">./App/Modules/User/Form/</directory>
-            <directory suffix=".php">./App/Modules/User/Form/WebControls/</directory>
+        <whitelist >
+          <directory suffix=".php">./Config/</directory>
+          <directory suffix=".php">./Core/Controller/</directory>
+          <directory suffix=".php">./Core/Database/</directory>
+          <directory suffix=".php">./Core/Form/</directory>
+          <directory suffix=".php">./Core/Form/WebControls/</directory>
+          <directory suffix=".php">./Core/Form/WebControlsStandard/</directory>
+          <directory suffix=".php">./Core/Model/</directory>
+          <directory suffix=".php">./Core/Render/</directory>
+          <directory suffix=".php">./Core/Toolbox/</directory>
+          <directory suffix=".php">./App/Modules/Blog/Controller/</directory>
+          <directory suffix=".php">./App/Modules/Blog/Form/</directory>
+          <directory suffix=".php">./App/Modules/Blog/Form/WebControls/</directory>
+          <directory suffix=".php">./App/Modules/Blog/Model/</directory>
+          <directory suffix=".php">./App/Modules/Blog/Render/</directory>
+          <directory suffix=".php">./App/Modules/Shared/Controller/</directory>
+          <directory suffix=".php">./App/Modules/Shared/Render/</directory>
+          <directory suffix=".php">./App/Modules/Shared/Services/</directory>
+          <directory suffix=".php">./App/Modules/User/Controller/</directory>
+          <directory suffix=".php">./App/Modules/User/Form/</directory>
+          <directory suffix=".php">./App/Modules/User/Form/WebControls/</directory>
+          <directory suffix=".php">./App/Modules/User/Model/</directory>
+          <directory suffix=".php">./App/Modules/User/Render/</directory>
         </whitelist>
     </filter>
   <logging>
     <log type="coverage-html" target="TestsReport/Report" lowUpperBound="35"
          highLowerBound="70"/>
     <log type="coverage-clover" target="TestsReport/coverage.xml"/>
-    <log type="coverage-php" target="TestsReport/coverage.serialized"/>
     <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
-    <log type="junit" target="TestsReport/logfile.xml" logIncompleteSkipped="false"/>
+    <log type="junit" target="TestsReport/logfile.xml" />
     <log type="testdox-html" target="TestsReport/testdox.html"/>
     <log type="testdox-text" target="TestsReport/testdox.txt"/>
   </logging>
