@@ -3,6 +3,7 @@
 namespace ES\Core\Model;
 
 use \ES\Core\Database\BddAction;
+use ES\Core\Database\QueryBuilder;
 
 abstract class AbstractManager
 {
@@ -121,6 +122,23 @@ abstract class AbstractManager
         $attributes[] = $id;
         $sql_part =  implode(', ', $sql_parts);
         return $this->query('UPDATE '. static::$table . ' SET '. $sql_part . $this->where . static::$id . '=? ', $attributes, true);
+    }
+
+    protected function getArrayForSelect($key,$value,$firstElementEmpty=false)
+    {
+        $query= new QueryBuilder();
+        $query->select ($key,$value)
+            ->from(static::$table )
+            ->orderBy($value);
+        $liste=$this->query($query->render(),null,false,false);
+        $select=[];
+        if($firstElementEmpty) {
+            $select[]='';
+        }
+        foreach ($liste as $element) {
+            $select[$element[$key]]=$element[$value];
+        }
+        return $select;
     }
 
     protected function delete($id)

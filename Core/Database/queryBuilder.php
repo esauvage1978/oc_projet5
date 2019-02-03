@@ -1,32 +1,32 @@
 <?php
 
 namespace ES\Core\Database;
-
 /**
- * queryBuilder short summary.
+ * QueryBuilder short summary.
  *
- * queryBuilder description.
+ * QueryBuilder description.
  *
  * @version 1.0
  * @author ragus
  */
-class queryBuilder
+class QueryBuilder
 {
-    private $_fields[];
-    private $_condition[];
-    private $_from[];
-    private $_orderBy[];
+    private $_fields=[];
+    private $_condition=[];
+    private $_from=[];
+    private $_orderBy=[];
 
     public function select()
     {
         $this->_fields=func_get_args();
+
         return $this;
     }
 
     public function where()
     {
-        foreach(func_get_args() as args) {
-            $this->_condition[]=args;
+        foreach(func_get_args() as $args) {
+            $this->_condition[]=$args;
         }
         return $this;
     }
@@ -39,19 +39,15 @@ class queryBuilder
 
     public function orderBy()
     {
-        $this->_from=func_get_args();
+        $this->_orderBy=func_get_args();
         return $this;
     }
 
-    public function __toString()
+    public function render()
     {
         return 'SELECT ' . implode(', ',$this->_fields) .
                ' FROM '  . implode(' , ',$this->_from) .
-               ' WHERE ' . implode(' AND ',$this->_condition) .
-               ' ORDER BY ' . implode(', ',$this->_orderby) . ';';
+               (count($this->_condition)?  ' WHERE ' . implode(' AND ',$this->_condition) :'').
+               (count($this->_orderBy)?  ' ORDER BY ' . implode(', ',$this->_orderBy):'') . ';';
     }
-
-
-
-
 }

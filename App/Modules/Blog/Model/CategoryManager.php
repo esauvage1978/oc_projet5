@@ -3,6 +3,7 @@
 namespace ES\App\Modules\Blog\Model;
 
 use ES\Core\Model\AbstractManager;
+use ES\Core\Database\QueryBuilder;
 
 /**
  * CategoryManager short summary.
@@ -28,6 +29,10 @@ class CategoryManager extends AbstractManager
     {
         return $this->query('SELECT bc_id, bc_title, count(ba_id)  FROM ocp5_blog_category LEFT OUTER JOIN ocp5_blog_article ON bc_id=ba_category_ref GROUP BY bc_id ORDER BY bc_title;'
             ,null,false,false);
+    }
+    public function getCategorysForSelect($firstElementEmpty)
+    {
+        return $this->getArrayForSelect('bc_id','bc_title',$firstElementEmpty);
     }
     public function categoryNotEmpty()
     {

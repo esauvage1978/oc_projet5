@@ -17,6 +17,7 @@ class Restrict
     private $_forAll=[
         'shared.accessdenied',
         'shared.show',
+        'shared.errorcatch',
         'user.deconnexion',
         'blog.list',
         'blog.find',

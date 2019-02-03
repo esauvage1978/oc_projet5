@@ -58,7 +58,7 @@
     <Compile Include="App\Modules\Shared\Services\Restrict.php" />
     <Compile Include="App\Modules\Shared\View\AccessDenied.php" />
     <Compile Include="App\Modules\Shared\View\ErrorCatch.php" />
-    <Compile Include="Core\Database\queryBuilder.php" />
+    <Compile Include="Core\Database\QueryBuilder.php" />
     <Compile Include="Core\Form\WebControlsStandard\ButtonDelete.php" />
     <Compile Include="Core\Form\WebControlsStandard\ButtonSupprimer.php" />
     <Compile Include="Core\Form\WebControlsStandard\ButtonAjouter.php" />

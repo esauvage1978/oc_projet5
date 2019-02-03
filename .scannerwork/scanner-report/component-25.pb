@@ -1,1 +1,0 @@
-App/Modules/Blog/Render :rApp/Modules/Blog/Render

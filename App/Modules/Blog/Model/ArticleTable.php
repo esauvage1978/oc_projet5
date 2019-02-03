@@ -42,7 +42,22 @@ class ArticleTable extends AbstractTable implements ITable
     const STATE_DATE= 'ba_state_date';
 
     private $_msgBadDate='La date est incorrecte.';
-
+    public function toArray():array
+    {
+        return [
+                self::ID=>$this->getId(),
+                self::TITLE=>$this->getTitle(),
+                self::CONTENT=>$this->getContent(),
+                self::CHAPO=>$this->getChapo(),
+                self::CREATE_DATE=>$this->getCreateDate(),
+                self::CREATE_USER_REF=>$this->getCreateUserRef(),
+                self::MODIFY_DATE=>$this->getModifyDate(),
+                self::MODIFY_USER_REF=>$this->getModifyUseRef(),
+                self::CATEGORY_REF=>$this->getCategoryRef(),
+                self::STATE=>$this->getState(),
+                self::STATE_DATE=>$this->getStateDate()
+            ];
+    }
     #region ID
     public function getId()
     {
@@ -109,7 +124,7 @@ class ArticleTable extends AbstractTable implements ITable
     #region CREATE
     public function getCreateDate()
     {
-        return \date('d/m/Y H:i',strtotime($this->_createDate));
+        return $this->_createDate;
     }
     public function setCreateDate($value)
     {
@@ -150,7 +165,7 @@ class ArticleTable extends AbstractTable implements ITable
 
         $this->_dateModify=$value;
     }
-    public function getrModifyUseRef()
+    public function getModifyUseRef()
     {
         return $this->_modifyUserRef;
     }
@@ -176,7 +191,7 @@ class ArticleTable extends AbstractTable implements ITable
     }
     public function setState($value)
     {
-        $this->_StateRef=$value;
+        $this->_state=$value;
     }
     #endregion
     #region DATE CREATE

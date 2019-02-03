@@ -26,7 +26,7 @@ class InputArticleTitle extends WebControlsInput
     {
         $retour=true;
 
-        if( !parent::check() || !parent::checkLenght(null,$this->maxLength) ) {
+        if( !parent::check() || !parent::checkLenght(3,$this->maxLength) ) {
             $retour=false;
         }
         return $retour;

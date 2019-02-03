@@ -26,6 +26,8 @@ class WebControlsSelect extends WebControls
      */
     public $liste;
 
+
+    const MSG_NOT_GOOD='La saisie est incorrecte.';
     protected static $buildParamsListe='liste';
 
     public function render()
@@ -66,7 +68,7 @@ class WebControlsSelect extends WebControls
                     }
                     break;
                 case self::$buildParamsRequire:
-                    $param=$this->paramBuildsRequire(); 
+                    $param=$this->paramBuildsRequire();
                     break;
                 case self::$buildParamsValid:
                     $param=$this->paramBuildsValid();
@@ -89,4 +91,16 @@ class WebControlsSelect extends WebControls
         return $params;
     }
 
+    public function check():bool
+    {
+        $retour=true;
+        $value=$this->text;
+
+        if( empty($value)) {
+            $this->setIsInvalid(self::MSG_NOT_GOOD);
+            $retour=false;
+        }
+
+        return $retour;
+    }
 }

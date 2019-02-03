@@ -22,11 +22,13 @@ class ArticleController extends AbstractController
     static $module='Blog';
 
     private $_articleManager;
+    private $_categoryManager;
 
     public function __construct(UserConnect $userConnect, Request $request)
     {
         parent::__construct($userConnect,$request);
         $this->_articleManager =new ArticleManager();
+        $this->_categoryManager =new CategoryManager();
     }
 
     public function show($id=null)
@@ -59,13 +61,13 @@ class ArticleController extends AbstractController
     {
         $form =new ArticleAddForm($this->_request->getPost());
 
+        //initialisation de la liste des catégories
+        $form[$form::CATEGORY]->liste=$this->_categoryManager->getCategorysForSelect(true);  
+
         try
         {
-            //Accès aux personnes connectées et gestionnaire sinon TCHAO
-            $this->valideAccessPage(true, ES_REDACTEUR);
-
             if($this->_request->hasPost()) {
-                //Contrôle de la saisie de l'utilisateur
+                //Contrôle de la saisie des données de l'utilisateur
                 if (!$form->check()) {
                     $this->addView($form,true);
                 }
@@ -87,10 +89,9 @@ class ArticleController extends AbstractController
                     $this->flash->writeSucces ("Article créé en tant que brouillon") ;
 
                     //Retour page d'accueil
-                    $this->AccueilView(true);
+                    $this->modify($article->getId());
 
                 } else {
-
                     $this->flash->writeError ('Erreur lors de la création.');
                     $this->addView($form);
                 }
@@ -105,6 +106,8 @@ class ArticleController extends AbstractController
     }
     private function addView($form,$exit=false)
     {
+
+
         $this->view('ArticleAddView',[
             'title'=>'Création d\'un article',
             'form'=>$form]);
