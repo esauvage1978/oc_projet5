@@ -5,6 +5,7 @@ namespace ES\App\Modules\Blog\Model;
 use ES\App\Modules\Blog\Model\ArticleTable;
 use ES\App\Modules\User\Model\UserManager;
 use ES\App\Modules\Blog\Model\CategoryManager;
+use ES\App\Modules\Blog\Model\CommentManager;
 /**
  * ArticleFactory short summary.
  *
@@ -18,6 +19,8 @@ class ArticleFactory
     public $userCreate;
     public $article;
     public $category;
+    public $comments;
+    public $commentNbr;
 
     public function __construct($data)
     {
@@ -36,6 +39,7 @@ class ArticleFactory
                 $categoryManager=new CategoryManager();
                 $this->category=$categoryManager->findById($categoryRef);
             }
+
         }
 
     }

@@ -1,24 +1,45 @@
+<?php
 
+namespace ES\App\Modules\Shared\Controller;
 
-    <section class="blog-wrapper sect-pt4" id="topsection">
-        <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="center gap fade-down section-heading">
-                    <h2 class="main-title">A propos de moi</h2>
-                    <hr>
-                    <p>Je suis développeur et ceci est ma page d'accueil.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1 fade-up">
-                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.</p>
+use ES\App\Modules\User\Model\UserConnect;
 
-                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.</p>
-                
-            </div>
-            
-        </div>
-    </div>
-</section>
+trait restrictControler
+{
+    public function AccueilView($exit=false)
+    {
+        header('Location: ' . ES_ROOT_PATH_WEB . '#topsection');
+        if($exit) {exit;}
+    }
+
+    public function valideAccessPage($MustBeConnec ,$accredication=1) :bool
+    {
+        $message='accès interdit à cette page';
+        $retour=true;
+        $userConnect=new UserConnect($this->_request );
+        if(!$MustBeConnec) {
+            $retour = !$userConnect->isConnect();
+        } else if($userConnect->getUserConnect()->getAccreditation()< $accredication  ) {
+                $retour=false;
+        }
+        if(!$retour)
+        {
+            $this->flash->writeError($message);
+        }
+        return $retour;
+    }
+    public function valideAccessPageOwnerOrGestionnaire($user, $id):bool
+    {
+        $retour=false;
+        //si il est gestionnaire
+        if( $user->getAccreditation() == ES_GESTIONNAIRE ) {
+            $retour=true;
+        } else if ( $user->getId()==$id ) {
+            $retour=true;
+        } else {
+            $this->flash->writeError('Vous n\'êtes ni propriétaire ni gestionnaire');
+            $retour=false;
+        }
+        return $retour;
+    }
+}

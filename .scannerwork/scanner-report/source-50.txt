@@ -2,7 +2,7 @@
 
 namespace ES\App\Modules\User\Form\WebControls;
 
-use ES\Core\Form\WebControls\WebControlsInput;
+use ES\Core\Form\WebControls\WebControlsCheckbox;
 /**
  * ButtonsConnexion short summary.
  *
@@ -11,14 +11,14 @@ use ES\Core\Form\WebControls\WebControlsInput;
  * @version 1.0
  * @author ragus
  */
-class InputIdHidden extends WebControlsInput
+class CheckboxActif extends WebControlsCheckbox
 {
-    const NAME='idHidden';
+    const NAME='chkactif';
 
-    public function __construct($data)
+    public function __construct()
     {
-        parent::__construct ($data);
-        $this->setName(self::NAME);
-        $this->SetType(parent::TYPE_HIDDEN);
+        //$this->label='Compte actif';
+        $this->name=self::NAME;
     }
+
 }

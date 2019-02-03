@@ -18,25 +18,39 @@ use ES\Core\Form\WebControlsStandard\InputLogin;
 class UserForgetForm extends Form
 {
 
-    const BUTTON=0;
-    const LOGIN=1;
+    const BUTTON=1;
+    const LOGIN=2;
 
-    public function __construct($datas=[])
+    public function __construct($datas=[],$byName=true)
     {
-        $this->controls[self::BUTTON]=new ButtonRecupere();
-        $this->controls[self::LOGIN]=new InputLogin();
+        $this[self::BUTTON]=new ButtonRecupere();
+        $this[self::LOGIN]=new InputLogin();
 
-        $this->setText($datas);
+        $this->postConstruct($datas,$byName);
     }
 
     public function check():bool
     {
         $checkOK=true;
 
-        if(!$this->controls[self::LOGIN]->check()) {
+        if(!$this->checkToken() ) {
+            $checkOK=false;
+        }
+
+        if(!$this[self::LOGIN]->check()) {
             $checkOK=false;
         }
 
         return $checkOK ;
     }
+
+    public function render()
+    {
+        return $this->getAction('user.pwdforget') .
+               $this->renderToken() .
+               $this->renderControl(self::LOGIN) .
+               $this->renderButton(self::BUTTON) .
+               '</form>';
+    }
+
 }

@@ -54,11 +54,6 @@ class UserTable extends AbstractTable implements ITable
     }
     public function setId($value)
     {
-        if(empty($value) ||
-           !filter_var($value,FILTER_VALIDATE_INT) )
-        {
-            throw new \InvalidArgumentException('Les informations de l\'id sont incorrectes.' );
-        }
         $this->_id=$value;
     }
     #endregion
@@ -223,6 +218,7 @@ class UserTable extends AbstractTable implements ITable
     public function toArray():array
     {
         return [
+                self::ID=>$this->getId(),
                 self::IDENTIFIANT=>$this->getIdentifiant(),
                 self::MAIL=>$this->getMail(),
                 self::SECRET=>$this->getPassword(),

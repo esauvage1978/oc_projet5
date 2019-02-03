@@ -19,36 +19,47 @@ use ES\App\Modules\Blog\Form\WebControls\InputCategory;
 class CategoryModifyForm extends Form
 {
 
-    const BUTTON=0;
-    const CATEGORY=1;
-    const IDHIDDEN=2;
+    const BUTTON=1;
+    const CATEGORY=2;
+    const IDHIDDEN=3;
 
 
-    public static $name_category='catmodify_' . InputCategory::NAME;
-    public static $name_idhidden='catmodify_' . InputIdHidden::NAME;
 
-    public function __construct($datas=[])
+    public function __construct($datas=[],$byName=true)
     {
-        $this->controls[self::BUTTON]=new ButtonModifier();
-        $this->controls[self::CATEGORY]=new InputCategory();
-        $this->controls[self::IDHIDDEN]=new InputIdHidden();
+        $this[self::BUTTON]=new ButtonModifier();
+        $this[self::CATEGORY]=new InputCategory();
+        $this[self::IDHIDDEN]=new InputIdHidden();
 
-        $this->controls[self::CATEGORY]->prefixeFormName='catmodify';
-        $this->controls[self::IDHIDDEN]->prefixeFormName='catmodify';
-        $this->setText($datas);
+        $this->postConstruct($datas,$byName);
     }
 
     public function check():bool
     {
         $checkOK=true;
 
-        if(!$this->controls[self::IDHIDDEN]->check()) {
+        if(!$this->checkToken() ) {
             $checkOK=false;
         }
-        if(!$this->controls[self::CATEGORY]->check()) {
+
+        if(!$this[self::IDHIDDEN]->check()) {
+            $checkOK=false;
+        }
+        if(!$this[self::CATEGORY]->check()) {
             $checkOK=false;
         }
 
         return $checkOK ;
+    }
+
+    public function render()
+    {
+        return $this->getAction('blog.category.modify#categorycrud') .
+
+               $this->renderToken() .
+               $this->renderControl(self::IDHIDDEN) .
+               $this->renderControl(self::CATEGORY) .
+               $this->renderButton(self::BUTTON) .
+               '</form>';
     }
 }

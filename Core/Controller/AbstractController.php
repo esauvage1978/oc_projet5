@@ -4,7 +4,8 @@ namespace ES\Core\Controller;
 
 Use ES\Core\Toolbox\Flash;
 Use ES\Core\Toolbox\Request;
-
+use ES\App\Modules\User\Model\UserConnect;
+use ES\App\Modules\User\Controller\RestrictController;
 
 /**
  * Controller short summary.
@@ -16,17 +17,21 @@ Use ES\Core\Toolbox\Request;
  */
 class AbstractController
 {
+    use RestrictController;
+
     protected $flash;
     protected $_request;
     protected $renderView;
     protected static $module='';
+    protected $_userConnect=null;
 
-    public function __construct()
+    public function __construct(UserConnect $userConnect,Request $Request)
     {
-        $this->_request=new Request($_GET,$_POST,$_COOKIE);
+        $this->_userConnect =$userConnect ;
+        $this->_request=$Request;
         $this->flash=new Flash();
         $caller = '\\ES\\App\\Modules\\' . static::$module . '\\Render\\'. static::$module . 'RenderView';
-        $this->renderView=new $caller();
+        $this->renderView=new $caller($userConnect,$Request);
     }
 
 

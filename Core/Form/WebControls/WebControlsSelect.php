@@ -12,13 +12,9 @@ namespace ES\Core\Form\WebControls;
  */
 class WebControlsSelect extends WebControls
 {
-    use Valid;
+    use ParamValid;
+    use ParamRequire;
 
-    /**
-     * Champ requis?
-     * @var bool
-     */
-    public $require=true;
     /**
      * Donnée saisie dans le champ text
      * @var mixed
@@ -31,7 +27,6 @@ class WebControlsSelect extends WebControls
     public $liste;
 
     protected static $buildParamsListe='liste';
-    protected static $buildParamsRequire='require';
 
     public function render()
     {
@@ -71,21 +66,14 @@ class WebControlsSelect extends WebControls
                     }
                     break;
                 case self::$buildParamsRequire:
-                    if ($this->require) {
-                        $param='	required';
-                    }
+                    $param=$this->paramBuildsRequire(); 
                     break;
                 case self::$buildParamsValid:
-                    if ($this->_showIsValid) {
-                        $param='<div class="valid-feedback">' . $this->_validMessage . '</div>';
-                    } else if ($this->_showIsInvalid) {
-                        $param='<div class="invalid-feedback">' . $this->_validMessage . '</div>';
-                    }
-
+                    $param=$this->paramBuildsValid();
                     break;
                 case self::$buildParamsLabel:
                     if(isset($this->label)) {
-                        $param='<label for="' . $this->name . '">'. $this->label  .'</label>';
+                        $param='<label for="' . $this->getName() . '">'. $this->label  .'</label>';
                     }
                     break;
                 default:

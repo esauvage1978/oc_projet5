@@ -24,9 +24,10 @@ class InputLogin extends WebControlsInput
     public function check():bool
     {
         $retour=true;
-        if( !parent::check()|| !parent::checkLenght(4,100) ) {
+
+        if( !parent::check() || !parent::checkLenght(4,100) ) {
             $retour=false;
-        } 
+        }
         return $retour;
     }
 }

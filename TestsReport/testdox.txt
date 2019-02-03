@@ -1,5 +1,9 @@
-Auth
- [x] Generate random
- [x] Pwd hash compare
- [x] Pwd not hash compare
+CommentTable
+ [x] Instance vide
+ [x] I d by setter
+ [x] Id by constructor
+ [x] Has id
+ [x] Id value not id
+ [x] Id value null
+ [x] To array
 

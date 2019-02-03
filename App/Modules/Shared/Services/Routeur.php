@@ -3,6 +3,7 @@
 namespace ES\App\Modules\Shared\Services;
 
 Use ES\Core\Toolbox\Request;
+use ES\App\Modules\User\Model\UserConnect;
 
 /**
  * Routeur de la structure MVC
@@ -26,20 +27,21 @@ class Routeur
     private $_moduleFunction;
 
     private $_request;
+    private $_userConnect;
 
     const MODULE_DEFAULT_VALUE='Shared';
-    const SECTION_DEFAULT_VALUE='home';
-    const ACTION_DEFAULT_VALUE='Show';
+    const SECTION_DEFAULT_VALUE='Shared';
+    const ACTION_DEFAULT_VALUE='show';
 
     /**
      * Instanciation de la class Routeur
      * @return Routeur
      */
-    public static function getInstance($request) : Routeur
+    public static function getInstance(UserConnect $userConnect,Request $request) : Routeur
     {
         //design pattern SINGLETON
         if (!isset(self::$_instance)){
-            self::$_instance = new Routeur($request);
+            self::$_instance = new Routeur($userConnect,$request);
         }
         return self::$_instance;
     }
@@ -47,9 +49,10 @@ class Routeur
     /**
      * Constructeur privé
      */
-    public function __construct($request)
+    public function __construct(UserConnect $userConnect,Request $request)
     {
         $this->_request=$request;
+        $this->_userConnect=$userConnect;
     }
 
 
@@ -66,8 +69,6 @@ class Routeur
 
     private function showDefault()
     {
-
-
         $this->_module=self::MODULE_DEFAULT_VALUE;
         $this->_section=self::SECTION_DEFAULT_VALUE;
         $this->_action=self::ACTION_DEFAULT_VALUE;
@@ -84,25 +85,29 @@ class Routeur
         if($this->checkModule()) {
 
             $modulesClass='\\ES\\App\\Modules\\' . ucfirst($this->_module)
-                . '\\Controller\\' . ucfirst($this->_module) . 'Controller' ;
+                . '\\Controller\\' . ucfirst($this->_section) . 'Controller' ;
 
             if(class_exists($modulesClass )) {
-                $this->_moduleInstance=new $modulesClass();
+                $this->_moduleInstance=new $modulesClass(new UserConnect($this->_request),$this->_request);
                 $retour= true;
             }
         }
 
         return $retour;
     }
+    private function checkModule():bool
+    {
+
+        $module=ucfirst($this->_module);
+        $section=ucfirst($this->_section);
+        $file=ES_ROOT_PATH_FAT_MODULES . $module . '/Controller/' . $section . 'Controller.php';
+
+        return file_exists($file);
+    }
 
     private function createModuleFunction():bool
     {
-        $this->_moduleFunction=$this->_section;
-
-        if(isset($this->_action)) {
-            $this->_moduleFunction .= ucfirst($this->_action);
-        }
-
+        $this->_moduleFunction=$this->_action;
         return method_exists ($this->_moduleInstance , $this->_moduleFunction );
     }
 
@@ -136,12 +141,30 @@ class Routeur
         $this->_paramP = $this->_request->getGetValue('p',Request::TYPE_INT);
         $this->_paramWord = $this->_request->getGetValue('word');
 
+        //vérification des droits d'accès aux pages
+        $restrict=new Restrict ($this->_userConnect );
+        if(!$restrict ->valideAccessPage ($page)) {
+            var_dump($page);
+            //header('Location: ' . ES_ROOT_PATH_WEB . 'shared.accessdenied');
+            //exit;
+
+        }
+
         if(!empty($page)) {
             $pageExplode= explode('.',strtolower($page));
-
-            $this->_module=$pageExplode[0];
-            $this->_section= (isset($pageExplode[1]))?$pageExplode[1]:null;
-            $this->_action= (isset($pageExplode[2]))?$pageExplode[2]:null;
+            if(\count($pageExplode)==3){
+                $this->_module=$pageExplode[0];
+                $this->_section= $pageExplode[1];
+                $this->_action= $pageExplode[2];
+            }elseif(\count($pageExplode)==2) {
+                $this->_module=$pageExplode[0];
+                $this->_section= $this->_module;
+                $this->_action= $pageExplode[1];
+            } else {
+                $this->_module=$pageExplode[0];
+                $this->_section=$this->_module;
+                $this->_action='show';
+            }
 
             $retour=true;
         }
@@ -150,12 +173,5 @@ class Routeur
     }
 
 
-    private function checkModule():bool
-    {
 
-        $module=ucfirst($this->_module);
-        $file=ES_ROOT_PATH_FAT_MODULES . $module . '/Controller/' . $module . 'Controller.php';
-
-        return file_exists($file);
-    }
 }

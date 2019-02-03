@@ -1,17 +1,16 @@
 
 <div class="row justify-content-md-center">
-    <div class="col-md-6">
-        <div class="widget-sidebar">
-            <div class="sidebar-content">
-
-                <form method="POST" action="##INDEX##user.pwdforget">
-                    <div class="form-group">
-                        <?= $form->render($form::LOGIN);?>
-                    </div>
-                    <?= $form->render($form::BUTTON);?>
-                </form>
-
+    <div class="col-md-8">
+        <div class="form-comments" id="commentadd">
+            <div class="title-box-2">
+                <h3 class="title-left">
+                    Saisir l'identifiant ou l'adresse mail
+                </h3>
             </div>
+
+
+            <?= isset($form)?$form:''; ?>
+
         </div>
     </div>
 </div>

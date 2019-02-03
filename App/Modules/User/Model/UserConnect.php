@@ -16,13 +16,13 @@ use ES\Core\Toolbox\Request;
 class UserConnect
 {
     private $_request;
-    private $_UserManager;
+    public $user=null;
     const USER_KEY='user';
 
     public function __construct(Request $request)
     {
         $this->_request =$request;
-        $this->_UserManager=new UserManager();
+        $this->user=$this->getUserConnect();
     }
 
     #region SESSION
@@ -34,13 +34,47 @@ class UserConnect
     {
         $this->_request->unsetSessionValue(self::USER_KEY);
     }
-    public function getUserConnect() : userTable
+    private function getUserConnect()
     {
-        return $this->_UserManager->findById($this->_request->getSessionValue(self::USER_KEY));
+        if($this->isConnect() ){
+            if(!isset($this->user)){
+                $userManager=new UserManager();
+                return $userManager->findById($this->_request->getSessionValue(self::USER_KEY));
+            } else {
+                return $this->user;
+            }
+        } else {
+            return null;
+        }
     }
     public function isConnect():bool
     {
         return $this->_request->hasSessionValue(self::USER_KEY);
     }
+    public function canAdministrator():bool
+    {
+        $retour =false;
+        if(isset($this->user) && $this->user->getAccreditation() == ES_GESTIONNAIRE) {
+                $retour=true;
+        }
+        return $retour;
+    }
+    public function canModerator():bool
+    {
+        $retour =false;
+        if(isset($this->user) && $this->user->getAccreditation() >= ES_MODERATEUR) {
+            $retour=true;
+        }
+        return $retour;
+    }
+    public function canRedactor():bool
+    {
+        $retour =false;
+        if(isset($this->user) && $this->user->getAccreditation() >= ES_REDACTEUR) {
+            $retour=true;
+        }
+        return $retour;
+    }
+
     #endregion
 }

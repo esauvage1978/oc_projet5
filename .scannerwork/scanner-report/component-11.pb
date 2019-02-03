@@ -1,1 +1,1 @@
-App/Modules/Blog/Controller :rApp/Modules/Blog/Controller
+)App/Modules/Blog/Model/ArticleManager.php 2phpX&hr)App/Modules/Blog/Model/ArticleManager.php

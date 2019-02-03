@@ -50,6 +50,10 @@ class Request
     {
         return $this->_post;
     }
+    public function unsetPost($key)
+    {
+        unset($this->_post[$key]);
+    }
     #endregion
 
     #region session

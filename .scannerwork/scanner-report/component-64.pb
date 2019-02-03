@@ -1,1 +1,1 @@
-@App/Modules/User/Render :>rApp/Modules/User/Render
+@1App/Modules/User/View/Partial/WidgetDashboard.php 2phpXchr1App/Modules/User/View/Partial/WidgetDashboard.php

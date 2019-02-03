@@ -19,20 +19,20 @@ trait checkSecret
     {
         $checkOK=true;
 
-        if(!$this->controls[self::SECRET_NEW]->check()) {
+        if(!$this[self::SECRET_NEW]->check()) {
             $checkOK=false;
         }
 
-        if(!$this->controls[self::SECRET_CONFIRM]->check()) {
+        if(!$this[self::SECRET_CONFIRM]->check()) {
             $checkOK=false;
         }
 
-        if(empty($this->controls[self::SECRET_NEW]->text) ||
-            empty($this->controls[self::SECRET_CONFIRM]->text) ||
-            !Auth::passwordCompare($this->controls[self::SECRET_NEW]->text,
-            $this->controls[self::SECRET_CONFIRM]->text,false)) {
+        if(empty($this[self::SECRET_NEW]->text) ||
+            empty($this[self::SECRET_CONFIRM]->text) ||
+        !Auth::passwordCompare($this[self::SECRET_NEW]->text,
+            $this[self::SECRET_CONFIRM]->text,false)) {
 
-            $this->controls[self::SECRET_NEW]->setIsInvalid(
+            $this[self::SECRET_NEW]->setIsInvalid(
                 'Le mot de passe et/ou sa confirmation sont invalides');
             return false;
         }

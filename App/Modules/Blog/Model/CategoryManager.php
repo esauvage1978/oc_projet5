@@ -26,15 +26,18 @@ class CategoryManager extends AbstractManager
 
     public function getCategorys()
     {
-        $retour= $this->query('SELECT bc_id, bc_title, count(ba_id)  FROM ocp5_blog_category LEFT OUTER JOIN ocp5_blog_article ON bc_id=ba_category_ref GROUP BY bc_id ORDER BY bc_title;'
+        return $this->query('SELECT bc_id, bc_title, count(ba_id)  FROM ocp5_blog_category LEFT OUTER JOIN ocp5_blog_article ON bc_id=ba_category_ref GROUP BY bc_id ORDER BY bc_title;'
             ,null,false,false);
-        return $retour;
+    }
+    public function categoryNotEmpty()
+    {
+        return $this->query('SELECT bc_id, bc_title FROM ocp5_blog_category LEFT OUTER JOIN ocp5_blog_article ON bc_id=ba_category_ref GROUP BY bc_id HAVING count(ba_id)>0 ORDER BY bc_title ;'
+            ,null,false,false);
     }
 
     public function deleteCategory($id)
     {
-        $retour= $this-> delete($id);
-        return $retour;
+        return $this-> delete($id);
     }
 
     public function hasArticle($id) :bool
@@ -43,13 +46,13 @@ class CategoryManager extends AbstractManager
             ['id'=>$id], true)['count(ba_id)'];
         if($retour==0) {
             return false;
-    }else {
+        }else {
             return true;
-    }
+        }
 
     }
 
-    public function categoryExist($value, $id=null):bool
+    public function titleExist($value, $id=null):bool
     {
         return parent::exist(CategoryTable::TITLE, $value, $id);
     }
@@ -71,7 +74,7 @@ class CategoryManager extends AbstractManager
     {
         return $this->update($category->getId(),$category->ToArray());
     }
-    public function newCategory($title):CategoryTable
+    protected function newCategory($title):CategoryTable
     {
         $category = new CategoryTable([]);
         $category->setTitle($title);

@@ -24,6 +24,7 @@ class CommentTable extends AbstractTable implements ITable
     private $_moderatorDate;
     private $_moderatorUserRef;
     private $_moderatorStatus;
+    private $_article_ref;
 
     const ID= 'bco_id';
     const CREATE_DATE= 'bco_create_date';
@@ -32,6 +33,7 @@ class CommentTable extends AbstractTable implements ITable
     const MODERATOR_DATE= 'bco_moderator_date';
     const MODERATOR_USER_REF= 'bco_moderator_user_ref';
     const MODERATOR_STATUS= 'bco_moderator_status';
+    const ARTICLE_REF='bco_article_ref';
 
     private $_msgBadDate='La date est incorrecte.';
 
@@ -57,7 +59,7 @@ class CommentTable extends AbstractTable implements ITable
     #region CREATE DATE
     public function getCreateDate()
     {
-        return \date('d/m/Y H:i',strtotime($this->_createDate));
+        return $this->_createDate;
     }
     public function setCreateDate($value)
     {
@@ -70,7 +72,17 @@ class CommentTable extends AbstractTable implements ITable
         $this->_createDate=$value;
     }
     #endregion
-    #region TITLE
+    #region CREATE USER REF
+    public function getCreateUserRef()
+    {
+        return $this->_createUserRef;
+    }
+    public function setCreateUserRef($value)
+    {
+        $this->_createUserRef=$value;
+    }
+    #endregion
+    #region CONTENT
     public function getContent()
     {
         return $this->_content;
@@ -84,42 +96,28 @@ class CommentTable extends AbstractTable implements ITable
         $this->_content=$value;
     }
     #endregion
-    #region CHAPO
-    public function getChapo()
-    {
-        return $this->_chapo;
-    }
-    public function setChapo($value)
-    {
-        if( empty($value))
-        {
-            throw new \InvalidArgumentException('Contenu du chapo de l\'article vide.');
-        }
-        $this->_chapo=htmlentities($value);
-    }
-    #endregion
 
-    #region USER CREATE REF
-    public function getUserCreateRef()
+    #region CREATE USER REF
+    public function getArticleRef()
     {
-        return $this->_createUserRef;
+        return $this->_article_ref;
     }
-    public function setUserCreateRef($value)
+    public function setArticleRef($value)
     {
         if(empty($value))
         {
-            throw new \InvalidArgumentException('Les données de l``utilisateur ne sont pas présentes.');
+            throw new \InvalidArgumentException('Les données de l\èarticle ne sont pas présentes.');
         }
-        $this->_createUserRef=$value;
+        $this->_article_ref=$value;
 
     }
     #endregion
-    #region DATE MODIFY
-    public function getDateModify()
+    #region MODERATOR DATE
+    public function getModeratorDate()
     {
-        return $this->_dateModify;
+        return $this->_moderatorDate;
     }
-    public function setDateModify($value)
+    public function setModeratorDate($value)
     {
         if(!empty($value) &&
            !\DateTime::createFromFormat(ES_NOW, $value))
@@ -127,54 +125,41 @@ class CommentTable extends AbstractTable implements ITable
             throw new \InvalidArgumentException($this->_msgBadDate);
         }
 
-        $this->_dateModify=$value;
+        $this->_moderatorDate=$value;
     }
     #endregion
-    #region USER MODIFY REF
-    public function getUserModifyRef()
+    #region MODERATOR USER REF
+    public function getModeratorUserRef()
     {
-        return $this->_userModifyRef;
+        return $this->_moderatorUserRef;
     }
-    public function setUserModifyRef($value)
+    public function setModeratorUserRef($value)
     {
-        $this->_userModifyRef=$value;
-    }
-    #endregion
-    #region CATEGORY REF
-    public function getCategoryRef()
-    {
-        return $this->_categoryRef;
-    }
-    public function setCategoryRef($value)
-    {
-        $this->_categoryRef=$value;
+        $this->_moderatorUserRef=$value;
     }
     #endregion
     #region STATE
-    public function getState()
+    public function getModeratorStatus()
     {
-        return $this->_state;
+        return $this->_moderatorStatus;
     }
-    public function setState($value)
+    public function setModeratorStatus($value)
     {
-        $this->_StateRef=$value;
-    }
-    #endregion
-    #region DATE CREATE
-    public function getStateDate()
-    {
-        return $this->_stateDate;
-    }
-    public function setStateDate($value)
-    {
-        if(!empty($value) &&
-           !\DateTime::createFromFormat(ES_NOW, $value))
-        {
-            throw new \InvalidArgumentException($this->_msgBadDate);
-        }
-
-        $this->_stateDate=$value;
+        $this->_moderatorStatus=$value;
     }
     #endregion
 
+    public function toArray():array
+    {
+        return [
+                self::ID=>$this->getId(),
+                self::CREATE_DATE=>$this->getCreateDate(),
+                self::CREATE_USER_REF=>$this->getCreateUserRef(),
+                self::CONTENT=>$this->getContent(),
+                self::MODERATOR_DATE=>$this->getModeratorDate(),
+                self::MODERATOR_USER_REF=>$this->getModeratorUserRef(),
+                self::MODERATOR_STATUS=>$this->getModeratorStatus(),
+                self::ARTICLE_REF=>$this->getArticleRef()
+            ];
+    }
 }

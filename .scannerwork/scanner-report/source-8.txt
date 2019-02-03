@@ -27,7 +27,7 @@ class ArticleFactory
         {
             // recherche de l'utilisateur créateur
             $userManager=new UserManager();
-            $this->userCreate=$userManager->findById($this->article->getUserCreateRef());
+            $this->userCreate=$userManager->findById($this->article->getCreateUserRef());
 
             // recherche de la catégory
             $categoryRef=$this->article->getCategoryRef();

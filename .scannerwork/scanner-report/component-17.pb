@@ -1,2 +1,1 @@
-*App/Modules/Blog/View/BlogTemplateView.php 2phpX
-hr*App/Modules/Blog/View/BlogTemplateView.php
+(App/Modules/Blog/Model/CategoryTable.php 2phpXEhr(App/Modules/Blog/Model/CategoryTable.php

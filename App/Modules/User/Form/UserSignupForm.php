@@ -19,46 +19,62 @@ use ES\App\Modules\User\Form\WebControls\InputIdentifiant;
  * @version 1.0
  * @author ragus
  */
-class UserSignupForm extends Form implements IForm
+class UserSignupForm extends Form
 {
-    const BUTTON=0;
-    const SECRET_NEW=1;
-    const SECRET_CONFIRM=2;
-    const MAIL=3;
-    const IDENTIFIANT=4;
+    const BUTTON=1;
+    const SECRET_NEW=2;
+    const SECRET_CONFIRM=3;
+    const MAIL=4;
+    const IDENTIFIANT=5;
 
     public static $name_identifiant=InputIdentifiant::NAME;
 
     use checkSecret;
 
-    public function __construct($datas=[])
+    public function __construct($datas=[],$byName=true)
     {
-        $this->controls[self::BUTTON]=new ButtonModifier();
-        $this->controls[self::SECRET_NEW]=new InputSecretNew();
-        $this->controls[self::SECRET_CONFIRM]=new InputSecretConfirm();
-        $this->controls[self::MAIL]=new InputMail();
-        $this->controls[self::IDENTIFIANT]=new InputIdentifiant();
+        $this[self::BUTTON]=new ButtonModifier();
+        $this[self::SECRET_NEW]=new InputSecretNew();
+        $this[self::SECRET_CONFIRM]=new InputSecretConfirm();
+        $this[self::MAIL]=new InputMail();
+        $this[self::IDENTIFIANT]=new InputIdentifiant();
 
-        $this->setText($datas) ;
+        $this->postConstruct($datas,$byName) ;
     }
 
     public function check():bool
     {
         $checkOK=true;
 
-        $checkOK=$this->checkSecretNewAndConfirm();
-
-        if(!$this->controls[self::IDENTIFIANT]->check()) {
+        if(!$this->checkToken() ) {
             $checkOK=false;
         }
 
-        if(!$this->controls[self::MAIL]->check()) {
+        if(!$this[self::IDENTIFIANT]->check()) {
             $checkOK=false;
         }
 
+        if(!$this[self::MAIL]->check()) {
+            $checkOK=false;
+        }
+
+        if(!$this->checkSecretNewAndConfirm()) {
+            $checkOK=false;
+        }
 
         return $checkOK ;
     }
 
+    public function render()
+    {
+        return $this->getAction('user.signup') .
+               $this->renderToken() .
+               $this->renderControl(self::IDENTIFIANT) .
+               $this->renderControl(self::MAIL) .
+               $this->renderControl(self::SECRET_NEW) .
+               $this->renderControl(self::SECRET_CONFIRM) .
+               $this->renderButton(self::BUTTON) .
+               '</form>';
+    }
 
 }

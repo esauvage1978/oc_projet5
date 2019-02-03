@@ -13,36 +13,25 @@ namespace ES\Core\Form\WebControls;
  */
 class WebControlsInput extends WebControls
 {
+    use ParamRequire;
+    use ParamPlaceholder;
+    use ParamValid;
 
     /**
-     * Champ requis?
-     * @var bool
-     */
-    public $require=true;
-    /**
-     * Donnée saisie dans le champ text
+     * valeur de l'input
      * @var mixed
      */
     public $text;
-    /**
-     * Summary of $placeHolder
-     * @var mixed
-     */
-    public $placeHolder;
     /**
      * *
      * @var int
      */
     public $maxLength;
 
-    use Valid;
-
-
-
 
     protected static $buildParamsMaxLength='maxlenth';
-    protected static $buildParamsPlaceHolder='placeholder';
-    protected static $buildParamsRequire='require';
+
+
     protected static $buildParamsValue='value';
 
     const TYPE_TEXT='text';
@@ -100,17 +89,10 @@ class WebControlsInput extends WebControls
                     }
                     break;
                 case self::$buildParamsRequire:
-                    if ($this->require) {
-                        $param='	required';
-                    }
+                    $param=$this->paramBuildsRequire();
                     break;
                 case self::$buildParamsValid:
-                    if ($this->_showIsValid) {
-                        $param='<div class="valid-feedback">' . $this->_validMessage . '</div>';
-                    } else if ($this->_showIsInvalid) {
-                        $param='<div class="invalid-feedback">' . $this->_validMessage . '</div>';
-                    }
-
+                    $param=$this->paramBuildsValid();
                     break;
                 case self::$buildParamsMaxLength:
                     if(isset($this->maxLength) && is_int($this->maxLength) ) {
@@ -118,13 +100,13 @@ class WebControlsInput extends WebControls
                     }
                     break;
                 case self::$buildParamsPlaceHolder:
-                    if(isset($this->placeHolder) && $this->type != self::TYPE_HIDDEN ) {
-                        $param='placeholder="'. $this->placeHolder  . '"';
+                    if($this->type != self::TYPE_HIDDEN ) {
+                        $param=$this->paramBuildsPlaceholder();
                     }
                     break;
                 case self::$buildParamsLabel:
                     if(isset($this->label)) {
-                        $param='<label for="' . $this->name . '">'. $this->label  .'</label>';
+                        $param='<label for="' . $this->getName() . '">'. $this->label  .'</label>';
                     }
                     break;
                 default:
@@ -145,8 +127,8 @@ class WebControlsInput extends WebControls
     {
         $retour=true;
         $value=$this->text;
-        if( empty($value)) {
 
+        if( empty($value)) {
             $this->setIsInvalid(self::MSG_NOT_GOOD);
             $retour=false;
         }
@@ -157,7 +139,7 @@ class WebControlsInput extends WebControls
     {
         $retour=true;
         $value=$this->text;
-        if( isset($mini) && strlen($value)<=$mini ) {
+        if( isset($mini) && strlen($value)<$mini ) {
 
             $this->setIsInvalid(self::MSG_LENGHT_NOT_GOOD . ' (plus de ' . $mini . ' caractères).');
             $retour=false;

@@ -30,7 +30,7 @@
                                 </span>
                             </div>
                             <div class="counter-num">
-                                <p class="counter"><?= $numberTotal; ?></p>
+                                <p class="counter"><?= isset($numberTotal)?$numberTotal:''; ?></p>
                                 <span class="counter-text">TOTAL</span>
                                 <p>
                                     <small>Nombre total d'inscrit</small>

@@ -1,1 +1,1 @@
-)App/Modules/Shared/View/DashboardView.php 2phpXJhr)App/Modules/Shared/View/DashboardView.php
+(App/Modules/Shared/Render/MenuRender.php 2phpXèhr(App/Modules/Shared/Render/MenuRender.php

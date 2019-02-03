@@ -1,2 +1,2 @@
 
-App/Modules/Blog/Model :	rApp/Modules/Blog/Model
+App/Modules/Blog/Form :	rApp/Modules/Blog/Form

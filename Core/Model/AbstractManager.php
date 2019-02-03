@@ -37,11 +37,11 @@ abstract class AbstractManager
      * Fonction retournant l'ensemble des données de la table
      * @return mixed
      */
-    public function getAll()
+    protected function getAll()
     {
         return $this->query($this->_selectAll . '1=1  ORDER BY ' . static::$order_by . ';');
     }
-    public function count()
+    protected function count()
     {
         return $this->query($this->_selectCount . '1=1  ;',null,true)['count(*)'];
     }
@@ -51,7 +51,7 @@ abstract class AbstractManager
      * @return mixed
      */
 
-    public function findByField($field,$value)
+    protected function findByField($field,$value)
     {
 
         $tatement=$this->_selectAll . $field . '=:value;';
@@ -60,7 +60,7 @@ abstract class AbstractManager
         return $this->createClassTable($retour);
     }
 
-    public function createClassTable($data)
+    protected function createClassTable($data)
     {
         if(!$data) {
             return new static::$classTable([]);
@@ -69,7 +69,7 @@ abstract class AbstractManager
         }
     }
 
-    public function exist($fieldName,$value,$id=null):bool
+    protected function exist($fieldName,$value,$id=null):bool
     {
         if(isset($id))
         {
@@ -92,7 +92,7 @@ abstract class AbstractManager
         return $present[array_keys($present)[0]];
     }
 
-    public function create($datas)
+    protected function create($datas)
     {
         $sql_parts = [];
         $attributes = [];
@@ -110,7 +110,7 @@ abstract class AbstractManager
         return false;
 
     }
-    public function update($id, $fields)
+    protected function update($id, $fields)
     {
         $sql_parts = [];
         $attributes = [];
@@ -123,10 +123,11 @@ abstract class AbstractManager
         return $this->query('UPDATE '. static::$table . ' SET '. $sql_part . $this->where . static::$id . '=? ', $attributes, true);
     }
 
-    public function delete($id)
+    protected function delete($id)
     {
         return $this->query('DELETE FROM '. static::$table . $this->where . static::$id . '= ?', [$id], true);
     }
+
     /**
      * Summary of query : exécute une requête
      * @param mixed $requete
@@ -134,7 +135,7 @@ abstract class AbstractManager
      * @param mixed $only_one
      * @return mixed
      */
-    public function query($requete, $arguments=null,$onlyOne=false,$createClass=true)
+    protected function query($requete, $arguments=null,$onlyOne=false,$createClass=true)
     {
         if (isset($arguments)) {
             $datas=$this->_req->prepare($requete, $arguments, $onlyOne);

@@ -625,7 +625,7 @@ a {
 .intro .intro-title {
   color: #fff;
   font-weight: 600;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .intro .intro-subtitle {
@@ -638,7 +638,7 @@ a {
 }
 
 .intro-single {
-  height: 350px;
+  height: 200px;
 }
 
 .intro-single .intro-content {
@@ -1070,9 +1070,9 @@ a {
 ======================================*/
 
 footer {
-  text-align: center;
-  color: #fff;
-  padding-bottom: 4rem;
+    text-align: center;
+    color: #fff;
+    padding-bottom: 4rem;
 }
 
 footer .copyright {

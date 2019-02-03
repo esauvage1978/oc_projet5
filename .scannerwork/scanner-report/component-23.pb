@@ -1,1 +1,1 @@
-.App/Modules/Shared/Render/SharedRenderView.php 2phpXhr.App/Modules/Shared/Render/SharedRenderView.php
+"App/Modules/Blog/View/ShowView.php 2phpX‚hr"App/Modules/Blog/View/ShowView.php

@@ -13,10 +13,9 @@ namespace ES\Core\Form\WebControls;
  */
 class WebControlsCheckbox extends WebControls
 {
-    use Valid ;
+    use ParamValid ;
 
-    /**
-     * Donnée saisie dans le champ text
+    /*ParamValid  * Donnée saisie dans le champ text
      * @var mixed
      */
     public $text;
@@ -63,15 +62,11 @@ class WebControlsCheckbox extends WebControls
                     break;
                 case self::$buildParamsLabel:
                     if(isset($this->label)) {
-                        $param= '<label class="custom-control-label" for="' . $this->name . '">'. $this->label  .'</label>';
+                        $param= '<label class="custom-control-label" for="' . $this->getName() . '">'. $this->label  .'</label>';
                     }
                     break;
                 case self::$buildParamsValid:
-                    if ($this->_showIsValid) {
-                        $param='<div class="valid-feedback">' . $this->_validMessage . '</div>';
-                    } else if ($this->_showIsInvalid) {
-                        $param='<div class="invalid-feedback">' . $this->_validMessage . '</div>';
-                    }
+                    $param=$this->paramBuildsValid();
                     break;
                 default:
                     $param=parent::buildParams([$key]);

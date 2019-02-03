@@ -1,1 +1,1 @@
-/(App/Modules/User/Form/UserModifyForm.php 2phpX=hr(App/Modules/User/Form/UserModifyForm.php
+/+App/Modules/User/Form/UserPwdChangeForm.php 2phpX6hr+App/Modules/User/Form/UserPwdChangeForm.php

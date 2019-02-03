@@ -15,12 +15,11 @@ class SelectAccreditation extends WebControlsSelect
 {
     const NAME='habil';
 
-    public function __construct($data)
+    public function __construct()
     {
-        parent::__construct ($data);
-        $this->SetLabel('Habilitation');
-        $this->setName(self::NAME);
-        $this->setListe(ES_ACCREDITATION);
+        $this->label='Habilitation';
+        $this->name=self::NAME;
+        $this->liste =ES_ACCREDITATION;
     }
 
 }

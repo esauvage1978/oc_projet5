@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="PhpTools_TestSuite" tests="3" assertions="13" errors="0" failures="0" skipped="0" time="0.567803">
-    <testsuite name="AuthTest" file="C:\wamp64\www\oc_projet5\Tests\Core\AuthTest.php" tests="3" assertions="13" errors="0" failures="0" skipped="0" time="0.567803">
-      <testcase name="testGenerateRandom" class="AuthTest" classname="AuthTest" file="C:\wamp64\www\oc_projet5\Tests\Core\AuthTest.php" line="21" assertions="3" time="0.024934"/>
-      <testcase name="testPwdHashCompare" class="AuthTest" classname="AuthTest" file="C:\wamp64\www\oc_projet5\Tests\Core\AuthTest.php" line="29" assertions="7" time="0.528286"/>
-      <testcase name="testPwdNotHashCompare" class="AuthTest" classname="AuthTest" file="C:\wamp64\www\oc_projet5\Tests\Core\AuthTest.php" line="41" assertions="3" time="0.014583"/>
+  <testsuite name="PhpTools_TestSuite" tests="7" assertions="10" errors="0" failures="0" skipped="0" time="0.583308">
+    <testsuite name="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" tests="7" assertions="10" errors="0" failures="0" skipped="0" time="0.583308">
+      <testcase name="testInstanceVide" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="16" assertions="1" time="0.418466"/>
+      <testcase name="testIDBySetter" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="22" assertions="1" time="0.029535"/>
+      <testcase name="testIdByConstructor" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="29" assertions="1" time="0.009139"/>
+      <testcase name="testHasId" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="36" assertions="1" time="0.033861"/>
+      <testcase name="testIdValueNotId" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="46" assertions="1" time="0.069319"/>
+      <testcase name="testIdValueNull" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="55" assertions="1" time="0.010386"/>
+      <testcase name="testToArray" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="127" assertions="4" time="0.012602"/>
     </testsuite>
   </testsuite>
 </testsuites>

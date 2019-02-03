@@ -42,7 +42,7 @@ class WebControlsButtons extends WebControls
             '>'.
             $this->buildParams([self::$buildParamsLabel]) .
             '</button>' .
-            $this->buildParams([self::$buildParamsHelBlock]) ;
+            $this->buildParams([self::$buildParamsHelBlock]);
     }
 
 

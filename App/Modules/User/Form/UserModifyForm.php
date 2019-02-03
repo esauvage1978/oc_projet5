@@ -3,7 +3,6 @@
 namespace ES\App\Modules\User\Form;
 
 use ES\Core\Form\Form;
-use ES\Core\Form\IForm;
 use ES\Core\Form\WebControlsStandard\ButtonModifier;
 use ES\Core\Form\WebControlsStandard\InputMail;
 use ES\App\Modules\User\Form\WebControls\InputIdentifiant;
@@ -19,49 +18,59 @@ use ES\App\Modules\User\Form\WebControls\CheckboxActif;
  * @version 1.0
  * @author ragus
  */
-class UserModifyForm extends Form implements IForm
+class UserModifyForm extends Form
 {
     public $controls;
 
-    const BUTTON=0;
-    const IDENTIFIANT=1;
-    const MAIL=2;
-    const ACCREDITATION=3;
-    const ID_HIDDEN=4;
-    const ACTIF=5;
+    const BUTTON=1;
+    const IDENTIFIANT=2;
+    const MAIL=3;
+    const ACCREDITATION=4;
+    const ID_HIDDEN=5;
+    const ACTIF=6;
 
-    public static $name_idHidden=InputIdHidden::NAME;
-    public static $name_identifiant=InputIdentifiant::NAME;
-    public static $name_mail=InputMail::NAME;
-    public static $name_accreditation=SelectAccreditation::NAME;
-    public static $name_actif=CheckboxActif::NAME;
-
-    public function __construct($datas=[])
+    public function __construct($datas=[],$byName=true)
     {
-        $this->controls[self::BUTTON]=new ButtonModifier();
-        $this->controls[self::IDENTIFIANT]=new InputIdentifiant();
-        $this->controls[self::MAIL]=new InputMail();
-        $this->controls[self::ACCREDITATION]=new SelectAccreditation();
-        $this->controls[self::ID_HIDDEN]=new InputIdHidden();
-        $this->controls[self::ACTIF]=new CheckboxActif();
+        $this[self::BUTTON]=new ButtonModifier();
+        $this[self::IDENTIFIANT]=new InputIdentifiant();
+        $this[self::MAIL]=new InputMail();
+        $this[self::ACCREDITATION]=new SelectAccreditation();
+        $this[self::ID_HIDDEN]=new InputIdHidden();
+        $this[self::ACTIF]=new CheckboxActif();
 
-        $this->setText($datas) ;
+        $this->postConstruct($datas,$byName) ;
     }
 
     public function check():bool
     {
         $checkOK=true;
 
-        if(!$this->controls[self::IDENTIFIANT]->check()) {
+        if(!$this->checkToken() ) {
             $checkOK=false;
         }
 
-        if(!$this->controls[self::MAIL]->check()) {
+        if(!$this[self::IDENTIFIANT]->check()) {
+            $checkOK=false;
+        }
+
+        if(!$this[self::MAIL]->check()) {
             $checkOK=false;
         }
 
         return $checkOK ;
     }
 
+    public function render()
+    {
+        return $this->getAction('user.modify/' . $this[self::ID_HIDDEN]->text) .
+               $this->renderToken() .
+               $this->renderControl(self::ID_HIDDEN) .
+               $this->renderControl(self::IDENTIFIANT) .
+               $this->renderControl(self::MAIL) .
+               $this->renderControl(self::ACCREDITATION) .
+               $this->renderControl(self::ACTIF) .
+               $this->renderButton(self::BUTTON) .
+               '</form>';
+    }
 
 }

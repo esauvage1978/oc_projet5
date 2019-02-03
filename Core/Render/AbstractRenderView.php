@@ -19,19 +19,19 @@ abstract class AbstractRenderView
     private $_content;
     protected $flash;
     protected $_request;
+    protected $_userConnect;
     protected static $module='';
     protected static $modulesViewTemplate=false;
 
-    public function __construct()
+    public function __construct($userConnect,$request)
     {
-        $this->_request=new Request($_GET,$_POST,$_COOKIE);
+        $this->_request=$request;
+        $this->_userConnect =$userConnect;
         $this->flash=new Flash($this->_request);
     }
 
     protected function render($view, $data)
     {
-
-
         $this->_content= array('content'=> $this->genererFichier(
             $view,
             $data

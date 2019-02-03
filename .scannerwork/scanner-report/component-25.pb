@@ -1,1 +1,1 @@
-(App/Modules/Shared/Render/MenuRender.php 2phpX‹hr(App/Modules/Shared/Render/MenuRender.php
+App/Modules/Blog/Render :rApp/Modules/Blog/Render

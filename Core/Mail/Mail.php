@@ -19,7 +19,7 @@ class Mail
         $this->_mail = new PHPMailer(true);
         // Set PHPMailer to use the sendmail transport
         $this->_mail->isSendmail();
-
+        $this->_mail->CharSet='UTF-8';
         $this->_mail->SMTPDebug = 0;                            // Enable verbose debug output
         $this->_mail->isSMTP();                                 // Set mailer to use SMTP
         $this->_mail->Host = SMTP_HOST;                         // Specify main and backup SMTP servers

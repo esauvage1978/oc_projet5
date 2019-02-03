@@ -130,6 +130,10 @@ class UserManager extends AbstractManager
         $user->setIdentifiant($identifiant);
         $user->setMail($mail);
         $user->setPassword(Auth::passwordCrypt($secret));
+        $user->setValidAccountHash(Auth::strRandom());
+        $user->setAccreditation(ES_VISITEUR);
+        $user->setActif(1);
+        $user->setActifDate(\date(ES_NOW)) ;
         return $user;
     }
 
@@ -138,7 +142,7 @@ class UserManager extends AbstractManager
     public function validAccountReset(UserTable $user):bool
     {
         $user->setValidAccountHash(null);
-        $user->setValidAccountDate(date(ES_NOW));
+        $user->setValidAccountDate(\date(ES_NOW));
 
         return $this->updateUser($user);
     }
@@ -179,7 +183,12 @@ class UserManager extends AbstractManager
     #region MAIL
     public function sendMailSignup(UserTable $user):bool
     {
-        $content='<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '">Lien pour activer le compte</a>';
+        $content='Bonjour,<br/><br/>
+            Vous vous êtes récemment inscrit sur notre site.<br/>
+            Afin de finaliser l\'inscription et de valider votre compte,
+            <a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '">cliquez ici</a>
+            ou collez le lien suivant dans votre navigateur ' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '
+            <br/><br/>Merci d\'utiliser ' . ES_APPLICATION_NOM;
         $mail=new Mail();
         if(! $mail->send($user->getMail(),'Validation du compte',$content)) {
             throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail.');
@@ -188,7 +197,17 @@ class UserManager extends AbstractManager
     }
     public function sendMailPwdForget(UserTable $user) :bool
     {
-        $content='<a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.pwdforgetchange/' . $user->getForgetHash() . '">Lien pour modifier le mot de passe</a>';
+        $content='Bonjour,<br/><br/>
+
+                    Vous avez récemment sollicité une réinitialisation de votre mot de passe.<br/>
+                    Pour modifier votre mot de passe de connexion, <a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.pwdforgetchange/' . $user->getForgetHash() . '">
+                    cliquez ici</a> ou collez le lien suivant dans votre navigateur : ' . ES_ROOT_PATH_WEB_INDEX . 'user.pwdforgetchange/' . $user->getForgetHash(). '
+
+                    <br/><br/>Le lien expirera dans 24 heures, assurez-vous de l\'utiliser bientôt.<br/><br/>
+                    Si vous n\'êtes pas à l\'origine de cette demande, ignorez simplement ce mail.
+                    Vos identifiants de connexion n\'ont pas été modifiés.<br/><br/>
+                    Merci d\'utiliser ' . ES_APPLICATION_NOM;
+
         $mail=new Mail();
         if(! $mail->send($user->getMail(),'Réinitialisation du mot de passe',$content)) {
             throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail. ');

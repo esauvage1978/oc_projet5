@@ -18,31 +18,41 @@ use ES\App\Modules\Blog\Form\WebControls\InputCategory;
 class CategoryAddForm extends Form
 {
 
-    const BUTTON=0;
-    const CATEGORY=1;
+    const BUTTON=1;
+    const CATEGORY=2;
 
-    public static $name_category= 'catadd_' . InputCategory::NAME;
 
-    public function __construct($datas=[])
+    public function __construct($datas=[],$byName=true)
     {
 
+        $this[self::BUTTON]=new ButtonAjouter();
+        $this[self::CATEGORY]=new InputCategory();
 
-        $this->controls[self::BUTTON]=new ButtonAjouter();
-        $this->controls[self::CATEGORY]=new InputCategory();
-
-        $this->controls[self::CATEGORY]->prefixeFormName='catadd';
-
-        $this->setText($datas);
+        $this->postConstruct($datas,$byName) ;
     }
 
     public function check():bool
     {
         $checkOK=true;
 
-        if(!$this->controls[self::CATEGORY]->check()) {
+        if(!$this->checkToken() ) {
+            $checkOK=false;
+        }
+
+        if(!$this[self::CATEGORY]->check()) {
             $checkOK=false;
         }
 
         return $checkOK ;
+    }
+
+
+    public function render()
+    {
+        return $this->getAction('blog.category.add#categorycrud') .
+               $this->renderToken() .
+               $this->renderControl(self::CATEGORY) .
+               $this->renderButton(self::BUTTON) .
+               '</form>';
     }
 }

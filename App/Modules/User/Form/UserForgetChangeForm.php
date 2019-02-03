@@ -3,13 +3,12 @@
 namespace ES\App\Modules\User\Form;
 
 use ES\Core\Form\Form;
-use ES\Core\Form\IForm;
 
 use ES\Core\Form\WebControlsStandard\ButtonModifier;
 use ES\Core\Form\WebControlsStandard\InputSecretNew;
 use ES\Core\Form\WebControlsStandard\InputSecretConfirm;
 use ES\Core\Form\WebControlsStandard\InputHash;
-use ES\Core\Form\WebControlsStandard\checkSecret; 
+use ES\Core\Form\WebControlsStandard\checkSecret;
 
 /**
  * UserConnexionForm short summary.
@@ -19,29 +18,47 @@ use ES\Core\Form\WebControlsStandard\checkSecret;
  * @version 1.0
  * @author ragus
  */
-class UserForgetChangeForm extends Form implements IForm
+class UserForgetChangeForm extends Form
 {
-    const BUTTON=0;
-    const SECRET_NEW=1;
-    const SECRET_CONFIRM=2;
-    const HASH=3;
+    const BUTTON=1;
+    const SECRET_NEW=2;
+    const SECRET_CONFIRM=3;
+    const HASH=4;
 
-    public static $controlHashName='hash';
-
-    public function __construct($datas=[])
+    public function __construct($datas=[],$byName=true)
     {
-        $this->controls[self::BUTTON]=new ButtonModifier();
-        $this->controls[self::SECRET_NEW]=new InputSecretNew();
-        $this->controls[self::SECRET_CONFIRM]=new InputSecretConfirm();
-        $this->controls[self::HASH]=new InputHash();
+        $this[self::BUTTON]=new ButtonModifier();
+        $this[self::SECRET_NEW]=new InputSecretNew();
+        $this[self::SECRET_CONFIRM]=new InputSecretConfirm();
+        $this[self::HASH]=new InputHash();
 
-        $this->setText($datas) ;
+        $this->postConstruct($datas,$byName) ;
     }
 
     use checkSecret;
 
     public function check():bool
     {
-        return $this->checkSecretNewAndConfirm();
+        $checkOK=true;
+
+        if(!$this->checkToken() ) {
+            $checkOK=false;
+        }
+        if(! $this->checkSecretNewAndConfirm()) {
+            $checkOK =false;
+        }
+
+        return $checkOK;
+    }
+
+    public function render() 
+    {
+        return $this->getAction('user.pwdforgetchange') .
+               $this->renderToken() .
+               $this->renderControl(self::HASH) .
+               $this->renderControl(self::SECRET_NEW) .
+               $this->renderControl(self::SECRET_CONFIRM) .
+               $this->renderButton(self::BUTTON) .
+               '</form>';
     }
 }

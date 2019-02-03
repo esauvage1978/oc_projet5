@@ -1,1 +1,1 @@
-App/Modules/Shared/Render :rApp/Modules/Shared/Render
+*App/Modules/Blog/Render/BlogRenderView.php 2phpXhr*App/Modules/Blog/Render/BlogRenderView.php

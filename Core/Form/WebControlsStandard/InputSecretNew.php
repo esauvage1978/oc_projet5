@@ -13,8 +13,8 @@ use ES\Core\Form\WebControls\WebControlsInput;
  */
 class InputSecretNew extends WebControlsInput
 {
-    const MSG_PASSWORD_NOT_COMPLEX='Le mot de passe ne correspond pas aux règles de complexité.';
-    const MSG_PASSWORD_HELPBLOCK='Le mot de passe doit avoir au minimum 8 caractères et avoir les éléments suivants :<ul>
+    const MSG_SECRET_NOT_COMPLEX='Le mot de passe ne correspond pas aux règles de complexité.';
+    const MSG_SECRET_HELPBLOCK='Le mot de passe doit avoir au minimum 8 caractères et avoir les éléments suivants :<ul>
             <li>Une lettre minuscule</li>
             <li>Une lettre majuscule</li>
             <li>Un chiffre</li></ul>';
@@ -25,7 +25,7 @@ class InputSecretNew extends WebControlsInput
         $this->type= self::TYPE_SECRET;
         $this->name ='secretNew';
         $this->maxLength =100;
-        $this->helpBlock =self::MSG_PASSWORD_HELPBLOCK;
+        $this->helpBlock =self::MSG_SECRET_HELPBLOCK;
     }
 
     public function check():bool
@@ -39,7 +39,7 @@ class InputSecretNew extends WebControlsInput
 
         }  else if(!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$#', $value) ) {
 
-            $this->setIsInvalid(self::MSG_PASSWORD_NOT_COMPLEX);
+            $this->setIsInvalid(self::MSG_SECRET_NOT_COMPLEX);
             return false;
         }
 

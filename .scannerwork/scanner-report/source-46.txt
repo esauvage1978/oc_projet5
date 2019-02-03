@@ -1,25 +1,49 @@
 <?php
 
-namespace ES\App\Modules\User\Form\WebControls;
+namespace ES\App\Modules\User\Form;
 
-use ES\Core\Form\WebControls\WebControlsInput;
+use ES\Core\Form\Form;
+use ES\Core\Form\IForm;
+use ES\Core\Form\WebControlsStandard\ButtonConnexion;
+use ES\Core\Form\WebControlsStandard\InputLogin;
+use ES\Core\Form\WebControlsStandard\InputSecret;
+
 /**
- * ButtonsConnexion short summary.
+ * UserConnexionForm short summary.
  *
- * ButtonsConnexion description.
+ * UserConnexionForm description.
  *
  * @version 1.0
  * @author ragus
  */
-class InputHash extends WebControlsInput
+class UserConnexionForm extends Form implements IForm
 {
-    const NAME='hash';
 
-    public function __construct($data)
+    const BUTTON=0;
+    const LOGIN=1;
+    const SECRET=2;
+
+    public function __construct($datas=[])
     {
-        parent::__construct ($data);
-        $this->setName(self::NAME);
-        $this->SetType(parent::TYPE_HIDDEN);
-        $this->setMaxLength (60);
+        $this->controls[self::BUTTON]=new ButtonConnexion();
+        $this->controls[self::LOGIN]=new InputLogin();
+        $this->controls[self::SECRET]=new InputSecret();
+
+        $this->setText($datas) ;
+    }
+
+    public function check():bool
+    {
+        $checkOK=true;
+
+        if(!$this->controls[self::LOGIN]->check()) {
+            $checkOK=false;
+        }
+
+        if(!$this->controls[self::SECRET]->check()) {
+            $checkOK=false;
+        }
+
+        return $checkOK ;
     }
 }

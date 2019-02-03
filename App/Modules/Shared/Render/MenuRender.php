@@ -2,9 +2,9 @@
 
 namespace ES\App\Modules\Shared\Render;
 
-use \ES\App\Modules\User\Model\UserTable;
+use \ES\App\Modules\Shared\Services\Restrict;
 use \ES\App\Modules\User\Model\UserConnect;
-use \ES\Core\Toolbox\Request;
+
 /**
  * MenuRender short summary.
  *
@@ -15,16 +15,15 @@ use \ES\Core\Toolbox\Request;
  */
 class MenuRender
 {
-    private $_request;
+
     private $_userConnect;
-    private $_user;
 
     private $_liStart='<li class="nav-item">';
     private $_liEnd='</li>';
 
     private $_aStart='<a class="nav-link js-scroll" href="##INDEX##';
     private $_aDropdownStart='<a class="dropdown-item" href="##INDEX##';
-    private $_aMiddle='">';
+    private $_aMiddle='#">';
     private $_aEnd='</a>';
 
     private $_dropdowDivideur='<div class="dropdown-divider"></div>';
@@ -33,12 +32,11 @@ class MenuRender
     private $_dropdownMiddle='</a>' .
                             '<div class="dropdown-menu" aria-labelledby="navbarDropdown">';
     private $_dropdownEnd='';
-
-    public function __construct(Request $request)
+    private $_restrict;
+    public function __construct(UserConnect $userConnect)
     {
-        $this->_request=$request;
-        $this->_userConnect =new UserConnect($this->_request);
-
+        $this->_userConnect =$userConnect;
+        $this->_restrict =new Restrict($userConnect);
     }
 
     public function render() :string
@@ -47,36 +45,12 @@ class MenuRender
         if (!$this->_userConnect->isConnect ()) {
             $menu=$this->renderMenuDisconnet();
         } else {
-            $this->_user=$this->_userConnect->getUserConnect();
 
-            switch($this->_user->getAccreditation())
-            {
-                case ES_GESTIONNAIRE:
-                    $menu=$this->renderMenuGestionnaire();
-                    $menu.=$this->renderMenuConnet();
-                    break;
-                case ES_MODERATEUR:
-                    $menu=$this->renderMenuModerateur();
-                    $menu.=$this->renderMenuConnet();
-                    break;
-                case ES_REDACTEUR:
-                    $menu=$this->renderMenuRedacteur();
-                    $menu.=$this->renderMenuConnet();
-                    break;
-                case ES_VISITEUR:
-                    $menu=$this->renderMenuConnet();
-                    break;
-                default:
-                    $menu=$this->renderMenuConnet();
-                    break;
-            }
+            $menu=$this->renderMenu($this->_userConnect->user->getAccreditation());
+            $menu.=$this->renderMenuConnet();
+
         }
         return $menu;
-    }
-
-    private function menuDashbord():string
-    {
-        return $this->createDropDownLink ('shared.dashboard','Tableau de bord');
     }
 
     private function renderMenuDisconnet()
@@ -87,49 +61,55 @@ class MenuRender
     }
     private function renderMenuConnet()
     {
-        return $this->_dropdownStart .
+        $menu= $this->_dropdownStart .
                 'Votre compte' .
-               $this->_dropdownMiddle .
-               $this->createDropDownLink ('user.modify/' . $this->_user->getId(),'Mon compte') .
-                $this->_dropdowDivideur .
-               $this->createDropDownLink ('user.deconnexion','Me déconnecter') .
-               $this->_dropdownEnd;
+               $this->_dropdownMiddle ;
+        $bloc=$this->checkLink('user.modify','Mon compte','user.modify/' . $this->_userConnect->user->getId());
+        if($bloc!='') {
+            $bloc.= $this->_dropdowDivideur;
+        }
+        $menu.=$bloc;
+
+        $bloc=$this->checkLink('user.deconnexion','Me déconnecter');
+        $menu.=$bloc;
+        return $menu . $this->_dropdownEnd;
 
     }
-    private function renderMenuGestionnaire()
+    private function renderMenu($accreditation)
     {
-        return $this->_dropdownStart .
-                ES_ACCREDITATION[ES_GESTIONNAIRE] .
-               $this->_dropdownMiddle .
-               $this->menuDashbord() .
-                $this->_dropdowDivideur .
-               $this->createDropDownLink ('user.list','Liste des utilisateurs') .
-                $this->_dropdowDivideur .
-               $this->createDropDownLink ('blog.categorylist','Gestion des catégories') .
-               $this->_dropdownEnd;
-    }
-    private function renderMenuModerateur()
-    {
-        return $this->_dropdownStart .
-                ES_ACCREDITATION[ES_MODERATEUR] .
-               $this->_dropdownMiddle .
-               $this->menuDashbord() .
-                $this->_dropdowDivideur .
-               $this->createDropDownLink ('blog.categorylist','Gestion des catégories') .
+        $menu=$this->_dropdownStart .
+               ES_ACCREDITATION[$accreditation] .
+               $this->_dropdownMiddle ;
+        $bloc=$this->checkLink('shared.dashboard','Tableau de bord');
+        if($bloc!='') {
+            $bloc.= $this->_dropdowDivideur;
+        }
+        $menu.=$bloc;
 
-               $this->_dropdownEnd;
-    }
-    private function renderMenuRedacteur()
-    {
-        return $this->_dropdownStart .
-                ES_ACCREDITATION[ES_REDACTEUR] .
-               $this->_dropdownMiddle .
-               $this->menuDashbord() .
-                $this->_dropdowDivideur .
-               $this->createDropDownLink ('blog.categorylist','Gestion des catégories') .
+        $bloc=$this->checkLink('user.list','Liste des utilisateurs');
+        if($bloc!='') {$bloc.= $this->_dropdowDivideur;}
+        $menu.=$bloc;
 
-               $this->_dropdownEnd;
+        $bloc=$this->checkLink('blog.article.add','Ajout d\'un article');
+        $bloc.=$this->checkLink('blog.category.list','Gestion des catégories');
+        $bloc.=$this->checkLink('blog.commentlist','Modérer les commentaires');
+        if($bloc!='') {$bloc.= $this->_dropdowDivideur;}
+        $menu.=$bloc;
+
+        return $menu . $this->_dropdownEnd;
     }
+
+
+    private function checkLink($page,$libelle,$url=null) :string
+    {
+        if ($this->_restrict->valideAccessPage ($page) ) {
+            return $this->createDropDownLink (
+                (isset($url)?$url:$page),
+                $libelle);
+        }
+        return '';
+    }
+
     private function createLink($link,$label)
     {
         return $this->_aStart . $link . $this->_aMiddle .

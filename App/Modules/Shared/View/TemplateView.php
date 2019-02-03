@@ -34,8 +34,8 @@
 <body id="page-top">
     <!--/ Nav Star /-->
     <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll" href="#page-top">
+        <div class="container-fluid">
+            <a class="navbar-brand js-scroll" href="##INDEX##">
                 <?= ES_APPLICATION_NOM;?>
             </a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
@@ -47,13 +47,18 @@
             <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll" href="##INDEX###topContent">Home</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link js-scroll" href="##INDEX##blog.list#blogtopsection">Blog</a>
                     </li>
                     <?= isset($menuUser)?$menuUser:'';?>
                 </ul>
+                <form class="form-inline" action="##INDEX##blog.find" method="post">
+                    <input class="form-control  form-control-sm" type="search" name="recherche" placeholder="Recherche" aria-label="Recherche" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary btn-sm" type="submit">
+                            <span class="fa fa-search  fa-2"></span>
+                        </button>
+                    </span>
+                </form>
             </div>
         </div>
     </nav>
@@ -61,8 +66,8 @@
 
     <!--/ Intro Skew Star /-->
     <?php if(!$home):?>
-    <div class="intro intro-single route bg-image" style="background-image: url(##DIR_VENDOR##devfolio-master/img/bg1.jpg)">
-        <div class="overlay-mf"></div>
+    <div class="intro intro-single  bg-image" style="background-image: url(##DIR_VENDOR##devfolio-master/img/bg.jpg)">
+
         <div class="intro-content display-table">
             <div class="table-cell">
                 <div class="container">
@@ -87,14 +92,16 @@
                         <span class="text-slider-items">Développeur Full Stack,Dotnet,PHP / Symfony</span>
                         <strong class="text-slider"></strong>
                     </p>
+                    <div id="topContent"></div>
                     <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
                 </div>
             </div>
+            
         </div>
     </div>
     <?php endif ?>
-
-    <div class="container" id="topContent">
+    
+    <div class="container">
         <div class="row">
             <?php require ES_ROOT_PATH_FAT_MODULES .'Shared/View/Partial/FlashPartialView.php';?>
         </div>
@@ -105,7 +112,8 @@
 
 
     <!--/ Section Contact-Footer Star /-->
-    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(##DIR_VENDOR##devfolio-master/img/bg1.jpg)">
+    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" 
+             style="background-image: url(##DIR_VENDOR##devfolio-master/img/bg.jpg)">
         <div class="overlay-mf"></div>
         <footer>
             <div class="container">
