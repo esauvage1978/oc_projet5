@@ -3,6 +3,7 @@
 namespace ES\App\Modules\Blog\Model;
 
 use ES\Core\Model\AbstractManager;
+use ES\Core\Database\QueryBuilder;
 
 /**
  * CommentManager short summary.
@@ -49,7 +50,7 @@ class CommentManager extends AbstractManager
         $comment = new CommentTable([]);
         $comment->setCreateDate(date(ES_NOW));
         $comment->setContent($content);
-        $comment->setModeratorStatus('0');
+        $comment->setModeratorStatus(ES_BLOG_COMMENT_STATE_WAIT);
         $comment->setCreateUserRef($userRef);
         $comment->setArticleRef($articleRef);
         return $comment;
@@ -57,17 +58,22 @@ class CommentManager extends AbstractManager
 
     public function getCommentsValid($articleRef)
     {
-        return $this->query('SELECT * FROM ocp5_blog_comment
-                            WHERE bco_moderator_status=2 and bco_article_ref=:id
-                            ORDER BY bco_create_date DESC;'
-            ,['id'=>$articleRef],false,true);
+        $requete=new QueryBuilder();
+        $requete->select ('*')
+                ->from('ocp5_blog_comment')
+                ->innerJoin('ocp5_blog_article ON bco_article_ref=ba_id')
+                ->where('bco_moderator_state=' . ES_BLOG_COMMENT_STATE_APPROVE,
+                'bco_article_ref=:id','ba_state=' . ES_BLOG_ARTICLE_STATE_ACTIF)
+                ->orderBy('bco_create_date DESC');
+
+        return $this->query($requete->render(),['id'=>$articleRef],false,true);
     }
     public function getCommentForModerator()
     {
         return $this->query('SELECT bco_id,ba_title,u_identifiant, bco_create_date,bco_content FROM ocp5_blog_comment
                             INNER JOIN ocp5_blog_article ON ba_id=bco_article_ref
                             LEFT OUTER JOIN ocp5_user ON u_id=bco_create_user_ref
-                            WHERE bco_moderator_status=0
+                            WHERE bco_moderator_status=' . ES_BLOG_COMMENT_STATE_WAIT .'
                             ORDER BY bco_create_date DESC;'
             ,null,false,false);
     }

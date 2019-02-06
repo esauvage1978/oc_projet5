@@ -47,11 +47,11 @@
             <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll" href="##INDEX##blog.list#blogtopsection">Blog</a>
+                        <a class="nav-link js-scroll" href="##INDEX##blog.article.list#blogtopsection">Blog</a>
                     </li>
                     <?= isset($menuUser)?$menuUser:'';?>
                 </ul>
-                <form class="form-inline" action="##INDEX##blog.find" method="post">
+                <form class="form-inline" action="##INDEX##blog.article.find" method="post">
                     <input class="form-control  form-control-sm" type="search" name="recherche" placeholder="Recherche" aria-label="Recherche" />
                     <span class="input-group-btn">
                         <button class="btn btn-secondary btn-sm" type="submit">

@@ -36,15 +36,16 @@ class SharedController extends AbstractController
     public function dashboard()
     {
         $contentDashboard='';
+        if($this->_userConnect->canRedactor() )
+        {
+            $blogController=new BlogController($this->_userConnect,$this->_request);
+            $contentDashboard.=$blogController->getWidgetDashboard ();
+        }
         if($this->_userConnect->canAdministrator() ) {
             $userController=new UserController($this->_userConnect,$this->_request );
             $contentDashboard.=$userController->getWidgetDashboard ();
         }
-        if($this->_userConnect->canModerator() )
-        {
-            $commentController=new BlogController($this->_userConnect,$this->_request);
-            $contentDashboard.=$commentController->getWidgetDashboard ();
-        }
+
         $this->view('DashboardView',
         ['title'=>'Tableau de bord',
         'contentDashboard'=>$contentDashboard]);

@@ -12,51 +12,62 @@ use ES\App\Modules\User\Model\UserConnect;
  * @version 1.0
  * @author ragus
  */
-class Restrict
+class ACL
 {
     private $_forAll=[
         'shared.accessdenied',
         'shared.show',
         'shared.errorcatch',
         'user.deconnexion',
-        'blog.list',
-        'blog.find',
+        'blog.article.list',
+        'blog.article.show',
+        'blog.article.find',
+        'blog.comment.add',
         'blog.category.listnotempty',
         'blog.article.last'
         ];
 
     private $_restrict=[
-    ES_NOT_CONNECTED =>[
+    ES_USER_ROLE_NOT_CONNECTED =>[
         'user.connexion',
         'user.pwdforget',
         'user.pwdforgetchange',
         'user.signup',
         'user.validaccount'
         ],
-    ES_VISITEUR =>[
+    ES_USER_ROLE_VISITEUR =>[
         'user.modify',
         'blog.show'
         ],
-    ES_REDACTEUR=>[
+    ES_USER_ROLE_REDACTEUR=>[
         'user.modify',
         'blog.show',
         'blog.article.add',
+        'blog.article.modify',
+        'blog.article.listadmin',
+        'blog.article.changestatut',
         'blog.category.list'
         ],
-    ES_MODERATEUR=>[
+    ES_USER_ROLE_MODERATEUR=>[
         'user.modify',
         'blog.show',
         'blog.article.add',
+        'blog.article.modify',
         'blog.category.list',
+        'blog.article.listadmin',
+        'blog.article.changestatut',
         'blog.comment.moderate',
         'shared.dashboard'
         ],
-    ES_GESTIONNAIRE =>[
+    ES_USER_ROLE_GESTIONNAIRE =>[
         'shared.dashboard',
         'user.modify',
         'user.list',
         'blog.show',
         'blog.article.add',
+        'blog.article.modify',
+        'blog.article.listadmin',
+        'blog.article.changestatut',
         'blog.category.list',
         'blog.comment.moderate'
         ]];
@@ -72,13 +83,13 @@ class Restrict
     {
         $retour=true;
         if(isset($page)) {
-            $accreditation=ES_NOT_CONNECTED;
+            $userRole=ES_USER_ROLE_NOT_CONNECTED;
 
             if($this->_userConnect->isConnect()) {
-                $accreditation= $this->_userConnect->user->getAccreditation() ;
+                $userRole= $this->_userConnect->user->getUserRole() ;
             }
             if(!in_array($page,$this->_forAll ) ) {
-                if(!in_array ($page,$this->_restrict[$accreditation] )) {
+                if(!in_array ($page,$this->_restrict[$userRole] )) {
                     $retour=false;
                 }
             }

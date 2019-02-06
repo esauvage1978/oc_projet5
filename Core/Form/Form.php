@@ -47,14 +47,17 @@ abstract class Form implements \ArrayAccess
         return static::render();
     }
 
-    public function renderControl($key)
+    public function renderControl($key,$surround=true)
     {
+        if(!$surround) {
+            return $this->_controls[$key]->render();
+        }
         return $this->surroundControl( $this->_controls[$key]->render());
     }
 
     public function renderButton($key)
     {
-        return $this->_controls[$key]->render();
+        return $this->renderControl($key,false);
     }
 
     protected function surroundControl($control) :string
@@ -79,7 +82,7 @@ abstract class Form implements \ArrayAccess
     }
     public function renderToken()
     {
-        return $this->_controls[self::TOKEN]->render();
+        return $this->renderControl(self::TOKEN,false);
     }
 
     private function setPrefixeToControl()

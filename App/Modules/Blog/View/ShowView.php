@@ -3,45 +3,45 @@
         <div class="col-md-8">
           <div class="post-box">
             <div class="post-thumb">
-                <img src="##IMGBLOG##/<?= $articleFactory->article->getId(); ?>.jpg" class="img-fluid" alt="" />
+                <img src="##IMGBLOG##/<?= $articleComposer->article->getId(); ?>.jpg" class="img-fluid" alt="" />
             </div>
             <div class="post-meta">
-              <h1 class="article-title"><?= $articleFactory->article->getTitle(); ?></h1>
+              <h1 class="article-title"><?= $articleComposer->article->getTitle(); ?></h1>
               <ul>
                 <li>
                   <span class="ion-ios-person"></span>
-                    <a href="##INDEX##blog.list/user/<?= $articleFactory->userCreate->getId(); ?>">
-                        <?= $articleFactory->userCreate->getIdentifiant(); ?>
+                    <a href="##INDEX##blog.article.list/user/<?= $articleComposer->createUser->getId(); ?>">
+                        <?= $articleComposer->createUser->getIdentifiant(); ?>
                     </a>
                 </li>
                 <li>
                   <span class="ion-pricetag"></span>
-                    <a href="##INDEX##blog.list/category/<?= $articleFactory->category->getId(); ?>">
-                        <?= $articleFactory->category->getTitle(); ?>
+                    <a href="##INDEX##blog.article.list/category/<?= $articleComposer->category->getId(); ?>">
+                        <?= $articleComposer->category->getTitle(); ?>
                     </a>
                 </li>
                 <li>
                   <span class="ion-chatbox"></span>
                     <a href="#comments">
-                        <?= $articleFactory->commentNbr; ?>
+                        <?= $articleComposer->commentNbr; ?>
                     </a>
                 </li>
               </ul>
             </div>
             <div class="article-content">
             <blockquote class="blockquote">
-                <p class="mb-0"><?= $articleFactory->article->getChapo(); ?></p>
+                <p class="mb-0"><?= $articleComposer->article->getChapo(); ?></p>
             </blockquote>
 
-                <?= $articleFactory->article->getContent(); ?>
+                <?= $articleComposer->article->getContent(); ?>
             </div>
           </div>
           <div class="box-comments" id="comments">
             <div class="title-box-2">
-              <h4 class="title-comments title-left">Commentaires (<?= $articleFactory->commentNbr; ?>)</h4>
+              <h4 class="title-comments title-left">Commentaires (<?= $articleComposer->commentNbr; ?>)</h4>
             </div>
             <ul class="list-comments">
-                <?php foreach($articleFactory->comments as $comment): ?>
+                <?php foreach($articleComposer->comments as $comment): ?>
               <li>
                 <div class="comment-avatar">
                     <img src="##IMGAVATAR##/<?= $comment->userCreate->getId() ?>.png" alt="" />
@@ -64,7 +64,9 @@
                         Laisser un commentaire
                     </h3>
                 </div>
-                <?= $formComment->Render() ?>
+                <?= isset($formComment)?$formComment:''; ?>
+                <span id="commentAdd" class="btn btn-primary">Envoyer</span>
+
             </div>
         </div>
         <div class="col-md-4">
@@ -88,3 +90,15 @@
 
         </div>
       </div>
+<script type="text/javascript">
+
+$('#commentAdd').click(function () {
+    var id=$('#<?=$formComment[$formComment::IDARTICLEHIDDEN]->getName();?>').val();
+    var value=$('#<?=$formComment[$formComment::COMMENT]->getName();?>').val();
+    $.ajax({
+                type: 'post',
+                url: '##INDEX##blog.comment.add',
+                data: 'id=' + id + '&value=' + value
+            });
+                    });
+</script>

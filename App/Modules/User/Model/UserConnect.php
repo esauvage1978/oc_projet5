@@ -54,7 +54,7 @@ class UserConnect
     public function canAdministrator():bool
     {
         $retour =false;
-        if(isset($this->user) && $this->user->getAccreditation() == ES_GESTIONNAIRE) {
+        if(isset($this->user) && $this->user->getUserRole() == ES_USER_ROLE_GESTIONNAIRE) {
                 $retour=true;
         }
         return $retour;
@@ -62,7 +62,7 @@ class UserConnect
     public function canModerator():bool
     {
         $retour =false;
-        if(isset($this->user) && $this->user->getAccreditation() >= ES_MODERATEUR) {
+        if(isset($this->user) && $this->user->getUserRole() >= ES_USER_ROLE_MODERATEUR) {
             $retour=true;
         }
         return $retour;
@@ -70,7 +70,7 @@ class UserConnect
     public function canRedactor():bool
     {
         $retour =false;
-        if(isset($this->user) && $this->user->getAccreditation() >= ES_REDACTEUR) {
+        if(isset($this->user) && $this->user->getUserRole() >= ES_USER_ROLE_REDACTEUR) {
             $retour=true;
         }
         return $retour;

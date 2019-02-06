@@ -18,9 +18,10 @@ class TextareaArticleContent extends WebControlsTextaera
     public function __construct()
     {
         $this->label='Contenu';
-        $this->rows =10;
+        $this->rows =30;
         $this->name=self::NAME;
     }
 
+    
 
 }

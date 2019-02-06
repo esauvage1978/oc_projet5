@@ -5,7 +5,7 @@
 
 <div id="user.list" class="row">
     <div class="col-md-8">
-        <div class="post-box">
+        <div class="post-box box-shadow-full">
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-sm" style="width:100%" id="userlist">
                     <thead>
@@ -28,7 +28,7 @@
                             </td>
                             <td>
                                 <small>
-                                    <?= $data->getAccreditationLabel(); ?>
+                                    <?= $data->getUserRoleLabel(); ?>
                                 </small>
                             </td>
                             <td>
@@ -61,23 +61,23 @@
                         </a>
                     </li>
                     <li>
-                        <a href="##INDEX##user.list/accreditation/<?= ES_VISITEUR; ?>#topsection">
-                            <?= ES_ACCREDITATION[ES_VISITEUR];?>
+                        <a href="##INDEX##user.list/user_role/<?= ES_USER_ROLE_VISITEUR; ?>#topsection">
+                            <?= ES_USER_ROLE[ES_USER_ROLE_VISITEUR];?>
                         </a>
                     </li>
                     <li>
-                        <a href="##INDEX##user.list/accreditation/<?= ES_REDACTEUR; ?>#topsection">
-                            <?= ES_ACCREDITATION[ES_REDACTEUR];?>
+                        <a href="##INDEX##user.list/user_role/<?= ES_USER_ROLE_REDACTEUR; ?>#topsection">
+                            <?= ES_USER_ROLE[ES_USER_ROLE_REDACTEUR];?>
                         </a>
                     </li>
                     <li>
-                        <a href="##INDEX##user.list/accreditation/<?= ES_MODERATEUR; ?>#topsection">
-                            <?= ES_ACCREDITATION[ES_MODERATEUR];?>
+                        <a href="##INDEX##user.list/user_role/<?= ES_USER_ROLE_MODERATEUR; ?>#topsection">
+                            <?= ES_USER_ROLE[ES_USER_ROLE_MODERATEUR];?>
                         </a>
                     </li>
                     <li>
-                        <a href="##INDEX##user.list/accreditation/<?= ES_GESTIONNAIRE; ?>#topsection">
-                            <?= ES_ACCREDITATION[ES_GESTIONNAIRE];?>
+                        <a href="##INDEX##user.list/user_role/<?= ES_USER_ROLE_GESTIONNAIRE; ?>#topsection">
+                            <?= ES_USER_ROLE[ES_USER_ROLE_GESTIONNAIRE];?>
                         </a>
                     </li>
                 </ul>

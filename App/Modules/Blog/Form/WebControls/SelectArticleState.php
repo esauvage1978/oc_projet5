@@ -1,6 +1,6 @@
 <?php
 
-namespace ES\App\Modules\User\Form\WebControls;
+namespace ES\App\Modules\Blog\Form\WebControls;
 
 use ES\Core\Form\WebControls\WebControlsSelect;
 /**
@@ -11,15 +11,14 @@ use ES\Core\Form\WebControls\WebControlsSelect;
  * @version 1.0
  * @author ragus
  */
-class SelectAccreditation extends WebControlsSelect
+class SelectArticleState extends WebControlsSelect
 {
-    const NAME='habil';
+    const NAME='articleState';
 
     public function __construct()
     {
-        $this->label='Habilitation';
+        $this->label='Statut';
         $this->name=self::NAME;
-        $this->liste =ES_ACCREDITATION;
     }
 
 }

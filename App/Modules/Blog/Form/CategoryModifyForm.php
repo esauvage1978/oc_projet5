@@ -56,8 +56,8 @@ class CategoryModifyForm extends Form
     {
         return $this->getAction('blog.category.modify#categorycrud') .
 
-               $this->renderToken() .
-               $this->renderControl(self::IDHIDDEN) .
+               $this->renderControl(self::TOKEN,false) .  
+               $this->renderControl(self::IDHIDDEN,false) .
                $this->renderControl(self::CATEGORY) .
                $this->renderButton(self::BUTTON) .
                '</form>';

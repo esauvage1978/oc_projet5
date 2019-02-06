@@ -25,7 +25,7 @@ class UserTable extends AbstractTable implements ITable
     private $_forgetDate;
     private $_validAccountHash;
     private $_validAccountDate;
-    private $_accreditation;
+    private $_userRole;
     private $_actif;
     private $_actifDate;
 
@@ -37,7 +37,7 @@ class UserTable extends AbstractTable implements ITable
     const FORGET_DATE='u_forget_date';
     const VALID_ACCOUNT_HASH='u_valid_account_hash';
     const VALID_ACCOUNT_DATE='u_valid_account_date';
-    const ACCREDITATION='u_accreditation';
+    const USER_ROLE='u_user_role';
     const ACTIF='u_actif';
     const ACTIF_DATE='u_actif_date';
 
@@ -161,22 +161,22 @@ class UserTable extends AbstractTable implements ITable
         return $this->_validAccountDate;
     }
     #endregion
-    #region ACCREDITATION
-    public function getAccreditation()
+    #region ROLE
+    public function getUserRole()
     {
-        return $this->_accreditation;
+        return $this->_userRole;
     }
-    Public function getAccreditationLabel()
+    Public function getUserRoleLabel()
     {
-        return ES_ACCREDITATION[$this->_accreditation];
+        return ES_USER_ROLE[$this->_userRole];
     }
-    public function setAccreditation($value)
+    public function setUserRole($value)
     {
         if(!filter_var($value,FILTER_VALIDATE_INT) ||
             $value>4) {
-            throw new \InvalidArgumentException('Les données d\'accrédication sont incorrectes.' . $value);
+            throw new \InvalidArgumentException('Les données des rôles des utilisateurs sont incorrectes.' . $value);
         }
-        $this->_accreditation=$value;
+        $this->_userRole=$value;
     }
     #endregion
     #region ACTIF
@@ -226,7 +226,7 @@ class UserTable extends AbstractTable implements ITable
                 self::FORGET_DATE=>$this->getForgetDate(),
                 self::VALID_ACCOUNT_HASH=>$this->getValidAccountHash(),
                 self::VALID_ACCOUNT_DATE=>$this->getValidAccountDate(),
-                self::ACCREDITATION=>$this->getAccreditation(),
+                self::USER_ROLE=>$this->getUserRole(),
                 self::ACTIF=>$this->getActif(),
                 self::ACTIF_DATE=>$this->getActifDate()
             ];

@@ -27,9 +27,9 @@ class CommentAddForm extends Form
     public function __construct($datas=[],$byName=true)
     {
 
-        $this->controls[self::BUTTON]=new ButtonAjouter();
-        $this->controls[self::COMMENT]=new TextareaComment();
-        $this->controls[self::IDARTICLEHIDDEN]=new InputIdHidden();
+        $this[self::BUTTON]=new ButtonAjouter();
+        $this[self::COMMENT]=new TextareaComment();
+        $this[self::IDARTICLEHIDDEN]=new InputIdHidden();
 
         $this->postConstruct($datas,$byName) ;
     }
@@ -42,11 +42,11 @@ class CommentAddForm extends Form
             $checkOK=false;
         }
 
-        if(!$this->controls[self::IDARTICLEHIDDEN]->check()) {
+        if(!$this[self::IDARTICLEHIDDEN]->check()) {
             $checkOK=false;
         }
 
-        if(!$this->controls[self::COMMENT]->check()) {
+        if(!$this[self::COMMENT]->check()) {
             $checkOK=false;
         }
 
@@ -55,11 +55,11 @@ class CommentAddForm extends Form
 
     public function render() : string
     {
-        return $this->getAction('blog.commentadd#commentadd') .
+        return $this->getAction('blog.comment.add#commentadd') .
                $this->renderToken() .
                $this->renderControl(self::IDARTICLEHIDDEN) .
                $this->renderControl(self::COMMENT) .
-               $this->renderButton(self::BUTTON) .
+               //$this->renderButton(self::BUTTON) .
                '</form>';
     }
 }

@@ -6,7 +6,7 @@
                 Les articles
             </h3>
             <p class="subtitle-a">
-                <?= isset($filtre)?'<a href="##INDEX##blog.list">Afficher la liste complète</a>':''; ?>
+                <?= isset($filtre)?'<a href="##INDEX##blog.article.list">Afficher la liste complète</a>':''; ?>
             </p>
             <div class="line-mf"></div>
         </div>
@@ -19,22 +19,28 @@
             <div class=" col-md-12 col-lg-4">
                 <div class="card card-blog">
                     <div class="card-img">
-                        <a href="##INDEX##blog.show/<?= $data->article->getId(); ?>">
+                        <a href="##INDEX##blog.article.show/<?= $data->article->getId(); ?>">
                             <img src="##IMGBLOG##<?= $data->article->getId(); ?>.jpg" alt="" class="img-fluid" />
                         </a>
                     </div>
                     <div class="card-body">
                         <div class="card-category-box">
-                            <a href="##INDEX##blog.list/category/<?= $data->article->getCategoryRef(); ?>">
+                            <a href="##INDEX##blog.article.list/category/<?= $data->article->getCategoryRef(); ?>">
                                 <div class="card-category">
                                     <h6 class="category">
                                         <?= $data->category->getTitle(); ?>
+
                                     </h6>
                                 </div>
                             </a>
                         </div>
                         <h3 class="card-title">
-                            <a href="##INDEX##blog.show/<?= $data->article->getId(); ?>">
+                            
+                                
+                            <?= (isset($redacteur)?
+                                '<a href="##INDEX##blog.article.modify/' .$data->article->getId() . '">
+                                <i class="fa fa-edit"></i></a> ':''); ?>
+                            <a href="##INDEX##blog.article.show/<?= $data->article->getId(); ?>">
                                 <?= $data->article->getTitle(); ?>
                             </a>
                         </h3>
@@ -44,15 +50,17 @@
                     </div>
                     <div class="card-footer">
                         <div class="post-author">
-                            <a href="##INDEX##blog.list/user/<?= $data->userCreate->getId(); ?>">
-                                <img src="##IMGAVATAR##<?= $data->userCreate->getId(); ?>.png" alt="" class="avatar rounded-circle" />
+                            <a href="##INDEX##blog.article.list/user/<?= $data->createUser->getId(); ?>">
+                                <img src="##IMGAVATAR##<?= $data->createUser->getId(); ?>.png" alt="" class="avatar rounded-circle" />
                                 <span class="author">
-                                    <?= $data->userCreate->getIdentifiant() ?>
+                                    <?= $data->createUser->getIdentifiant() ?>
                                 </span>
                             </a>
                         </div>
                         <div class="post-date">
-                            <span class="ion-ios-clock-outline"></span><?= $data->article->getCreateDate(); ?>
+                            <span class="ion-ios-clock-outline"></span> <?= is_null($data->article->getModifyDate()) ?
+                                                                       \date(ES_DATE_FR,strtotime ( $data->article->getCreateDate()))
+                                                                       :\date(ES_DATE_FR,strtotime ( $data->article->getModifyDate())); ?>
                         </div>
                     </div>
                 </div>
@@ -64,7 +72,7 @@
         <div class="widget-sidebar sidebar-search">
             <h5 class="sidebar-title">Recherche</h5>
             <div class="sidebar-content">
-                <form action="##INDEX##blog.find" method="post">
+                <form action="##INDEX##blog.article.find" method="post">
                     <div class="input-group">
                         <input type="text" name="recherche" class="form-control" placeholder="Recherche..." aria-label="recherche..." />
                         <span class="input-group-btn">

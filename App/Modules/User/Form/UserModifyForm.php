@@ -6,7 +6,7 @@ use ES\Core\Form\Form;
 use ES\Core\Form\WebControlsStandard\ButtonModifier;
 use ES\Core\Form\WebControlsStandard\InputMail;
 use ES\App\Modules\User\Form\WebControls\InputIdentifiant;
-use ES\App\Modules\User\Form\WebControls\SelectAccreditation;
+use ES\App\Modules\User\Form\WebControls\SelectUserRole;
 use ES\Core\Form\WebControlsStandard\InputIdHidden;
 use ES\App\Modules\User\Form\WebControls\CheckboxActif;
 
@@ -25,7 +25,7 @@ class UserModifyForm extends Form
     const BUTTON=1;
     const IDENTIFIANT=2;
     const MAIL=3;
-    const ACCREDITATION=4;
+    const USER_ROLE=4;
     const ID_HIDDEN=5;
     const ACTIF=6;
 
@@ -34,7 +34,7 @@ class UserModifyForm extends Form
         $this[self::BUTTON]=new ButtonModifier();
         $this[self::IDENTIFIANT]=new InputIdentifiant();
         $this[self::MAIL]=new InputMail();
-        $this[self::ACCREDITATION]=new SelectAccreditation();
+        $this[self::USER_ROLE]=new SelectUserRole();
         $this[self::ID_HIDDEN]=new InputIdHidden();
         $this[self::ACTIF]=new CheckboxActif();
 
@@ -67,7 +67,7 @@ class UserModifyForm extends Form
                $this->renderControl(self::ID_HIDDEN) .
                $this->renderControl(self::IDENTIFIANT) .
                $this->renderControl(self::MAIL) .
-               $this->renderControl(self::ACCREDITATION) .
+               $this->renderControl(self::USER_ROLE) .
                $this->renderControl(self::ACTIF) .
                $this->renderButton(self::BUTTON) .
                '</form>';

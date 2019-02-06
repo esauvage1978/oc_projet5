@@ -142,10 +142,10 @@ class Routeur
         $this->_paramWord = $this->_request->getGetValue('word');
 
         //vérification des droits d'accès aux pages
-        $restrict=new Restrict ($this->_userConnect );
+        $restrict=new ACL($this->_userConnect );
         if(!$restrict ->valideAccessPage ($page)) {
             var_dump($page);
-            //header('Location: ' . ES_ROOT_PATH_WEB . 'shared.accessdenied');
+            //header('LocationACL_ROOT_PATH_WEB . 'shared.accessdenied');
             //exit;
 
         }

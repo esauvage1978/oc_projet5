@@ -29,17 +29,40 @@ define('ES_ROOT_PATH_REL_MODULES', '../App/Modules/');
 define('ES_NOW','Y-m-d H:i:s');
 define('ES_DATE_FR','d/m/Y H:i'); //strtotime
 
-define('ES_ACCREDITATION',
+//USER ROLE
+define('ES_USER_ROLE',
     ['0'=>'Non connecté',
      '1'=>'Visiteur',
      '2'=>'Rédacteur',
      '3'=>'Modérateur',
      '4'=>'Gestionnaire']);
-define('ES_NOT_CONNECTED',0);
-define('ES_GESTIONNAIRE',4);
-define('ES_MODERATEUR',3);
-define('ES_REDACTEUR',2);
-define('ES_VISITEUR',1);
+define('ES_USER_ROLE_NOT_CONNECTED',0);
+define('ES_USER_ROLE_GESTIONNAIRE',4);
+define('ES_USER_ROLE_MODERATEUR',3);
+define('ES_USER_ROLE_REDACTEUR',2);
+define('ES_USER_ROLE_VISITEUR',1);
+
+//BLOG ARTICLE STATUT
+define('ES_BLOG_ARTICLE_STATE',
+    ['1'=>'Brouillon',
+     '2'=>'Publié',
+     '3'=>'Archive',
+     '4'=>'Corbeille'
+     ]);
+define('ES_BLOG_ARTICLE_STATE_CORBEILLE',4);
+define('ES_BLOG_ARTICLE_STATE_ARCHIVE',3);
+define('ES_BLOG_ARTICLE_STATE_ACTIF',2);
+define('ES_BLOG_ARTICLE_STATE_BROUILLON',1);
+
+//BLOG COMMENT STATUT
+define('ES_BLOG_COMMENT_STATE',
+    ['0'=>'A modérer',
+     '1'=>'Rejeté',
+     '2'=>'Approuvé'
+     ]);
+define('ES_BLOG_COMMENT_STATE_APPROVE',2);
+define('ES_BLOG_COMMENT_STATE_REJECT',1);
+define('ES_BLOG_COMMENT_STATE_WAIT',0);
 
 
 //PHPMAILER

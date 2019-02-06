@@ -12,12 +12,12 @@
     $(document).ready(function () {
         $.ajax({
             type : 'POST',
-            url : '##INDEX##blog.lastarticles',
+            url : '##INDEX##blog.article.last/3',
             dataType: 'json',
             success: function (data) {
                 var txt='';
                 for(var index=0; index<data.length;index++) {
-                    txt += '<li><a href="##INDEX##blog.show/' + data[index].ba_id + '">' + data[index].ba_title +'</a></li>';
+                    txt += '<li><a href="##INDEX##blog.article.show/' + data[index].ba_id + '">' + data[index].ba_title +'</a></li>';
                 }
                 $('#listarticles').html(txt);
                 $('#listarticles').fadeIn("slow");

@@ -2,8 +2,8 @@
 
 namespace ES\App\Modules\Shared\Render;
 
-use \ES\App\Modules\Shared\Services\Restrict;
-use \ES\App\Modules\User\Model\UserConnect;
+use ES\App\Modules\Shared\Services\ACL;
+use ES\App\Modules\User\Model\UserConnect;
 
 /**
  * MenuRender short summary.
@@ -33,10 +33,11 @@ class MenuRender
                             '<div class="dropdown-menu" aria-labelledby="navbarDropdown">';
     private $_dropdownEnd='';
     private $_restrict;
+
     public function __construct(UserConnect $userConnect)
     {
         $this->_userConnect =$userConnect;
-        $this->_restrict =new Restrict($userConnect);
+        $this->_restrict =new ACL($userConnect);
     }
 
     public function render() :string
@@ -46,7 +47,7 @@ class MenuRender
             $menu=$this->renderMenuDisconnet();
         } else {
 
-            $menu=$this->renderMenu($this->_userConnect->user->getAccreditation());
+            $menu=$this->renderMenu($this->_userConnect->user->getUserRole());
             $menu.=$this->renderMenuConnet();
 
         }
@@ -75,10 +76,10 @@ class MenuRender
         return $menu . $this->_dropdownEnd;
 
     }
-    private function renderMenu($accreditation)
+    private function renderMenu($userRole)
     {
         $menu=$this->_dropdownStart .
-               ES_ACCREDITATION[$accreditation] .
+               ES_USER_ROLE[$userRole] .
                $this->_dropdownMiddle ;
         $bloc=$this->checkLink('shared.dashboard','Tableau de bord');
         if($bloc!='') {

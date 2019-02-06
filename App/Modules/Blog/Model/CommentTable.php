@@ -23,7 +23,7 @@ class CommentTable extends AbstractTable implements ITable
     private $_content;
     private $_moderatorDate;
     private $_moderatorUserRef;
-    private $_moderatorStatus;
+    private $_moderatorState;
     private $_article_ref;
 
     const ID= 'bco_id';
@@ -32,7 +32,7 @@ class CommentTable extends AbstractTable implements ITable
     const CONTENT= 'bco_content';
     const MODERATOR_DATE= 'bco_moderator_date';
     const MODERATOR_USER_REF= 'bco_moderator_user_ref';
-    const MODERATOR_STATUS= 'bco_moderator_status';
+    const MODERATOR_STATE= 'bco_moderator_state';
     const ARTICLE_REF='bco_article_ref';
 
     private $_msgBadDate='La date est incorrecte.';
@@ -139,13 +139,13 @@ class CommentTable extends AbstractTable implements ITable
     }
     #endregion
     #region STATE
-    public function getModeratorStatus()
+    public function getModeratorState()
     {
-        return $this->_moderatorStatus;
+        return $this->_moderatorState;
     }
-    public function setModeratorStatus($value)
+    public function setModeratorState($value)
     {
-        $this->_moderatorStatus=$value;
+        $this->_moderatorState=$value;
     }
     #endregion
 
@@ -158,7 +158,7 @@ class CommentTable extends AbstractTable implements ITable
                 self::CONTENT=>$this->getContent(),
                 self::MODERATOR_DATE=>$this->getModeratorDate(),
                 self::MODERATOR_USER_REF=>$this->getModeratorUserRef(),
-                self::MODERATOR_STATUS=>$this->getModeratorStatus(),
+                self::MODERATOR_STATE=>$this->getModeratorState(),
                 self::ARTICLE_REF=>$this->getArticleRef()
             ];
     }

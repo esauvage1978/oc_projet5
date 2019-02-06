@@ -127,7 +127,7 @@ abstract class AbstractManager
     protected function getArrayForSelect($key,$value,$firstElementEmpty=false)
     {
         $query= new QueryBuilder();
-        $query->select ($key,$value)
+        $query->select($key,$value)
             ->from(static::$table )
             ->orderBy($value);
         $liste=$this->query($query->render(),null,false,false);

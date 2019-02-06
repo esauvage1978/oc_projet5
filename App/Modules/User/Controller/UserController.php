@@ -38,16 +38,43 @@ class UserController extends AbstractController
 
     public function getWidgetDashboard():string
     {
-        $numberTotal=$this->_userManager->countUsers();
-        $numberNotActive=$this->_userManager->countUsers('validaccount',0);
-        $numberSuspendu=$this->_userManager->countUsers ('actif',0);
-        $numberGestionnaire=$this->_userManager->countUsers ('accreditation',4);
+        $users=[];
+
+        $users[0]=[
+            'title'=>'Total',
+            'icone'=>'ion-ios-people',
+            'number'=>$this->_userManager->countUsers(),
+            'content'=>'Nombre total d\'utilisateur inscrit',
+            'link'=>'user.list'
+        ];
+
+        $users[1]=[
+           'title'=>'non activé',
+           'icone'=>'ion-locked',
+           'number'=>$this->_userManager->countUsers('validaccount',0),
+           'content'=>'Utilisateur n\'ayant pas validé leur compte',
+           'link'=>'user.list/validaccount/0'
+       ];
+
+        $users[2]=[
+           'title'=>'Suspendu',
+           'icone'=>'ion-pause',
+           'number'=>$this->_userManager->countUsers ('actif',0),
+           'content'=>'Utilisateur suspendu par un gestionnaire',
+           'link'=>'user.list/actif/0'
+       ];
+
+        $users[3]=[
+           'title'=>ES_USER_ROLE[ES_USER_ROLE_GESTIONNAIRE],
+           'icone'=>'ion-university',
+           'number'=>$this->_userManager->countUsers ('user_role',ES_USER_ROLE_GESTIONNAIRE),
+           'content'=>'Gestionnaire du site',
+           'link'=>'user.list/user_role/' .ES_USER_ROLE_GESTIONNAIRE
+       ];
         $data=[
-            'numberTotal'=>$numberTotal,
-            'numberNotActive'=>$numberNotActive,
-            'numberSuspendu'=>$numberSuspendu,
-            'numberGestionnaire'=>$numberGestionnaire
+            'users'=>$users
             ];
+
         $fichier=ES_ROOT_PATH_FAT_MODULES . '/'. static::$module .'/View/Partial/WidgetDashboard.php';
         return $this->renderView->genererFichier($fichier, $data);
     }
@@ -343,7 +370,7 @@ class UserController extends AbstractController
             UserModifyForm::ID_HIDDEN=>$user->getId(),
             UserModifyForm::IDENTIFIANT=>$user->getIdentifiant(),
             UserModifyForm::MAIL=>$user->getMail(),
-            UserModifyForm::ACCREDITATION=>$user->getAccreditation(),
+            UserModifyForm::USER_ROLE=>$user->getUserRole(),
             UserModifyForm::ACTIF=>$user->getActif()
             ],false);
 
@@ -377,7 +404,7 @@ class UserController extends AbstractController
         {
             $list=null;
             if(isset($filtre) && isset($number)) {
-                $filtreOK=['accreditation','actif','validaccount'];
+                $filtreOK=['user_role','actif','validaccount'];
                 if( in_array ($filtre,$filtreOK)) {
                     $list=$this->_userManager->getUsers($filtre,$number);
                 } else {

@@ -15,6 +15,7 @@ class QueryBuilder
     private $_condition=[];
     private $_from=[];
     private $_orderBy=[];
+    private $_innerJoin=[];
 
     public function select()
     {
@@ -37,6 +38,12 @@ class QueryBuilder
         return $this;
     }
 
+    public function innerJoin()
+    {
+        $this->_innerJoin=func_get_args();
+        return $this;
+    }
+
     public function orderBy()
     {
         $this->_orderBy=func_get_args();
@@ -47,6 +54,7 @@ class QueryBuilder
     {
         return 'SELECT ' . implode(', ',$this->_fields) .
                ' FROM '  . implode(' , ',$this->_from) .
+               (count($this->_innerJoin)?' INNER JOIN ' . implode(' INNER JOIN  ',$this->_innerJoin) :'').
                (count($this->_condition)?  ' WHERE ' . implode(' AND ',$this->_condition) :'').
                (count($this->_orderBy)?  ' ORDER BY ' . implode(', ',$this->_orderBy):'') . ';';
     }

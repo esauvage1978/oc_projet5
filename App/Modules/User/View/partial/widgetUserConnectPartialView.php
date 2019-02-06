@@ -5,7 +5,7 @@
                     <a href="##INDEX##user.modify/<?= $userConnect->getId();?>">
                         <?= $userConnect->getIdentifiant(); ?>
                     </a>
-                    [<?= $userConnect->getAccreditationLabel(); ?>]
+                    [<?= $userConnect->getUserRoleLabel(); ?>]
                 </p>
             </div>
         </div>

@@ -52,7 +52,7 @@ class ArticleTable extends AbstractTable implements ITable
                 self::CREATE_DATE=>$this->getCreateDate(),
                 self::CREATE_USER_REF=>$this->getCreateUserRef(),
                 self::MODIFY_DATE=>$this->getModifyDate(),
-                self::MODIFY_USER_REF=>$this->getModifyUseRef(),
+                self::MODIFY_USER_REF=>$this->getModifyUserRef(),
                 self::CATEGORY_REF=>$this->getCategoryRef(),
                 self::STATE=>$this->getState(),
                 self::STATE_DATE=>$this->getStateDate()
@@ -104,7 +104,7 @@ class ArticleTable extends AbstractTable implements ITable
         {
             throw new \InvalidArgumentException('Contenu de l\'article vide.');
         }
-        $this->_content=htmlentities($value);
+        $this->_content=$value;
     }
     #endregion
     #region CHAPO
@@ -165,7 +165,7 @@ class ArticleTable extends AbstractTable implements ITable
 
         $this->_dateModify=$value;
     }
-    public function getModifyUseRef()
+    public function getModifyUserRef()
     {
         return $this->_modifyUserRef;
     }

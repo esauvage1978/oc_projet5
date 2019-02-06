@@ -3,7 +3,8 @@
 namespace ES\App\Modules\Blog\Model;
 
 use ES\Core\Model\AbstractManager;
-use ES\App\Modules\Blog\Model\ArticleFactory;
+use ES\Core\Database\QueryBuilder;
+use ES\App\Modules\Blog\Model\ArticleComposer;
 
 /**
  * UserManager short summary.
@@ -18,39 +19,73 @@ class ArticleManager extends AbstractManager
     protected static $table='ocp5_blog_article';
     protected static $order_by= ArticleTable::ID. ' DESC; ';
     protected static $id=ArticleTable::ID;
-    protected static $classTable='ES\App\Modules\Blog\Model\ArticleFactory';
+    protected static $classTable='ES\App\Modules\Blog\Model\ArticleComposer';
 
-    public function getArticles($key=null,$value=null)
+    public function countArticles($key=null,$value=null)
     {
-        if($key==='validaccount' && $value===0) {
-            $retour= $this->query($this->_selectAll . ' u_valid_account_date is null ORDER BY ' . static::$order_by . ';');
-        } elseif($key==='user' && isset($value)) {
-            $retour= $this->query($this->_selectAll . 'ba_create_user_ref=:value ORDER BY ' . static::$order_by . ';',['value'=>$value]);
-        } elseif($key==='category' && isset($value)) {
-            $retour= $this->query($this->_selectAll . 'ba_category_ref=:value ORDER BY ' . static::$order_by . ';',['value'=>$value]);
-        } elseif($key==='find' && isset($value)) {
-            $retour= $this->query($this->_selectAll . ' (ba_title like :title OR ba_chapo like :chapo OR ba_content like :content) ORDER BY ' . static::$order_by . ';',
-                ['title'=>'%'.$value.'%',
-                'chapo'=>'%'.$value.'%',
-                'content'=>'%'.$value.'%']);
-        } elseif(isset($key) && isset($value)) {
-            $retour= $this->query($this->_selectAll . 'ba_' . $key .'=:value ORDER BY ' . static::$order_by . ';',['value'=>$value]);
-        } else {
-            $retour= $this->getAll();
+        $requete=new QueryBuilder();
+        $requete->select ('count(*)')
+            ->from(self::$table);
+        $params=[];
+
+        if(isset($key) && isset($value)) {
+            $requete->where('ba_' . $key .'=:value');
+            $params['value']=$value;
         }
-        return $retour;
-    }
-    public function getLastArticles()
-    {
-        return $this->query('SELECT ba_id, ba_title FROM ocp5_blog_article ORDER BY ba_id limit 5;',null,false,false);
+
+        return $this->query($requete->render(),count($params)?$params:null,true)['count(*)'] ;
     }
 
-    public function findById($key) :ArticleFactory
+    public function getArticles($key=null,$value=null,$actif=true)
+    {
+
+        $rqt=new QueryBuilder();
+        $rqt->select('*')
+            ->from($this::$table);
+        $params=[];
+        if($key==='validaccount' && $value===0) {
+
+            $rqt->where('u_valid_account_date is null');
+
+        } elseif($key==='user' && isset($value)) {
+
+            $rqt->where('ba_create_user_ref=:value');
+            $params['value']=$value;
+
+        } elseif($key==='category' && isset($value)) {
+
+            $rqt->where('ba_category_ref=:value');
+            $params['value']=$value;
+
+        } elseif($key==='find' && isset($value)) {
+
+            $rqt->where('(ba_title like :title OR ba_chapo like :chapo OR ba_content like :content)');
+            $params['title']='%'.$value.'%';
+            $params['chapo']='%'.$value.'%';
+            $params['content']='%'.$value.'%';
+
+        } elseif(isset($key) && isset($value)) {
+
+            $rqt->where( 'ba_' . $key .'=:value');
+            $params['value']=$value;
+        }
+        if($actif)
+            $rqt->where('ba_state=' . ES_BLOG_ARTICLE_STATE_ACTIF);
+
+        $rqt->orderBy($this::$order_by);
+        return $this->query($rqt->render(),(count($params)?$params:null),false,true);
+    }
+    public function getLastArticles($number)
+    {
+        return $this->query('SELECT ba_id, ba_title FROM ocp5_blog_article ORDER BY ba_id limit '. $number .';',null,false,false);
+    }
+
+    public function findById($key) :ArticleComposer
     {
         return $this->findByField(ArticleTable::ID,$key);
     }
 
-    public function createArticle($title, $categoryRef,$chapo,$content,$userRef):ArticleTable
+    public function createArticle($title, $categoryRef,$chapo,$content,$userRef)
     {
         $article= $this->NewArticle($title,$categoryRef,$chapo,$content,$userRef);
 
@@ -64,17 +99,24 @@ class ArticleManager extends AbstractManager
         return $article;
     }
 
+    public function modifyArticle(ArticleTable $article,$userRef) :bool
+    {
+        $article->setModifyUserRef($userRef);
+        $article->setModifyDate(\date(ES_NOW));
+        return $this->update($article->getId(),$article->toArray()) ;
+    }
+
     public function NewArticle($title, $categoryRef,$chapo,$content,$userRef):ArticleTable
     {
-        $user = new ArticleTable([]);
-        $user->setTitle($title);
-        $user->setCategoryRef($categoryRef);
-        $user->setChapo($chapo);
-        $user->setContent($content);
-        $user->setCreateUserRef($userRef);
-        $user->setCreateDate(\date(ES_NOW)) ;
-        $user->setState(1);
-        $user->setStateDate(\date(ES_NOW)) ;
-        return $user;
+        $article = new ArticleTable([]);
+        $article->setTitle($title);
+        $article->setCategoryRef($categoryRef);
+        $article->setChapo($chapo);
+        $article->setContent($content);
+        $article->setCreateUserRef($userRef);
+        $article->setCreateDate(\date(ES_NOW)) ;
+        $article->setState(ES_BLOG_ARTICLE_STATE_BROUILLON);
+        $article->setStateDate(\date(ES_NOW)) ;
+        return $article;
     }
 }
