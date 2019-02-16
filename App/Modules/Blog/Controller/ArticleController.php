@@ -175,6 +175,7 @@ class ArticleController extends AbstractController
     }
     public function modify($id)
     {
+
         $formModify = new ArticleModifyForm($this->_request->getPost());
 
         $formModifyState = new ArticleModifyStateForm($this->_request->getPost());
@@ -185,6 +186,11 @@ class ArticleController extends AbstractController
         try
         {
             if($this->_request->hasPost()) {
+
+                if(!$this->_articleManager->recupereImagePresentation(
+                   $formModifyState[$formModifyState::FILE]->getName() ,$id)) {
+                    $this->flash->writeError('Erreur lors de \'upload de l\'image');
+                }
 
                 //Contrôle de la saisie des données de l'utilisateur
                 if (!$formModify->check()) {
@@ -293,7 +299,7 @@ class ArticleController extends AbstractController
         }
 
 
-        $this->view('listView',$params);
+        $this->view('ListView',$params);
         if($exit){exit;}
     }
 
@@ -331,10 +337,14 @@ class ArticleController extends AbstractController
 
     public function changestatut()
     {
-        $articleComposer=$this->_articleManager->findById($this->_request->getPostValue('id'));
-        $articleComposer->article->setState($this->_request->getPostValue('value'));
-        $articleComposer->article->setStateDate(\date(ES_NOW));
-        $this->_articleManager->modifyArticle($articleComposer->article,$this->_UserConnect->user);
+        if($this->_articleManager->changeStatut(
+            $this->_request->getPostValue('id'),
+            $this->_request->getPostValue('value'),
+            $this->_userConnect->user)) {
+            echo 'Statut changé.';
+        } else {
+            echo 'Erreur recontrée.';
+        }
 
     }
 

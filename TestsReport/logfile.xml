@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="PhpTools_TestSuite" tests="7" assertions="10" errors="0" failures="0" skipped="0" time="0.583308">
-    <testsuite name="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" tests="7" assertions="10" errors="0" failures="0" skipped="0" time="0.583308">
-      <testcase name="testInstanceVide" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="16" assertions="1" time="0.418466"/>
-      <testcase name="testIDBySetter" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="22" assertions="1" time="0.029535"/>
-      <testcase name="testIdByConstructor" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="29" assertions="1" time="0.009139"/>
-      <testcase name="testHasId" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="36" assertions="1" time="0.033861"/>
-      <testcase name="testIdValueNotId" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="46" assertions="1" time="0.069319"/>
-      <testcase name="testIdValueNull" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="55" assertions="1" time="0.010386"/>
-      <testcase name="testToArray" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogContent\CommentTableTest.php" line="127" assertions="4" time="0.012602"/>
+  <testsuite name=".\tests\BlogComment\" tests="20" assertions="22" errors="3" failures="1" skipped="0" time="0.757659">
+    <testsuite name="CommentControllerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentControllerTest.php" tests="2" assertions="0" errors="2" failures="0" skipped="0" time="0.384461">
+      <testcase name="testChangeModerateStatut" class="CommentControllerTest" classname="CommentControllerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentControllerTest.php" line="47" assertions="0" time="0.369177">
+        <error type="Error">CommentControllerTest::testChangeModerateStatut
+Error: Call to a member function getId() on null
+
+C:\wamp64\www\oc_projet5\App\Modules\Blog\Model\CommentManager.php:29
+C:\wamp64\www\oc_projet5\App\Modules\Blog\Controller\CommentController.php:117
+C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentControllerTest.php:56
+</error>
+      </testcase>
+      <testcase name="testCreateComment" class="CommentControllerTest" classname="CommentControllerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentControllerTest.php" line="60" assertions="0" time="0.015284">
+        <error type="PHPUnit\Framework\RiskyTestError">Risky Test
+</error>
+        <system-out>08/02/2019 à 14:05 : Le commentaire est créé, il est en attente de modération.</system-out>
+      </testcase>
+    </testsuite>
+    <testsuite name="CommentManagerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentManagerTest.php" tests="3" assertions="4" errors="1" failures="0" skipped="0" time="0.121439">
+      <testcase name="testFindById" class="CommentManagerTest" classname="CommentManagerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentManagerTest.php" line="42" assertions="1" time="0.060662"/>
+      <testcase name="testgetCategorys" class="CommentManagerTest" classname="CommentManagerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentManagerTest.php" line="48" assertions="0" time="0.014630">
+        <error type="PHPUnit\Framework\RiskyTestError">Risky Test
+</error>
+      </testcase>
+      <testcase name="testCreate" class="CommentManagerTest" classname="CommentManagerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentManagerTest.php" line="57" assertions="3" time="0.046148"/>
+    </testsuite>
+    <testsuite name="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" tests="15" assertions="18" errors="0" failures="1" skipped="0" time="0.251759">
+      <testcase name="testInstanceVide" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="16" assertions="1" time="0.053635"/>
+      <testcase name="testIDBySetter" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="22" assertions="1" time="0.008878"/>
+      <testcase name="testIdByConstructor" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="29" assertions="1" time="0.012979"/>
+      <testcase name="testHasId" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="36" assertions="1" time="0.015668"/>
+      <testcase name="testIdValueNotId" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="46" assertions="1" time="0.043736"/>
+      <testcase name="testIdValueNull" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="55" assertions="1" time="0.013508"/>
+      <testcase name="testContentBySetter" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="63" assertions="1" time="0.011583"/>
+      <testcase name="testContentByConstructor" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="70" assertions="1" time="0.009557"/>
+      <testcase name="testContentValue60" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="79" assertions="1" time="0.024417">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">CommentTableTest::testContentValue60
+Failed asserting that exception of type "InvalidArgumentException" is thrown.
+
+</failure>
+      </testcase>
+      <testcase name="testContentValueNull" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="88" assertions="1" time="0.009175"/>
+      <testcase name="testCreateDateBySetter" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="96" assertions="1" time="0.009514"/>
+      <testcase name="testCreateDateByConstructor" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="103" assertions="1" time="0.009390"/>
+      <testcase name="testCreateDateValueNotDate" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="113" assertions="1" time="0.009543"/>
+      <testcase name="testCreateDateValueNull" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="119" assertions="1" time="0.009303"/>
+      <testcase name="testToArray" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="127" assertions="4" time="0.010873"/>
     </testsuite>
   </testsuite>
 </testsuites>

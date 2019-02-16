@@ -13,9 +13,9 @@ use ES\App\Modules\User\Model\UserManager;
  * @version 1.0
  * @author ragus
  */
-class CommentFactory
+class CommentComposer
 {
-    public $userCreate;
+    public $user;
     public $comment;
 
     public function __construct($data)

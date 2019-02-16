@@ -328,8 +328,8 @@ class UserController extends AbstractController
         } else {
             $user->setMail($form->text($form::MAIL));
             $user->setIdentifiant($form->text($form::IDENTIFIANT));
-            if($this->_userConnect->user->getAccreditation()=='4' ) {
-                $user->setAccreditation ($form->text($form::ACCREDITATION));
+            if($this->_userConnect->user->getUserRole()=='4' ) {
+                $user->setUserRole($form->text($form::USER_ROLE));
 
                 if(($user->getActif()=='0' && $form->text($form::ACTIF)=='on') ||
                     ($user->getActif()=='1' && $form->text($form::ACTIF)==null)) {

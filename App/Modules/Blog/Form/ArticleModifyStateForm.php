@@ -6,6 +6,7 @@ use ES\Core\Form\Form;
 use ES\Core\Form\WebControlsStandard\ButtonModifier;
 use ES\App\Modules\Blog\Form\WebControls\SelectArticleState;
 use ES\App\Modules\Blog\Form\WebControls\SelectArticleCategory;
+use ES\App\Modules\Blog\Form\WebControls\FilePresentation;
 
 /**
  * UserConnexionForm short summary.
@@ -21,6 +22,7 @@ class ArticleModifyStateForm extends Form
     const BUTTON=1;
     const STATE=2;
     const CATEGORY=3;
+    const FILE=4;
 
     public function __construct($datas=[],$byName=true)
     {
@@ -28,6 +30,7 @@ class ArticleModifyStateForm extends Form
         $this[self::BUTTON]=new ButtonModifier();
         $this[self::STATE]=new SelectArticleState();
         $this[self::CATEGORY]=new SelectArticleCategory();
+        $this[self::FILE]=new FilePresentation();
         $this->postConstruct($datas,$byName) ;
     }
 
@@ -51,6 +54,7 @@ class ArticleModifyStateForm extends Form
 
         return  $this->renderControl(self::STATE) .
           $this->renderControl(self::CATEGORY) .
+          $this->renderControl(self::FILE) .
                 $this->renderButton(self::BUTTON) ;
             //'</form>';
     }

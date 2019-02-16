@@ -6,15 +6,16 @@ $(document).ready(function () {
     $('#commentlist').DataTable(
         {
             "columns": [
-                null,
-                null,
-                null,
-                null,
                 { "orderable": false },
-                { "orderable": false }
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
             ],
-            "order": [[2, "DESC"]],
-            responsive: false,
+            "order": [[3, "DESC"]],
+            responsive: true,
             stateSave: true,
             "scrollX": true,
             "searching": true,
@@ -74,18 +75,38 @@ $(document).ready(function () {
                 <thead>
                     
                     <tr>
+                        <th>Action</th>
                         <th>Article</th>
                         <th>Emetteur</th>
                         <th>Date d'émission</th>
                         <th>Contenu</th>
-                        <th></th>
-                        <th></th>
+                        <th>Par</th>
+                        <th>Le</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach($list as  $data): ?>
                     <?php $row=array_values($data); ?>
                     <tr>
+                        <td style="width:150px;">
+                            <select class="dropdown-item color-a" name="state.<?= $row[0]; ?>" 
+                                    id="state.<?= $row[0]; ?>">
+                                <option value="<?= ES_BLOG_COMMENT_STATE_WAIT; ?>" 
+                                    <?= (ES_BLOG_COMMENT_STATE_WAIT==$row[5]?' selected':'');?> >
+                                    <?= ES_BLOG_COMMENT_STATE[ES_BLOG_COMMENT_STATE_WAIT] ?>
+                                </option>
+                                <option value="<?= ES_BLOG_COMMENT_STATE_REJECT;?>" 
+                                    <?= (ES_BLOG_COMMENT_STATE_REJECT==$row[5]?' selected':'');?> >
+                                    <?= ES_BLOG_COMMENT_STATE[ES_BLOG_COMMENT_STATE_REJECT] ?>
+                                </option>
+                                <option value="<?= ES_BLOG_COMMENT_STATE_APPROVE;?>" 
+                                    <?= (ES_BLOG_COMMENT_STATE_APPROVE==$row[5]?' selected':'');?> >
+                                    <?= ES_BLOG_COMMENT_STATE[ES_BLOG_COMMENT_STATE_APPROVE] ?>
+                                </option>
+                            </select>
+                            <div id="retourcommentaire<?= $row[0]; ?>"></div>
+
+                        </td>
                         <td>
                             <?= $row[1]; ?>
                         </td>
@@ -99,10 +120,10 @@ $(document).ready(function () {
                             <?= $row[4]; ?>
                         </td>
                         <td>
-                            <i class="ion-thumbsdown text-danger" title="Rejeté le commentaire" id="<?= $row[0]; ?>"></i>
+                            <?= array_key_exists(6,$row)?$row[6]:''; ?>
                         </td>
-                        <td class="text-center">
-                            <i class="ion-thumbsup text-success" title="Validé le commentaire" id="<?= $row[0]; ?>"></i>
+                        <td>
+                            <?= array_key_exists(7,$row)?$row[7]:'';; ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -114,22 +135,30 @@ $(document).ready(function () {
 <div class="widget-sidebar" style="display :none" >
     <h5 class="sidebar-title">Changer le status</h5>
     <div class="sidebar-content">
-        <?= $formcomment;?>
+        <?= isset($formcomment)?$formcomment:'';?>
     </div>
 </div>
+
 <script type="text/javascript">
                
+    $('.dropdown-item').change(function () {
+        var res = $(this).attr("id").split(".");
+        var id = res[1];
+        var value = $(this).val();
+        var r = confirm('êtes vous sûr de vouloir changer le statut du commentaire ?');
+        if (r == true) {
+            $.ajax({
+                type: 'POST',
+                url: '##INDEX##blog.comment.changemoderatorstate',
+                data: 'id=' + id + '&value=' + value,
+                success: function (code_html, statut) {
+                    $('#retourcommentaire' + id).text(code_html);  
+                },
+                error : function(resultat, statut, erreur){
+                    alert('error' + resultat);
+                }
+            });
+        } 
+    });
 
-            $('.ion-thumbsdown').click(function(){
-                $('#<?=$formcomment[$formcomment::IDHIDDEN]->getName();?>').val($(this).attr("id"));
-                $('#<?=$formcomment[$formcomment::STATUS]->getName();?>').val('1');
-                var r = confirm('êtes vous sûr de vouloir rejeter ce commentaire ?');
-                if (r == true) {$('#CommentModifyStatusForm').submit();}                
-            });
-            $('.ion-thumbsup').click(function(){
-                $('#<?=$formcomment[$formcomment::IDHIDDEN]->getName();?>').val($(this).attr("id"));
-                $('#<?=$formcomment[$formcomment::STATUS]->getName();?>').val('2');
-                var r = confirm('êtes vous sûr de vouloir valider ce commentaire ?');
-                    if (r == true) {$('#CommentModifyStatusForm').submit();}
-            });
 </script>

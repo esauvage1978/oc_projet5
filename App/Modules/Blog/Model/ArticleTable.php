@@ -118,7 +118,7 @@ class ArticleTable extends AbstractTable implements ITable
         {
             throw new \InvalidArgumentException('Contenu du chapo de l\'article vide.');
         }
-        $this->_chapo=htmlentities($value);
+        $this->_chapo=$value;
     }
     #endregion
     #region CREATE

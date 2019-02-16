@@ -16,7 +16,8 @@ session_start();
 if(!isset($_SESSION[ES_TOKEN])) {
     $_SESSION[ES_TOKEN]=$token= bin2hex(random_bytes(32));
 }
-
+//$_SESSION[ES_TOKEN_OLD]=$_SESSION[ES_TOKEN];
+//$_SESSION[ES_TOKEN]=$token= bin2hex(random_bytes(32));
 
 Autoloader::register();
 

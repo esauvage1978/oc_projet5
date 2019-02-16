@@ -1,5 +1,6 @@
 
-<form action="##INDEX##blog.article.modify/<?= $articleComposer->article->getId(); ?>#articlemodify" method="post">
+<form action="##INDEX##blog.article.modify/<?= $articleComposer->article->getId(); ?>#articlemodify" 
+      method="post" enctype="multipart/form-data">
     <div class="row justify-content-md-center" id="articlemodify">
         <div class="col-md-8">
             <div class="widget-sidebar">

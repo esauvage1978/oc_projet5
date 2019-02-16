@@ -56,7 +56,8 @@ class ACL
         'blog.category.list',
         'blog.article.listadmin',
         'blog.article.changestatut',
-        'blog.comment.moderate',
+        'blog.comment.changemoderatorstate',
+        'blog.comment.listadmin',
         'shared.dashboard'
         ],
     ES_USER_ROLE_GESTIONNAIRE =>[
@@ -69,7 +70,8 @@ class ACL
         'blog.article.listadmin',
         'blog.article.changestatut',
         'blog.category.list',
-        'blog.comment.moderate'
+        'blog.comment.changemoderatorstate',
+        'blog.comment.listadmin'
         ]];
 
     private $_userConnect;

@@ -36,6 +36,7 @@
     <Compile Include="App\Modules\Blog\Form\ArticleAddForm.php" />
     <Compile Include="App\Modules\Blog\Form\ArticleModifyForm.php" />
     <Compile Include="App\Modules\Blog\Form\ArticleModifyStateForm.php" />
+    <Compile Include="App\Modules\Blog\Form\WebControls\FilePresentation.php" />
     <Compile Include="App\Modules\Blog\Form\WebControls\InputArticleTitle.php" />
     <Compile Include="App\Modules\Blog\Form\WebControls\InputCommentStatus.php" />
     <Compile Include="App\Modules\Blog\Form\CategoryAddForm.php" />
@@ -47,7 +48,7 @@
     <Compile Include="App\Modules\Blog\Form\WebControls\SelectArticleState.php" />
     <Compile Include="App\Modules\Blog\Form\WebControls\TextareaArticleChapo.php" />
     <Compile Include="App\Modules\Blog\Form\WebControls\TextareaArticleContent.php" />
-    <Compile Include="App\Modules\Blog\Model\CommentFactory.php" />
+    <Compile Include="App\Modules\Blog\Model\CommentComposer.php" />
     <Compile Include="App\Modules\Blog\Model\CommentManager.php" />
     <Compile Include="App\Modules\Blog\Model\Moderator.php" />
     <Compile Include="App\Modules\Blog\Model\ModeratorInterface.php" />
@@ -56,7 +57,7 @@
     <Compile Include="App\Modules\Blog\View\ArticleListAdminView.php" />
     <Compile Include="App\Modules\Blog\View\ArticleModifyView.php" />
     <Compile Include="App\Modules\Blog\View\CategoryCRUDView.php" />
-    <Compile Include="App\Modules\Blog\View\CommentListView.php" />
+    <Compile Include="App\Modules\Blog\View\CommentListAdminView.php" />
     <Compile Include="App\Modules\Blog\View\Partial\WidgetCategoryNotEmpty.php" />
     <Compile Include="App\Modules\Blog\View\Partial\WidgetDashboardComment.php" />
     <Compile Include="App\Modules\Blog\View\Partial\WidgetDashboardArticles.php" />
@@ -128,13 +129,14 @@
     <Compile Include="Config\constantes.php" />
     <Compile Include="Core\Autoloader\Autoloader.php" />
     <Compile Include="Core\Controller\AbstractController.php" />
-    <Compile Include="Core\Form\WebControlsStandard\inputToken.php" />
+    <Compile Include="Core\Form\WebControlsStandard\InputToken.php" />
     <Compile Include="Core\Form\WebControlsStandard\TextareaComment.php" />
     <Compile Include="Core\Form\WebControls\ParamRequire.php" />
     <Compile Include="Core\Form\WebControls\ParamPlaceholder.php" />
     <Compile Include="Core\Form\WebControls\ParamValid.php" />
     <Compile Include="Core\Form\WebControls\WebControls.php" />
     <Compile Include="Core\Form\WebControls\WebControlsCheckbox.php" />
+    <Compile Include="Core\Form\WebControls\WebControlsFile.php" />
     <Compile Include="Core\Form\WebControls\WebControlsInput.php" />
     <Compile Include="Core\Form\WebControls\WebControlsButtons.php" />
     <Compile Include="Core\Form\WebControls\WebControlsSelect.php" />
@@ -156,8 +158,9 @@
     <Compile Include="Tests\BlogCategory\CategoryFormTest.php" />
     <Compile Include="Tests\BlogCategory\CategoryManagerTest.php" />
     <Compile Include="Tests\BlogCategory\CategoryTableTest.php" />
+    <Compile Include="Tests\BlogComment\CommentControllerTest.php" />
     <Compile Include="Tests\BlogComment\CommentManagerTest.php" />
-    <Compile Include="Tests\BlogContent\CommentTableTest.php" />
+    <Compile Include="Tests\BlogComment\CommentTableTest.php" />
     <Compile Include="Tests\Core\AuthTest.php">
       <Publishable>False</Publishable>
     </Compile>
@@ -260,7 +263,6 @@
     <Folder Include="Public\vendor\trumbowyg\ui\" />
     <Folder Include="Tests\Core\" />
     <Folder Include="Tests\BlogCategory\" />
-    <Folder Include="Tests\BlogContent\" />
     <Folder Include="Tests\BlogComment\" />
     <Folder Include="Tests\User\" />
     <Folder Include="Tests\userForm\" />

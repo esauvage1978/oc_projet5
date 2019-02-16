@@ -35,10 +35,6 @@ class CategoryController extends AbstractController
 
     public function list()
     {
-        if(!$this->valideAccessPage(true,ES_GESTIONNAIRE)) {
-            $this->AccueilView(true) ;
-        }
-
         $this->listView();
     }
     public function listnotempty()
@@ -50,8 +46,6 @@ class CategoryController extends AbstractController
         $formModify=new CategoryModifyForm($this->_request->getPost());
         try
         {
-            $this->valideAccessPage(true,ES_GESTIONNAIRE);
-
             if($this->_request->hasPost()) {
 
                 $title=$formModify[$formModify::CATEGORY]->text;
@@ -94,10 +88,6 @@ class CategoryController extends AbstractController
     {
         $formDelete=new CategoryDeleteForm($this->_request->getPost());
 
-        if(!$this->valideAccessPage(true,ES_GESTIONNAIRE)) {
-            $this->AccueilView(true) ;
-        }
-
         $id=$formDelete[$formDelete::IDHIDDEN]->text;
 
         if(isset($id) && !$this->_categoryManager->hasArticle($id) ) {
@@ -116,10 +106,6 @@ class CategoryController extends AbstractController
         $formAdd=new CategoryAddForm($this->_request->getPost() );
         try
         {
-            if(!$this->valideAccessPage(true,ES_GESTIONNAIRE)) {
-                $this->AccueilView(true) ;
-            }
-
             if($this->_request->hasPost()) {
 
                 $category=$formAdd[$formAdd::CATEGORY]->text;

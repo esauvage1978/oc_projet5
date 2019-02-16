@@ -1,3 +1,12 @@
+CommentController
+ [ ] Change moderate statut
+ [ ] Create comment
+
+CommentManager
+ [x] Find by id
+ [ ] Get categorys
+ [x] Create
+
 CommentTable
  [x] Instance vide
  [x] I d by setter
@@ -5,5 +14,13 @@ CommentTable
  [x] Has id
  [x] Id value not id
  [x] Id value null
+ [x] Content by setter
+ [x] Content by constructor
+ [ ] Content value 60
+ [x] Content value null
+ [x] Create date by setter
+ [x] Create date by constructor
+ [x] Create date value not date
+ [x] Create date value null
  [x] To array
 

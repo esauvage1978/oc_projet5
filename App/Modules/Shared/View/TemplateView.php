@@ -26,6 +26,8 @@
     
     <script src="##DIR_VENDOR##devfolio-master/lib/jquery/jquery.min.js"></script>
     <script src="##DIR_VENDOR##DataTables/datatables.min.js"></script>
+
+    <script src="##DIR_VENDOR##ckeditor/ckeditor.js"></script>
     
     <script src="##DIR_PUBLIC##js/liste.js"></script>
     

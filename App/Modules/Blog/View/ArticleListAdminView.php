@@ -113,7 +113,7 @@ $(document).ready(function () {
                                     <?= ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_CORBEILLE] ?>
                                 </option>
                             </select>
-
+                            <div id="retourcommentaire<?= $articleComposer->article->getId(); ?>"></div>
                         </td>
                         <td>
                             <?= $articleComposer->category->getTitle(); ?>
@@ -152,9 +152,12 @@ $(document).ready(function () {
         var r = confirm('êtes vous sûr de vouloir changer le statut de l\'article ?');
         if (r == true) {
             $.ajax({
-                type: 'post',
+                type: 'POST',
                 url: '##INDEX##blog.article.changestatut',
-                data: 'id=' + id + '&value=' + value
+                data: 'id=' + id + '&value=' + value,
+                success: function(code_html, statut){
+                $('#retourcommentaire' + id).text(code_html);        
+                }
             });
         } 
     });

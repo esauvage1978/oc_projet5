@@ -94,6 +94,11 @@ class ArticleManager extends AbstractManager
         if(!$retour) {
             throw new \InvalidArgumentException('Erreur lors de la création de l\'article');
         }
+
+        $imageSource=ES_ROOT_PATH_FAT . 'Public/images/blog/model.jpg';
+        $imageDestination=ES_ROOT_PATH_FAT . 'Public/images/blog/' . $retour . '.jpg';
+        \copy($imageSource,$imageDestination);
+
         $article->setId($retour);
 
         return $article;
@@ -104,6 +109,57 @@ class ArticleManager extends AbstractManager
         $article->setModifyUserRef($userRef);
         $article->setModifyDate(\date(ES_NOW));
         return $this->update($article->getId(),$article->toArray()) ;
+    }
+
+    public function changeStatut($id,$value,$user) :bool
+    {
+        $articleComposer=$this->_articleManager->findById($id);
+        $articleComposer->article->setState($value);
+        $articleComposer->article->setStateDate(\date(ES_NOW));
+        return $this->_articleManager->modifyArticle($articleComposer->article,$user);
+    }
+
+    public function recupereImagePresentation($key,$id):bool
+    {
+
+        if(!isset($_FILES[$key]['name'])) {
+            return true;
+        } elseif($_FILES[$key]['error']=='1') {
+            $this->flash->writeError('Erreur lors de \'upload de l\'image code error:1');
+        } elseif (isset($_FILES[$key]['tmp_name'])) {
+
+            if($_FILES[$key]['type']=='image/jpeg') {
+                try {
+
+
+                    $destination=ES_ROOT_PATH_FAT . 'Public/images/blog/' . $id . '.jpg';
+                    //return \copy($_FILES[$key]['tmp_name'],$destination);
+                    if(\file_exists($destination) ){
+                        \unlink($destination);
+                    }
+                    $taille = getimagesize($_FILES[$key]['tmp_name']);
+                    $largeur = $taille[0];
+                    $hauteur = $taille[1];
+                    $largeur_miniature = 600;
+                    $hauteur_miniature = $hauteur / $largeur * 600;
+                    $im = \imagecreatefromjpeg($_FILES[$key]['tmp_name']);
+                    $im_miniature = \imagecreatetruecolor($largeur_miniature
+                    , $hauteur_miniature);
+                    if(!\imagecopyresampled($im_miniature, $im, 0, 0, 0, 0, $largeur_miniature, $hauteur_miniature, $largeur, $hauteur)) {
+                        $this->flash->writeError('Erreur lors de la création de imagecopyresampled');
+                    }
+                    if(!\imagejpeg($im_miniature, $destination, 90)) {
+                        $this->flash->writeError('Erreur lors de la création de imagejpeg');
+                    }
+                } catch (\InvalidArgumentException $ex) {
+                        $this->flash->writeError('Erreur lors de la création de l\'image ' . $ex->getMessage ());
+                }
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function NewArticle($title, $categoryRef,$chapo,$content,$userRef):ArticleTable

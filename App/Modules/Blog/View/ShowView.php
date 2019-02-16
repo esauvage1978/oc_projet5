@@ -66,7 +66,7 @@
                 </div>
                 <?= isset($formComment)?$formComment:''; ?>
                 <span id="commentAdd" class="btn btn-primary">Envoyer</span>
-
+                <div id="retourcommentaire"></div>
             </div>
         </div>
         <div class="col-md-4">
@@ -96,9 +96,19 @@ $('#commentAdd').click(function () {
     var id=$('#<?=$formComment[$formComment::IDARTICLEHIDDEN]->getName();?>').val();
     var value=$('#<?=$formComment[$formComment::COMMENT]->getName();?>').val();
     $.ajax({
-                type: 'post',
-                url: '##INDEX##blog.comment.add',
-                data: 'id=' + id + '&value=' + value
+                type : 'POST',
+                url : '##INDEX##blog.comment.add',
+    dataType : 'html',
+        data : 'id=' + id + '&value=' + value,
+               success : function(code_html, statut){
+   
+    $('#retourcommentaire').text(code_html);
+        $('#<?=$formComment[$formComment::COMMENT]->getName();?>').val('');
+       },
+
+       error : function(resultat, statut, erreur){
+        alert('error');
+       }
             });
                     });
 </script>

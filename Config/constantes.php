@@ -27,7 +27,7 @@ define('ES_ROOT_PATH_REL_MODULES', '../App/Modules/');
 
 
 define('ES_NOW','Y-m-d H:i:s');
-define('ES_DATE_FR','d/m/Y H:i'); //strtotime
+define('ES_DATE_FR','d/m/Y à H:i'); //strtotime
 
 //USER ROLE
 define('ES_USER_ROLE',
@@ -56,13 +56,13 @@ define('ES_BLOG_ARTICLE_STATE_BROUILLON',1);
 
 //BLOG COMMENT STATUT
 define('ES_BLOG_COMMENT_STATE',
-    ['0'=>'A modérer',
-     '1'=>'Rejeté',
-     '2'=>'Approuvé'
+    ['10'=>'A modérer',
+     '20'=>'Rejeté',
+     '30'=>'Approuvé'
      ]);
-define('ES_BLOG_COMMENT_STATE_APPROVE',2);
-define('ES_BLOG_COMMENT_STATE_REJECT',1);
-define('ES_BLOG_COMMENT_STATE_WAIT',0);
+define('ES_BLOG_COMMENT_STATE_APPROVE',30);
+define('ES_BLOG_COMMENT_STATE_REJECT',20);
+define('ES_BLOG_COMMENT_STATE_WAIT',10);
 
 
 //PHPMAILER
