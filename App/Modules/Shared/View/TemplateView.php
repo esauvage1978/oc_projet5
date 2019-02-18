@@ -27,11 +27,13 @@
     <script src="##DIR_VENDOR##devfolio-master/lib/jquery/jquery.min.js"></script>
     <script src="##DIR_VENDOR##DataTables/datatables.min.js"></script>
 
-    <script src="##DIR_VENDOR##ckeditor/ckeditor.js"></script>
+    <!--CKEDITOR-->
+    <script src="//cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
     
     <script src="##DIR_PUBLIC##js/liste.js"></script>
     
-    
+
+
 </head><!--/head-->
 <body id="page-top">
     <!--/ Nav Star /-->

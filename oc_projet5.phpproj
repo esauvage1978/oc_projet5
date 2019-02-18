@@ -217,6 +217,7 @@
     <Folder Include="oc_projet5\" />
     <Folder Include="Public\images\avatar\" />
     <Folder Include="Public\images\blog\" />
+    <Folder Include="Public\vendor\ckeditor\" />
     <Folder Include="Public\vendor\devfolio-master\" />
     <Folder Include="Public\vendor\devfolio-master\contactform\" />
     <Folder Include="Public\vendor\devfolio-master\css\" />
@@ -607,6 +608,7 @@
     <Content Include="Public\vendor\bootstrap\js\bootstrap.js.map" />
     <Content Include="Public\vendor\bootstrap\js\bootstrap.min.js" />
     <Content Include="Public\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Public\vendor\ckeditor\ckeditor.js" />
     <Content Include="Public\vendor\devfolio-master\blog-single.html" />
     <Content Include="Public\vendor\devfolio-master\contactform\contactform.js" />
     <Content Include="Public\vendor\devfolio-master\contactform\Readme.txt" />

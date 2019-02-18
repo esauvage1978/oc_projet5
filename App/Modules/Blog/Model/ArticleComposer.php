@@ -30,7 +30,6 @@ class ArticleComposer
         $this->initCreateUser();
         $this->initModifyUser();
         $this->initCategory();
-
     }
 
     private function initCreateUser()
@@ -60,7 +59,7 @@ class ArticleComposer
     public function initComment()
     {
         $commentManager =new CommentManager();
-        $this->comments =$commentManager->getCommentsValid($this->article->getId());  
+        $this->comments =$commentManager->getCommentsValid($this->article->getId());
         $this->commentNbr =\count($this->comments);
     }
 

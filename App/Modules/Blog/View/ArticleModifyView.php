@@ -6,6 +6,8 @@
             <div class="widget-sidebar">
                 <div class="sidebar-content">
                     <?= isset($formModify)?$formModify:''; ?>
+
+                    
                 </div>
             </div>
         </div>
@@ -31,22 +33,20 @@
                             </b>
 
                         </li>
-                        <?php if(isset($articleFactory->Modifyuser)): ?>
+                        <?php if(isset($articleComposer->modifyUser)): ?>
 
                         <li>
                             Modifié par :
                             <b>
                                 <span class="ion-ios-person"></span>
-                                <a href="##INDEX##blog.list/user/<?= $articleFactory->Modifyuser->getId(); ?>">
-                                    <?= $articleFactory->Modifyuser->getIdentifiant(); ?>
+                                <a href="##INDEX##blog.list/user/<?= $articleComposer->modifyUser->getId(); ?>">
+                                    <?= $articleComposer->modifyUser->getIdentifiant(); ?>
                                 </a>
                             </b>
                             le
                             <b>
                                 <span class="ion-ios-clock-outline"></span>
-                                <?= is_null($articleComposer->article->getModifyDate()) ?
-                                    \date(ES_DATE_FR,strtotime ( $articleComposer->article->getCreateDate()))
-                                    :''; ?>
+                                <?= \date(ES_DATE_FR,strtotime ( $articleComposer->article->getModifyDate())); ?>
                             </b>
                         </li>
                         <?php endif ?>
@@ -58,3 +58,9 @@
         </div>
     </div>
 </form>
+<script>
+    CKEDITOR.replace('ArticleModifyForm_articleContent', {
+      height: 600,
+
+    });
+</script>
