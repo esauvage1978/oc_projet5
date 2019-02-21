@@ -1,51 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name=".\tests\BlogComment\" tests="20" assertions="22" errors="3" failures="1" skipped="0" time="0.757659">
-    <testsuite name="CommentControllerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentControllerTest.php" tests="2" assertions="0" errors="2" failures="0" skipped="0" time="0.384461">
-      <testcase name="testChangeModerateStatut" class="CommentControllerTest" classname="CommentControllerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentControllerTest.php" line="47" assertions="0" time="0.369177">
-        <error type="Error">CommentControllerTest::testChangeModerateStatut
-Error: Call to a member function getId() on null
-
-C:\wamp64\www\oc_projet5\App\Modules\Blog\Model\CommentManager.php:29
-C:\wamp64\www\oc_projet5\App\Modules\Blog\Controller\CommentController.php:117
-C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentControllerTest.php:56
-</error>
-      </testcase>
-      <testcase name="testCreateComment" class="CommentControllerTest" classname="CommentControllerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentControllerTest.php" line="60" assertions="0" time="0.015284">
-        <error type="PHPUnit\Framework\RiskyTestError">Risky Test
-</error>
-        <system-out>08/02/2019 à 14:05 : Le commentaire est créé, il est en attente de modération.</system-out>
-      </testcase>
+  <testsuite name=".\Tests\User\" tests="83" assertions="92" errors="0" failures="1" skipped="0" time="1.391476">
+    <testsuite name="UserConnectTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserConnectTest.php" tests="2" assertions="2" errors="0" failures="0" skipped="0" time="0.058130">
+      <testcase name="testUserConnectInstance" class="UserConnectTest" classname="UserConnectTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserConnectTest.php" line="19" assertions="1" time="0.047371"/>
+      <testcase name="testUserConnectIsConnect" class="UserConnectTest" classname="UserConnectTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserConnectTest.php" line="24" assertions="1" time="0.010759"/>
     </testsuite>
-    <testsuite name="CommentManagerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentManagerTest.php" tests="3" assertions="4" errors="1" failures="0" skipped="0" time="0.121439">
-      <testcase name="testFindById" class="CommentManagerTest" classname="CommentManagerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentManagerTest.php" line="42" assertions="1" time="0.060662"/>
-      <testcase name="testgetCategorys" class="CommentManagerTest" classname="CommentManagerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentManagerTest.php" line="48" assertions="0" time="0.014630">
-        <error type="PHPUnit\Framework\RiskyTestError">Risky Test
-</error>
-      </testcase>
-      <testcase name="testCreate" class="CommentManagerTest" classname="CommentManagerTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentManagerTest.php" line="57" assertions="3" time="0.046148"/>
+    <testsuite name="UserConnexionFormTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserConnexionFormTest.php" tests="4" assertions="4" errors="0" failures="0" skipped="0" time="0.097203">
+      <testcase name="testRenderLogin" class="UserConnexionFormTest" classname="UserConnexionFormTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserConnexionFormTest.php" line="23" assertions="1" time="0.032339"/>
+      <testcase name="testRenderSecret" class="UserConnexionFormTest" classname="UserConnexionFormTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserConnexionFormTest.php" line="28" assertions="1" time="0.032415"/>
+      <testcase name="testcheckForm" class="UserConnexionFormTest" classname="UserConnexionFormTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserConnexionFormTest.php" line="33" assertions="1" time="0.015476"/>
+      <testcase name="testRenderButton" class="UserConnexionFormTest" classname="UserConnexionFormTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserConnexionFormTest.php" line="39" assertions="1" time="0.016973"/>
     </testsuite>
-    <testsuite name="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" tests="15" assertions="18" errors="0" failures="1" skipped="0" time="0.251759">
-      <testcase name="testInstanceVide" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="16" assertions="1" time="0.053635"/>
-      <testcase name="testIDBySetter" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="22" assertions="1" time="0.008878"/>
-      <testcase name="testIdByConstructor" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="29" assertions="1" time="0.012979"/>
-      <testcase name="testHasId" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="36" assertions="1" time="0.015668"/>
-      <testcase name="testIdValueNotId" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="46" assertions="1" time="0.043736"/>
-      <testcase name="testIdValueNull" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="55" assertions="1" time="0.013508"/>
-      <testcase name="testContentBySetter" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="63" assertions="1" time="0.011583"/>
-      <testcase name="testContentByConstructor" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="70" assertions="1" time="0.009557"/>
-      <testcase name="testContentValue60" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="79" assertions="1" time="0.024417">
-        <failure type="PHPUnit\Framework\ExpectationFailedException">CommentTableTest::testContentValue60
-Failed asserting that exception of type "InvalidArgumentException" is thrown.
+    <testsuite name="UserForgetChangeFormTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserForgetChangeFormTest.php" tests="5" assertions="5" errors="0" failures="1" skipped="0" time="0.095947">
+      <testcase name="testRenderLogin" class="UserForgetChangeFormTest" classname="UserForgetChangeFormTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserForgetChangeFormTest.php" line="23" assertions="1" time="0.024990"/>
+      <testcase name="testRenderSecret" class="UserForgetChangeFormTest" classname="UserForgetChangeFormTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserForgetChangeFormTest.php" line="28" assertions="1" time="0.018310"/>
+      <testcase name="testcheckForm" class="UserForgetChangeFormTest" classname="UserForgetChangeFormTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserForgetChangeFormTest.php" line="33" assertions="1" time="0.016687"/>
+      <testcase name="testRenderButton" class="UserForgetChangeFormTest" classname="UserForgetChangeFormTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserForgetChangeFormTest.php" line="39" assertions="1" time="0.019242"/>
+      <testcase name="testcheckFormWithValue" class="UserForgetChangeFormTest" classname="UserForgetChangeFormTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserForgetChangeFormTest.php" line="44" assertions="1" time="0.016718">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">UserForgetChangeFormTest::testcheckFormWithValue
+Failed asserting that false matches expected true.
 
+C:\wamp64\www\oc_projet5\Tests\User\UserForgetChangeFormTest.php:50
 </failure>
       </testcase>
-      <testcase name="testContentValueNull" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="88" assertions="1" time="0.009175"/>
-      <testcase name="testCreateDateBySetter" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="96" assertions="1" time="0.009514"/>
-      <testcase name="testCreateDateByConstructor" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="103" assertions="1" time="0.009390"/>
-      <testcase name="testCreateDateValueNotDate" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="113" assertions="1" time="0.009543"/>
-      <testcase name="testCreateDateValueNull" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="119" assertions="1" time="0.009303"/>
-      <testcase name="testToArray" class="CommentTableTest" classname="CommentTableTest" file="C:\wamp64\www\oc_projet5\Tests\BlogComment\CommentTableTest.php" line="127" assertions="4" time="0.010873"/>
+    </testsuite>
+    <testsuite name="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" tests="15" assertions="22" errors="0" failures="0" skipped="0" time="0.401374">
+      <testcase name="testUserManager" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="27" assertions="1" time="0.037861"/>
+      <testcase name="testIdentifiantExist" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="32" assertions="3" time="0.014232"/>
+      <testcase name="testMailExist" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="41" assertions="3" time="0.023490"/>
+      <testcase name="testFindById" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="51" assertions="1" time="0.024860"/>
+      <testcase name="testFindUserByLogin" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="57" assertions="1" time="0.012813"/>
+      <testcase name="testFindByForgetHash" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="63" assertions="1" time="0.019016"/>
+      <testcase name="testFindByValidAccountHash" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="69" assertions="1" time="0.010847"/>
+      <testcase name="testGetUsers" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="75" assertions="4" time="0.041375"/>
+      <testcase name="testCountUserAll" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="86" assertions="1" time="0.023276"/>
+      <testcase name="testCountUserValidAccount" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="91" assertions="1" time="0.011682"/>
+      <testcase name="testCountUserNotValidAccount" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="96" assertions="1" time="0.010852"/>
+      <testcase name="testCountUserRole1" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="101" assertions="1" time="0.010871"/>
+      <testcase name="testCreateUser" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="107" assertions="1" time="0.120530"/>
+      <testcase name="testValidAccountReset" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="113" assertions="1" time="0.024804"/>
+      <testcase name="testChangeActifOfUser" class="UserManagerTest" classname="UserManagerTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserManagerTest.php" line="120" assertions="1" time="0.014864"/>
+    </testsuite>
+    <testsuite name="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" tests="57" assertions="59" errors="0" failures="0" skipped="0" time="0.738823">
+      <testcase name="testUserInstanceVide" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="31" assertions="1" time="0.017853"/>
+      <testcase name="testIdentifiantBySetter" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="37" assertions="1" time="0.009795"/>
+      <testcase name="testIdentifiantByConstructor" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="44" assertions="1" time="0.009903"/>
+      <testcase name="testIdentifiantValue60" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="53" assertions="1" time="0.017905"/>
+      <testcase name="testIdentifiantValue3" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="62" assertions="1" time="0.013556"/>
+      <testcase name="testIdentifiantValueNull" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="71" assertions="1" time="0.009939"/>
+      <testcase name="testMailBySetter" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="79" assertions="1" time="0.009319"/>
+      <testcase name="testMailByConstructor" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="86" assertions="1" time="0.013923"/>
+      <testcase name="testMailValue100" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="96" assertions="1" time="0.011606"/>
+      <testcase name="testMailValueNotMail" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="105" assertions="1" time="0.010114"/>
+      <testcase name="testMailValueNull" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="114" assertions="1" time="0.015560"/>
+      <testcase name="testIDBySetter" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="122" assertions="1" time="0.009835"/>
+      <testcase name="testIdByConstructor" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="129" assertions="1" time="0.009418"/>
+      <testcase name="testHasId" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="136" assertions="1" time="0.012718"/>
+      <testcase name="testIdValueNotId" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="146" assertions="1" time="0.019749"/>
+      <testcase name="testIdValueNull" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="153" assertions="1" time="0.016685"/>
+      <testcase name="testSecretBySetter" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="162" assertions="1" time="0.024680"/>
+      <testcase name="testSecretByConstructor" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="169" assertions="1" time="0.026261"/>
+      <testcase name="testSecretValue100" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="179" assertions="1" time="0.015946"/>
+      <testcase name="testSecretValue3" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="188" assertions="1" time="0.010598"/>
+      <testcase name="testSecretValueNull" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="197" assertions="1" time="0.015604"/>
+      <testcase name="testForgetHashBySetter" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="205" assertions="1" time="0.028864"/>
+      <testcase name="testForgetHashByConstructor" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="212" assertions="1" time="0.009977"/>
+      <testcase name="testForgetHashValue100" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="222" assertions="1" time="0.011352"/>
+      <testcase name="testForgetHashValue3" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="231" assertions="1" time="0.011149"/>
+      <testcase name="testForgetHashValueNull" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="238" assertions="1" time="0.009578"/>
+      <testcase name="testForgetDateBySetter" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="247" assertions="1" time="0.010305"/>
+      <testcase name="testForgetDateByConstructor" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="254" assertions="1" time="0.010215"/>
+      <testcase name="testForgetDateValueNotDate" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="264" assertions="1" time="0.010226"/>
+      <testcase name="testForgetDateValueNull" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="270" assertions="1" time="0.016638"/>
+      <testcase name="testValidAccountHashBySetter" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="279" assertions="1" time="0.013736"/>
+      <testcase name="testValidAccountHashByConstructor" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="286" assertions="1" time="0.011003"/>
+      <testcase name="testValidAccountHashValue100" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="296" assertions="1" time="0.017786"/>
+      <testcase name="testValidAccountHashValue3" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="305" assertions="1" time="0.010320"/>
+      <testcase name="testValidAccountHashValueNull" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="312" assertions="1" time="0.012665"/>
+      <testcase name="testValidAccountDateBySetter" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="321" assertions="1" time="0.009790"/>
+      <testcase name="testValidAccountDateByConstructor" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="328" assertions="1" time="0.009737"/>
+      <testcase name="testValidAccountDateValueNotDate" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="338" assertions="1" time="0.009867"/>
+      <testcase name="testValidAccountDateValueNull" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="344" assertions="1" time="0.009483"/>
+      <testcase name="testUserRoleBySetter" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="353" assertions="1" time="0.015650"/>
+      <testcase name="testUserRoleByConstructor" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="360" assertions="1" time="0.009617"/>
+      <testcase name="testUserRoleLabel" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="367" assertions="1" time="0.010090"/>
+      <testcase name="testUserRoleValueNotInt" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="377" assertions="1" time="0.012479"/>
+      <testcase name="testUserRoleValueInt6" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="386" assertions="1" time="0.012324"/>
+      <testcase name="testUserRoleValueNull" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="395" assertions="1" time="0.013798"/>
+      <testcase name="testActifBySetter" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="403" assertions="1" time="0.011033"/>
+      <testcase name="testActifByConstructor" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="410" assertions="1" time="0.012869"/>
+      <testcase name="testActifValue2" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="419" assertions="1" time="0.011252"/>
+      <testcase name="testActifLabel" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="425" assertions="1" time="0.012052"/>
+      <testcase name="testActifLabel2" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="431" assertions="1" time="0.010649"/>
+      <testcase name="testActifValueNull" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="440" assertions="1" time="0.011783"/>
+      <testcase name="testActifDateBySetter" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="449" assertions="1" time="0.009864"/>
+      <testcase name="testActifDateByConstructor" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="456" assertions="1" time="0.010960"/>
+      <testcase name="testActifDateValueNotDate" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="465" assertions="1" time="0.012089"/>
+      <testcase name="testActifDateValueNull" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="471" assertions="1" time="0.014459"/>
+      <testcase name="testToArray" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="479" assertions="3" time="0.014531"/>
+      <testcase name="testIsValidAccountTrue" class="UserTableTest" classname="UserTableTest" file="C:\wamp64\www\oc_projet5\Tests\User\UserTableTest.php" line="492" assertions="1" time="0.009667"/>
     </testsuite>
   </testsuite>
 </testsuites>

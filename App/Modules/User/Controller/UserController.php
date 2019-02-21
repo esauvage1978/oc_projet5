@@ -92,7 +92,7 @@ class UserController extends AbstractController
                 $form->check() || $this->connexionView ($form,true);
 
                 //Vérification
-                $user=$this->_userManager->findUserByLogin($form->text($form::LOGIN));
+                $user=$this->_userManager->findUserByLoginOrMail($form->text($form::LOGIN));
 
                 //si login non trouvé ou mauvais mot de passe
                 if( !$user->hasId() ||
@@ -151,7 +151,7 @@ class UserController extends AbstractController
                 }
 
                 //récupération de l'utilisateur par rapport au login, si non trouvé $user vide
-                $user=$this->_userManager->findUserByLogin($form->text($form::LOGIN));
+                $user=$this->_userManager->findUserByLoginOrMail($form->text($form::LOGIN));
 
                 if ($user->hasId() &&
                     $this->_userManager->forgetInit($user)) {
@@ -552,34 +552,40 @@ class UserController extends AbstractController
     }
     public function signupAfterPost($form)
     {
-        //Contrôle de la saisie de l'utilisateur
-        if (!$form->check()) {
+        try {
+            //Contrôle de la saisie de l'utilisateur
+            if (!$form->check()) {
 
-            $this->signupView($form,true);
+                $this->signupView($form,true);
 
+            }
+
+
+            //initialisation de la class UserTable
+            $user=$this->_userManager->createUser(
+                $form->text($form::IDENTIFIANT),
+                $form->text($form::MAIL),
+                $form->text($form::SECRET_NEW));
+
+
+
+            if($user->hasId() &&                     //Envoi du mail
+                $this->_userManager->sendMailSignup ($user)) {
+                //Information de l'utilisateur
+                $this->flash->writeSucces ("Utilisateur créé, un mail a été envoyé pour valider l'inscription") ;
+
+                //Retour page d'accueil
+                $this->AccueilView(true);
+
+            } else {
+
+                $this->flash->writeError ('Erreur lors de la création. Identifiant ou mail déjà enregistré.');
+                $this->signupView($form);
+            }
         }
-
-
-        //initialisation de la class UserTable
-        $user=$this->_userManager->createUser(
-            $form->text($form::IDENTIFIANT),
-            $form->text($form::MAIL),
-            $form->text($form::SECRET_NEW));
-
-
-
-        if($user->hasId() &&                     //Envoi du mail
-            $this->_userManager->sendMailSignup ($user)) {
-            //Information de l'utilisateur
-            $this->flash->writeSucces ("Utilisateur créé, un mail a été envoyé pour valider l'inscription") ;
-
-            //Retour page d'accueil
-            $this->AccueilView(true);
-
-        } else {
-
-            $this->flash->writeError ('Erreur lors de la création. Identifiant ou mail déjà enregistré.');
-            $this->signupView($form);
+        catch(\InvalidArgumentException $e)
+        {
+            $this->errorCatchView($e->getMessage());
         }
 
     }

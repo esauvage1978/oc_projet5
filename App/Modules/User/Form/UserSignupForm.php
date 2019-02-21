@@ -5,7 +5,7 @@ namespace ES\App\Modules\User\Form;
 use ES\Core\Form\Form;
 use ES\Core\Form\IForm;
 use ES\Core\Form\WebControlsStandard\checkSecret;
-use ES\Core\Form\WebControlsStandard\ButtonModifier;
+use ES\Core\Form\WebControlsStandard\ButtonCreate;
 use ES\Core\Form\WebControlsStandard\InputSecretNew;
 use ES\Core\Form\WebControlsStandard\InputSecretConfirm;
 use ES\Core\Form\WebControlsStandard\InputMail;
@@ -33,12 +33,13 @@ class UserSignupForm extends Form
 
     public function __construct($datas=[],$byName=true)
     {
-        $this[self::BUTTON]=new ButtonModifier();
+        $this[self::BUTTON]=new ButtonCreate();
         $this[self::SECRET_NEW]=new InputSecretNew();
         $this[self::SECRET_CONFIRM]=new InputSecretConfirm();
         $this[self::MAIL]=new InputMail();
         $this[self::IDENTIFIANT]=new InputIdentifiant();
 
+        $this[self::SECRET_NEW]->label='Votre mot de passe';
         $this->postConstruct($datas,$byName) ;
     }
 

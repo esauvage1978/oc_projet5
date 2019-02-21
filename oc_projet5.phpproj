@@ -66,6 +66,7 @@
     <Compile Include="App\Modules\Shared\View\AccessDenied.php" />
     <Compile Include="App\Modules\Shared\View\ErrorCatch.php" />
     <Compile Include="Core\Database\QueryBuilder.php" />
+    <Compile Include="Core\Form\WebControlsStandard\ButtonCreate.php" />
     <Compile Include="Core\Form\WebControlsStandard\ButtonDelete.php" />
     <Compile Include="Core\Form\WebControlsStandard\ButtonSupprimer.php" />
     <Compile Include="Core\Form\WebControlsStandard\ButtonAjouter.php" />
@@ -169,8 +170,8 @@
     </Compile>
     <Compile Include="Tests\Core\RequestTest.php" />
     <Compile Include="Tests\User\UserConnectTest.php" />
-    <Compile Include="Tests\userForm\UserConnexionFormTest.php" />
-    <Compile Include="Tests\userForm\UserForgetChangeFormTest.php" />
+    <Compile Include="Tests\User\UserConnexionFormTest.php" />
+    <Compile Include="Tests\User\UserForgetChangeFormTest.php" />
     <Compile Include="Tests\User\UserManagerTest.php" />
     <Compile Include="Tests\User\UserTableTest.php" />
   </ItemGroup>
@@ -217,7 +218,6 @@
     <Folder Include="oc_projet5\" />
     <Folder Include="Public\images\avatar\" />
     <Folder Include="Public\images\blog\" />
-    <Folder Include="Public\vendor\ckeditor\" />
     <Folder Include="Public\vendor\devfolio-master\" />
     <Folder Include="Public\vendor\devfolio-master\contactform\" />
     <Folder Include="Public\vendor\devfolio-master\css\" />
@@ -266,7 +266,6 @@
     <Folder Include="Tests\BlogCategory\" />
     <Folder Include="Tests\BlogComment\" />
     <Folder Include="Tests\User\" />
-    <Folder Include="Tests\userForm\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".scannerwork\.gitignore" />
@@ -608,7 +607,6 @@
     <Content Include="Public\vendor\bootstrap\js\bootstrap.js.map" />
     <Content Include="Public\vendor\bootstrap\js\bootstrap.min.js" />
     <Content Include="Public\vendor\bootstrap\js\bootstrap.min.js.map" />
-    <Content Include="Public\vendor\ckeditor\ckeditor.js" />
     <Content Include="Public\vendor\devfolio-master\blog-single.html" />
     <Content Include="Public\vendor\devfolio-master\contactform\contactform.js" />
     <Content Include="Public\vendor\devfolio-master\contactform\Readme.txt" />

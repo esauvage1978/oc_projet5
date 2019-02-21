@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <title>A Simple Page with CKEditor</title>
         <!-- Make sure the path to CKEditor is correct. -->
-        <script src="//cdn.ckeditor.com/4.11.2/full/ckeditor.js"></script>
+        <script src="http://localhost/oc_projet5/Public/vendor/tinymce/js/tinymce/tinymce.min.js"></script>
     </head>
     <body>
         <form>
@@ -13,7 +13,26 @@
             <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
-                CKEDITOR.replace( 'editor1' );
+
+tinymce.init({
+    selector: 'textarea#editor1',
+     language: 'fr_FR',
+  height: 500,
+  menubar: false,
+  plugins: [
+    'advlist autolink lists link image charmap print preview anchor textcolor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table paste code help wordcount'
+  ],
+  toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+  content_css: [
+    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+    '//www.tiny.cloud/css/codepen.min.css'
+  ]
+});
+
+
+
             </script>
         </form>
     </body>

@@ -68,8 +68,8 @@ define('ES_BLOG_COMMENT_STATE_WAIT',10);
 //PHPMAILER
 define('SMTP_HOST','pro1.mail.ovh.net');
 define('SMTP_PORT','587');
-define('SMTP_USER_MAIL','emmanuel.sauvage@mylostuniver.com');
-define('SMTP_USER_NAME','Emmanuel SAUVAGE');
+define('SMTP_USER_MAIL','contact@mylostuniver.com');
+define('SMTP_USER_NAME','Manu de MyLostUniver');
 define('SMTP_USER_PASSWORD','Fckgwrhqq101');
 
 //TOKEN

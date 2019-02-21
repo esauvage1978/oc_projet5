@@ -24,7 +24,8 @@ class ACL
         'blog.article.find',
         'blog.comment.add',
         'blog.category.listnotempty',
-        'blog.article.last'
+        'blog.article.last',
+        'ckeditor/ckeditor.js'
         ];
 
     private $_restrict=[

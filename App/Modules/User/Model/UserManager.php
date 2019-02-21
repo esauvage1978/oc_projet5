@@ -40,7 +40,7 @@ class UserManager extends AbstractManager
     {
         return $this->findByField(UserTable::ID,$key);
     }
-    public function findUserByLogin($value):userTable
+    public function findUserByLoginOrMail($value):userTable
     {
         $retour= $this->query(
             $this->_selectAll . ' (' . UserTable::IDENTIFIANT . '=:params1 OR '. UserTable::MAIL .'=:params2) ;'
@@ -71,10 +71,8 @@ class UserManager extends AbstractManager
     #region get *
     public function getUsers($key=null,$value=null)
     {
-        if($key==='validaccount' && $value===0) {
-            $retour= $this->query($this->_selectAll . ' u_valid_account_date is null ORDER BY ' . static::$order_by . ';');
-        } else if($key==='validaccount' && $value===1) {
-            $retour= $this->query($this->_selectAll . ' u_valid_account_date is not null ORDER BY ' . static::$order_by . ';');
+        if($key=='validaccount') {
+            $retour= $this->query($this->_selectAll . ' u_valid_account_date is ' . ($value==1?'not':'') .' null ORDER BY ' . static::$order_by . ';');
         } else if(isset($key) && isset($value)) {
                 $retour= $this->query($this->_selectAll . 'u_' . $key .'=:value ORDER BY ' . static::$order_by . ';',['value'=>$value]);
         } else {
@@ -86,12 +84,10 @@ class UserManager extends AbstractManager
     #region count
     public function countUsers($key=null,$value=null)
     {
-        if($key==='validaccount' && $value===0) {
-            $retour= $this->query($this->_selectCount . ' u_valid_account_date is null ORDER BY ' . static::$order_by . ';',null, true)['count(*)'];
-        } else if($key==='validaccount' && $value===1) {
-            $retour= $this->query($this->_selectCount . ' u_valid_account_date is not null ORDER BY ' . static::$order_by . ';',true)['count(*)'];
+        if($key=='validaccount' ) {
+            $retour= $this->query($this->_selectCount . ' u_valid_account_date is ' . ($value==1?'not':'') .' null ;',null,true,false)['count(*)'];
         } else if(isset($key) && isset($value)) {
-            $retour= $this->query($this->_selectCount . 'u_' . $key .'=:value ORDER BY ' . static::$order_by . ';',['value'=>$value],true)['count(*)'];
+            $retour= $this->query($this->_selectCount . 'u_' . $key .'=:value ORDER BY ' . static::$order_by . ';',['value'=>$value],true,false)['count(*)'];
         } else {
             $retour= $this->Count();
         }
@@ -131,7 +127,7 @@ class UserManager extends AbstractManager
         $user->setMail($mail);
         $user->setPassword(Auth::passwordCrypt($secret));
         $user->setValidAccountHash(Auth::strRandom());
-        $user->setAccreditation(ES_VISITEUR);
+        $user->setUserRole(ES_USER_ROLE_VISITEUR);
         $user->setActif(1);
         $user->setActifDate(\date(ES_NOW)) ;
         return $user;
@@ -183,17 +179,24 @@ class UserManager extends AbstractManager
     #region MAIL
     public function sendMailSignup(UserTable $user):bool
     {
-        $content='Bonjour,<br/><br/>
-            Vous vous êtes récemment inscrit sur notre site.<br/>
-            Afin de finaliser l\'inscription et de valider votre compte,
-            <a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '">cliquez ici</a>
-            ou collez le lien suivant dans votre navigateur ' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '
-            <br/><br/>Merci d\'utiliser ' . ES_APPLICATION_NOM;
-        $mail=new Mail();
-        if(! $mail->send($user->getMail(),'Validation du compte',$content)) {
-            throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail.');
+        try {
+            $content='Bonjour,<br/><br/>
+                Vous vous êtes récemment inscrit sur notre site.<br/>
+                Afin de finaliser l\'inscription et de valider votre compte,
+                <a href="' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '">cliquez ici</a>
+                ou collez le lien suivant dans votre navigateur ' . ES_ROOT_PATH_WEB_INDEX . 'user.validaccount/' . $user->getValidAccountHash() . '
+                <br/><br/>Merci d\'utiliser ' . ES_APPLICATION_NOM;
+            $mail=new Mail();
+            if(! $mail->send($user->getMail(),'Validation du compte',$content)) {
+                throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail.');
+            }
+            return true;
         }
-        return true;
+        catch(\InvalidArgumentException $e)
+        {
+            $this->errorCatchView($e->getMessage());
+            return false;
+        }
     }
     public function sendMailPwdForget(UserTable $user) :bool
     {

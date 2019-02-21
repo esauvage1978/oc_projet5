@@ -54,10 +54,11 @@ abstract class AbstractManager
 
     protected function findByField($field,$value)
     {
-
-        $tatement=$this->_selectAll . $field . '=:value;';
+        $query= new QueryBuilder();
+        $query->select('*')->from(static::$table )
+            ->where($field . '=:value');
         $arguments=['value'=>$value];
-        $retour= $this->query ($tatement,$arguments,true);
+        $retour= $this->query($query->render() ,$arguments,true);
         return $this->createClassTable($retour);
     }
 

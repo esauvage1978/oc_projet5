@@ -5,14 +5,6 @@ namespace ES\App\Modules\User\Model;
 use \ES\Core\Model\AbstractTable;
 use \ES\Core\Model\ITable;
 
-/**
- * User short summary.
- *
- * User description.
- *
- * @version 1.0
- * @author ragus
- */
 class UserTable extends AbstractTable implements ITable
 {
     protected static $_prefixe='u_';
@@ -54,7 +46,13 @@ class UserTable extends AbstractTable implements ITable
     }
     public function setId($value)
     {
-        $this->_id=$value;
+        if(!empty($value)) {
+            if(filter_var($value,FILTER_VALIDATE_INT )) {
+                $this->_id=$value;
+            } else {
+                throw new \InvalidArgumentException('Le numéro d\'utilisateur est incorrect : ' . $value );
+            }
+        }
     }
     #endregion
     #region IDENTIFIANT

@@ -1,26 +1,92 @@
-CommentController
- [ ] Change moderate statut
- [ ] Create comment
+UserConnect
+ [x] User connect instance
+ [x] User connect is connect
 
-CommentManager
+UserConnexionForm
+ [x] Render login
+ [x] Render secret
+ [x] Check form
+ [x] Render button
+
+UserForgetChangeForm
+ [x] Render login
+ [x] Render secret
+ [x] Check form
+ [x] Render button
+ [ ] Check form with value
+
+UserManager
+ [x] User manager
+ [x] Identifiant exist
+ [x] Mail exist
  [x] Find by id
- [ ] Get categorys
- [x] Create
+ [x] Find user by login
+ [x] Find by forget hash
+ [x] Find by valid account hash
+ [x] Get users
+ [x] Count user all
+ [x] Count user valid account
+ [x] Count user not valid account
+ [x] Count user role 1
+ [x] Create user
+ [x] Valid account reset
+ [x] Change actif of user
 
-CommentTable
- [x] Instance vide
+UserTable
+ [x] User instance vide
+ [x] Identifiant by setter
+ [x] Identifiant by constructor
+ [x] Identifiant value 60
+ [x] Identifiant value 3
+ [x] Identifiant value null
+ [x] Mail by setter
+ [x] Mail by constructor
+ [x] Mail value 100
+ [x] Mail value not mail
+ [x] Mail value null
  [x] I d by setter
  [x] Id by constructor
  [x] Has id
  [x] Id value not id
  [x] Id value null
- [x] Content by setter
- [x] Content by constructor
- [ ] Content value 60
- [x] Content value null
- [x] Create date by setter
- [x] Create date by constructor
- [x] Create date value not date
- [x] Create date value null
+ [x] Secret by setter
+ [x] Secret by constructor
+ [x] Secret value 100
+ [x] Secret value 3
+ [x] Secret value null
+ [x] Forget hash by setter
+ [x] Forget hash by constructor
+ [x] Forget hash value 100
+ [x] Forget hash value 3
+ [x] Forget hash value null
+ [x] Forget date by setter
+ [x] Forget date by constructor
+ [x] Forget date value not date
+ [x] Forget date value null
+ [x] Valid account hash by setter
+ [x] Valid account hash by constructor
+ [x] Valid account hash value 100
+ [x] Valid account hash value 3
+ [x] Valid account hash value null
+ [x] Valid account date by setter
+ [x] Valid account date by constructor
+ [x] Valid account date value not date
+ [x] Valid account date value null
+ [x] User role by setter
+ [x] User role by constructor
+ [x] User role label
+ [x] User role value not int
+ [x] User role value int 6
+ [x] User role value null
+ [x] Actif by setter
+ [x] Actif by constructor
+ [x] Actif value 2
+ [x] Actif label
+ [x] Actif value null
+ [x] Actif date by setter
+ [x] Actif date by constructor
+ [x] Actif date value not date
+ [x] Actif date value null
  [x] To array
+ [x] Is valid account true
 

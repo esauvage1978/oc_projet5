@@ -28,34 +28,102 @@
         </style>
     </head>
     <body>
-        <h2 id="CommentControllerTest">CommentController</h2>
+        <h2 id="UserConnectTest">UserConnect</h2>
         <ul>
-            <li style="color: #ef2929;">❌ Change moderate statut</li>
-            <li style="color: #ef2929;">❌ Create comment</li>
+            <li style="color: #555753;">✓ User connect instance</li>
+            <li style="color: #555753;">✓ User connect is connect</li>
         </ul>
-        <h2 id="CommentManagerTest">CommentManager</h2>
+        <h2 id="UserConnexionFormTest">UserConnexionForm</h2>
         <ul>
+            <li style="color: #555753;">✓ Render login</li>
+            <li style="color: #555753;">✓ Render secret</li>
+            <li style="color: #555753;">✓ Check form</li>
+            <li style="color: #555753;">✓ Render button</li>
+        </ul>
+        <h2 id="UserForgetChangeFormTest">UserForgetChangeForm</h2>
+        <ul>
+            <li style="color: #555753;">✓ Render login</li>
+            <li style="color: #555753;">✓ Render secret</li>
+            <li style="color: #555753;">✓ Check form</li>
+            <li style="color: #555753;">✓ Render button</li>
+            <li style="color: #ef2929;">❌ Check form with value</li>
+        </ul>
+        <h2 id="UserManagerTest">UserManager</h2>
+        <ul>
+            <li style="color: #555753;">✓ User manager</li>
+            <li style="color: #555753;">✓ Identifiant exist</li>
+            <li style="color: #555753;">✓ Mail exist</li>
             <li style="color: #555753;">✓ Find by id</li>
-            <li style="color: #ef2929;">❌ Get categorys</li>
-            <li style="color: #555753;">✓ Create</li>
+            <li style="color: #555753;">✓ Find user by login</li>
+            <li style="color: #555753;">✓ Find by forget hash</li>
+            <li style="color: #555753;">✓ Find by valid account hash</li>
+            <li style="color: #555753;">✓ Get users</li>
+            <li style="color: #555753;">✓ Count user all</li>
+            <li style="color: #555753;">✓ Count user valid account</li>
+            <li style="color: #555753;">✓ Count user not valid account</li>
+            <li style="color: #555753;">✓ Count user role 1</li>
+            <li style="color: #555753;">✓ Create user</li>
+            <li style="color: #555753;">✓ Valid account reset</li>
+            <li style="color: #555753;">✓ Change actif of user</li>
         </ul>
-        <h2 id="CommentTableTest">CommentTable</h2>
+        <h2 id="UserTableTest">UserTable</h2>
         <ul>
-            <li style="color: #555753;">✓ Instance vide</li>
+            <li style="color: #555753;">✓ User instance vide</li>
+            <li style="color: #555753;">✓ Identifiant by setter</li>
+            <li style="color: #555753;">✓ Identifiant by constructor</li>
+            <li style="color: #555753;">✓ Identifiant value 60</li>
+            <li style="color: #555753;">✓ Identifiant value 3</li>
+            <li style="color: #555753;">✓ Identifiant value null</li>
+            <li style="color: #555753;">✓ Mail by setter</li>
+            <li style="color: #555753;">✓ Mail by constructor</li>
+            <li style="color: #555753;">✓ Mail value 100</li>
+            <li style="color: #555753;">✓ Mail value not mail</li>
+            <li style="color: #555753;">✓ Mail value null</li>
             <li style="color: #555753;">✓ I d by setter</li>
             <li style="color: #555753;">✓ Id by constructor</li>
             <li style="color: #555753;">✓ Has id</li>
             <li style="color: #555753;">✓ Id value not id</li>
             <li style="color: #555753;">✓ Id value null</li>
-            <li style="color: #555753;">✓ Content by setter</li>
-            <li style="color: #555753;">✓ Content by constructor</li>
-            <li style="color: #ef2929;">❌ Content value 60</li>
-            <li style="color: #555753;">✓ Content value null</li>
-            <li style="color: #555753;">✓ Create date by setter</li>
-            <li style="color: #555753;">✓ Create date by constructor</li>
-            <li style="color: #555753;">✓ Create date value not date</li>
-            <li style="color: #555753;">✓ Create date value null</li>
+            <li style="color: #555753;">✓ Secret by setter</li>
+            <li style="color: #555753;">✓ Secret by constructor</li>
+            <li style="color: #555753;">✓ Secret value 100</li>
+            <li style="color: #555753;">✓ Secret value 3</li>
+            <li style="color: #555753;">✓ Secret value null</li>
+            <li style="color: #555753;">✓ Forget hash by setter</li>
+            <li style="color: #555753;">✓ Forget hash by constructor</li>
+            <li style="color: #555753;">✓ Forget hash value 100</li>
+            <li style="color: #555753;">✓ Forget hash value 3</li>
+            <li style="color: #555753;">✓ Forget hash value null</li>
+            <li style="color: #555753;">✓ Forget date by setter</li>
+            <li style="color: #555753;">✓ Forget date by constructor</li>
+            <li style="color: #555753;">✓ Forget date value not date</li>
+            <li style="color: #555753;">✓ Forget date value null</li>
+            <li style="color: #555753;">✓ Valid account hash by setter</li>
+            <li style="color: #555753;">✓ Valid account hash by constructor</li>
+            <li style="color: #555753;">✓ Valid account hash value 100</li>
+            <li style="color: #555753;">✓ Valid account hash value 3</li>
+            <li style="color: #555753;">✓ Valid account hash value null</li>
+            <li style="color: #555753;">✓ Valid account date by setter</li>
+            <li style="color: #555753;">✓ Valid account date by constructor</li>
+            <li style="color: #555753;">✓ Valid account date value not date</li>
+            <li style="color: #555753;">✓ Valid account date value null</li>
+            <li style="color: #555753;">✓ User role by setter</li>
+            <li style="color: #555753;">✓ User role by constructor</li>
+            <li style="color: #555753;">✓ User role label</li>
+            <li style="color: #555753;">✓ User role value not int</li>
+            <li style="color: #555753;">✓ User role value int 6</li>
+            <li style="color: #555753;">✓ User role value null</li>
+            <li style="color: #555753;">✓ Actif by setter</li>
+            <li style="color: #555753;">✓ Actif by constructor</li>
+            <li style="color: #555753;">✓ Actif value 2</li>
+            <li style="color: #555753;">✓ Actif label</li>
+            <li style="color: #555753;">✓ Actif value null</li>
+            <li style="color: #555753;">✓ Actif date by setter</li>
+            <li style="color: #555753;">✓ Actif date by constructor</li>
+            <li style="color: #555753;">✓ Actif date value not date</li>
+            <li style="color: #555753;">✓ Actif date value null</li>
             <li style="color: #555753;">✓ To array</li>
+            <li style="color: #555753;">✓ Is valid account true</li>
         </ul>
     </body>
 </html>

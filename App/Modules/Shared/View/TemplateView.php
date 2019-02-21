@@ -28,7 +28,7 @@
     <script src="##DIR_VENDOR##DataTables/datatables.min.js"></script>
 
     <!--CKEDITOR-->
-    <script src="//cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+    <script src="##DIR_VENDOR##tinymce/js/tinymce/tinymce.min.js"></script>
     
     <script src="##DIR_PUBLIC##js/liste.js"></script>
     
