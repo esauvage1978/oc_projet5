@@ -11,14 +11,6 @@ require '../App/Modules/Shared/Services/Routeur.php';
 
 session_start();
 
-//On enregistre notre token
-
-if(!isset($_SESSION[ES_TOKEN])) {
-    $_SESSION[ES_TOKEN]=$token= bin2hex(random_bytes(32));
-}
-//$_SESSION[ES_TOKEN_OLD]=$_SESSION[ES_TOKEN];
-//$_SESSION[ES_TOKEN]=$token= bin2hex(random_bytes(32));
-
 Autoloader::register();
 
 $request=new Request($_GET,$_POST,$_COOKIE);

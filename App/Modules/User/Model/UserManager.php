@@ -144,8 +144,8 @@ class UserManager extends AbstractManager
     }
     public function changeActifOfUser(UserTable $user):bool
     {
-
-        $user->setActif(($user->getActif()=='1'?'0':'1'));
+        $value=$user->getActif()=='1'?'0':'1';
+        $user->setActif($value);
         $user->setActifDate(date(ES_NOW));
 
         return $this->updateUser($user);

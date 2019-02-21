@@ -1,3 +1,87 @@
+CategoryController
+ [ ] Category list
+
+CategoryForm
+ [x] Category add form
+ [x] Category add form check token
+ [x] Category add form render
+ [x] Category modify form
+ [x] Category modify form check token
+ [x] Category modify form render
+
+CategoryManager
+ [x] Find by id
+ [x] Get categorys
+ [x] Create
+
+CategoryTable
+ [x] Instance vide
+ [x] I d by setter
+ [x] Id by constructor
+ [x] Has id
+ [x] Id value not id
+ [x] Id value null
+ [x] Title by setter
+ [x] Title by constructor
+ [x] Title value 60
+ [x] Title value null
+ [x] To array
+
+CommentController
+ [ ] Change moderate statut
+ [ ] Create comment
+
+CommentManager
+ [x] Find by id
+ [ ] Get categorys
+ [x] Create
+
+CommentTable
+ [x] Instance vide
+ [x] I d by setter
+ [x] Id by constructor
+ [x] Has id
+ [x] Id value not id
+ [x] Id value null
+ [x] Content by setter
+ [x] Content by constructor
+ [x] Content value null
+ [x] Create date by setter
+ [x] Create date by constructor
+ [x] Create date value not date
+ [x] Create date value null
+ [x] To array
+
+Auth
+ [x] Generate random
+ [x] Pwd hash compare
+ [x] Pwd not hash compare
+
+Flash
+ [x] Has flash
+ [x] Read empty
+ [x] Write success
+ [x] Write info and error
+ [x] Write warning
+
+Request
+ [x] Has request
+ [x] Has post
+ [x] Has post value
+ [x] Get post value
+ [x] Has get value
+ [x] Get get value
+ [x] Has session
+ [x] Has session value
+ [x] Get session value
+ [x] Set session value string
+ [x] Set session value int
+ [x] Set session value mail
+ [x] Set session value boolean
+ [x] Set session value array
+ [x] Set session value html entity
+ [x] Unset session
+
 UserConnect
  [x] User connect instance
  [x] User connect is connect

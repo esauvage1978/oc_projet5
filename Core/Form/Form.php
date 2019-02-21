@@ -35,11 +35,22 @@ abstract class Form implements \ArrayAccess
      */
     public function postConstruct($datas,$byName=true)
     {
+        //initialisation de la variable de session de formulaire pour CSRF
+        $formName=$this->getFormName ();
+        if( isset($_SESSION['formulaire']['CSRF'][$formName]) ){
+            $_SESSION['formulaire']['CSRF'][$formName]['old'.ES_TOKEN ]=
+                $_SESSION['formulaire']['CSRF'][$formName][ES_TOKEN ];
+        }
+        $_SESSION['formulaire']['CSRF'][$formName][ES_TOKEN ]=bin2hex(random_bytes(32));
+
+
         $this->_controls[self::TOKEN]=new InputToken();
-        $this->_controls[self::TOKEN]->text =$_SESSION[ES_TOKEN];
+        $this->_controls[self::TOKEN]->text =
+            $_SESSION['formulaire']['CSRF'][$formName][ES_TOKEN];
 
         $this->setPrefixeToControl();
         $this->setText($datas,$byName);
+
     }
 
     public function __toString()
@@ -67,7 +78,7 @@ abstract class Form implements \ArrayAccess
 
     protected function getAction($url):string
     {
-        return '<form id="' . $this->getPrefixe() . '" method="'. $this->methode .'" action="##INDEX##'. $url .'">';
+        return '<form id="' . $this->getFormName() . '" method="'. $this->methode .'" action="##INDEX##'. $url .'">';
     }
 
     public function checkToken():bool
@@ -87,13 +98,13 @@ abstract class Form implements \ArrayAccess
 
     private function setPrefixeToControl()
     {
-        $prefix=$this->getPrefixe();
+        $prefix=$this->getFormName();
         foreach ($this->_controls as $control) {
             $control->prefixeFormName=$prefix ;
         }
     }
 
-    protected function getPrefixe()
+    protected function getFormName()
     {
         $elements=explode('\\', get_class($this));
         return array_pop($elements);

@@ -25,9 +25,14 @@ class InputToken extends WebControlsInput
     {
         $retour=true;
         $value=$this->text;
-        if( !parent::check()|| $value!= $_SESSION[ES_TOKEN] ) {
+        $token=$_SESSION['formulaire']['CSRF'][$this->prefixeFormName]['old'.ES_TOKEN ];
+        var_dump($_SESSION['formulaire']['CSRF'][$this->prefixeFormName]);
+        var_dump($value);
+        if( !parent::check()|| $value!= $token) {
             $this->setIsInvalid('Ce formulaire est périmé !!');
             $retour=false;
+        } else {
+            $this->text= $_SESSION['formulaire']['CSRF'][$this->prefixeFormName][ES_TOKEN ];
         }
         return $retour;
     }
