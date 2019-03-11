@@ -26,6 +26,7 @@
       "ES\\App\\Modules\\Blog\\View\\": "App/Modules/Blog/View",
       "ES\\App\\Modules\\Shared\\Controller\\": "App/Modules/Shared/Controller",
       "ES\\App\\Modules\\Shared\\Render\\": "App/Modules/Shared/Render",
+      "ES\\App\\Modules\\Shared\\Form\\": "App/Modules/Shared/Form",
       "ES\\App\\Modules\\Shared\\Services\\": "App/Modules/Shared/Services",
       "ES\\App\\Modules\\Shared\\View\\": "App/Modules/Shared/View",
       "ES\\App\\Modules\\Shared\\View\\Partial\\": "App/Modules/Shared/View/Partial",

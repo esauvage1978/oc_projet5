@@ -1,3 +1,8 @@
+ArticleShowLast
+ [x] Show last 3
+ [x] Show last not integer
+ [x] Show lastgt 100
+
 CategoryController
  [ ] Category list
 
@@ -12,7 +17,12 @@ CategoryForm
 CategoryManager
  [x] Find by id
  [x] Get categorys
- [x] Create
+ [ ] Create
+ [x] Update
+ [ ] Delete
+
+CategoryShowListForArticle
+ [x] Show list for article
 
 CategoryTable
  [x] Instance vide
@@ -28,13 +38,13 @@ CategoryTable
  [x] To array
 
 CommentController
- [ ] Change moderate statut
- [ ] Create comment
+ [x] Change moderate statut
+ [x] Create comment
 
 CommentManager
  [x] Find by id
  [ ] Get categorys
- [x] Create
+ [ ] Create
 
 CommentTable
  [x] Instance vide
@@ -69,6 +79,7 @@ Request
  [x] Has post
  [x] Has post value
  [x] Get post value
+ [x] Get post
  [x] Has get value
  [x] Get get value
  [x] Has session
@@ -82,6 +93,55 @@ Request
  [x] Set session value html entity
  [x] Unset session
 
+Routeur
+ [x] Get instance
+ [x] Run no value
+
+SharedContactForm
+ [x] Render login
+ [x] Render mail
+ [x] Mail good value
+ [x] Mail bad value
+ [x] Mail value empty
+ [x] Render name
+ [x] Name good value
+ [x] Name value empty
+ [x] Render message
+ [x] Message good value
+ [x] Message value empty
+ [x] Check form no value
+ [x] Render button
+
+ConnexionManager
+ [x] User manager
+ [x] Add connexion
+ [x] Controle black list false
+ [x] Controle black list true
+
+ConnexionTable
+ [x] User instance vide
+ [x] Ip by setter
+ [x] Ip by constructor
+ [x] I p value 15
+ [x] Ip value g t 15
+ [x] Ip value null
+ [x] I d by setter
+ [x] Id by constructor
+ [x] Has id
+ [x] Id value not id
+ [x] Id value null
+ [x] Nbr connexion by setter
+ [x] Nbr connexion by constructor
+ [x] Nbr connexion value not id
+ [x] Nbr connexion value null
+ [x] Date by setter
+ [x] Date by constructor
+ [x] Date value not date
+ [x] Date value null
+ [x] User ref by setter
+ [x] User ref by constructor
+ [x] To array
+
 UserConnect
  [x] User connect instance
  [x] User connect is connect
@@ -89,15 +149,17 @@ UserConnect
 UserConnexionForm
  [x] Render login
  [x] Render secret
- [x] Check form
+ [x] Check form no value
+ [x] Check login value
  [x] Render button
 
 UserForgetChangeForm
  [x] Render login
  [x] Render secret
- [x] Check form
  [x] Render button
- [ ] Check form with value
+ [x] Check form with correct value
+ [x] Check form with incorrect value
+ [x] Check form with incorrect value complexity
 
 UserManager
  [x] User manager

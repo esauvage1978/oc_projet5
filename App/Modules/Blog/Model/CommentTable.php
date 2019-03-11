@@ -106,7 +106,7 @@ class CommentTable extends AbstractTable implements ITable
     {
         if(empty($value))
         {
-            throw new \InvalidArgumentException('Les données de l\èarticle ne sont pas présentes.');
+            throw new \InvalidArgumentException('Les données de l\'article ne sont pas présentes.');
         }
         $this->_article_ref=$value;
 

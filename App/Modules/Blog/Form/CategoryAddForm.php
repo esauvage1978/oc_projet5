@@ -3,8 +3,10 @@
 namespace ES\App\Modules\Blog\Form;
 
 use ES\Core\Form\Form;
-use ES\Core\Form\WebControlsStandard\ButtonAjouter;
-use ES\App\Modules\Blog\Form\WebControls\InputCategory;
+use ES\Core\Form\WebControls\WebControlsButtons;
+use ES\Core\Form\WebControls\WebControlsInput;
+use ES\Core\Form\WebControlsStandard\InputToken;
+use ES\Core\Toolbox\Url;
 
 
 /**
@@ -17,27 +19,45 @@ use ES\App\Modules\Blog\Form\WebControls\InputCategory;
  */
 class CategoryAddForm extends Form
 {
-
+    const TOKEN=0;
     const BUTTON=1;
     const CATEGORY=2;
 
 
     public function __construct($datas=[],$byName=true)
     {
+        $this->_formName=$this->getFormName();
 
-        $this[self::BUTTON]=new ButtonAjouter();
-        $this[self::CATEGORY]=new InputCategory();
+        //ajout du token
+        $token=new InputToken($this->_formName);
+        $this[self::TOKEN]=$token;
 
-        $this->postConstruct($datas,$byName) ;
+        //ajout du bouton
+        $button=new WebControlsButtons ($this->_formName);
+        $button->label='Ajouter';
+        $button->name='add';
+        $button->addCssClass(WebControlsButtons::CSS_ROUNDED);
+        $this[self::BUTTON]=$button;
+
+
+        //ajout de la catégorie
+        $name=new WebControlsInput($this->_formName);
+        $name->placeHolder='Catégorie';
+        $name->name='category';
+        $name->maxLength=20;
+        $this[self::CATEGORY]=$name;
+
+        $this->setText($datas,$byName) ;
     }
 
     public function check():bool
     {
         $checkOK=true;
 
-        if(!$this->checkToken() ) {
+        if(!$this[self::TOKEN]->check() ) {
             $checkOK=false;
         }
+
 
         if(!$this[self::CATEGORY]->check()) {
             $checkOK=false;
@@ -49,8 +69,8 @@ class CategoryAddForm extends Form
 
     public function render()
     {
-        return $this->getAction('blog.category.add#categorycrud') .
-               $this->renderToken() .
+        return $this->getAction(Url::to('blog','category','add#categorycrud')) .
+               $this->renderControl(self::TOKEN) .
                $this->renderControl(self::CATEGORY) .
                $this->renderButton(self::BUTTON) .
                '</form>';

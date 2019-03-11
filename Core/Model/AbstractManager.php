@@ -11,89 +11,104 @@ abstract class AbstractManager
      * Variable contenant la connexion à la bdd
      * @var mixed
      */
-    protected $req;
+    protected $_req;
+
+    /**
+     * Variable pour la construction des requêtes
+     * @var QueryBuilder
+     */
+    protected $_queryBuilder;
 
     protected static $table='';
     protected static $order_by='';
     protected static $id='';
 
-    protected $_selectAll;
-    protected $_selectCount;
-    protected $where;
 
     public function __construct()
     {
-        $select =' SELECT ';
-        $from=' FROM ';
-        $this->where=' WHERE ';
-        $all=' * ';
-        $count=' count(*) ';
-
         $this->_req=new BddAction();
-        $this->_selectAll=$select . $all . $from . static::$table . $this->where;
-        $this->_selectCount= $select . $count . $from . static::$table . $this->where;
+        $this->_queryBuilder =new QueryBuilder();
     }
 
     /**
-     * Fonction retournant l'ensemble des données de la table
+     * Fonction retournant l'ensemble des données de la table sous forme de class
      * @return mixed
      */
     protected function getAll()
     {
-        return $this->query($this->_selectAll . '1=1  ORDER BY ' . static::$order_by . ';');
+        return $this->query(
+            $this->_queryBuilder->select('*')
+            ->from(static::$table )
+            ->orderBy(static::$order_by)->render());
     }
-    protected function count()
-    {
-        return $this->query($this->_selectCount . '1=1  ;',null,true)['count(*)'];
-    }
+
     /**
-     * Summary of find : Recherche un enregistrement
+     * retourne le nombre d'enregistrement total de la table
+     * @return mixed
+     */
+    protected function count() : string
+    {
+        return $this->query(
+            $this->_queryBuilder->select('count(*)')
+            ->from(static::$table )
+            ->orderBy(static::$order_by)->render(),null,true,false)['count(*)'];
+    }
+
+    /**
+     * Summary of find : Recherche un enregistrement et retourne la class
      * @param mixed $identifiant
      * @return mixed
      */
-
     protected function findByField($field,$value)
     {
-        $query= new QueryBuilder();
-        $query->select('*')->from(static::$table )
-            ->where($field . '=:value');
-        $arguments=['value'=>$value];
-        $retour= $this->query($query->render() ,$arguments,true);
-        return $this->createClassTable($retour);
+        return $this->query(
+            $this->_queryBuilder->select('*')
+            ->from(static::$table )
+            ->where($field . '=:value')->render(),
+            ['value'=>$value],true,true);
     }
 
-    protected function createClassTable($data)
-    {
-        if(!$data) {
-            return new static::$classTable([]);
-        } else {
-            return new static::$classTable($data);
-        }
-    }
-
+    /**
+     * Summary of exist
+     * @param mixed $fieldName
+     * @param mixed $value
+     * @param mixed $id
+     * @return mixed
+     */
     protected function exist($fieldName,$value,$id=null):bool
     {
-        if(isset($id))
-        {
+        if(isset($id)) {
             $present = $this->query(
-                $this->_selectCount . $fieldName . '=:fieldName AND ' . static::$id . '!=:id;'
-                , [
-                'fieldName'=>$value ,
-                'id'=>$id
-                ],
-                true);
-        }
-        else
-        {
+                            $this->_queryBuilder
+                            ->select('count(*)')
+                            ->from(static::$table )
+                            ->where( $fieldName . '=:fieldName')
+                            ->where( static::$id . '!=:id')
+                            ->render(),
+                            [
+                            'fieldName'=>$value ,
+                            'id'=>$id
+                            ],true,false);
+        } else {
             $present = $this->query(
-                $this->_selectCount . $fieldName . '=:fieldName;'
-                , ['fieldName'=>$value ],
-                true);
+                            $this->_queryBuilder
+                            ->select('count(*)')
+                            ->from(static::$table )
+                            ->where( $fieldName . '=:fieldName')
+                            ->render(),
+                            [
+                            'fieldName'=>$value
+                            ],true,false);
         }
 
         return $present[array_keys($present)[0]];
     }
 
+    /**
+     * creation d'une enregistrement
+     * @param mixed $datas
+     * @return \boolean|string
+     */
     protected function create($datas)
     {
         $sql_parts = [];
@@ -104,14 +119,20 @@ abstract class AbstractManager
         }
         $sql_part =  implode(', ', $sql_parts);
 
-
-        if($this->query('INSERT INTO '. static::$table . ' SET ' . $sql_part, $attributes, true))
+        if($this->query('INSERT INTO '. static::$table . ' SET ' . $sql_part, $attributes, true,false))
         {
             return $this->_req->lastInsertId();
         }
         return false;
 
     }
+
+    /**
+     * Mise à jour d'un enregistrement
+     * @param mixed $id
+     * @param mixed $fields
+     * @return mixed
+     */
     protected function update($id, $fields)
     {
         $sql_parts = [];
@@ -122,9 +143,29 @@ abstract class AbstractManager
         }
         $attributes[] = $id;
         $sql_part =  implode(', ', $sql_parts);
-        return $this->query('UPDATE '. static::$table . ' SET '. $sql_part . $this->where . static::$id . '=? ', $attributes, true);
+        return $this->query('UPDATE '. static::$table . ' SET '. $sql_part . ' WHERE ' . static::$id . '=? ',
+            $attributes, true,false);
     }
 
+    /**
+     * Suppression d'un enregistrement
+     * @param mixed $id
+     * @return mixed
+     */
+    protected function delete($id)
+    {
+        return $this->query(
+            'DELETE FROM '. static::$table . ' WHERE ' . static::$id . ':=value', ['value'=>$id]
+            ,true,false); 
+    }
+
+    /**
+     * Récupération d'un tableau pour les contrôle select
+     * @param mixed $key
+     * @param mixed $value
+     * @param mixed $firstElementEmpty
+     * @return array
+     */
     protected function getArrayForSelect($key,$value,$firstElementEmpty=false)
     {
         $query= new QueryBuilder();
@@ -142,10 +183,6 @@ abstract class AbstractManager
         return $select;
     }
 
-    protected function delete($id)
-    {
-        return $this->query('DELETE FROM '. static::$table . $this->where . static::$id . '= ?', [$id], true);
-    }
 
     /**
      * Summary of query : exécute une requête
@@ -163,21 +200,37 @@ abstract class AbstractManager
         }
 
         $dataReturn=null;
-        if (isset($datas)) {
-            if($onlyOne) {
-                $dataReturn = $datas;
-            } else {
-                $dataReturn=array();
-                if($createClass) {
-                    foreach ($datas as $data) {
-                        $dataReturn[] = $this->createClassTable($data);
-                    }
-                } else {
-                    $dataReturn=$datas;
-                }
+
+        if($createClass && !$onlyOne ) {
+            $dataReturn=array();
+            foreach ($datas as $data) {
+                $dataReturn[] = $this->createClassTable($data);
             }
+        } elseif($createClass && $onlyOne ) {
+            $dataReturn=$this->createClassTable($datas);
+        } elseif(!$createClass && !$onlyOne ) {
+            $dataReturn=array();
+            $dataReturn= $datas;
+        } else {
+            $dataReturn= $datas;
         }
+
+
         return $dataReturn;
+    }
+
+    /**
+     * génère une classTable à partir des données
+     * @param mixed $data
+     * @return object
+     */
+    protected function createClassTable($data)
+    {
+        if(!$data || !isset($data)) {
+            return new static::$classTable([]);
+        } else {
+            return new static::$classTable($data);
+        }
     }
 
 }

@@ -10,30 +10,14 @@ use ES\App\Modules\Blog\Model\ArticleFactory;
 
 use ES\App\Modules\Blog\Controller\CommentController;
 use ES\App\Modules\Blog\Controller\ArticleController;
-use ES\App\Modules\Blog\Form\CommentModifyStatusForm;
-
-
-use ES\App\Modules\Blog\Form\CommentAddForm;
-use ES\App\Modules\Blog\Model\CommentManager;
 
 use \ES\Core\Controller\AbstractController;
 use ES\App\Modules\User\Model\UserConnect;
 use \ES\Core\Toolbox\Request;
 
-
-/**
- * BlogController short summary.
- *
- * BlogController description.
- *
- * @version 1.0
- * @author ragus
- */
 class BlogController extends AbstractController
 {
     static $module='Blog';
-    private $_articleManager;
-    private $_categoryManager;
     private $_commentController;
     private $_articleController;
 
@@ -56,25 +40,6 @@ class BlogController extends AbstractController
         }
 
         return $retour;
-    }
-
-
-
-
-
-
-
-
-    private function  blogView($view,$title,$form,$user,$exit)
-    {
-        $params=['title'=>$title,'form'=>$form];
-        if($user)
-        {
-            $params['userConnect']=$this->_userConnect->user;
-        }
-
-        $this->view($view,$params);
-        if($exit){exit;}
     }
 
 }

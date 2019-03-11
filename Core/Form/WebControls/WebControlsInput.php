@@ -11,22 +11,19 @@ namespace ES\Core\Form\WebControls;
  * @version 1.0
  * @author ragus
  */
-class WebControlsInput extends WebControls
+class WebControlsInput extends WebControlsParamText
 {
     use ParamRequire;
     use ParamPlaceholder;
     use ParamValid;
 
     /**
-     * valeur de l'input
-     * @var mixed
-     */
-    public $text;
-    /**
      * *
      * @var int
      */
     public $maxLength;
+
+
 
 
     protected static $buildParamsMaxLength='maxlenth';
@@ -42,8 +39,6 @@ class WebControlsInput extends WebControls
     const TYPE_SECRET='password';
     const TYPE_HIDDEN='hidden';
 
-    const MSG_NOT_GOOD='La saisie est incorrecte.';
-    const MSG_LENGHT_NOT_GOOD='La longueur de la saisie est incorrecte.';
 
 
     public function render()
@@ -84,9 +79,7 @@ class WebControlsInput extends WebControls
                     }
                     break;
                 case self::$buildParamsValue:
-                    if(isset($this->text)) {
-                        $param='value="'. $this->text . '"';
-                    }
+                    $param=$this->paramBuildsText();
                     break;
                 case self::$buildParamsRequire:
                     $param=$this->paramBuildsRequire();
@@ -114,7 +107,7 @@ class WebControlsInput extends WebControls
                     break;
             }
 
-            if($param!=self::PARAMS_NOT_FOUND && !empty($param)) {
+            if($param!=MSG_FORM_PARAMS_NOT_FOUND && !empty($param)) {
                 $param .=' ';
             }
             $params .= $param;
@@ -126,26 +119,26 @@ class WebControlsInput extends WebControls
     public function check():bool
     {
         $retour=true;
-        $value=$this->text;
+        $value=$this->getText();
 
         if( empty($value)) {
-            $this->setIsInvalid(self::MSG_NOT_GOOD);
+            $this->setIsInvalid(MSG_FORM_NOT_GOOD);
             $retour=false;
         }
 
         return $retour;
     }
-    protected function checkLenght($mini=null,$maxi=null):bool
+    public function checkLenght($mini=null,$maxi=null):bool
     {
         $retour=true;
-        $value=$this->text;
+        $value=$this->getText();
         if( isset($mini) && strlen($value)<$mini ) {
 
-            $this->setIsInvalid(self::MSG_LENGHT_NOT_GOOD . ' (plus de ' . $mini . ' caractères).');
+            $this->setIsInvalid(MSG_FORM_LENGHT_NOT_GOOD . ' (plus de ' . $mini . ' caractères).');
             $retour=false;
         } else if( isset($maxi) && strlen($value)>$maxi ) {
 
-            $this->setIsInvalid(self::MSG_LENGHT_NOT_GOOD . ' (moins de ' . $maxi . ' caractères).');
+            $this->setIsInvalid(MSG_FORM_LENGHT_NOT_GOOD . ' (moins de ' . $maxi . ' caractères).');
             $retour=false;
         }
         return $retour;

@@ -5,7 +5,9 @@ use \ES\Core\Autoloader\Autoloader;
 Use ES\Core\Toolbox\Request;
 use ES\App\Modules\User\Model\UserConnect;
 
+require_once '../Config/config.php';
 require_once '../Config/constantes.php';
+require_once '../Config/i18n.php';
 require_once '../Core/Autoloader/Autoloader.php';
 require '../App/Modules/Shared/Services/Routeur.php';
 

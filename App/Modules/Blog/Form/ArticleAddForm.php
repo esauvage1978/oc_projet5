@@ -8,6 +8,8 @@ use ES\App\Modules\Blog\Form\WebControls\SelectArticleCategory;
 use ES\App\Modules\Blog\Form\WebControls\InputArticleTitle;
 use ES\App\Modules\Blog\Form\WebControls\TextareaArticleChapo;
 use ES\App\Modules\Blog\Form\WebControls\TextareaArticleContent;
+use ES\Core\Toolbox\Url;
+
 
 /**
  * UserConnexionForm short summary.
@@ -68,7 +70,7 @@ class ArticleAddForm extends Form
 
     public function render()
     {
-        return $this->getAction('blog.article.add#articleadd') .
+        return $this->getAction(Url::to('blog','article','add#articleadd')) .
                $this->renderToken() .
                $this->renderControl(self::TITLE) .
                $this->renderControl(self::CATEGORY) .

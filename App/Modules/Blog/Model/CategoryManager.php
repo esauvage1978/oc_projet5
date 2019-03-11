@@ -27,8 +27,13 @@ class CategoryManager extends AbstractManager
 
     public function getCategorys()
     {
-        return $this->query('SELECT bc_id, bc_title, count(ba_id)  FROM ocp5_blog_category LEFT OUTER JOIN ocp5_blog_article ON bc_id=ba_category_ref GROUP BY bc_id ORDER BY bc_title;'
-            ,null,false,false);
+        return $this->query($this->_queryBuilder
+             ->select('bc_id, bc_title, count(ba_id)')
+             ->from(self::$table)
+             ->outerJoin('ocp5_blog_article ON bc_id=ba_category_ref')
+             ->groupBy('bc_id')
+             ->orderBy('bc_title')->render(),
+           null,false,false);
     }
     public function getCategorysForSelect($firstElementEmpty)
     {
@@ -36,8 +41,17 @@ class CategoryManager extends AbstractManager
     }
     public function categoryNotEmpty()
     {
-        return $this->query('SELECT bc_id, bc_title FROM ocp5_blog_category LEFT OUTER JOIN ocp5_blog_article ON bc_id=ba_category_ref GROUP BY bc_id HAVING count(ba_id)>0 ORDER BY bc_title ;'
-            ,null,false,false);
+        //retourne les catégorie pour les articles publiés
+        return $this->query(
+             $this->_queryBuilder
+             ->select('bc_id, bc_title')
+             ->from(self::$table)
+             ->outerJoin('ocp5_blog_article ON bc_id=ba_category_ref')
+             ->where('ba_state='. ES_BLOG_ARTICLE_STATE_ACTIF) 
+             ->groupBy('bc_id')
+             ->having('count(ba_id)>0')
+             ->orderBy('bc_title')->render(),
+           null,false,false);
     }
 
     public function deleteCategory($id)
@@ -47,8 +61,12 @@ class CategoryManager extends AbstractManager
 
     public function hasArticle($id) :bool
     {
-        $retour= $this->query('SELECT count(ba_id) FROM ocp5_blog_article where ba_category_ref=:id;',
-            ['id'=>$id], true)['count(ba_id)'];
+        $retour= $this->query($this->_queryBuilder
+            ->select('count(ba_id)')
+            ->from('ocp5_blog_article')
+            ->where('ba_category_ref=:id')
+            ->render(),
+        ['id'=>$id],true,false)['count(ba_id)'];
         if($retour==0) {
             return false;
         }else {

@@ -27,13 +27,13 @@ trait checkSecret
             $checkOK=false;
         }
 
-        if(empty($this[self::SECRET_NEW]->text) ||
-            empty($this[self::SECRET_CONFIRM]->text) ||
-        !Auth::passwordCompare($this[self::SECRET_NEW]->text,
-            $this[self::SECRET_CONFIRM]->text,false)) {
+        if(empty($this[self::SECRET_NEW]->getText()) ||
+            empty($this[self::SECRET_CONFIRM]->getText()) ||
+        !Auth::passwordCompare($this[self::SECRET_NEW]->getText(),
+            $this[self::SECRET_CONFIRM]->getText(),false)) {
 
-            $this[self::SECRET_NEW]->setIsInvalid(
-                'Le mot de passe et/ou sa confirmation sont invalides');
+            $this[self::SECRET_NEW]->setIsInvalid(MSG_USER_INVALID_SECRET_AND_CONF
+                );
             return false;
         }
         return $checkOK ;

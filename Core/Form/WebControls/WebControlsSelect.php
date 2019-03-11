@@ -10,16 +10,12 @@ namespace ES\Core\Form\WebControls;
  * @version 1.0
  * @author ragus
  */
-class WebControlsSelect extends WebControls
+class WebControlsSelect extends WebControlsParamText
 {
     use ParamValid;
     use ParamRequire;
+    
 
-    /**
-     * Donnée saisie dans le champ text
-     * @var mixed
-     */
-    public $text;
     /**
      * Liste des valeurs de la liste déroulante
      * @var array
@@ -27,7 +23,6 @@ class WebControlsSelect extends WebControls
     public $liste;
 
 
-    const MSG_NOT_GOOD='La saisie est incorrecte.';
     protected static $buildParamsListe='liste';
 
     public function render()
@@ -60,7 +55,7 @@ class WebControlsSelect extends WebControls
                     if(isset($this->liste)) {
                         foreach ($this->liste as $listekey => $listevalue) {
                             $attributes = '';
-                            if($listekey == $this->text) {
+                            if($listekey == $this->getText()) {
                                 $attributes = ' selected';
                             }
                             $param .= '<option value="' . $listekey . '"' . $attributes . '>' . $listevalue . '</option>';
@@ -83,7 +78,7 @@ class WebControlsSelect extends WebControls
                     break;
             }
 
-            if($param!=self::PARAMS_NOT_FOUND && !empty($param)) {
+            if($param!=MSG_FORM_PARAMS_NOT_FOUND && !empty($param)) {
                 $param .=' ';
             }
             $params .= $param;
@@ -94,10 +89,10 @@ class WebControlsSelect extends WebControls
     public function check():bool
     {
         $retour=true;
-        $value=$this->text;
+        $value=$this->getText();
 
         if( empty($value)) {
-            $this->setIsInvalid(self::MSG_NOT_GOOD);
+            $this->setIsInvalid(MSG_FORM_NOT_GOOD);
             $retour=false;
         }
 

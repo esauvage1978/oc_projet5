@@ -10,20 +10,21 @@ namespace ES\Core\Form\WebControls;
  * @version 1.0
  * @author ragus
  */
-class WebControlsFile extends WebControls
+class WebControlsFile extends WebControlsParamText
 {
     use ParamValid;
     use ParamRequire;
 
-    /**
-     * Donnée saisie dans le champ text
-     * @var mixed
-     */
-    public $text;
+    private $_text;
+    public function setText($value)
+    {
+        $this->_text=$value;
+    }
+    public function getText()
+    {
+        return $this->_text;
+    }
 
-
-
-    const MSG_NOT_GOOD='La saisie est incorrecte.';
 
     public function render()
     {
@@ -66,7 +67,7 @@ class WebControlsFile extends WebControls
                     break;
             }
 
-            if($param!=self::PARAMS_NOT_FOUND && !empty($param)) {
+            if($param!=MSG_FORM_PARAMS_NOT_FOUND && !empty($param)) {
                 $param .=' ';
             }
             $params .= $param;
@@ -77,10 +78,10 @@ class WebControlsFile extends WebControls
     public function check():bool
     {
         $retour=true;
-        $value=$this->text;
+        $value=$this->getText();
 
         if( empty($value)) {
-            $this->setIsInvalid(self::MSG_NOT_GOOD);
+            $this->setIsInvalid(MSG_FORM_PARAMS_NOT_FOUND);
             $retour=false;
         }
 

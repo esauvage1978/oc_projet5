@@ -10,19 +10,18 @@ namespace ES\Core\Form\WebControls;
  * @version 1.0
  * @author ragus
  */
-class WebControlsTextaera extends WebControls
+class WebControlsTextaera extends WebControlsParamText
 {
     use ParamRequire;
     use ParamPlaceholder;
     use ParamValid ;
+    
 
     /**
      * Summary of $rows
      * @var int
      */
     public $rows=5;
-
-    const MSG_NOT_GOOD='La saisie est incorrecte.';
 
     protected static $buildParamsRows='rows';
     protected static $buildParamsValue='value';
@@ -60,11 +59,8 @@ class WebControlsTextaera extends WebControls
             switch ($key)
             {
                 case self::$buildParamsValue:
-                    if(isset($this->text)) {
-                        $param= $this->text;
-                    }
+                    $param=$this->getText();
                     break;
-
                 case self::$buildParamsRows:
                     if(isset($this->rows) && is_int($this->rows) ) {
                         $param='rows="'. $this->rows  . '"';
@@ -81,12 +77,15 @@ class WebControlsTextaera extends WebControls
                 case self::$buildParamsValid:
                     $param=$this->paramBuildsValid();
                     break;
+                case self::$buildParamsPlaceHolder:
+                    $param=$this->paramBuildsPlaceholder();
+                    break;
                 default:
                     $param=parent::buildParams([$key]);
                     break;
             }
 
-            if($param!=self::PARAMS_NOT_FOUND && !empty($param)) {
+            if($param!=MSG_FORM_PARAMS_NOT_FOUND && !empty($param)) {
                 $param .=' ';
             }
             $params .= $param;
@@ -97,9 +96,9 @@ class WebControlsTextaera extends WebControls
     public function check():bool
     {
         $retour=true;
-        $value=$this->text;
+        $value=$this->getText();
         if( empty($value)) {
-            $this->setIsInvalid(self::MSG_NOT_GOOD);
+            $this->setIsInvalid(MSG_FORM_NOT_GOOD);
             $retour=false;
         }
 

@@ -23,7 +23,7 @@ trait ParamRequire
     private function paramBuildsRequire()
     {
         if ($this->require) {
-            return '	required';
+            return ' required';
         }
         return '';
     }

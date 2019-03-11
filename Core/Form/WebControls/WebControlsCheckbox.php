@@ -15,10 +15,15 @@ class WebControlsCheckbox extends WebControls
 {
     use ParamValid ;
 
-    /*ParamValid  * Donnée saisie dans le champ text
-     * @var mixed
-     */
-    public $text;
+    private $_text;
+    public function setText($value)
+    {
+        $this->_text=$value;
+    }
+    public function getText()
+    {
+        return $this->_text;
+    }
 
     protected static $buildParamsChecked='checked';
 
@@ -56,7 +61,8 @@ class WebControlsCheckbox extends WebControls
             {
 
                 case self::$buildParamsChecked:
-                    if(isset($this->text) && ($this->text =='1' || $this->text =='on' )) {
+                    $value=$this->getText();
+                    if(isset($value) && ($value =='1' || $value =='on' )) {
                         $param ='checked';
                     }
                     break;
@@ -73,7 +79,7 @@ class WebControlsCheckbox extends WebControls
                     break;
             }
 
-            if($param!=self::PARAMS_NOT_FOUND && !empty($param)) {
+            if($param!=MSG_FORM_PARAMS_NOT_FOUND && !empty($param)) {
                 $param .=' ';
             }
             $params .= $param;

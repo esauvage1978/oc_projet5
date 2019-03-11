@@ -43,7 +43,7 @@
                         </td>
                         <td class="text-center">
                             <?php if($row[2]!=0): ?>
-                                <a href="##INDEX##blog.list/category/<?= $row[0]; ?>">
+                                <a href="##INDEX##blog/article/listadmin/category/<?= $row[0]; ?>">
                                     <?= $row[2]; ?>
                                 </a>
                             <?php endif ?>
@@ -71,8 +71,8 @@
                 <?= isset($formModify)?$formModify:'';?>
             </div>
         </div>
-
-        <div class="widget-sidebar" style="visibility:hidden">
+        <!-- style="visibility:hidden"-->
+        <div class="widget-sidebar" >
             <h5 class="sidebar-title">Supprimer</h5>
             <div class="sidebar-content">
                 <?= isset($formDelete)?$formDelete:'';?>
@@ -90,10 +90,10 @@
                     $('#<?=$formDelete[$formDelete::CATEGORY]->getName();?>').val(res[1]);
                         $.ajax({
                         type: 'post',
-                        url: '##INDEX##blog.category.delete',
+                        url: '##INDEX##blog/category/delete',
                         data: $('#CategoryDeleteForm').serialize(),
                         success: function () {
-                                      document.location.href="##INDEX##blog.category.list#categorycrud";
+                                      document.location.href="##INDEX##blog/category/list#categorycrud";
                         }
                       });
 

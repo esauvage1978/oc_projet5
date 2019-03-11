@@ -14,11 +14,9 @@ class Routeur
      * Variable qui stockera l'instance de routeur
      * @var mixed
      */
-    private static $_instance;
     private $_module;
     private $_section;
     private $_action;
-    private $_admin;
 
     private $_paramP=null;
     private $_paramWord=null;
@@ -33,18 +31,6 @@ class Routeur
     const SECTION_DEFAULT_VALUE='Shared';
     const ACTION_DEFAULT_VALUE='show';
 
-    /**
-     * Instanciation de la class Routeur
-     * @return Routeur
-     */
-    public static function getInstance(UserConnect $userConnect,Request $request) : Routeur
-    {
-        //design pattern SINGLETON
-        if (!isset(self::$_instance)){
-            self::$_instance = new Routeur($userConnect,$request);
-        }
-        return self::$_instance;
-    }
 
     /**
      * Constructeur privé
@@ -144,10 +130,8 @@ class Routeur
         //vérification des droits d'accès aux pages
         $restrict=new ACL($this->_userConnect );
         if(!$restrict ->valideAccessPage ($page)) {
-            var_dump($page);
-            //header('LocationACL_ROOT_PATH_WEB . 'shared.accessdenied');
-            //exit;
-
+            header('location: ' .ES_ROOT_PATH_WEB . 'shared/accessdenied');
+            exit;
         }
 
         if(!empty($page)) {

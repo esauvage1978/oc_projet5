@@ -102,12 +102,21 @@ class CommentManager extends AbstractManager
     #region count
     public function countComment($key=null,$value=null)
     {
+        $this->_queryBuilder
+            ->select ('count(*)')
+            ->from(self::$table);
+        $params=[];
+
         if(isset($key) && isset($value)) {
-            $retour= $this->query($this->_selectCount . 'bco_' . $key .'=:value ORDER BY ' . static::$order_by . ';',['value'=>$value],true)['count(*)'];
-        } else {
-            $retour= parent::count();
+            $this->_queryBuilder
+                ->where('bco_' . $key .'=:value');
+            $params['value']=$value;
         }
-        return $retour;
+
+        return $this->query(
+            $this->_queryBuilder
+                ->render(),
+            count($params)?$params:null,true,false)['count(*)'] ;
     }
     #endregion
 

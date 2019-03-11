@@ -15,7 +15,7 @@
     <link href="##DIR_VENDOR##devfolio-master/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Libraries CSS Files -->
-    <link href="##DIR_VENDOR##devfolio-master/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="##DIR_VENDOR##devfolio-master/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link href="##DIR_VENDOR##devfolio-master/lib/animate/animate.min.css" rel="stylesheet" />
     <link href="##DIR_VENDOR##devfolio-master/lib/ionicons/css/ionicons.min.css" rel="stylesheet" />
     <link href="##DIR_VENDOR##devfolio-master/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
@@ -23,15 +23,14 @@
     <link href="##DIR_VENDOR##DataTables/datatables.min.css" rel="stylesheet" type="text/css" />
     <!-- Main Stylesheet File -->
     <link href="##DIR_VENDOR##devfolio-master/css/style.css" rel="stylesheet" />
-    
+
     <script src="##DIR_VENDOR##devfolio-master/lib/jquery/jquery.min.js"></script>
     <script src="##DIR_VENDOR##DataTables/datatables.min.js"></script>
 
     <!--CKEDITOR-->
     <script src="##DIR_VENDOR##tinymce/js/tinymce/tinymce.min.js"></script>
-    
+
     <script src="##DIR_PUBLIC##js/liste.js"></script>
-    
 
 
 </head><!--/head-->
@@ -50,12 +49,9 @@
             </button>
             <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll" href="##INDEX##blog.article.list#blogtopsection">Blog</a>
-                    </li>
                     <?= isset($menuUser)?$menuUser:'';?>
                 </ul>
-                <form class="form-inline" action="##INDEX##blog.article.find" method="post">
+                <form class="form-inline" action="##INDEX##blog/article/find" method="post">
                     <input class="form-control  form-control-sm" type="search" name="recherche" placeholder="Recherche" aria-label="Recherche" />
                     <span class="input-group-btn">
                         <button class="btn btn-secondary btn-sm" type="submit">
@@ -100,11 +96,11 @@
                     <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
                 </div>
             </div>
-            
+
         </div>
     </div>
     <?php endif ?>
-    
+
     <div class="container">
         <div class="row">
             <?php require ES_ROOT_PATH_FAT_MODULES .'Shared/View/Partial/FlashPartialView.php';?>
@@ -116,11 +112,112 @@
 
 
     <!--/ Section Contact-Footer Star /-->
-    <section class="paralax-mf footer-paralax bg-image sect-mt4 route" 
-             style="background-image: url(##DIR_VENDOR##devfolio-master/img/bg.jpg)">
+    <section id="contact" class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(##DIR_VENDOR##devfolio-master/img/bg.jpg)">
         <div class="overlay-mf"></div>
+        <?php if($home):?>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="contact-mf">
+                        <div class="box-shadow-full">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="title-box-2">
+                                        <h5 class="title-left">
+                                            Contactez-moi
+                                        </h5>
+                                    </div>
+                                    <div>
+                                        <?php if(isset($mailSend)) :?>
+                                        <div class="alert alert-info" role="alert">
+                                            <?= $mailSend; ?>
+                                        </div>
+                                        <?php endif ?>
+                                        <?= isset($form)?$form:''; ?>
+                                        <script src="https://www.google.com/recaptcha/api.js?render=<?= ES_RECAPTCHA_SECRET_FRONT;?>"></script>
+                                        <script>
+                                            grecaptcha.ready(function () {
+                                                grecaptcha.execute('<?= ES_RECAPTCHA_SECRET_FRONT;?>', { action: 'contact' }).then(function (token) {
+                                                    var recaptchaResponse = document.getElementById('<?= isset($form)?$form[$form::RECAPTCHA]->getName():''; ?>');
+                                                    recaptchaResponse.value = token;
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="title-box-2 pt-4 pt-md-0">
+                                        <h5 class="title-left">
+                                            Prenez contact
+                                        </h5>
+                                    </div>
+                                    <div class="more-info">
+                                        <p class="lead">
+                                            Vous avez des questions sur mon parcours, ma formation, sur ce site...
+                                            <br />N'hésitez pas à me contacter, je vous répondrai au plus vite.
+                                            <br />
+                                            <br />
+                                        </p>
+                                        <ul class="list-ico">
+                                            <li>
+                                                <span class="ion-ios-location"></span> Erquinghem-lys - Nord - France
+                                            </li>
+                                            <li>
+                                                <span class="ion-ios-telephone"></span> 06.09.92.49.45
+                                            </li>
+                                            <li>
+                                                <span class="ion-email"></span>
+                                                <a href="mailto:contact@mylostuniver.com">contact@mylostuniver.com</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="socials">
+                                        <ul>
+                                            <li>
+                                                <a href="##DATAS##cv/cv.pdf" target="_blank"
+                                                    title="Téléchargez mon CV détaillé au format PDF">
+                                                    <span class=" ico-circle">
+                                                        <i class="fas fa-address-card"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.linkedin.com/in/emmanuelsauvage1978/5" target="_blank"
+                                                    title="Rendez-vous sur mon profil Linkedin">
+                                                    <span class=" ico-circle">
+                                                        <i class="fab fa-linkedin-in"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://github.com/esauvage1978" target="_blank"
+                                                    title="Retrouvez mes projets sur GITHUB">
+                                                    <span class=" ico-circle">
+                                                        <i class="fab fa-github"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://twitter.com/esauvage1978" target="_blank"
+                                                    title="Retrouvez-moi sur twitter">
+                                                    <span class="ico-circle">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif ?>
         <footer>
-            <div class="container">
+            <div class="
+                                            container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="copyright-box">
@@ -158,5 +255,6 @@
 
     <!-- Template Main Javascript File -->
     <script src="##DIR_VENDOR##devfolio-master/js/main.js"></script>
+
 </body>
 </html>

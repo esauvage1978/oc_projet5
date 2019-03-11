@@ -48,21 +48,21 @@ class CategoryController extends AbstractController
         {
             if($this->_request->hasPost()) {
 
-                $title=$formModify[$formModify::CATEGORY]->text;
-                $idHidden=$formModify[$formModify::IDHIDDEN]->text;
+                $title=$formModify[$formModify::CATEGORY]->getText();
+                $idHidden=$formModify[$formModify::IDHIDDEN]->getText();
 
                 if ($formModify->check() &&
                     !$this->_categoryManager->titleExist($title,$idHidden)) {
 
-                    //récupération de l'userTable
+                    //récupération de l'UserTable
                     $category=$this->_categoryManager->findById ($idHidden);
                     $category->setTitle ($title);
                     $this->_categoryManager->updateCategory($category);
                     $this->flash->writeSucces("La catégorie est modifiée");
 
                     //Mise à blanc des formulaires
-                    $formModify[$formModify::CATEGORY]->text=null;
-                    $formModify[$formModify::IDHIDDEN]->text=null;
+                    $formModify[$formModify::CATEGORY]->setText(null);
+                    $formModify[$formModify::IDHIDDEN]->setText(null);
 
 
                 } else if (!$formModify->check()){
@@ -88,13 +88,13 @@ class CategoryController extends AbstractController
     {
         $formDelete=new CategoryDeleteForm($this->_request->getPost());
 
-        $id=$formDelete[$formDelete::IDHIDDEN]->text;
+        $id=$formDelete[$formDelete::IDHIDDEN]->getText();
 
         if(isset($id) && !$this->_categoryManager->hasArticle($id) ) {
             $this->_categoryManager->deleteCategory($id);
             $this->flash->writeSucces("La catégorie est supprimée.");
-            $formDelete[$formDelete ::IDHIDDEN]->text=null;
-            $formDelete[$formDelete ::CATEGORY]->text=null;
+            $formDelete[$formDelete ::IDHIDDEN]->setText(null);
+            $formDelete[$formDelete ::CATEGORY]->setText(null);
         } else {
             $this->flash->writeInfo("La suppression est impossible." . $id);
         }
@@ -108,14 +108,14 @@ class CategoryController extends AbstractController
         {
             if($this->_request->hasPost()) {
 
-                $category=$formAdd[$formAdd::CATEGORY]->text;
+                $category=$formAdd[$formAdd::CATEGORY]->getText();
 
                 if ($formAdd->check() &&
                     !$this->_categoryManager->titleExist($category)) {
 
                     $this->_categoryManager->createCategory($category);
                     $this->flash->writeSucces("La catégorie est ajoutée");
-                    $formAdd[$formAdd::CATEGORY]->text=null;
+                    $formAdd[$formAdd::CATEGORY]->setText(null);
 
 
                 } else {

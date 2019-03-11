@@ -28,6 +28,12 @@
         </style>
     </head>
     <body>
+        <h2 id="ArticleShowLastTest">ArticleShowLast</h2>
+        <ul>
+            <li style="color: #555753;">✓ Show last 3</li>
+            <li style="color: #555753;">✓ Show last not integer</li>
+            <li style="color: #555753;">✓ Show lastgt 100</li>
+        </ul>
         <h2 id="CategoryControllerTest">CategoryController</h2>
         <ul>
             <li style="color: #ef2929;">❌ Category list</li>
@@ -45,7 +51,13 @@
         <ul>
             <li style="color: #555753;">✓ Find by id</li>
             <li style="color: #555753;">✓ Get categorys</li>
-            <li style="color: #555753;">✓ Create</li>
+            <li style="color: #ef2929;">❌ Create</li>
+            <li style="color: #555753;">✓ Update</li>
+            <li style="color: #ef2929;">❌ Delete</li>
+        </ul>
+        <h2 id="CategoryShowListForArticle">CategoryShowListForArticle</h2>
+        <ul>
+            <li style="color: #555753;">✓ Show list for article</li>
         </ul>
         <h2 id="CategoryTableTest">CategoryTable</h2>
         <ul>
@@ -63,14 +75,14 @@
         </ul>
         <h2 id="CommentControllerTest">CommentController</h2>
         <ul>
-            <li style="color: #ef2929;">❌ Change moderate statut</li>
-            <li style="color: #ef2929;">❌ Create comment</li>
+            <li style="color: #555753;">✓ Change moderate statut</li>
+            <li style="color: #555753;">✓ Create comment</li>
         </ul>
         <h2 id="CommentManagerTest">CommentManager</h2>
         <ul>
             <li style="color: #555753;">✓ Find by id</li>
             <li style="color: #ef2929;">❌ Get categorys</li>
-            <li style="color: #555753;">✓ Create</li>
+            <li style="color: #ef2929;">❌ Create</li>
         </ul>
         <h2 id="CommentTableTest">CommentTable</h2>
         <ul>
@@ -109,6 +121,7 @@
             <li style="color: #555753;">✓ Has post</li>
             <li style="color: #555753;">✓ Has post value</li>
             <li style="color: #555753;">✓ Get post value</li>
+            <li style="color: #555753;">✓ Get post</li>
             <li style="color: #555753;">✓ Has get value</li>
             <li style="color: #555753;">✓ Get get value</li>
             <li style="color: #555753;">✓ Has session</li>
@@ -122,6 +135,59 @@
             <li style="color: #555753;">✓ Set session value html entity</li>
             <li style="color: #555753;">✓ Unset session</li>
         </ul>
+        <h2 id="RouteurTest">Routeur</h2>
+        <ul>
+            <li style="color: #555753;">✓ Get instance</li>
+            <li style="color: #555753;">✓ Run no value</li>
+        </ul>
+        <h2 id="SharedContactFormTest">SharedContactForm</h2>
+        <ul>
+            <li style="color: #555753;">✓ Render login</li>
+            <li style="color: #555753;">✓ Render mail</li>
+            <li style="color: #555753;">✓ Mail good value</li>
+            <li style="color: #555753;">✓ Mail bad value</li>
+            <li style="color: #555753;">✓ Mail value empty</li>
+            <li style="color: #555753;">✓ Render name</li>
+            <li style="color: #555753;">✓ Name good value</li>
+            <li style="color: #555753;">✓ Name value empty</li>
+            <li style="color: #555753;">✓ Render message</li>
+            <li style="color: #555753;">✓ Message good value</li>
+            <li style="color: #555753;">✓ Message value empty</li>
+            <li style="color: #555753;">✓ Check form no value</li>
+            <li style="color: #555753;">✓ Render button</li>
+        </ul>
+        <h2 id="ConnexionManagerTest">ConnexionManager</h2>
+        <ul>
+            <li style="color: #555753;">✓ User manager</li>
+            <li style="color: #555753;">✓ Add connexion</li>
+            <li style="color: #555753;">✓ Controle black list false</li>
+            <li style="color: #555753;">✓ Controle black list true</li>
+        </ul>
+        <h2 id="ConnexionTableTest">ConnexionTable</h2>
+        <ul>
+            <li style="color: #555753;">✓ User instance vide</li>
+            <li style="color: #555753;">✓ Ip by setter</li>
+            <li style="color: #555753;">✓ Ip by constructor</li>
+            <li style="color: #555753;">✓ I p value 15</li>
+            <li style="color: #555753;">✓ Ip value g t 15</li>
+            <li style="color: #555753;">✓ Ip value null</li>
+            <li style="color: #555753;">✓ I d by setter</li>
+            <li style="color: #555753;">✓ Id by constructor</li>
+            <li style="color: #555753;">✓ Has id</li>
+            <li style="color: #555753;">✓ Id value not id</li>
+            <li style="color: #555753;">✓ Id value null</li>
+            <li style="color: #555753;">✓ Nbr connexion by setter</li>
+            <li style="color: #555753;">✓ Nbr connexion by constructor</li>
+            <li style="color: #555753;">✓ Nbr connexion value not id</li>
+            <li style="color: #555753;">✓ Nbr connexion value null</li>
+            <li style="color: #555753;">✓ Date by setter</li>
+            <li style="color: #555753;">✓ Date by constructor</li>
+            <li style="color: #555753;">✓ Date value not date</li>
+            <li style="color: #555753;">✓ Date value null</li>
+            <li style="color: #555753;">✓ User ref by setter</li>
+            <li style="color: #555753;">✓ User ref by constructor</li>
+            <li style="color: #555753;">✓ To array</li>
+        </ul>
         <h2 id="UserConnectTest">UserConnect</h2>
         <ul>
             <li style="color: #555753;">✓ User connect instance</li>
@@ -131,16 +197,18 @@
         <ul>
             <li style="color: #555753;">✓ Render login</li>
             <li style="color: #555753;">✓ Render secret</li>
-            <li style="color: #555753;">✓ Check form</li>
+            <li style="color: #555753;">✓ Check form no value</li>
+            <li style="color: #555753;">✓ Check login value</li>
             <li style="color: #555753;">✓ Render button</li>
         </ul>
         <h2 id="UserForgetChangeFormTest">UserForgetChangeForm</h2>
         <ul>
             <li style="color: #555753;">✓ Render login</li>
             <li style="color: #555753;">✓ Render secret</li>
-            <li style="color: #555753;">✓ Check form</li>
             <li style="color: #555753;">✓ Render button</li>
-            <li style="color: #ef2929;">❌ Check form with value</li>
+            <li style="color: #555753;">✓ Check form with correct value</li>
+            <li style="color: #555753;">✓ Check form with incorrect value</li>
+            <li style="color: #555753;">✓ Check form with incorrect value complexity</li>
         </ul>
         <h2 id="UserManagerTest">UserManager</h2>
         <ul>

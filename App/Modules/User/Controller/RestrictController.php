@@ -15,13 +15,13 @@ trait RestrictController
     public function accessDeniedView($information,$exit=false)
     {
         $this->flash->writeError($information);
-        header('Location: ' . ES_ROOT_PATH_WEB . 'shared.accessdenied');
+        header('Location: ' . ES_ROOT_PATH_WEB . 'shared/accessdenied');
         if($exit) {exit;}
     }
     public function errorCatchView($information,$exit=false)
     {
         $this->flash->writeError($information);
-        header('Location: ' . ES_ROOT_PATH_WEB . 'shared.errorcatch');
+        header('Location: ' . ES_ROOT_PATH_WEB . 'shared/errorcatch');
         if($exit) {exit;}
     }
     public function valideAccessPage($MustBeConnec ,$userRole=1) :bool

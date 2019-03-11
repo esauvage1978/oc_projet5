@@ -24,7 +24,10 @@ class WebControlsButtons extends WebControls
     const CSS_DARK='btn-dark';
     const CSS_LINK='btn-link';
     const CSS_LARGE='btn-lg';
+    const CSS_ROUNDED='button button-a button-big button-rouded';
     const CSS_BLOCK='btn-block';
+
+    public $isWritable=false;
 
     public function render()
     {

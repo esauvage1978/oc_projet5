@@ -9,7 +9,7 @@
                 <div>
                     
                     Vous n'avez pas de compte ?
-                    <a href="##INDEX##user.signup">Inscrivez-vous</a>
+                    <a href="##INDEX##user/signup">Inscrivez-vous</a>
                 </div>
             </div>
         </div>

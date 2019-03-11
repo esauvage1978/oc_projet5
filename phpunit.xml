@@ -39,6 +39,8 @@
           <directory suffix=".php">./App/Modules/Blog/Model/</directory>
           <directory suffix=".php">./App/Modules/Blog/Render/</directory>
           <directory suffix=".php">./App/Modules/Shared/Controller/</directory>
+          <directory suffix=".php">./App/Modules/Shared/Model/</directory>
+          <directory suffix=".php">./App/Modules/Shared/Form/</directory>
           <directory suffix=".php">./App/Modules/Shared/Render/</directory>
           <directory suffix=".php">./App/Modules/Shared/Services/</directory>
           <directory suffix=".php">./App/Modules/User/Controller/</directory>

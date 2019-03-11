@@ -10,11 +10,6 @@ use ES\Core\Form\WebControlsStandard\InputToken;
  */
 abstract class Form implements \ArrayAccess
 {
-    /**
-     * Summary of TOKEN
-     */
-    const TOKEN=0;
-
     private $_controls=[];
     public $methode=self::METHODE_POST;
 
@@ -24,34 +19,11 @@ abstract class Form implements \ArrayAccess
     private $_data;
     private $_byName;
 
+
     abstract public function render();
     abstract public function check();
 
-    /**
-     * Fonction permettant l'ajout du contrôle token à la collection
-     * initialisation des prefixes de contrôle
-     * initialisation des valeurs text par défaut
-     * @param mixed $data
-     */
-    public function postConstruct($datas,$byName=true)
-    {
-        //initialisation de la variable de session de formulaire pour CSRF
-        $formName=$this->getFormName ();
-        if( isset($_SESSION['formulaire']['CSRF'][$formName]) ){
-            $_SESSION['formulaire']['CSRF'][$formName]['old'.ES_TOKEN ]=
-                $_SESSION['formulaire']['CSRF'][$formName][ES_TOKEN ];
-        }
-        $_SESSION['formulaire']['CSRF'][$formName][ES_TOKEN ]=bin2hex(random_bytes(32));
-
-
-        $this->_controls[self::TOKEN]=new InputToken();
-        $this->_controls[self::TOKEN]->text =
-            $_SESSION['formulaire']['CSRF'][$formName][ES_TOKEN];
-
-        $this->setPrefixeToControl();
-        $this->setText($datas,$byName);
-
-    }
+    protected $_formName;
 
     public function __toString()
     {
@@ -76,60 +48,45 @@ abstract class Form implements \ArrayAccess
         return '<div class="form-group">' . $control . '</div>';
     }
 
-    protected function getAction($url):string
+    protected function getAction($url,$fileUpload=false):string
     {
-        return '<form id="' . $this->getFormName() . '" method="'. $this->methode .'" action="##INDEX##'. $url .'">';
+        return '<form id="' . $this->getFormName() .
+            '" method="'. $this->methode .
+            '" action="'. $url .'" '.
+            ($fileUpload?'enctype="multipart/form-data':''). 
+            '">';
     }
-
-    public function checkToken():bool
+    protected function createUrl():string
     {
-        $checkOK=true;
-
-        if(!$this->_controls[self::TOKEN]->check()) {
-            $checkOK=false;
-        }
-
-        return $checkOK;
+        return '##INDEX##' . implode('/',func_get_args());
     }
-    public function renderToken()
-    {
-        return $this->renderControl(self::TOKEN,false);
-    }
-
-    private function setPrefixeToControl()
-    {
-        $prefix=$this->getFormName();
-        foreach ($this->_controls as $control) {
-            $control->prefixeFormName=$prefix ;
-        }
-    }
-
     protected function getFormName()
     {
         $elements=explode('\\', get_class($this));
         return array_pop($elements);
     }
 
-    public function text($key)
+    public function getText($key)
     {
-        return $this->_controls[$key]->text;
+        return $this->_controls[$key]->getText();
     }
 
     protected function setText($datas=[],$byName=true)
     {
         foreach($datas as $key=>$value) {
             if(!$byName) {
-                $this->_controls[$key]->text =$value;
+                if ($this->_controls[$key]->isWritable ) {
+                    $this->_controls[$key]->setText($value);
+                }
             } else {
                 foreach ($this->_controls as $control) {
-                    if($control->getName()==$key) {
-                        $control->text=$value;
+                    if($control->getName()==$key && $control->isWritable) {
+                        $control->setText($value);
                     }
                 }
             }
         }
     }
-
 
     #region ArrayAccess
     public function offsetSet($offset, $value) {

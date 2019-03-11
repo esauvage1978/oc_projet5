@@ -5,25 +5,25 @@
         <div class="sidebar-content">
             <div class="list-group">
                 <?php foreach($articles as $article):?>
-                <a href="##INDEX##<?= $article['link']; ?>"
+                <a href="##INDEX##<?= $article[ES_DASHBOARD_LINK]; ?>"
                     class="list-group-item list-group-item-action 
-                   <?= array_key_exists('color',$article)?$article['color']:''; ?>
+                   <?= array_key_exists(ES_DASHBOARD_COLOR,$article)?$article[ES_DASHBOARD_COLOR]:''; ?>
                    ">
 
 
                     <div class="d-flex w-100 justify-content-between  align-items-end">
                         <div>
                             <h5 class="mb-1  align-text-middle">
-                                <i class="<?= $article['icone']; ?> "></i>
-                                <?= $article['title']; ?>
+                                <i class="<?= $article[ES_DASHBOARD_ICONE]; ?> "></i>
+                                <?= $article[ES_DASHBOARD_TITLE]; ?>
                             </h5>
                             <small>
-                                <?= $article['content']; ?>
+                                <?= $article[ES_DASHBOARD_CONTENT]; ?>
                             </small>
                         </div>
                         <div class="counter-num">
                             <p class="counter">
-                                <?= $article['number']; ?>
+                                <?= $article[ES_DASHBOARD_NUMBER]; ?>
                             </p>
                         </div>
 

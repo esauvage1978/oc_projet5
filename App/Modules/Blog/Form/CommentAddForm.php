@@ -3,9 +3,11 @@
 namespace ES\App\Modules\Blog\Form;
 
 use ES\Core\Form\Form;
-use ES\Core\Form\WebControlsStandard\ButtonAjouter;
-use ES\Core\Form\WebControlsStandard\TextareaComment;
-use ES\Core\Form\WebControlsStandard\InputIdHidden;
+use ES\Core\Form\WebControls\WebControlsButtons;
+use ES\Core\Form\WebControls\WebControlsTextaera;
+use ES\Core\Form\WebControlsStandard\InputToken;
+use ES\Core\Form\WebControls\WebControlsInput;
+use ES\Core\Toolbox\Url;
 
 
 /**
@@ -18,7 +20,7 @@ use ES\Core\Form\WebControlsStandard\InputIdHidden;
  */
 class CommentAddForm extends Form
 {
-
+    const TOKEN=0;
     const BUTTON=1;
     const COMMENT=2;
     const IDARTICLEHIDDEN=3;
@@ -26,12 +28,25 @@ class CommentAddForm extends Form
 
     public function __construct($datas=[],$byName=true)
     {
+        $this->_formName=$this->getFormName();
 
-        $this[self::BUTTON]=new ButtonAjouter();
-        $this[self::COMMENT]=new TextareaComment();
-        $this[self::IDARTICLEHIDDEN]=new InputIdHidden();
+        //ajout du token
+        $token=new InputToken($this->_formName);
+        $this[self::TOKEN]=$token;
 
-        $this->postConstruct($datas,$byName) ;
+        //Commentaire
+        $comment=new WebControlsTextaera($this->_formName);
+        $comment->placeHolder='Votre commentaire';
+        $comment->rows =5;
+        $comment->name='comment';
+        $this[self::COMMENT]=$comment;
+
+        $idHidden=new WebControlsInput($this->_formName);
+        $idHidden->name ='id';
+        $idHidden->type=WebControlsInput::TYPE_HIDDEN;
+        $this[self::IDARTICLEHIDDEN]=$idHidden;
+
+        $this->setText($datas,$byName) ;
     }
 
     public function check():bool
@@ -55,11 +70,10 @@ class CommentAddForm extends Form
 
     public function render() : string
     {
-        return $this->getAction('blog.comment.add#commentadd') .
-               $this->renderToken() .
+        return $this->getAction(Url::to('blog','comment','add#commentadd')) .
+               $this->renderControl(self::TOKEN) .
                $this->renderControl(self::IDARTICLEHIDDEN) .
                $this->renderControl(self::COMMENT) .
-               //$this->renderButton(self::BUTTON) .
                '</form>';
     }
 }

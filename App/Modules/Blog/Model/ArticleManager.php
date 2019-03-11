@@ -5,7 +5,7 @@ namespace ES\App\Modules\Blog\Model;
 use ES\Core\Model\AbstractManager;
 use ES\Core\Database\QueryBuilder;
 use ES\App\Modules\Blog\Model\ArticleComposer;
-
+use ES\Core\Upload\JpgUpload;
 /**
  * UserManager short summary.
  *
@@ -23,17 +23,21 @@ class ArticleManager extends AbstractManager
 
     public function countArticles($key=null,$value=null)
     {
-        $requete=new QueryBuilder();
-        $requete->select ('count(*)')
+        $this->_queryBuilder
+            ->select ('count(*)')
             ->from(self::$table);
         $params=[];
 
         if(isset($key) && isset($value)) {
-            $requete->where('ba_' . $key .'=:value');
+            $this->_queryBuilder
+                ->where('ba_' . $key .'=:value');
             $params['value']=$value;
         }
 
-        return $this->query($requete->render(),count($params)?$params:null,true)['count(*)'] ;
+        return $this->query(
+            $this->_queryBuilder
+                ->render(),
+            count($params)?$params:null,true,false)['count(*)'] ;
     }
 
     public function getArticles($key=null,$value=null,$actif=true)
@@ -77,7 +81,21 @@ class ArticleManager extends AbstractManager
     }
     public function getLastArticles($number)
     {
-        return $this->query('SELECT ba_id, ba_title FROM ocp5_blog_article ORDER BY ba_id limit '. $number .';',null,false,false);
+        if(!is_integer($number) ) {
+            $number=3;
+        } elseif ($number >100) {
+            $number=3;
+        }
+
+        return $this->query(
+            $this->_queryBuilder
+            ->select('ba_id, ba_title')
+            ->from('ocp5_blog_article')
+            ->where('ba_state=' . ES_BLOG_ARTICLE_STATE_ACTIF)
+            ->orderBy('ba_id')
+            ->limit($number)
+            ->render()
+            ,null,false,false);
     }
 
     public function findById($key) :ArticleComposer
@@ -119,47 +137,10 @@ class ArticleManager extends AbstractManager
         return $this->_articleManager->modifyArticle($articleComposer->article,$user);
     }
 
-    public function recupereImagePresentation($key,$id):bool
+    public function createPicture($key,$id)
     {
-
-        if(!isset($_FILES[$key]['name'])) {
-            return true;
-        } elseif($_FILES[$key]['error']=='1') {
-            $this->flash->writeError('Erreur lors de \'upload de l\'image code error:1');
-        } elseif (isset($_FILES[$key]['tmp_name'])) {
-
-            if($_FILES[$key]['type']=='image/jpeg') {
-                try {
-
-
-                    $destination=ES_ROOT_PATH_FAT . 'Public/images/blog/' . $id . '.jpg';
-                    //return \copy($_FILES[$key]['tmp_name'],$destination);
-                    if(\file_exists($destination) ){
-                        \unlink($destination);
-                    }
-                    $taille = getimagesize($_FILES[$key]['tmp_name']);
-                    $largeur = $taille[0];
-                    $hauteur = $taille[1];
-                    $largeur_miniature = 600;
-                    $hauteur_miniature = $hauteur / $largeur * 600;
-                    $im = \imagecreatefromjpeg($_FILES[$key]['tmp_name']);
-                    $im_miniature = \imagecreatetruecolor($largeur_miniature
-                    , $hauteur_miniature);
-                    if(!\imagecopyresampled($im_miniature, $im, 0, 0, 0, 0, $largeur_miniature, $hauteur_miniature, $largeur, $hauteur)) {
-                        $this->flash->writeError('Erreur lors de la création de imagecopyresampled');
-                    }
-                    if(!\imagejpeg($im_miniature, $destination, 90)) {
-                        $this->flash->writeError('Erreur lors de la création de imagejpeg');
-                    }
-                } catch (\InvalidArgumentException $ex) {
-                        $this->flash->writeError('Erreur lors de la création de l\'image ' . $ex->getMessage ());
-                }
-
-                return true;
-            }
-        }
-
-        return false;
+        $jpgUpload=new JpgUpload('blog');
+        return $jpgUpload->createMiniature($key,$id);
     }
 
     public function NewArticle($title, $categoryRef,$chapo,$content,$userRef):ArticleTable

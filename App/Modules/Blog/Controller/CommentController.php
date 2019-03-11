@@ -36,37 +36,37 @@ class CommentController extends AbstractController
         $commentaires=[];
 
         $commentaires[0]=[
-            'title'=>'Total',
-            'icone'=>'ion-chatbubbles',
-            'number'=>$this->_commentManager->countComment(),
-            'content'=>'Nombre total de commentaire pour les articles publiés',
-            'link'=>'blog.comment.listadmin'
+            ES_DASHBOARD_TITRE=>'Total',
+            ES_DASHBOARD_ICONE=>'ion-chatbubbles',
+            ES_DASHBOARD_NUMBER=>$this->_commentManager->countComment(),
+            ES_DASHBOARD_CONTENT=>'Nombre total de commentaire pour les articles publiés',
+            ES_DASHBOARD_LINK=>'blog/comment/listadmin'
         ];
 
         $nombre=$this->_commentManager->countComment('moderator_state',ES_BLOG_COMMENT_STATE_WAIT);
         $commentaires[1]=[
-           'title'=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_WAIT],
-           'icone'=>'ion-eye',
-           'number'=>$nombre,
-           'content'=>'Commentaire à moderer',
-           'link'=>'blog.comment.listadmin/'.ES_BLOG_COMMENT_STATE_WAIT,
-           'color'=>($nombre? 'list-group-item-info':'')
+           ES_DASHBOARD_TITRE=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_WAIT],
+           ES_DASHBOARD_ICONE=>'ion-eye',
+           ES_DASHBOARD_NUMBER=>$nombre,
+           ES_DASHBOARD_CONTENT=>'Commentaire à moderer',
+           ES_DASHBOARD_LINK=>'blog/comment/listadmin/'.ES_BLOG_COMMENT_STATE_WAIT,
+           ES_DASHBOARD_COLOR=>($nombre? 'list-group-item-info':'')
        ];
 
         $commentaires[2]=[
-           'title'=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_REJECT],
-           'icone'=>'ion-thumbsdown',
-           'number'=>$this->_commentManager->countComment('moderator_state',ES_BLOG_COMMENT_STATE_REJECT),
-           'content'=>'Commentaire rejeté par le gestionnaire',
-           'link'=>'blog.comment.listadmin/' . ES_BLOG_COMMENT_STATE_REJECT
+           ES_DASHBOARD_TITRE=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_REJECT],
+           ES_DASHBOARD_ICONE=>'ion-thumbsdown',
+           ES_DASHBOARD_NUMBER=>$this->_commentManager->countComment('moderator_state',ES_BLOG_COMMENT_STATE_REJECT),
+           ES_DASHBOARD_CONTENT=>'Commentaire rejeté par le gestionnaire',
+           ES_DASHBOARD_LINK=>'blog/comment/listadmin/' . ES_BLOG_COMMENT_STATE_REJECT
        ];
 
         $commentaires[3]=[
-           'title'=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_APPROVE],
-           'icone'=>'ion-thumbsup',
-           'number'=>$this->_commentManager->countComment('moderator_state',ES_BLOG_COMMENT_STATE_APPROVE),
-           'content'=>'Commentaire approuvé et publié',
-           'link'=>'blog.comment.listadmin/' . ES_BLOG_COMMENT_STATE_APPROVE
+           ES_DASHBOARD_TITRE=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_APPROVE],
+           ES_DASHBOARD_ICONE=>'ion-thumbsup',
+           ES_DASHBOARD_NUMBER=>$this->_commentManager->countComment('moderator_state',ES_BLOG_COMMENT_STATE_APPROVE),
+           ES_DASHBOARD_CONTENT=>'Commentaire approuvé et publié',
+           ES_DASHBOARD_LINK=>'blog/comment/listadmin/' . ES_BLOG_COMMENT_STATE_APPROVE
        ];
         $data=[
             'commentaires'=>$commentaires
@@ -80,18 +80,28 @@ class CommentController extends AbstractController
      */
     public function add()
     {
-        $id=$this->_request->getPostValue('id');
-        $value=$this->_request->getPostValue('value');
-
-        if(!empty ( $value)) {
-            if($this->_userConnect->isConnect() ) {
-                $this->_commentManager->createComment($value,$id,
-                    $this->_userConnect->user->getId());
-            } else {
-                $this->_commentManager->createComment($value,$id);
+        //récupération des données envoyées par ajax
+        $id=$this->_request->getPostValue('id',Request::TYPE_INT);
+        $value=$this->_request->getPostValue('value',Request::TYPE_HTMLENTITY);
+        $token=$this->_request->getPostValue('token',Request::TYPE_HTMLENTITY );
+        if(!empty($token)) {
+            $form=new CommentAddForm();
+            $form[$form::TOKEN]->setText($token);
+            if(!$form[$form::TOKEN]->check()) {
+                echo 'Le formulaire est périmé';
+            }
+            elseif(!empty ( $value)) {
+                if($this->_userConnect->isConnect() ) {
+                    $this->_commentManager->createComment($value,$id,
+                        $this->_userConnect->user->getId());
+                } else {
+                    $this->_commentManager->createComment($value,$id);
+                }
+                header('Content-Type: application/json');
+                echo json_encode([ES_TOKEN=>$form[$form::TOKEN]->getText(),
+                    'message'=> \date(ES_DATE_FR) . ' : Le commentaire est créé, il est en attente de modération.']);
             }
         }
-        echo \date(ES_DATE_FR) . ' : Le commentaire est créé, il est en attente de modération.';
     }
 
     public function Listadmin($value=null)
@@ -114,7 +124,7 @@ class CommentController extends AbstractController
     {
         $id=$this->_request->getPostValue('id');
         $value=$this->_request->getPostValue('value');
-        $retour=$this->_commentManager->changeStatusOfComment($id,$this->_userConnect->user,$value); 
+        $retour=$this->_commentManager->changeStatusOfComment($id,$this->_userConnect->user,$value);
         echo 'Statut changé.';
     }
 

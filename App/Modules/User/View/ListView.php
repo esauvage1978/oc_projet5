@@ -21,7 +21,7 @@
                         <tr>
                             <td>
                                 <small>
-                                    <a href="##INDEX##user.modify/<?= $data->getId();?>">
+                                    <a href="<?= $data->urlModify();?>">
                                         <?= $data->getIdentifiant(); ?>
                                     </a>
                                 </small>
@@ -56,27 +56,27 @@
             <div class="sidebar-content">
                 <ul>
                     <li>
-                        <a href="##INDEX##user.list#topsection">
+                        <a href="##INDEX##user/list#topsection">
                             Tous
                         </a>
                     </li>
                     <li>
-                        <a href="##INDEX##user.list/user_role/<?= ES_USER_ROLE_VISITEUR; ?>#topsection">
+                        <a href="##INDEX##user/user/list/user_role/<?= ES_USER_ROLE_VISITEUR; ?>#topsection">
                             <?= ES_USER_ROLE[ES_USER_ROLE_VISITEUR];?>
                         </a>
                     </li>
                     <li>
-                        <a href="##INDEX##user.list/user_role/<?= ES_USER_ROLE_REDACTEUR; ?>#topsection">
+                        <a href="##INDEX##user/user/list/user_role/<?= ES_USER_ROLE_REDACTEUR; ?>#topsection">
                             <?= ES_USER_ROLE[ES_USER_ROLE_REDACTEUR];?>
                         </a>
                     </li>
                     <li>
-                        <a href="##INDEX##user.list/user_role/<?= ES_USER_ROLE_MODERATEUR; ?>#topsection">
+                        <a href="##INDEX##user/user/list/user_role/<?= ES_USER_ROLE_MODERATEUR; ?>#topsection">
                             <?= ES_USER_ROLE[ES_USER_ROLE_MODERATEUR];?>
                         </a>
                     </li>
                     <li>
-                        <a href="##INDEX##user.list/user_role/<?= ES_USER_ROLE_GESTIONNAIRE; ?>#topsection">
+                        <a href="##INDEX##user/user/list/user_role/<?= ES_USER_ROLE_GESTIONNAIRE; ?>#topsection">
                             <?= ES_USER_ROLE[ES_USER_ROLE_GESTIONNAIRE];?>
                         </a>
                     </li>
@@ -89,17 +89,17 @@
             <div class="sidebar-content">
                 <ul>
                     <li>
-                        <a href="##INDEX##user.list#topsection">
+                        <a href="##INDEX##user/user/list#topsection">
                             Tous
                         </a>
                     </li>
                     <li>
-                        <a href="##INDEX##user.list/actif/1#topsection">
+                        <a href="##INDEX##user/user/list/actif/1#topsection">
                             Oui
                         </a>
                     </li>
                     <li>
-                        <a href="##INDEX##user.list/actif/0#topsection">
+                        <a href="##INDEX##user/user/list/actif/0#topsection">
                             Non
                         </a>
                     </li>

@@ -233,4 +233,14 @@ class UserTable extends AbstractTable implements ITable
     {
         return !is_null( $this->getValidAccountDate() );
     }
+
+    public function urlModify()
+    {
+        return '##INDEX##user/modify/' .$this->getId();
+    }
+
+    public function urlShow()
+    {
+        
+    }
 }

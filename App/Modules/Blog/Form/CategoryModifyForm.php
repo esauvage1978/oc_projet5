@@ -3,9 +3,10 @@
 namespace ES\App\Modules\Blog\Form;
 
 use ES\Core\Form\Form;
-use ES\Core\Form\WebControlsStandard\ButtonModifier;
-use ES\Core\Form\WebControlsStandard\InputIdHidden;
-use ES\App\Modules\Blog\Form\WebControls\InputCategory;
+use ES\Core\Form\WebControls\WebControlsButtons;
+use ES\Core\Form\WebControls\WebControlsInput;
+use ES\Core\Form\WebControlsStandard\InputToken;
+use ES\Core\Toolbox\Url;
 
 
 /**
@@ -18,7 +19,7 @@ use ES\App\Modules\Blog\Form\WebControls\InputCategory;
  */
 class CategoryModifyForm extends Form
 {
-
+    const TOKEN=0;
     const BUTTON=1;
     const CATEGORY=2;
     const IDHIDDEN=3;
@@ -27,24 +28,49 @@ class CategoryModifyForm extends Form
 
     public function __construct($datas=[],$byName=true)
     {
-        $this[self::BUTTON]=new ButtonModifier();
-        $this[self::CATEGORY]=new InputCategory();
-        $this[self::IDHIDDEN]=new InputIdHidden();
+        $this->_formName=$this->getFormName();
 
-        $this->postConstruct($datas,$byName);
+        //ajout du token
+        $token=new InputToken($this->_formName);
+        $this[self::TOKEN]=$token;
+
+        //ajout du bouton
+        $button=new WebControlsButtons ($this->_formName);
+        $button->label='Modifier';
+        $button->name='update';
+        $button->addCssClass(WebControlsButtons::CSS_ROUNDED);
+        $this[self::BUTTON]=$button;
+
+
+        $idHidden=new WebControlsInput($this->_formName);
+        $idHidden->name ='hash';
+        $idHidden->type=WebControlsInput::TYPE_HIDDEN;
+        $idHidden->maxLength =60;
+        $this[self::IDHIDDEN]=$idHidden;
+
+        //ajout de la catégorie
+        $name=new WebControlsInput($this->_formName);
+        $name->placeHolder='Catégorie';
+        $name->name='category';
+        $name->maxLength=20;
+        $this[self::CATEGORY]=$name;
+
+        $this->setText($datas,$byName) ;
+
     }
 
     public function check():bool
     {
         $checkOK=true;
 
-        if(!$this->checkToken() ) {
+        if(!$this[self::TOKEN]->check() ) {
             $checkOK=false;
         }
 
         if(!$this[self::IDHIDDEN]->check()) {
             $checkOK=false;
         }
+
         if(!$this[self::CATEGORY]->check()) {
             $checkOK=false;
         }
@@ -54,9 +80,9 @@ class CategoryModifyForm extends Form
 
     public function render()
     {
-        return $this->getAction('blog.category.modify#categorycrud') .
+        return $this->getAction(Url::to('blog','category','modify#categorycrud')) .
 
-               $this->renderControl(self::TOKEN,false) .  
+               $this->renderControl(self::TOKEN) .
                $this->renderControl(self::IDHIDDEN,false) .
                $this->renderControl(self::CATEGORY) .
                $this->renderButton(self::BUTTON) .

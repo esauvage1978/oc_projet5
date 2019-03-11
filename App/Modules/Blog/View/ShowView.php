@@ -10,13 +10,13 @@
               <ul>
                 <li>
                   <span class="ion-ios-person"></span>
-                    <a href="##INDEX##blog.article.list/user/<?= $articleComposer->createUser->getId(); ?>">
+                    <a href="##INDEX##blog/article/list/user/<?= $articleComposer->createUser->getId(); ?>">
                         <?= $articleComposer->createUser->getIdentifiant(); ?>
                     </a>
                 </li>
                 <li>
                   <span class="ion-pricetag"></span>
-                    <a href="##INDEX##blog.article.list/category/<?= $articleComposer->category->getId(); ?>">
+                    <a href="##INDEX##blog/article/list/category/<?= $articleComposer->category->getId(); ?>">
                         <?= $articleComposer->category->getTitle(); ?>
                     </a>
                 </li>
@@ -44,7 +44,11 @@
                 <?php foreach($articleComposer->comments as $comment): ?>
               <li>
                 <div class="comment-avatar">
-                    <img src="##IMGAVATAR##/<?= $comment->userCreate->getId() ?>.png" alt="" />
+                    <?php if ($comment->userCreate->hasId()) { ?>
+                        <img src="##IMGAVATAR##/<?= $comment->userCreate->getId() ?>.jpg" alt="" />
+                    <?php } else { ?>
+                        <img src="##IMGAVATAR##/0.jpg" alt="" />
+                    <?php } ?>
                 </div>
                 <div class="comment-details">
                   <h4 class="comment-author"><?= $comment->userCreate->getIdentifiant() ?></h4>
@@ -95,15 +99,17 @@
 $('#commentAdd').click(function () {
     var id=$('#<?=$formComment[$formComment::IDARTICLEHIDDEN]->getName();?>').val();
     var value=$('#<?=$formComment[$formComment::COMMENT]->getName();?>').val();
+    var token=$('#<?=$formComment[$formComment::TOKEN]->getName();?>').val();
     $.ajax({
                 type : 'POST',
-                url : '##INDEX##blog.comment.add',
+                url : '##INDEX##blog/comment/add',
     dataType : 'html',
-        data : 'id=' + id + '&value=' + value,
-               success : function(code_html, statut){
+        data : 'id=' + id + '&value=' + value + '&token=' + token,
+               success : function(data, statut){
    
-    $('#retourcommentaire').text(code_html);
+    $('#retourcommentaire').text(data.message);
         $('#<?=$formComment[$formComment::COMMENT]->getName();?>').val('');
+        $('#<?=$formComment[$formComment::TOKEN]->getName();?>').val(data.token);
        },
 
        error : function(resultat, statut, erreur){

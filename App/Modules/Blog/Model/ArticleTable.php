@@ -211,4 +211,16 @@ class ArticleTable extends AbstractTable implements ITable
     }
     #endregion
 
+    public function urlRead():string
+    {
+        return '##INDEX##blog/article/show/' . $this->getId();
+    }
+    public function urlModify():string
+    {
+        return '##INDEX##blog/article/modify/' . $this->getId();
+    }
+    public function urlReadCategory():string
+    {
+        return '##INDEX##blog/article/list/category/' . $this->getCategoryRef();
+    }
 }

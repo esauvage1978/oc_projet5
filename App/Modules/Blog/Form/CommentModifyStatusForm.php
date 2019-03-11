@@ -6,6 +6,8 @@ use ES\Core\Form\Form;
 use ES\Core\Form\WebControlsStandard\ButtonModifier;
 use ES\Core\Form\WebControlsStandard\InputIdHidden;
 use ES\App\Modules\Blog\Form\WebControls\InputCommentStatus;
+use ES\Core\Toolbox\Url;
+
 
 
 /**
@@ -54,7 +56,7 @@ class CommentModifyStatusForm extends Form
 
     public function render()
     {
-        return $this->getAction('blog.commentmoderate#commentlisttop') .
+        return $this->getAction(Url::to('blog','commentmoderate#commentlisttop')) .
 
                $this->renderToken() .
                $this->renderControl(self::IDHIDDEN) .

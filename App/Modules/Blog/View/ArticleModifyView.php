@@ -1,5 +1,5 @@
 
-<form action="##INDEX##blog.article.modify/<?= $articleComposer->article->getId(); ?>#articlemodify" 
+<form action="##INDEX##blog/article/modify/<?= $articleComposer->article->getId(); ?>#articlemodify" 
       method="post" enctype="multipart/form-data">
     <div class="row justify-content-md-center" id="articlemodify">
         <div class="col-md-8">
@@ -25,7 +25,7 @@
                             Création
                             <b>
                                 <span class="ion-ios-person"></span>
-                                <a href="##INDEX##blog.list/user/<?= $articleComposer->createUser->getId(); ?>">
+                                <a href="##INDEX##blog/article/user/<?= $articleComposer->createUser->getId(); ?>">
                                     <?= $articleComposer->createUser->getIdentifiant(); ?>
                                 </a>
                                 <span class="ion-ios-clock-outline"></span>
@@ -39,7 +39,7 @@
                             Modifié par :
                             <b>
                                 <span class="ion-ios-person"></span>
-                                <a href="##INDEX##blog.list/user/<?= $articleComposer->modifyUser->getId(); ?>">
+                                <a href="##INDEX##blog/article/user/<?= $articleComposer->modifyUser->getId(); ?>">
                                     <?= $articleComposer->modifyUser->getIdentifiant(); ?>
                                 </a>
                             </b>

@@ -43,8 +43,7 @@ class WebControls
      */
     public $disabled=false;
 
-    const PARAMS_NOT_FOUND="Paramètre non trouvé";
-
+    public $isWritable=true;
     /**
      * liste des feuilles de style du contrôle
      * @var mixed
@@ -63,6 +62,11 @@ class WebControls
     protected static $buildParamsId='id';
     protected static $buildParamsLabel='label';
     protected static $buildParamsDisabled='disabled';
+
+    public function __construct($prefixeFormName)
+    {
+        $this->prefixeFormName=$prefixeFormName;
+    }
 
     protected function buildParams($keys=[]):string
     {
@@ -102,11 +106,11 @@ class WebControls
                     }
                     break;
                 default:
-                    $param=self::PARAMS_NOT_FOUND;
+                    $param=MSG_FORM_PARAMS_NOT_FOUND;
                     break;
             }
 
-            if($param!=self::PARAMS_NOT_FOUND && !empty($param)) {
+            if($param!=MSG_FORM_PARAMS_NOT_FOUND && !empty($param)) {
                 $param .=' ';
             }
             $params .= $param;
