@@ -155,8 +155,9 @@ abstract class AbstractManager
     protected function delete($id)
     {
         return $this->query(
-            'DELETE FROM '. static::$table . ' WHERE ' . static::$id . ':=value', ['value'=>$id]
-            ,true,false); 
+            'DELETE FROM '. static::$table . ' WHERE ' . static::$id . '=:value;',
+            ['value'=>$id],
+            true,false);
     }
 
     /**

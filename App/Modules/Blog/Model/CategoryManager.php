@@ -20,11 +20,14 @@ class CategoryManager extends AbstractManager
     protected static $id=CategoryTable::ID;
     protected static $classTable='ES\App\Modules\Blog\Model\CategoryTable';
 
-    public function findById($key) :CategoryTable
+    public function findById($value) :CategoryTable
     {
-        return $this->findByField(CategoryTable::ID,$key);
+        return $this->findByField(CategoryTable::ID,$value);
     }
-
+    public function findByTitle($value) :CategoryTable
+    {
+        return $this->findByField(CategoryTable::TITLE,$value);
+    }
     public function getCategorys()
     {
         return $this->query($this->_queryBuilder
@@ -47,7 +50,7 @@ class CategoryManager extends AbstractManager
              ->select('bc_id, bc_title')
              ->from(self::$table)
              ->outerJoin('ocp5_blog_article ON bc_id=ba_category_ref')
-             ->where('ba_state='. ES_BLOG_ARTICLE_STATE_ACTIF) 
+             ->where('ba_state='. ES_BLOG_ARTICLE_STATE_ACTIF)
              ->groupBy('bc_id')
              ->having('count(ba_id)>0')
              ->orderBy('bc_title')->render(),
@@ -56,7 +59,7 @@ class CategoryManager extends AbstractManager
 
     public function deleteCategory($id)
     {
-        return $this-> delete($id);
+        return $this->delete($id);
     }
 
     public function hasArticle($id) :bool
