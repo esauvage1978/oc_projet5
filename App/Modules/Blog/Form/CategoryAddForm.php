@@ -5,6 +5,7 @@ namespace ES\App\Modules\Blog\Form;
 use ES\Core\Form\Form;
 use ES\Core\Form\WebControls\WebControlsButtons;
 use ES\Core\Form\WebControls\WebControlsInput;
+use ES\Core\Form\WebControls\WebControlsMessage;
 use ES\Core\Form\WebControlsStandard\InputToken;
 use ES\Core\Toolbox\Url;
 
@@ -20,8 +21,9 @@ use ES\Core\Toolbox\Url;
 class CategoryAddForm extends Form
 {
     const TOKEN=0;
-    const BUTTON=1;
-    const CATEGORY=2;
+    const MESSAGE=1;
+    const BUTTON=2;
+    const CATEGORY=3;
 
 
     public function __construct($datas=[],$byName=true)
@@ -31,6 +33,10 @@ class CategoryAddForm extends Form
         //ajout du token
         $token=new InputToken($this->_formName);
         $this[self::TOKEN]=$token;
+
+        //ajout du token
+        $message=new WebControlsMessage($this->_formName);
+        $this[self::MESSAGE]=$message ;
 
         //ajout du bouton
         $button=new WebControlsButtons ($this->_formName);
@@ -70,7 +76,8 @@ class CategoryAddForm extends Form
     public function render()
     {
         return $this->getAction(Url::to('blog','category','add#categorycrud')) .
-               $this->renderControl(self::TOKEN) .
+               $this->renderControl(self::MESSAGE,false) .
+               $this->renderControl(self::TOKEN,false) .
                $this->renderControl(self::CATEGORY) .
                $this->renderButton(self::BUTTON) .
                '</form>';

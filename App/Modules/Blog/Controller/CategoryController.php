@@ -114,14 +114,11 @@ class CategoryController extends AbstractController
                     !$this->_categoryManager->titleExist($category)) {
 
                     $this->_categoryManager->createCategory($category);
-                    $this->flash->writeSucces("La catégorie est ajoutée");
-                    $formAdd[$formAdd::CATEGORY]->setText(null);
-
-
+                    $formAdd[$formAdd::MESSAGE]->showMessage("La catégorie est ajoutée");
+                    $formAdd[$formAdd::CATEGORY]->setText('');
                 } else {
-                    $this->flash->writeWarning("Cette catégorie existe déjà");
+                    $formAdd[$formAdd::MESSAGE]->showMessage("Cette catégorie existe déjà",false);
                 }
-
             }
 
         }
