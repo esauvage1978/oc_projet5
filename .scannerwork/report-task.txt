@@ -1,6 +1,0 @@
-projectKey=ocprojet5
-serverUrl=http://localhost:9100
-serverVersion=7.5.0.20543
-dashboardUrl=http://localhost:9100/dashboard?id=ocprojet5
-ceTaskId=AWlZsrz2MaLyrWVMjF56
-ceTaskUrl=http://localhost:9100/api/ce/task?id=AWlZsrz2MaLyrWVMjF56
