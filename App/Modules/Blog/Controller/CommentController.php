@@ -36,7 +36,7 @@ class CommentController extends AbstractController
         $commentaires=[];
 
         $commentaires[0]=[
-            ES_DASHBOARD_TITRE=>'Total',
+            ES_DASHBOARD_TITLE=>'Total',
             ES_DASHBOARD_ICONE=>'ion-chatbubbles',
             ES_DASHBOARD_NUMBER=>$this->_commentManager->countComment(),
             ES_DASHBOARD_CONTENT=>'Nombre total de commentaire pour les articles publiés',
@@ -45,7 +45,7 @@ class CommentController extends AbstractController
 
         $nombre=$this->_commentManager->countComment('moderator_state',ES_BLOG_COMMENT_STATE_WAIT);
         $commentaires[1]=[
-           ES_DASHBOARD_TITRE=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_WAIT],
+           ES_DASHBOARD_TITLE=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_WAIT],
            ES_DASHBOARD_ICONE=>'ion-eye',
            ES_DASHBOARD_NUMBER=>$nombre,
            ES_DASHBOARD_CONTENT=>'Commentaire à moderer',
@@ -54,7 +54,7 @@ class CommentController extends AbstractController
        ];
 
         $commentaires[2]=[
-           ES_DASHBOARD_TITRE=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_REJECT],
+           ES_DASHBOARD_TITLE=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_REJECT],
            ES_DASHBOARD_ICONE=>'ion-thumbsdown',
            ES_DASHBOARD_NUMBER=>$this->_commentManager->countComment('moderator_state',ES_BLOG_COMMENT_STATE_REJECT),
            ES_DASHBOARD_CONTENT=>'Commentaire rejeté par le gestionnaire',
@@ -62,7 +62,7 @@ class CommentController extends AbstractController
        ];
 
         $commentaires[3]=[
-           ES_DASHBOARD_TITRE=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_APPROVE],
+           ES_DASHBOARD_TITLE=>ES_BLOG_COMMENT_STATE [ ES_BLOG_COMMENT_STATE_APPROVE],
            ES_DASHBOARD_ICONE=>'ion-thumbsup',
            ES_DASHBOARD_NUMBER=>$this->_commentManager->countComment('moderator_state',ES_BLOG_COMMENT_STATE_APPROVE),
            ES_DASHBOARD_CONTENT=>'Commentaire approuvé et publié',

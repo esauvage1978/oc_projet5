@@ -42,23 +42,23 @@ class UserController extends AbstractController
         $users=[];
 
         $users[0]=[
-            ES_DASHBOARD_TITRE=>'Total',
+            ES_DASHBOARD_TITLE=>'Total',
             ES_DASHBOARD_ICONE=>'ion-ios-people',
             ES_DASHBOARD_NUMBER=>$this->_userManager->countUsers(),
             ES_DASHBOARD_CONTENT=>'Nombre total d\'utilisateur inscrit',
-            ES_DASHBOARD_LINK=>'user.list'
+            ES_DASHBOARD_LINK=>'user/list'
         ];
 
         $users[1]=[
-           ES_DASHBOARD_TITRE=>'non activé',
+           ES_DASHBOARD_TITLE=>'non activé',
            ES_DASHBOARD_ICONE=>'ion-locked',
            ES_DASHBOARD_NUMBER=>$this->_userManager->countUsers('validaccount',0),
            ES_DASHBOARD_CONTENT=>'Utilisateur n\'ayant pas validé leur compte',
-           ES_DASHBOARD_LINK=>'user.list/validaccount/0'
+           ES_DASHBOARD_LINK=>'user/list/validaccount/0'
        ];
 
         $users[2]=[
-           ES_DASHBOARD_TITRE=>'Suspendu',
+           ES_DASHBOARD_TITLE=>'Suspendu',
            ES_DASHBOARD_ICONE=>'ion-pause',
            ES_DASHBOARD_NUMBER=>$this->_userManager->countUsers ('actif',0),
            ES_DASHBOARD_CONTENT=>'Utilisateur suspendu par un gestionnaire',
@@ -66,7 +66,7 @@ class UserController extends AbstractController
        ];
 
         $users[3]=[
-           ES_DASHBOARD_TITRE=>ES_USER_ROLE[ES_USER_ROLE_GESTIONNAIRE],
+           ES_DASHBOARD_TITLE=>ES_USER_ROLE[ES_USER_ROLE_GESTIONNAIRE],
            ES_DASHBOARD_ICONE=>'ion-university',
            ES_DASHBOARD_NUMBER=>$this->_userManager->countUsers ('user_role',ES_USER_ROLE_GESTIONNAIRE),
            ES_DASHBOARD_CONTENT=>'Gestionnaire du site',

@@ -71,8 +71,8 @@
                 <?= isset($formModify)?$formModify:'';?>
             </div>
         </div>
-        <!-- style="visibility:hidden"-->
-        <div class="widget-sidebar" >
+        
+        <div class="widget-sidebar" style="visibility:hidden">
             <h5 class="sidebar-title">Supprimer</h5>
             <div class="sidebar-content">
                 <?= isset($formDelete)?$formDelete:'';?>

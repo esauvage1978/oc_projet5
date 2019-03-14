@@ -2,7 +2,7 @@
 
 namespace ES\Core\Model;
 
-use \ES\Core\Database\BddAction;
+use ES\Core\Database\BddAction;
 use ES\Core\Database\QueryBuilder;
 
 abstract class AbstractManager

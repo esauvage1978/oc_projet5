@@ -2,21 +2,14 @@
 
 namespace ES\Core\Form\WebControls;
 
-/**
- * WebControlsTextaera short summary.
- *
- * WebControlsTextaera description.
- *
- * @version 1.0
- * @author ragus
- */
+
 class WebControlsFile extends WebControlsParamText
 {
     use ParamValid;
     use ParamRequire;
 
     private $_text;
-    public function setText($value)
+    public function setText(string $value)
     {
         $this->_text=$value;
     }

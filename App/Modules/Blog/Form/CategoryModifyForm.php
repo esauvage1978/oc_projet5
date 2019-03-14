@@ -6,6 +6,7 @@ use ES\Core\Form\Form;
 use ES\Core\Form\WebControls\WebControlsButtons;
 use ES\Core\Form\WebControls\WebControlsInput;
 use ES\Core\Form\WebControlsStandard\InputToken;
+use ES\Core\Form\WebControls\WebControlsMessage;
 use ES\Core\Toolbox\Url;
 
 
@@ -20,9 +21,10 @@ use ES\Core\Toolbox\Url;
 class CategoryModifyForm extends Form
 {
     const TOKEN=0;
-    const BUTTON=1;
-    const CATEGORY=2;
-    const IDHIDDEN=3;
+    const MESSAGE=1;
+    const BUTTON=2;
+    const CATEGORY=3;
+    const IDHIDDEN=4;
 
 
 
@@ -33,6 +35,11 @@ class CategoryModifyForm extends Form
         //ajout du token
         $token=new InputToken($this->_formName);
         $this[self::TOKEN]=$token;
+
+        //ajout du message de retour
+        $message=new WebControlsMessage($this->_formName);
+        $this[self::MESSAGE]=$message ;
+
 
         //ajout du bouton
         $button=new WebControlsButtons ($this->_formName);
@@ -81,8 +88,8 @@ class CategoryModifyForm extends Form
     public function render()
     {
         return $this->getAction(Url::to('blog','category','modify#categorycrud')) .
-
-               $this->renderControl(self::TOKEN) .
+               $this->renderControl(self::MESSAGE,false) .
+               $this->renderControl(self::TOKEN,false) .
                $this->renderControl(self::IDHIDDEN,false) .
                $this->renderControl(self::CATEGORY) .
                $this->renderButton(self::BUTTON) .

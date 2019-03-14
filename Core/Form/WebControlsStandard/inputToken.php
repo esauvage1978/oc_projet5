@@ -18,6 +18,7 @@ class InputToken extends WebControlsInput
 
     public function __construct($prefixeFormName)
     {
+        $this->prefixeFormName=$prefixeFormName;
         $this->name=self::NAME;
         $this->type =parent::TYPE_HIDDEN;
 

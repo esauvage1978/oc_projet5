@@ -34,7 +34,7 @@ class CategoryAddForm extends Form
         $token=new InputToken($this->_formName);
         $this[self::TOKEN]=$token;
 
-        //ajout du token
+        //ajout du message de retour
         $message=new WebControlsMessage($this->_formName);
         $this[self::MESSAGE]=$message ;
 

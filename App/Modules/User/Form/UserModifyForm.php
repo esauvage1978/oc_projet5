@@ -115,9 +115,9 @@ class UserModifyForm extends Form
 
     public function render()
     {
-        return $this->getActionFile(Url::to('user','modify'),$this[self::ID_HIDDEN]->getText()) .
-               $this->renderControl(self::TOKEN) .
-               $this->renderControl(self::ID_HIDDEN) .
+        return $this->getAction(Url::to('user','modify'),$this[self::ID_HIDDEN]->getText(),true) .
+               $this->renderControl(self::TOKEN,false) .
+               $this->renderControl(self::ID_HIDDEN,false) .
                $this->renderControl(self::IDENTIFIANT) .
                $this->renderControl(self::MAIL) .
                $this->renderControl(self::USER_ROLE) .

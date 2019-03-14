@@ -31,29 +31,29 @@ class CategoryManager extends AbstractManager
     public function getCategorys()
     {
         return $this->query($this->_queryBuilder
-             ->select('bc_id, bc_title, count(ba_id)')
+             ->select(CategoryTable::ID . ',' . CategoryTable::TITLE .', count(ba_id)')
              ->from(self::$table)
-             ->outerJoin('ocp5_blog_article ON bc_id=ba_category_ref')
-             ->groupBy('bc_id')
-             ->orderBy('bc_title')->render(),
+             ->outerJoin('ocp5_blog_article ON '.CategoryTable::ID.'=ba_category_ref')
+             ->groupBy(CategoryTable::ID)
+             ->orderBy(CategoryTable::TITLE)->render(),
            null,false,false);
     }
     public function getCategorysForSelect($firstElementEmpty)
     {
-        return $this->getArrayForSelect('bc_id','bc_title',$firstElementEmpty);
+        return $this->getArrayForSelect(CategoryTable::ID,CategoryTable::TITLE,$firstElementEmpty);
     }
     public function categoryNotEmpty()
     {
         //retourne les catégorie pour les articles publiés
         return $this->query(
              $this->_queryBuilder
-             ->select('bc_id, bc_title')
+             ->select(CategoryTable::ID . ',' . CategoryTable::TITLE)
              ->from(self::$table)
-             ->outerJoin('ocp5_blog_article ON bc_id=ba_category_ref')
+             ->outerJoin('ocp5_blog_article ON '.CategoryTable::ID .'=ba_category_ref')
              ->where('ba_state='. ES_BLOG_ARTICLE_STATE_ACTIF)
-             ->groupBy('bc_id')
+             ->groupBy(CategoryTable::ID)
              ->having('count(ba_id)>0')
-             ->orderBy('bc_title')->render(),
+             ->orderBy(CategoryTable::TITLE)->render(),
            null,false,false);
     }
 

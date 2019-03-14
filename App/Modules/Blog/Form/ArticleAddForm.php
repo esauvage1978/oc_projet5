@@ -3,11 +3,12 @@
 namespace ES\App\Modules\Blog\Form;
 
 use ES\Core\Form\Form;
-use ES\Core\Form\WebControlsStandard\ButtonAjouter;
-use ES\App\Modules\Blog\Form\WebControls\SelectArticleCategory;
-use ES\App\Modules\Blog\Form\WebControls\InputArticleTitle;
-use ES\App\Modules\Blog\Form\WebControls\TextareaArticleChapo;
-use ES\App\Modules\Blog\Form\WebControls\TextareaArticleContent;
+use ES\Core\Form\WebControls\WebControlsButtons;
+use ES\Core\Form\WebControls\WebControlsInput;
+use ES\Core\Form\WebControls\WebControlsTextaera;
+use ES\Core\Form\WebControls\WebControlsSelect;
+use ES\Core\Form\WebControls\WebControlsMessage;
+use ES\Core\Form\WebControlsStandard\InputToken;
 use ES\Core\Toolbox\Url;
 
 
@@ -21,31 +22,68 @@ use ES\Core\Toolbox\Url;
  */
 class ArticleAddForm extends Form
 {
-
-    const BUTTON=1;
-    const CATEGORY=2;
-    const TITLE=3;
-    const CHAPO=4;
-    const CONTENT=5;
+    const TOKEN=0;
+    const MESSAGE=1;
+    const BUTTON=2;
+    const CATEGORY=3;
+    const TITLE=4;
+    const CHAPO=5;
+    const CONTENT=6;
 
 
     public function __construct($datas=[],$byName=true)
     {
+        $this->_formName=$this->getFormName();
 
-        $this[self::BUTTON]=new ButtonAjouter();
-        $this[self::CATEGORY]=new SelectArticleCategory();
-        $this[self::TITLE]=new InputArticleTitle();
-        $this[self::CHAPO]=new TextareaArticleChapo();
-        $this[self::CONTENT]=new TextareaArticleContent();
+        //ajout du token
+        $token=new InputToken($this->_formName);
+        $this[self::TOKEN]=$token;
 
-        $this->postConstruct($datas,$byName) ;
+        //ajout du message de retour
+        $message=new WebControlsMessage($this->_formName);
+        $this[self::MESSAGE]=$message ;
+
+        //ajout du bouton
+        $button=new WebControlsButtons ($this->_formName);
+        $button->label='Ajouter';
+        $button->name='add';
+        $button->addCssClass(WebControlsButtons::CSS_ROUNDED);
+        $this[self::BUTTON]=$button;
+
+        //ajout de la catégorie
+        $category=new WebControlsSelect($this->_formName);
+        $category->Label='Catégorie';
+        $category->name='category';
+        $this[self::CATEGORY]=$category;
+
+        //ajout de la catégorie
+        $titre=new WebControlsInput($this->_formName);
+        $titre->placeHolder='Titre';
+        $titre->name='title';
+        $titre->maxLength=100;
+        $this[self::TITLE]=$titre;
+
+        //ajout de la catégorie
+        $chapo=new WebControlsTextaera($this->_formName);
+        $chapo->placeHolder='Extrait';
+        $chapo->name='chapo';
+        $this[self::CHAPO]=$chapo;
+
+        //ajout de la catégorie
+        $mContent=new WebControlsTextaera($this->_formName);
+        $mContent->placeHolder='Contenu';
+        $mContent->name='content';
+        $this[self::CONTENT]=$mContent;
+
+
+        $this->setText($datas,$byName);
     }
 
     public function check():bool
     {
         $checkOK=true;
 
-        if(!$this->checkToken() ) {
+        if(!$this[self::TOKEN]->check() ) {
             $checkOK=false;
         }
 
@@ -53,7 +91,7 @@ class ArticleAddForm extends Form
             $checkOK=false;
         }
 
-        if(!$this[self::TITLE]->check()) {
+        if(!$this[self::TITLE]->check() || !$this[self::TITLE]->checkLenght(4,100)) {
             $checkOK=false;
         }
 
@@ -71,7 +109,8 @@ class ArticleAddForm extends Form
     public function render()
     {
         return $this->getAction(Url::to('blog','article','add#articleadd')) .
-               $this->renderToken() .
+               $this->renderControl(self::TOKEN,false) .
+               $this->renderControl(self::MESSAGE,false) .
                $this->renderControl(self::TITLE) .
                $this->renderControl(self::CATEGORY) .
                $this->renderControl(self::CHAPO) .

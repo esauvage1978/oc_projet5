@@ -3,7 +3,6 @@
 namespace ES\App\Modules\Blog\Form;
 
 use ES\Core\Form\Form;
-use ES\Core\Form\WebControls\WebControlsButtons;
 use ES\Core\Form\WebControls\WebControlsTextaera;
 use ES\Core\Form\WebControlsStandard\InputToken;
 use ES\Core\Form\WebControls\WebControlsInput;
@@ -21,7 +20,6 @@ use ES\Core\Toolbox\Url;
 class CommentAddForm extends Form
 {
     const TOKEN=0;
-    const BUTTON=1;
     const COMMENT=2;
     const IDARTICLEHIDDEN=3;
 

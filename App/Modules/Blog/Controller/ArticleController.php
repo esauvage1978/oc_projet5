@@ -40,7 +40,7 @@ class ArticleController extends AbstractController
         $articles=[];
 
         $articles[0]=[
-            ES_DASHBOARD_TITRE=>'Total',
+            ES_DASHBOARD_TITLE=>'Total',
             ES_DASHBOARD_ICONE=>'ion-folder',
             ES_DASHBOARD_NUMBER=>$this->_articleManager->countArticles(),
             ES_DASHBOARD_CONTENT=>'Nombre total d\'article',
@@ -49,7 +49,7 @@ class ArticleController extends AbstractController
 
 
         $articles[1]=[
-           ES_DASHBOARD_TITRE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_ACTIF] ,
+           ES_DASHBOARD_TITLE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_ACTIF] ,
            ES_DASHBOARD_ICONE=>'ion-thumbsup',
            ES_DASHBOARD_NUMBER=>$this->_articleManager->countArticles('state',ES_BLOG_ARTICLE_STATE_ACTIF),
            ES_DASHBOARD_CONTENT=>'Article publié',
@@ -59,7 +59,7 @@ class ArticleController extends AbstractController
 
         $nombre=$this->_articleManager->countArticles('state',ES_BLOG_ARTICLE_STATE_BROUILLON);
         $articles[2]=[
-           ES_DASHBOARD_TITRE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_BROUILLON] ,
+           ES_DASHBOARD_TITLE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_BROUILLON] ,
            ES_DASHBOARD_ICONE=>'ion-compose',
            ES_DASHBOARD_NUMBER=>$nombre,
            ES_DASHBOARD_CONTENT=>'Article en cours de rédaction',
@@ -68,7 +68,7 @@ class ArticleController extends AbstractController
        ];
 
         $articles[3]=[
-           ES_DASHBOARD_TITRE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_ARCHIVE] ,
+           ES_DASHBOARD_TITLE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_ARCHIVE] ,
            ES_DASHBOARD_ICONE=>'ion-archive',
            ES_DASHBOARD_NUMBER=>$this->_articleManager->countArticles('state',ES_BLOG_ARTICLE_STATE_ARCHIVE),
            ES_DASHBOARD_CONTENT=>'Article archivé',
@@ -76,7 +76,7 @@ class ArticleController extends AbstractController
        ];
 
         $articles[4]=[
-           ES_DASHBOARD_TITRE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_CORBEILLE] ,
+           ES_DASHBOARD_TITLE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_CORBEILLE] ,
            ES_DASHBOARD_ICONE=>'ion-trash-b',
            ES_DASHBOARD_NUMBER=>$this->_articleManager->countArticles('state',ES_BLOG_ARTICLE_STATE_CORBEILLE),
            ES_DASHBOARD_CONTENT=>'Article supprimé',

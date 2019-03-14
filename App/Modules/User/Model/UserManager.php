@@ -154,7 +154,6 @@ class UserManager extends AbstractManager
 
     public function createPicture($key,$id)
     {
-        var_dump($key);
         $jpgUpload=new JpgUpload('avatar');
         return $jpgUpload->createMiniature($key,$id);
     }

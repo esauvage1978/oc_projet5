@@ -58,17 +58,20 @@ class CategoryController extends AbstractController
                     $category=$this->_categoryManager->findById ($idHidden);
                     $category->setTitle ($title);
                     $this->_categoryManager->updateCategory($category);
-                    $this->flash->writeSucces("La catégorie est modifiée");
+                    $formModify[$formModify::MESSAGE]->showMessage("La catégorie est modifiée.");
+                    
 
                     //Mise à blanc des formulaires
-                    $formModify[$formModify::CATEGORY]->setText(null);
-                    $formModify[$formModify::IDHIDDEN]->setText(null);
+                    $formModify[$formModify::CATEGORY]->setText('');
+                    $formModify[$formModify::IDHIDDEN]->setText('');
 
 
                 } else if (!$formModify->check()){
-                    $this->flash->writeError("Les informations sont incorrectes.");
+                    $formModify[$formModify::MESSAGE]->showMessage("Les informations sont incorrectes.",false);
+
                 } else {
-                    $this->flash->writeWarning("Cette catégorie existe déjà");
+                    $formModify[$formModify::MESSAGE]->showMessage("Cette catégorie existe déjà.",false);
+
                 }
 
             }
