@@ -31,15 +31,12 @@ class ArticleModifyStateForm extends Form
         $this->_formName=$this->getFormName();
 
         //ajout du token
-        $token=new InputToken($this->_formName);
-        $this[self::TOKEN]=$token;
+        $this[self::TOKEN]=new InputToken($this->_formName);
+
 
         //ajout du bouton
-        $button=new WebControlsButtons ($this->_formName);
-        $button->label='Modifier';
-        $button->name='modify';
-        $button->addCssClass(WebControlsButtons::CSS_ROUNDED);
-        $this[self::BUTTON]=$button;
+        $this[self::BUTTON]=WebControlsButtons::CreateButton($this->_formName,'modify','Modifier');
+
 
         $state=new WebControlsSelect($this->_formName);
         $state->label='Statut';

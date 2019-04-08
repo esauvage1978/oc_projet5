@@ -24,29 +24,12 @@ trait RestrictController
         header('Location: ' . ES_ROOT_PATH_WEB . 'shared/errorcatch');
         if($exit) {exit;}
     }
-    public function valideAccessPage($MustBeConnec ,$userRole=1) :bool
-    {
-        $retour=true;
 
-
-        if(!$MustBeConnec) {
-            $retour = !$this->_userConnect->isConnect();
-        } elseif(! $this->_userConnect->isConnect() ) {
-            $retour=false;
-        } elseif($this->_userConnect->user->getUserRole() < $userRole  ) {
-            $retour=false;
-        }
-        if(!$retour)
-        {
-            $this->accessDeniedView(null,true);
-        }
-        return $retour;
-    }
     public function valideAccessPageOwnerOrGestionnaire($id):bool
     {
         $retour=false;
         //si il est gestionnaire
-        $user=$this->_userConnect->user;
+        $user=$this->userConnect->user;
         if( $user->getUserRole() == ES_USER_ROLE_GESTIONNAIRE ) {
             $retour=true;
         } else if ( $user->getId()==$id ) {

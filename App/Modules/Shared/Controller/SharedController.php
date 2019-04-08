@@ -19,29 +19,30 @@ use \ES\App\Modules\Shared\Model\SharedManager;
 class SharedController extends AbstractController
 {
     static $module='Shared';
-
+    const TITLE='title';
     public function Show()
     {
-        $form =new ContactForm($this->_request->getPost() );
+        $form =new ContactForm($this->request->getPost() );
         $this->ShowView($form);
     }
+
     public function contact()
     {
-        $form =new ContactForm($this->_request->getPost() );
+        $form =new ContactForm($this->request->getPost() );
         try
         {
-            if($this->_request->hasPost()) {
+            if($this->request->hasPost() && $form->check()) {
 
                 //contrôle si les champs du formulaire sont renseignés
-                $form->check() || $this->ShowView ($form,'0',true);
+
 
                 $recaptcha=$form[$form::RECAPTCHA]->getName();
-                if ($this->_request->hasPostValue($recaptcha )) {
+                if ($this->request->hasPostValue($recaptcha )) {
 
                     // Build POST request:
                     $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
                     $recaptcha_secret = ES_RECAPTCHA_SECRET_BACK;
-                    $recaptcha_response = $this->_request->getPostValue($recaptcha );  
+                    $recaptcha_response = $this->request->getPostValue($recaptcha );
 
                     // Make and decode POST request:
                     $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
@@ -49,25 +50,27 @@ class SharedController extends AbstractController
 
                     // Take action based on the score returned:
                     if ($recaptcha->score < 0.5) {
-                        $this->ShowView ($form,'2',true);
+                        $this->ShowView ($form,'2');
+                    } 
+                    else {
+
+
+                    //envoi du mail
+                    $sharedManager=new SharedManager();
+                    $nom=$form[$form::NAME]->getText();
+                    $mail=$form[$form::MAIL]->getText();
+                    $subject=$form[$form::SUBJECT]->getText();
+                    $message=$form[$form::MESSAGE]->getText();
+
+                    $sharedManager->sendMailContact ($nom,$mail,$subject,$message  );
+
+                    //réinitialisation du formulaire
+                    $form =new ContactForm([]);
+
+                    $this->ShowView($form,'1');
                     }
 
                 }
-
-                //envoi du mail
-                $sharedManager=new SharedManager();
-                $nom=$form[$form::NAME]->getText();
-                $mail=$form[$form::MAIL]->getText();
-                $subject=$form[$form::SUBJECT]->getText();
-                $message=$form[$form::MESSAGE]->getText();
-
-                $sharedManager->sendMailContact ($nom,$mail,$subject,$message  );
-
-                //réinitialisation du formulaire
-                $form =new ContactForm([]);
-
-                $this->ShowView($form,'1');
-
 
             } else {
                 $this->ShowView($form);
@@ -78,45 +81,44 @@ class SharedController extends AbstractController
             $this->errorCatchView($e->getMessage(),true);
         }
     }
-    public function ShowView($form,$mailSend=0,$exit=false)
+    public function ShowView($form,$mailSend=0)
     {
-        $datas=['title'=>'Page d\'accueil','form'=>$form];
+        $datas=[self::TITLE =>'Page d\'accueil','form'=>$form];
         if($mailSend=='1') {
             $datas['mailSend']="Votre message a été envoyé, Merci.";
         } elseif($mailSend=='2') {
             $datas['mailSend']="Erreur de recaptcha, vous êtes un robot !!";
         }
         $this->view('HomeView',$datas);
-        if($exit){exit;}
     }
     public function accessdenied()
     {
-        $this->view('AccessDenied',['title'=>'Accès interdit']);
+        $this->view('AccessDenied',[self::TITLE=>'Accès interdit']);
     }
     public function accessdeniedmanyconnexion()
     {
-        $this->view('AccessDeniedManyConnexion',['title'=>'Accès bloqué']);
+        $this->view('AccessDeniedManyConnexion',[self::TITLE=>'Accès bloqué']);
     }
     public function errorcatch()
     {
-        $this->view('ErrorCatch',['title'=>'Erreur sur le site']);
+        $this->view('ErrorCatch',[self::TITLE=>'Erreur sur le site']);
     }
 
     public function dashboard()
     {
         $contentDashboard='';
-        if($this->_userConnect->canRedactor() )
+        if($this->userConnect->canRedactor() )
         {
-            $blogController=new BlogController($this->_userConnect,$this->_request);
+            $blogController=new BlogController($this->userConnect,$this->request,$this->flash,$this->renderView  );
             $contentDashboard.=$blogController->getWidgetDashboard ();
         }
-        if($this->_userConnect->canAdministrator() ) {
-            $userController=new UserController($this->_userConnect,$this->_request );
+        if($this->userConnect->canAdministrator() ) {
+            $userController=new UserController($this->userConnect,$this->request,$this->flash,$this->renderView  );
             $contentDashboard.=$userController->getWidgetDashboard ();
         }
 
         $this->view('DashboardView',
-        ['title'=>'Tableau de bord',
+        [self::TITLE=>'Tableau de bord',
         'contentDashboard'=>$contentDashboard]);
     }
 

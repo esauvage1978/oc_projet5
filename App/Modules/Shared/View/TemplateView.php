@@ -216,10 +216,14 @@
         </div>
         <?php endif ?>
         <footer>
-            <div class="
-                                            container">
+            <div class="container">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-3 col-lg-3">
+                        <ul class="nav flex-column" style="color:white; border-radius: 10px;background-color:rgba(255, 255, 255, 0.7); ">
+                            <?= isset($menuFooter)?$menuFooter:'';?>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
                         <div class="copyright-box">
                             <p class="copyright">
                                 &copy; Copyright
@@ -232,6 +236,7 @@
         </footer>
     </section>
     <!--/ Section Contact-footer End /-->
+
 
     <a href="#" class="back-to-top">
         <i class="fa fa-chevron-up"></i>
@@ -255,6 +260,6 @@
 
     <!-- Template Main Javascript File -->
     <script src="##DIR_VENDOR##devfolio-master/js/main.js"></script>
-
+    
 </body>
 </html>

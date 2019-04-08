@@ -1,4 +1,4 @@
-<?php if($flash->hasFlash()): ?>
+<?php  if(isset($flash) && $flash->hasFlash()): ?>
 
 
     <div class="col-md-12">

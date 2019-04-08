@@ -15,7 +15,6 @@ class WebControlsTextaera extends WebControlsParamText
     use ParamRequire;
     use ParamPlaceholder;
     use ParamValid ;
-    
 
     /**
      * Summary of $rows
@@ -93,15 +92,6 @@ class WebControlsTextaera extends WebControlsParamText
         return $params;
     }
 
-    public function check():bool
-    {
-        $retour=true;
-        $value=$this->getText();
-        if( empty($value)) {
-            $this->setIsInvalid(MSG_FORM_NOT_GOOD);
-            $retour=false;
-        }
 
-        return $retour;
-    }
+
 }

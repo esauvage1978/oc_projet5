@@ -3,6 +3,7 @@
 use \ES\App\Modules\Shared\Services\Routeur;
 use \ES\Core\Autoloader\Autoloader;
 Use ES\Core\Toolbox\Request;
+Use ES\Core\Toolbox\Flash;
 use ES\App\Modules\User\Model\UserConnect;
 
 require_once '../Config/config.php';
@@ -17,7 +18,8 @@ Autoloader::register();
 
 $request=new Request($_GET,$_POST,$_COOKIE);
 $UserConnect=new UserConnect($request);
-$routeur= new Routeur($UserConnect,$request);
+$flash=new Flash();
+$routeur= new Routeur($UserConnect,$request,$flash);
 $routeur->run();
 
 

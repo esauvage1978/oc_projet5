@@ -70,11 +70,12 @@ class CategoryManager extends AbstractManager
             ->where('ba_category_ref=:id')
             ->render(),
         ['id'=>$id],true,false)['count(ba_id)'];
-        if($retour==0) {
+        
+        if ($retour==0) {
             return false;
-        }else {
-            return true;
         }
+        return true;
+        
 
     }
 

@@ -21,8 +21,9 @@ class SharedRenderView  extends AbstractRenderView
 
     public function render($view,$data)
     {
-        $menu=new menuRender($this->_userConnect, $this->_request);
+        $menu=new menuRender($this->userConnect, $this->request);
         $data['menuUser']=$menu->render();
+        $data['menuFooter']=$menu->renderFooter();
         parent::render($view,$data);
     }
 

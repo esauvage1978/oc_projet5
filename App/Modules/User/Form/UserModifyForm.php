@@ -37,30 +37,16 @@ class UserModifyForm extends Form
         $this->_formName=$this->getFormName();
 
         //ajout du token
-        $token=new InputToken($this->_formName);
-        $this[self::TOKEN]=$token;
+        $this[self::TOKEN]=new InputToken($this->_formName);
 
         //ajout du bouton
-        $button=new WebControlsButtons ($this->_formName);
-        $button->label='Modifier';
-        $button->name='modif';
-        $button->addCssClass(WebControlsButtons::CSS_PRIMARY);
-        $this[self::BUTTON]=$button;
+        $this[self::BUTTON]=WebControlsButtons::CreateButton($this->_formName,'modif','Modifier');
 
 
         //Login
-        $login=new WebControlsInput($this->_formName);
-        $login->label ='Votre identifiant';
-        $login->name='login';
-        $login->maxLength=100;
-        $this[self::IDENTIFIANT]=$login;
+        $this[self::IDENTIFIANT]=WebControlsInput::CreateInput($this->_formName,'login','Votre identifiant');
 
-        $mail=new WebControlsInput($this->_formName);
-        $mail->label='Votre e-mail';
-        $mail->name='mail';
-        $mail->type=WebControlsInput::TYPE_EMAIL;
-        $mail->maxLength=100;
-        $this[self::MAIL]=$mail;
+        $this[self::MAIL]=WebControlsInput::CreateInput($this->_formName,'mail','Votre e-mail',null,100,WebControlsInput::TYPE_EMAIL);
 
         $userRole=new WebControlsSelect($this->_formName);
         $userRole->label='Rôle';
@@ -68,11 +54,7 @@ class UserModifyForm extends Form
         $userRole->liste =ES_USER_ROLE;
         $this[self::USER_ROLE]=$userRole;
 
-        $idHidden=new WebControlsInput($this->_formName);
-        $idHidden->name ='hash';
-        $idHidden->type=WebControlsInput::TYPE_HIDDEN;
-        $idHidden->maxLength =60;
-        $this[self::ID_HIDDEN]=$idHidden;
+        $this[self::ID_HIDDEN]=WebControlsInput::CreateHiddenId($this->_formName,'hash');
 
         $actif=new WebControlsCheckbox($this->_formName);
         $actif->name='actif';
@@ -94,6 +76,9 @@ class UserModifyForm extends Form
         if(!$this[self::TOKEN]->check() ) {
             $checkOK=false;
         }
+        if( !$this[self::ID_HIDDEN]->check() ) {
+            $checkOK=false;
+        }
 
         //contrôle du nom
         if( !$this[self::IDENTIFIANT]->check() || !$this[self::IDENTIFIANT]->checkLenght(4,100) ) {
@@ -104,9 +89,11 @@ class UserModifyForm extends Form
         $value=$this[self::MAIL]->getText();
         if( empty($value) || !filter_var($value,FILTER_VALIDATE_EMAIL)) {
 
-            $this->setIsInvalid(MSG_FORM_NOT_GOOD);
+            $this[self::MAIL]->setIsInvalid(MSG_FORM_NOT_GOOD);
             $checkOK=false;
-        } else if( !$this[self::MAIL]->checkLenght(4,100) ) {
+        } 
+        
+        if( !$this[self::MAIL]->checkLenght(4,100) ) {
             $checkOK=false;
         }
 

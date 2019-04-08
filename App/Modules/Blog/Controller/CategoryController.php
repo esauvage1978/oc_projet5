@@ -26,9 +26,9 @@ class CategoryController extends AbstractController
 
     private $_categoryManager;
 
-    public function __construct(UserConnect $userConnect, Request $request)
+    public function __construct(UserConnect $userConnect, Request $request,$flash, $renderView)
     {
-        parent::__construct($userConnect,$request);
+        parent::__construct($userConnect,$request,$flash, $renderView);
 
         $this->_categoryManager=new CategoryManager();
     }
@@ -43,10 +43,10 @@ class CategoryController extends AbstractController
     }
     public function modify()
     {
-        $formModify=new CategoryModifyForm($this->_request->getPost());
+        $formModify=new CategoryModifyForm($this->request->getPost());
         try
         {
-            if($this->_request->hasPost()) {
+            if($this->request->hasPost()) {
 
                 $title=$formModify[$formModify::CATEGORY]->getText();
                 $idHidden=$formModify[$formModify::IDHIDDEN]->getText();
@@ -59,7 +59,7 @@ class CategoryController extends AbstractController
                     $category->setTitle ($title);
                     $this->_categoryManager->updateCategory($category);
                     $formModify[$formModify::MESSAGE]->showMessage("La catégorie est modifiée.");
-                    
+
 
                     //Mise à blanc des formulaires
                     $formModify[$formModify::CATEGORY]->setText('');
@@ -89,7 +89,7 @@ class CategoryController extends AbstractController
 
     public function delete()
     {
-        $formDelete=new CategoryDeleteForm($this->_request->getPost());
+        $formDelete=new CategoryDeleteForm($this->request->getPost());
 
         $id=$formDelete[$formDelete::IDHIDDEN]->getText();
 
@@ -106,10 +106,10 @@ class CategoryController extends AbstractController
     }
     public function add()
     {
-        $formAdd=new CategoryAddForm($this->_request->getPost() );
+        $formAdd=new CategoryAddForm($this->request->getPost() );
         try
         {
-            if($this->_request->hasPost()) {
+            if($this->request->hasPost()) {
 
                 $category=$formAdd[$formAdd::CATEGORY]->getText();
 
@@ -137,13 +137,13 @@ class CategoryController extends AbstractController
     public function listView($formAdd=null, $formModify=null,$formDelete=null)
     {
         if(is_null( $formAdd) ) {
-            $formAdd=new CategoryAddForm($this->_request->getPost());
+            $formAdd=new CategoryAddForm($this->request->getPost());
         }
         if(is_null( $formModify) ) {
-            $formModify=new CategoryModifyForm($this->_request->getPost());
+            $formModify=new CategoryModifyForm($this->request->getPost());
         }
         if(is_null( $formDelete) ) {
-            $formDelete=new CategoryDeleteForm($this->_request->getPost());
+            $formDelete=new CategoryDeleteForm($this->request->getPost());
         }
 
         $list=$this->_categoryManager->getCategorys();

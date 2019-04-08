@@ -27,60 +27,67 @@ class ArticleController extends AbstractController
     private $_articleManager;
     private $_categoryManager;
 
-    public function __construct(UserConnect $userConnect, Request $request)
+    const TITLE='title';
+
+    public function __construct(UserConnect $userConnect, Request $request,$flash, $renderView)
     {
-        parent::__construct($userConnect,$request);
+        parent::__construct($userConnect,$request,$flash, $renderView);
         $this->_articleManager =new ArticleManager();
         $this->_categoryManager =new CategoryManager();
     }
 
 
-    public function getWidgetDashboard():string
+    public function getWidgetDashboard() : string
     {
         $articles=[];
+
+        $urlLisAdmin='blog/article/listadmin';
+        $urlLisAdminState=$urlLisAdmin . '/state/';
+        $filtre='state';
+        $anchor='#articlelistadmintop';
 
         $articles[0]=[
             ES_DASHBOARD_TITLE=>'Total',
             ES_DASHBOARD_ICONE=>'ion-folder',
             ES_DASHBOARD_NUMBER=>$this->_articleManager->countArticles(),
             ES_DASHBOARD_CONTENT=>'Nombre total d\'article',
-            ES_DASHBOARD_LINK=>'blog/article/listadmin#articlelistadmintop'
+            ES_DASHBOARD_LINK=>$urlLisAdmin .$anchor
         ];
 
 
         $articles[1]=[
            ES_DASHBOARD_TITLE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_ACTIF] ,
            ES_DASHBOARD_ICONE=>'ion-thumbsup',
-           ES_DASHBOARD_NUMBER=>$this->_articleManager->countArticles('state',ES_BLOG_ARTICLE_STATE_ACTIF),
+           ES_DASHBOARD_NUMBER=>$this->_articleManager->countArticles($filtre,ES_BLOG_ARTICLE_STATE_ACTIF),
            ES_DASHBOARD_CONTENT=>'Article publié',
-           ES_DASHBOARD_LINK=>'blog/article/listadmin/state/' .ES_BLOG_ARTICLE_STATE_ACTIF. '#articlelistadmintop'
+           ES_DASHBOARD_LINK=>$urlLisAdminState. ES_BLOG_ARTICLE_STATE_ACTIF. '#'
 
        ];
 
-        $nombre=$this->_articleManager->countArticles('state',ES_BLOG_ARTICLE_STATE_BROUILLON);
+        $nombre=$this->_articleManager->countArticles($filtre,ES_BLOG_ARTICLE_STATE_BROUILLON);
         $articles[2]=[
            ES_DASHBOARD_TITLE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_BROUILLON] ,
            ES_DASHBOARD_ICONE=>'ion-compose',
            ES_DASHBOARD_NUMBER=>$nombre,
            ES_DASHBOARD_CONTENT=>'Article en cours de rédaction',
-           ES_DASHBOARD_LINK=>'blog/article/listadmin/state/' .ES_BLOG_ARTICLE_STATE_BROUILLON. '#articlelistadmintop',
+           ES_DASHBOARD_LINK=>$urlLisAdminState .ES_BLOG_ARTICLE_STATE_BROUILLON. $anchor,
            ES_DASHBOARD_COLOR=>($nombre?'list-group-item-warning':'')
        ];
 
         $articles[3]=[
            ES_DASHBOARD_TITLE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_ARCHIVE] ,
            ES_DASHBOARD_ICONE=>'ion-archive',
-           ES_DASHBOARD_NUMBER=>$this->_articleManager->countArticles('state',ES_BLOG_ARTICLE_STATE_ARCHIVE),
+           ES_DASHBOARD_NUMBER=>$this->_articleManager->countArticles($filtre,ES_BLOG_ARTICLE_STATE_ARCHIVE),
            ES_DASHBOARD_CONTENT=>'Article archivé',
-           ES_DASHBOARD_LINK=>'blog/article/listadmin/state/' .ES_BLOG_ARTICLE_STATE_ARCHIVE. '#articlelistadmintop'
+           ES_DASHBOARD_LINK=>$urlLisAdminState .ES_BLOG_ARTICLE_STATE_ARCHIVE. $anchor
        ];
 
         $articles[4]=[
            ES_DASHBOARD_TITLE=>ES_BLOG_ARTICLE_STATE[ES_BLOG_ARTICLE_STATE_CORBEILLE] ,
            ES_DASHBOARD_ICONE=>'ion-trash-b',
-           ES_DASHBOARD_NUMBER=>$this->_articleManager->countArticles('state',ES_BLOG_ARTICLE_STATE_CORBEILLE),
+           ES_DASHBOARD_NUMBER=>$this->_articleManager->countArticles($filtre,ES_BLOG_ARTICLE_STATE_CORBEILLE),
            ES_DASHBOARD_CONTENT=>'Article supprimé',
-           ES_DASHBOARD_LINK=>'blog/article/listadmin/state/' .ES_BLOG_ARTICLE_STATE_CORBEILLE. '#articlelistadmintop'
+           ES_DASHBOARD_LINK=>$urlLisAdminState .ES_BLOG_ARTICLE_STATE_CORBEILLE. $anchor
        ];
         $data=[
             'articles'=>$articles
@@ -89,9 +96,9 @@ class ArticleController extends AbstractController
         return $this->renderView->genererFichier($fichier, $data);
     }
 
-    public function show($id)
+    public function show(int $id)
     {
-        $formComment=new CommentAddForm($this->_request->getPost());
+        $formComment=new CommentAddForm($this->request->getPost());
         $articleComposer=null;
         if(!empty($id)) {
             $formComment[$formComment::IDARTICLEHIDDEN]->setText($id);
@@ -106,14 +113,14 @@ class ArticleController extends AbstractController
     public function showView($articleComposer, $formComment=null)
     {
 
-        $params=['title'=>$articleComposer->article->getTitle(),
+        $params=[self::TITLE =>$articleComposer->article->getTitle(),
             'articleComposer'=>$articleComposer,
             'formComment'=>$formComment
         ];
         $this->view('ShowView',$params);
 
     }
-    public function last($number)
+    public function last(int $number)
     {
         header('Content-Type: application/json');
         echo json_encode( $this->_articleManager->getLastArticles($number));
@@ -121,43 +128,45 @@ class ArticleController extends AbstractController
 
     public function add()
     {
-        $form =new ArticleAddForm($this->_request->getPost());
+        $form =new ArticleAddForm($this->request->getPost());
 
         //initialisation de la liste des catégories
         $form[$form::CATEGORY]->liste=$this->_categoryManager->getCategorysForSelect(true);
 
         try
         {
-            if($this->_request->hasPost()) {
+            if($this->request->hasPost()) {
                 //Contrôle de la saisie des données de l'utilisateur
-                if (!$form->check()) {
-                    $this->addView($form,true);
-                }
+                if ($form->check()) {
+
+                    //initialisation de la class UserTable
+                    $article=$this->_articleManager->createArticle(
+                        $form[$form::TITLE]->getText(),
+                        $form[$form::CATEGORY]->getText(),
+                        $form[$form::CHAPO]->getText(),
+                        $form[$form::CONTENT]->getText(),
+                        $this->userConnect->user->getId()
+                        );
+
+                    if($article->hasId())  {
+
+                        $this->flash->writeSucces ("Article créé en tant que brouillon") ;
+
+                        header('location: ' .ES_ROOT_PATH_WEB . 'blog/article/modify/' . $article->getId()  );
+                        exit;
 
 
-                //initialisation de la class UserTable
-                $article=$this->_articleManager->createArticle(
-                    $form[$form::TITLE]->getText(),
-                    $form[$form::CATEGORY]->getText(),
-                    $form[$form::CHAPO]->getText(),
-                    $form[$form::CONTENT]->getText(),
-                    $this->_userConnect->user->getId()
-                    );
-
-
-
-                if($article->hasId())  {
-
-                    $this->flash->writeSucces ("Article créé en tant que brouillon") ;
-
-                    //Retour page d'accueil
-                    $this->modify($article->getId());
-
+                    } else {
+                        $this->flash->writeError ('Erreur lors de la création.');
+                        $this->addView($form);
+                    }
                 } else {
-                    $this->flash->writeError ('Erreur lors de la création.');
+
                     $this->addView($form);
+
                 }
             } else {
+
                 $this->addView($form);
             }
         }
@@ -166,25 +175,29 @@ class ArticleController extends AbstractController
             $this->errorCatchView( $e->getMessage(),true);
         }
     }
-    private function addView($form,$exit=false)
+    private function addView($form)
     {
         $this->view('ArticleAddView',[
-            'title'=>'Création d\'un article',
+            self::TITLE =>'Création d\'un article',
             'form'=>$form]);
-        if($exit) {exit;}
     }
-    public function modify($id)
+    public function modify(int $id)
     {
 
-        $formModify = new ArticleModifyForm($this->_request->getPost());
+        $formModify = new ArticleModifyForm($this->request->getPost());
 
-        $formModifyState = new ArticleModifyStateForm($this->_request->getPost());
+        $formModifyState = new ArticleModifyStateForm($this->request->getPost());
         $formModifyState[$formModifyState::CATEGORY]->liste=$this->_categoryManager->getCategorysForSelect(true);
 
         $articleComposer=$this->_articleManager->findById($id);
+
+
+
+
+
         try
         {
-            if($this->_request->hasPost()) {
+            if($this->request->hasPost()) {
 
                 $retour=$this->_articleManager->createPicture(
                    $formModifyState[$formModifyState::FILE]->getName() ,$id) ;
@@ -192,48 +205,47 @@ class ArticleController extends AbstractController
                     $this->flash->writeError ($retour);
                 }
                 //Contrôle de la saisie des données de l'utilisateur
-                if (!$formModify->check()) {
-                    $this->modifyView($articleComposer,$formModify,$formModifyState,true);
+                if ($formModify->check()) {
+
+                    $articleComposer->article->setTitle($formModify[$formModify::TITLE]->getText());
+                    $articleComposer->article->setChapo($formModify[$formModify::CHAPO]->getText());
+                    $articleComposer->article->setContent($formModify[$formModify::CONTENT]->getText());
+                    $articleComposer->article->setCategoryRef($formModifyState[$formModifyState::CATEGORY]->getText());
+                    if($articleComposer->article->getState() != $formModifyState[$formModifyState::STATE]->getText()) {
+                        $articleComposer->article->setState($formModifyState[$formModifyState::STATE]->getText());
+                        $articleComposer->article->setModifyDate(\date(ES_NOW)) ;
+                    }
+
+                    $this->_articleManager->modifyArticle($articleComposer->article,$this->userConnect->user->getId());
+
+                    $this->flash->writeSucces ('Modification effectuée');
                 }
-
-                $articleComposer->article->setTitle($formModify[$formModify::TITLE]->text);
-                $articleComposer->article->setChapo($formModify[$formModify::CHAPO]->text);
-                $articleComposer->article->setContent($formModify[$formModify::CONTENT]->text);
-                $articleComposer->article->setCategoryRef($formModifyState[$formModifyState::CATEGORY]->text);
-                if($articleComposer->article->getState() != $formModifyState[$formModifyState::STATE]->text) {
-                    $articleComposer->article->setState($formModifyState[$formModifyState::STATE]->text);
-                    $articleComposer->article->setModifyDate(\date(ES_NOW)) ;
-                }
-
-                $this->_articleManager->modifyArticle($articleComposer->article,$this->_userConnect->user->getId());
-
-                $this->flash->writeSucces ('Modification effectuée');
 
             } else {
                 $formModify[$formModify::ID_HIDDEN]->setText($id);
                 $formModify[$formModify::TITLE]->setText($articleComposer->article->getTitle());
                 $formModify[$formModify::CHAPO]->setText($articleComposer->article->getChapo());
+                $formModify[$formModify::CONTENT]->defaultControl=$formModify[$formModify::CONTENT]::CONTROLE_NOTHING;
                 $formModify[$formModify::CONTENT]->setText($articleComposer->article->getContent());
                 $formModifyState[$formModifyState::CATEGORY]->setText($articleComposer->article->getCategoryRef());
                 $formModifyState[$formModifyState::STATE]->setText($articleComposer->article->getState());
             }
-            $this->modifyView($articleComposer,$formModify,$formModifyState ,true);
+            $this->modifyView($articleComposer,$formModify,$formModifyState );
         }
         catch(\InvalidArgumentException $e)
         {
             $this->errorCatchView( $e->getMessage(),true);
         }
     }
-    private function modifyView($articleComposer,$formModify,$formModifyState,$exit=false)
+    private function modifyView($articleComposer,$formModify,$formModifyState)
     {
 
 
         $this->view('ArticleModifyView',[
-            'title'=>'Modification d\'un article',
+            self::TITLE =>'Modification d\'un article',
             'articleComposer'=>$articleComposer,
             'formModifyState'=>$formModifyState,
             'formModify'=>$formModify]);
-        if($exit) {exit;}
     }
 
     #region LIST
@@ -255,7 +267,7 @@ class ArticleController extends AbstractController
                 $list=$this->_articleManager->getArticles();
             }
 
-            $this->listView($list,$filtre,true);
+            $this->listView($list,$filtre);
         }
         catch(\InvalidArgumentException $e)
         {
@@ -267,13 +279,13 @@ class ArticleController extends AbstractController
     {
         try
         {
-            if($this->_request->hasPostValue('recherche')) {
-                $word=$this->_request->getPostValue('recherche');
+            if($this->request->hasPostValue('recherche')) {
+                $word=$this->request->getPostValue('recherche');
                 $list= $this->_articleManager->getArticles('find',$word);
             } else {
                 $list=$this->_articleManager->getArticles();
             }
-            $this->listView($list,true,true);
+            $this->listView($list,true);
         }
         catch(\InvalidArgumentException $e)
         {
@@ -282,9 +294,9 @@ class ArticleController extends AbstractController
         }
     }
 
-    private function listView($list,$filtre=null,$exit=false)
+    private function listView($list,$filtre=null)
     {
-        $params=['title'=>'Blog',
+        $params=[self::TITLE =>'Blog',
                  'list'=>$list];
 
         if(isset($filtre)) {
@@ -295,13 +307,12 @@ class ArticleController extends AbstractController
         }
 
 
-        if($this->_userConnect->canRedactor() ) {
+        if($this->userConnect->canRedactor() ) {
             $params['redacteur']=true;
         }
 
 
         $this->view('ListView',$params);
-        if($exit){exit;}
     }
 
     #endregion
@@ -324,9 +335,9 @@ class ArticleController extends AbstractController
         }
 
     }
-    public function listAdminView($list,$filtre=false)
+    private function listAdminView($list,$filtre=false)
     {
-        $params=['title'=>'Blog',
+        $params=[self::TITLE =>'Blog',
        'list'=>$list];
 
         if(isset($filtre)) {
@@ -338,13 +349,14 @@ class ArticleController extends AbstractController
 
     public function changestatut()
     {
+        header('Content-Type: application/json');
         if($this->_articleManager->changeStatut(
-            $this->_request->getPostValue('id'),
-            $this->_request->getPostValue('value'),
-            $this->_userConnect->user)) {
-            echo 'Statut changé.';
+            $this->request->getPostValue('id',Request::TYPE_INT),
+            $this->request->getPostValue('value',Request::TYPE_INT),
+            $this->userConnect->user->getId())) {
+            echo json_encode(['message'=>'Statut changé.']);
         } else {
-            echo 'Erreur recontrée.';
+            echo  json_encode(['message'=>'Erreur recontrée.']);
         }
 
     }

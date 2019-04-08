@@ -4,6 +4,8 @@
   * 10/01/2019
  */
 
+
+
 define('ES_APPLICATION_NOM','MY LOST UNIVER');
 
 define('ES_ROOT_PATH_FAT', dirname(__DIR__). '/');
@@ -13,11 +15,14 @@ define('ES_ROOT_PATH_WEB_INDEX', ES_ROOT_PATH_WEB. '');
 
 define('ES_ROOT_PATH_FAT_MODULES', ES_ROOT_PATH_FAT. 'App/Modules/');
 define('ES_ROOT_PATH_FAT_DATAS', ES_ROOT_PATH_FAT .'Datas/');
+define('ES_ROOT_PATH_FAT_DATAS_IMG', ES_ROOT_PATH_FAT_DATAS  .'images/');
 
 define('ES_ROOT_PATH_WEB_PUBLIC', ES_ROOT_PATH_WEB .'Public/');
+
 define('ES_ROOT_PATH_WEB_DATAS', ES_ROOT_PATH_WEB .'Datas/');
-define('ES_ROOT_PATH_WEB_IMGBLOG', ES_ROOT_PATH_WEB .'Datas/images/blog/');
-define('ES_ROOT_PATH_WEB_IMGAVATAR', ES_ROOT_PATH_WEB .'Datas/images/avatar/');
+define('ES_ROOT_PATH_WEB_IMGBLOG', ES_ROOT_PATH_WEB_DATAS  .'images/blog/');
+define('ES_ROOT_PATH_WEB_IMGAVATAR', ES_ROOT_PATH_WEB_DATAS .'images/avatar/');
+
 define('ES_ROOT_PATH_WEB_VENDOR', ES_ROOT_PATH_WEB .'Public/vendor/');
 define('ES_ROOT_PATH_WEB_COMPOSER', ES_ROOT_PATH_WEB .'vendor/');
 
@@ -64,13 +69,13 @@ define('ES_BLOG_COMMENT_STATE_REJECT',20);
 define('ES_BLOG_COMMENT_STATE_WAIT',10);
 
 
-
+define('ES_CONTROL_CSRF',true);
 
 //TOKEN
 define('ES_TOKEN','token');
 
 //DASHBOARD
-define('ES_DASHBOARD_TITRE','title');
+define('ES_DASHBOARD_TITLE','title');
 define('ES_DASHBOARD_ICONE','icone');
 define('ES_DASHBOARD_NUMBER','number');
 define('ES_DASHBOARD_CONTENT','content');

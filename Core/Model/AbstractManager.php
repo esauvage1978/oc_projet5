@@ -49,9 +49,9 @@ abstract class AbstractManager
     protected function count() : string
     {
         return $this->query(
-            $this->_queryBuilder->select('count(*)')
+            $this->_queryBuilder->select(QueryBuilder::COUNT)
             ->from(static::$table )
-            ->orderBy(static::$order_by)->render(),null,true,false)['count(*)'];
+            ->orderBy(static::$order_by)->render(),null,true,false)[QueryBuilder::COUNT];
     }
 
     /**
@@ -80,7 +80,7 @@ abstract class AbstractManager
         if(isset($id)) {
             $present = $this->query(
                             $this->_queryBuilder
-                            ->select('count(*)')
+                            ->select(QueryBuilder::COUNT)
                             ->from(static::$table )
                             ->where( $fieldName . '=:fieldName')
                             ->where( static::$id . '!=:id')
@@ -92,7 +92,7 @@ abstract class AbstractManager
         } else {
             $present = $this->query(
                             $this->_queryBuilder
-                            ->select('count(*)')
+                            ->select(QueryBuilder::COUNT)
                             ->from(static::$table )
                             ->where( $fieldName . '=:fieldName')
                             ->render(),

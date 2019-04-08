@@ -3,7 +3,6 @@
 namespace ES\App\Modules\User\Form;
 
 use ES\Core\Form\Form;
-use ES\Core\Form\WebControlsStandard\checkSecret;
 use ES\Core\Form\WebControls\WebControlsButtons;
 use ES\Core\Form\WebControls\WebControlsInput;
 use ES\Core\Form\WebControlsStandard\InputToken;
@@ -27,22 +26,16 @@ class UserSignupForm extends Form
     const MAIL=4;
     const IDENTIFIANT=5;
 
-    use checkSecret;
 
     public function __construct($datas=[],$byName=true)
     {
         $this->_formName=$this->getFormName();
 
         //ajout du token
-        $token=new InputToken($this->_formName);
-        $this[self::TOKEN]=$token;
+        $this[self::TOKEN]=new InputToken($this->_formName);
 
         //ajout du bouton
-        $button=new WebControlsButtons ($this->_formName);
-        $button->label='Créer votre compte';
-        $button->name='create';
-        $button->addCssClass(WebControlsButtons::CSS_PRIMARY);
-        $this[self::BUTTON]=$button;
+        $this[self::BUTTON]=WebControlsButtons::CreateButton($this->_formName,'create','Créer votre compte');
 
         //mot de passe
         $secret=new WebControlsInput($this->_formName);
@@ -97,9 +90,10 @@ class UserSignupForm extends Form
         $value=$this[self::MAIL]->getText();
         if( empty($value) || !filter_var($value,FILTER_VALIDATE_EMAIL)) {
 
-            $this->setIsInvalid(MSG_FORM_NOT_GOOD);
+            $this[self::MAIL]->setIsInvalid(MSG_FORM_NOT_GOOD);
             $checkOK=false;
-        } else if( !$this[self::MAIL]->checkLenght(4,100) ) {
+        } 
+        if( !$this[self::MAIL]->checkLenght(4,100) ) {
             $checkOK=false;
         }
 
@@ -115,9 +109,6 @@ class UserSignupForm extends Form
             $checkOK= false;
         }
 
-        if(!$this->checkSecretNewAndConfirm()) {
-            $checkOK=false;
-        }
 
         return $checkOK ;
     }

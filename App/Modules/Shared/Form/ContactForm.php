@@ -7,7 +7,7 @@ use ES\Core\Form\WebControls\WebControlsButtons;
 use ES\Core\Form\WebControls\WebControlsInput;
 use ES\Core\Form\WebControls\WebControlsTextaera;
 use ES\Core\Form\WebControlsStandard\InputToken;
-use ES\Core\Toolbox\Url; 
+use ES\Core\Toolbox\Url;
 
 /**
  * UserConnexionForm short summary.
@@ -30,7 +30,7 @@ class ContactForm extends Form
     const MESSAGE=5;
     const RECAPTCHA=6;
 
-    
+
 
     public function __construct($datas=[],$byName=true)
     {
@@ -41,43 +41,25 @@ class ContactForm extends Form
         $this[self::TOKEN]=$token;
 
         //ajout du bouton
-        $button=new WebControlsButtons ($this->_formName);
-        $button->label='Envoyer le message';
-        $button->name='send';
-        $button->addCssClass(WebControlsButtons::CSS_ROUNDED);
-        $this[self::BUTTON]=$button;
+        $this[self::BUTTON]=WebControlsButtons::CreateButton($this->_formName,'send','Envoyer le message') ;
+        $this[self::BUTTON]->addCssClass(WebControlsButtons::CSS_ROUNDED);
 
         //ajout du nom
-        $name=new WebControlsInput($this->_formName);
-        $name->placeHolder ='Votre nom et prénom';
-        $name->name='name';
-        $name->maxLength=100;
-        $this[self::NAME]=$name;
+        $this[self::NAME]=WebControlsInput::CreateInput($this->_formName,'name',null,'Votre nom et prénom');
 
         //ajout du mail
-        $mail=new WebControlsInput($this->_formName);
-        $mail->placeHolder='Votre e-mail';
-        $mail->name='mail';
-        $mail->type=WebControlsInput::TYPE_EMAIL;
-        $mail->defaultControl=WebControlsInput::CONTROLE_MAIL;
-        $mail->maxLength=100;
-        $this[self::MAIL]=$mail;
+        $this[self::MAIL]=WebControlsInput::CreateInput($this->_formName,'mail',null,'Votre e-mail');
+        $this[self::MAIL]->type=WebControlsInput::TYPE_EMAIL;
+        $this[self::MAIL]->defaultControl=WebControlsInput::CONTROLE_MAIL;
 
-        $subject=new WebControlsInput($this->_formName);
-        $subject->placeHolder='Sujet';
-        $subject->name='subject';
-        $subject->maxLength=100;
-        $this[self::SUBJECT]=$subject;
+        $this[self::SUBJECT]=WebControlsInput::CreateInput($this->_formName,'sujet',null,'Sujet');
 
         $message=new WebControlsTextaera($this->_formName);
         $message->placeHolder='Message';
         $message->name='message';
         $this[self::MESSAGE]=$message;
 
-        $repcatcha=new WebControlsInput($this->_formName);
-        $repcatcha->type =WebControlsInput::TYPE_HIDDEN;
-        $repcatcha->name='recaptchaResponse';
-        $this[self::RECAPTCHA]=$repcatcha;
+        $this[self::RECAPTCHA]=WebControlsInput::CreateHiddenId($this->_formName,'recaptchaResponse',null);
 
         $this->setText($datas,$byName) ;
     }

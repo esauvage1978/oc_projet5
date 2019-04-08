@@ -4,6 +4,7 @@ namespace ES\App\Modules\Shared\Services;
 
 use ES\App\Modules\User\Model\UserConnect;
 
+
 /**
  * Restrict short summary.
  *
@@ -27,27 +28,32 @@ class ACL
         'blog/comment/add',
         'blog/category/listnotempty',
         'blog/article/last',
-        'ckeditor/ckeditor/js',
-        'user/test'
+        'ckeditor/ckeditor/js'
         ];
 
-    private $_restrict=[
-    ES_USER_ROLE_NOT_CONNECTED =>[
+    private $_restrict=[];
+
+
+    private $_userConnect;
+
+    public function __construct(UserConnect $userConnect)
+    {
+        $this->_userConnect=$userConnect;
+
+        $not_connected=[
         'user/connexion',
         'user/pwdforget',
         'user/pwdforgetchange',
         'user/signup',
-        'user/validaccount/valid'
-        ],
-    ES_USER_ROLE_VISITEUR =>[
+        'user/user/validaccount'
+        ];
+        $visiteur=[
         'user/modify',
         'user/pwdchange',
         'blog/show'
-        ],
-    ES_USER_ROLE_REDACTEUR=>[
-        'user/modify',
-        'user/pwdchange',
-        'blog/show',
+        ];
+
+        $redacteur=array_merge($visiteur, [
         'blog/article/add',
         'blog/article/modify',
         'blog/article/listadmin',
@@ -56,54 +62,33 @@ class ACL
         'blog/category/add',
         'blog/category/modify',
         'blog/category/list'
-        ],
-    ES_USER_ROLE_MODERATEUR=>[
-        'user/modify',
-        'user/pwdchange',
-        'blog/show',
-        'blog/article/add',
-        'blog/article/modify',
-        'blog/category/delete',
-        'blog/category/add',
-        'blog/category/modify',
-        'blog/category/list',
-        'blog/article/listadmin',
-        'blog/article/changestatut',
+        ]);
+        $moderateur=array_merge($redacteur,[
         'blog/comment/changemoderatorstate',
         'blog/comment/listadmin',
         'shared/dashboard'
-        ],
-    ES_USER_ROLE_GESTIONNAIRE =>[
-        'shared/dashboard',
-        'user/pwdchange',
-        'user/modify',
-        'user/list',
+        ]);
+        $gestionnaire=array_merge($moderateur,[
         'user/user/list',
-        'blog/show',
-        'blog/article/add',
-        'blog/article/modify',
-        'blog/article/listadmin',
-        'blog/article/changestatut',
-        'blog/category/delete',
-        'blog/category/add',
-        'blog/category/modify',
-        'blog/category/list',
-        'blog/comment/changemoderatorstate',
-        'blog/comment/listadmin'
-        ]];
+        ]);
 
-    private $_userConnect;
 
-    public function __construct(UserConnect $userConnect)
-    {
-        $this->_userConnect=$userConnect;
+        $this->_restrict=[
+        ES_USER_ROLE_NOT_CONNECTED =>$not_connected,
+        ES_USER_ROLE_VISITEUR =>$visiteur,
+        ES_USER_ROLE_REDACTEUR=>$redacteur,
+        ES_USER_ROLE_MODERATEUR=>$moderateur,
+        ES_USER_ROLE_GESTIONNAIRE=>$gestionnaire
+        ];
+
     }
 
     public function valideAccessPage($page) :bool
     {
         $retour=true;
 
-        if(isset($page)) {
+
+        if( isset($page)) {
             $userRole=ES_USER_ROLE_NOT_CONNECTED;
 
             if($this->_userConnect->isConnect()) {
@@ -112,11 +97,14 @@ class ACL
 
             $page=str_replace('.','/',$page);
 
-            if(!in_array($page,$this->_forAll ) && 
+            if(!in_array($page,$this->_forAll ) &&
                 !in_array ($page,$this->_restrict[$userRole] )) {
-                    $retour=false;
+
+                $retour=false;
             }
         }
         return $retour;
     }
+
+
 }

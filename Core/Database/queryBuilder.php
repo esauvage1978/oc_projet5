@@ -11,6 +11,7 @@ namespace ES\Core\Database;
  */
 class QueryBuilder
 {
+    const COUNT='count(*)';
     private $_fields=[];
     private $_condition=[];
     private $_from=[];

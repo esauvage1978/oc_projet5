@@ -14,7 +14,7 @@ class WebControlsSelect extends WebControlsParamText
 {
     use ParamValid;
     use ParamRequire;
-    
+
 
     /**
      * Liste des valeurs de la liste déroulante
@@ -54,10 +54,11 @@ class WebControlsSelect extends WebControlsParamText
                 case self::$buildParamsListe:
                     if(isset($this->liste)) {
                         foreach ($this->liste as $listekey => $listevalue) {
+
+                            $listekey == $this->getText()?
+                            $attributes = ' selected':
                             $attributes = '';
-                            if($listekey == $this->getText()) {
-                                $attributes = ' selected';
-                            }
+
                             $param .= '<option value="' . $listekey . '"' . $attributes . '>' . $listevalue . '</option>';
                         }
                     }
@@ -69,9 +70,8 @@ class WebControlsSelect extends WebControlsParamText
                     $param=$this->paramBuildsValid();
                     break;
                 case self::$buildParamsLabel:
-                    if(isset($this->label)) {
-                        $param='<label for="' . $this->getName() . '">'. $this->label  .'</label>';
-                    }
+                    $param=$this->label?:
+                        '<label for="' . $this->getName() . '">'. $this->label  .'</label>';
                     break;
                 default:
                     $param=parent::buildParams([$key]);

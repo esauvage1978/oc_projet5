@@ -5,8 +5,9 @@ namespace ES\App\Modules\User\Model;
 use ES\Core\Model\AbstractManager;
 use ES\App\Modules\User\Model\UserTable;
 Use ES\Core\Toolbox\Auth;
-use ES\Core\Mail\Mail;
+
 use ES\Core\Upload\JpgUpload;
+
 
 /**
  * UserManager short summary.
@@ -92,7 +93,7 @@ class UserManager extends AbstractManager
     public function countUsers($key=null,$value=null)
     {
         $this->_queryBuilder
-             ->select('count(*)')
+             ->select($this->_queryBuilder::COUNT)
              ->from(self::$table);
 
         $arguments=null;
@@ -104,7 +105,7 @@ class UserManager extends AbstractManager
             $arguments=['value'=>$value];
         }
 
-        return $this->query($this->_queryBuilder->render(),$arguments,true,false)['count(*)'];
+        return $this->query($this->_queryBuilder->render(),$arguments,true,false)[$this->_queryBuilder::COUNT];
     }
     #endregion
 
@@ -173,7 +174,7 @@ class UserManager extends AbstractManager
 
         return $this->updateUser($user);
     }
-    public function forgetInit(UserTable $user):bool
+    public function forgetInit(UserTable $user,UserMail $mail):bool
     {
         $user->setForgetHash(Auth::strRandom());
         $user->setForgetDate(date(ES_NOW));
@@ -182,7 +183,7 @@ class UserManager extends AbstractManager
             throw new \InvalidArgumentException('Erreur lors de la mise à jour');
         }
 
-        return $this->sendMailPwdForget($user);
+        return $mail->sendMailPwdForget($user);
 
     }
     public function forgetReset(UserTable $user,$pwd):bool
@@ -199,46 +200,5 @@ class UserManager extends AbstractManager
 
         return $this->updateUser($user);
     }
-    #region MAIL
-    public function sendMailSignup(UserTable $user):bool
-    {
-        try {
-            $content='Bonjour,<br/><br/>
-                Vous vous êtes récemment inscrit sur notre site.<br/>
-                Afin de finaliser l\'inscription et de valider votre compte,
-                <a href="' . ES_ROOT_PATH_WEB_INDEX . 'user/validaccount/' . $user->getValidAccountHash() . '">cliquez ici</a>
-                ou collez le lien suivant dans votre navigateur ' . ES_ROOT_PATH_WEB_INDEX . 'user/validaccount/' . $user->getValidAccountHash() . '
-                <br/><br/>Merci d\'utiliser ' . ES_APPLICATION_NOM;
-            $mail=new Mail();
-            if(! $mail->send($user->getMail(),'Validation du compte',$content)) {
-                throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail.');
-            }
-            return true;
-        }
-        catch(\InvalidArgumentException $e)
-        {
-            $this->errorCatchView($e->getMessage());
-            return false;
-        }
-    }
-    public function sendMailPwdForget(UserTable $user) :bool
-    {
-        $content='Bonjour,<br/><br/>
 
-                    Vous avez récemment sollicité une réinitialisation de votre mot de passe.<br/>
-                    Pour modifier votre mot de passe de connexion, <a href="' . ES_ROOT_PATH_WEB_INDEX . 'user/pwdforgetchange/' . $user->getForgetHash() . '">
-                    cliquez ici</a> ou collez le lien suivant dans votre navigateur : ' . ES_ROOT_PATH_WEB_INDEX . 'user/pwdforgetchange/' . $user->getForgetHash(). '
-
-                    <br/><br/>Le lien expirera dans 24 heures, assurez-vous de l\'utiliser bientôt.<br/><br/>
-                    Si vous n\'êtes pas à l\'origine de cette demande, ignorez simplement ce mail.
-                    Vos identifiants de connexion n\'ont pas été modifiés.<br/><br/>
-                    Merci d\'utiliser ' . ES_APPLICATION_NOM;
-
-        $mail=new Mail();
-        if(! $mail->send($user->getMail(),'Réinitialisation du mot de passe',$content)) {
-            throw new \InvalidArgumentException('Erreur lors de l\'envoi du mail. ');
-        }
-        return true;
-    }
-    #endregion
 }

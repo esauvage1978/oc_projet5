@@ -22,20 +22,20 @@ class BlogController extends AbstractController
     private $_articleController;
 
 
-    public function __construct(UserConnect $userConnect, Request $request)
+    public function __construct(UserConnect $userConnect, Request $request,$flash, $renderView)
     {
-        parent::__construct($userConnect,$request);
-        $this->_articleController=new ArticleController($userConnect,$request);
-        $this->_commentController=new CommentController($userConnect,$request);
+        parent::__construct($userConnect,$request,$flash, $renderView);
+        $this->_articleController=new ArticleController($userConnect,$request,$flash, $renderView);
+        $this->_commentController=new CommentController($userConnect,$request,$flash, $renderView);
     }
     public function getWidgetDashboard():string
     {
         $retour='';
-        if($this->_userConnect->canRedactor()  ) {
+        if($this->userConnect->canRedactor()  ) {
             $retour.= $this->_articleController->getWidgetDashboard ();
         }
 
-        if($this->_userConnect->canModerator()  ) {
+        if($this->userConnect->canModerator()  ) {
             $retour.= $this->_commentController->getWidgetDashboard ();
         }
 

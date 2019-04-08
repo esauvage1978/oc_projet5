@@ -28,22 +28,13 @@ class UserForgetForm extends Form
         $this->_formName=$this->getFormName();
 
         //ajout du token
-        $token=new InputToken($this->_formName);
-        $this[self::TOKEN]=$token;
+        $this[self::TOKEN]=new InputToken($this->_formName);
 
         //ajout du bouton
-        $button=new WebControlsButtons ($this->_formName);
-        $button->label='Récupérer votre mot de passe';
-        $button->name='recup';
-        $button->addCssClass(WebControlsButtons::CSS_ROUNDED);
-        $this[self::BUTTON]=$button;
+        $this[self::BUTTON]=WebControlsButtons::CreateButton($this->_formName,'recup','Récupérez votre mot de passe');
 
         //Login
-        $login=new WebControlsInput($this->_formName);
-        $login->placeHolder ='Identifiant ou adresse mail';
-        $login->name='login';
-        $login->maxLength=100;
-        $this[self::LOGIN]=$login;
+        $this[self::LOGIN]=WebControlsInput::CreateInput($this->_formName,'login',null,'Identifiant ou adresse mail');
 
         $this->setText($datas,$byName);
     }
@@ -57,7 +48,7 @@ class UserForgetForm extends Form
         }
 
         //contrôle du nom
-        if( !$this[self::LOGIN]->check() || !$this[self::LOGIN]->checkLenght(null,100) ) {
+        if( !$this[self::LOGIN]->check() || !$this[self::LOGIN]->checkLenght(4,100) ) {
             $checkOK=false;
         }
 

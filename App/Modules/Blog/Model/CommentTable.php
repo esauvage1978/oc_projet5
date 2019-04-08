@@ -104,9 +104,10 @@ class CommentTable extends AbstractTable implements ITable
     }
     public function setArticleRef($value)
     {
-        if(empty($value))
+        if(empty($value) ||
+           !filter_var($value,FILTER_VALIDATE_INT))
         {
-            throw new \InvalidArgumentException('Les données de l\'article ne sont pas présentes.');
+            throw new \InvalidArgumentException('Les données de l\'article sont incorrectes.');
         }
         $this->_article_ref=$value;
 

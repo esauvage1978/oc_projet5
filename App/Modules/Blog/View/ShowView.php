@@ -95,7 +95,7 @@
         </div>
       </div>
 <script type="text/javascript">
-
+    
 $('#commentAdd').click(function () {
     var id=$('#<?=$formComment[$formComment::IDARTICLEHIDDEN]->getName();?>').val();
     var value=$('#<?=$formComment[$formComment::COMMENT]->getName();?>').val();
@@ -103,13 +103,14 @@ $('#commentAdd').click(function () {
     $.ajax({
                 type : 'POST',
                 url : '##INDEX##blog/comment/add',
-    dataType : 'html',
+    dataType : 'json',
         data : 'id=' + id + '&value=' + value + '&token=' + token,
                success : function(data, statut){
    
-    $('#retourcommentaire').text(data.message);
+        $('#retourcommentaire').text(data.message);
         $('#<?=$formComment[$formComment::COMMENT]->getName();?>').val('');
         $('#<?=$formComment[$formComment::TOKEN]->getName();?>').val(data.token);
+        
        },
 
        error : function(resultat, statut, erreur){

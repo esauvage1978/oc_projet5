@@ -3,7 +3,7 @@
 namespace ES\App\Modules\Blog\Model;
 
 use ES\Core\Model\AbstractManager;
-use ES\Core\Database\QueryBuilder;
+
 
 /**
  * CommentManager short summary.
@@ -62,66 +62,76 @@ class CommentManager extends AbstractManager
         $comment->setArticleRef($articleRef);
         return $comment;
     }
-
+    public function deleteComment($id)
+    {
+        return $this->delete($id);
+    }
     public function getCommentsValid($articleRef)
     {
-        $requete=new QueryBuilder();
-        $requete->select ('*')
-                ->from('ocp5_blog_comment')
-                ->innerJoin('ocp5_blog_article ON bco_article_ref=ba_id')
-                ->where('bco_moderator_state=' . ES_BLOG_COMMENT_STATE_APPROVE,
-                'bco_article_ref=:id','ba_state=' . ES_BLOG_ARTICLE_STATE_ACTIF)
-                ->orderBy('bco_create_date DESC');
-
-        return $this->query($requete->render(),['id'=>$articleRef],false,true);
+        return $this->query(
+            $this->_queryBuilder
+                ->select ('*')
+                ->from(static::$table)
+                ->innerJoin('ocp5_blog_article  ON ' . CommentTable::ARTICLE_REF . '=' . ArticleTable::ID )
+                ->where(CommentTable::MODERATOR_STATE . '=' . ES_BLOG_COMMENT_STATE_APPROVE,
+                CommentTable::ARTICLE_REF . '=:id',ArticleTable::STATE . '=' . ES_BLOG_ARTICLE_STATE_ACTIF)
+                ->orderBy(CommentTable::CREATE_DATE .' DESC')
+                ->render(),
+           ['id'=>$articleRef],false,true);
     }
-    public function getCommentsForModerator($value)
+
+    public function getCommentsForModerator($value=null)
     {
         $params=[];
-        $requete=new QueryBuilder();
-        $requete->select ('bco_id','ba_title','u1.u_identifiant as creator','bco_create_date',
-            'bco_content','bco_moderator_state','u2.u_identifiant','bco_moderator_date')
-                ->from('ocp5_blog_comment')
-                ->innerJoin('ocp5_blog_article ON bco_article_ref=ba_id')
-                ->outerJoin('ocp5_user u1 ON u1.u_id=bco_create_user_ref',
-                'ocp5_user u2 ON u2.u_id=bco_moderator_user_ref');
+
+        $this->_queryBuilder
+            ->select (CommentTable::ID, ArticleTable::TITLE,'u1.u_identifiant as creator',CommentTable::CREATE_DATE ,
+            CommentTable::CONTENT ,CommentTable::MODERATOR_STATE ,'u2.u_identifiant',CommentTable::MODERATOR_DATE )
+                ->from(static::$table)
+                ->innerJoin('ocp5_blog_article ON ' . CommentTable::ARTICLE_REF  . '=' . ArticleTable::ID)
+                ->outerJoin('ocp5_user u1 ON u1.u_id=' . CommentTable::CREATE_USER_REF ,
+                'ocp5_user u2 ON u2.u_id=' . CommentTable::MODERATOR_USER_REF );
 
         if(!empty($value )) {
-            $requete->where('bco_moderator_state=:value',
-                    'ba_state=' . ES_BLOG_ARTICLE_STATE_ACTIF);
+            $this->_queryBuilder->where(CommentTable::MODERATOR_STATE.'=:value',
+                    ArticleTable::STATE .'=' . ES_BLOG_ARTICLE_STATE_ACTIF);
             $params['value']=$value;
         } else {
-            $requete->where(
-                    'ba_state=' . ES_BLOG_ARTICLE_STATE_ACTIF);
+            $this->_queryBuilder->where(
+                    ArticleTable::STATE .'=' . ES_BLOG_ARTICLE_STATE_ACTIF);
         }
 
-                $requete->orderBy('bco_create_date DESC');
+        $this->_queryBuilder->orderBy(CommentTable::CREATE_DATE . ' DESC');
 
-           return $this->query($requete->render() ,(\count($params)?$params:null),false,false);
+        return $this->query($this->_queryBuilder->render()
+            ,(\count($params)?$params:null),false,false);
     }
     #region count
     public function countComment($key=null,$value=null)
     {
-        $this->_queryBuilder
-            ->select ('count(*)')
-            ->from(self::$table);
-        $params=[];
-
-        if(isset($key) && isset($value)) {
+        try
+        {
             $this->_queryBuilder
-                ->where('bco_' . $key .'=:value');
-            $params['value']=$value;
+                ->select ($this->_queryBuilder::COUNT)
+                ->from(self::$table);
+            $params=[];
+
+            if(isset($key) && isset($value)) {
+                $this->_queryBuilder
+                    ->where('bco_' . $key .'=:value');
+                $params['value']=$value;
+            }
+
+            return $this->query(
+                $this->_queryBuilder
+                    ->render(),
+                count($params)?$params:null,true,false)[$this->_queryBuilder::COUNT] ;
+        } catch (\PDOException $ex)
+        {
+            throw new \InvalidArgumentException ('La requête est incorrecte.');
         }
-
-        return $this->query(
-            $this->_queryBuilder
-                ->render(),
-            count($params)?$params:null,true,false)['count(*)'] ;
     }
     #endregion
 
-    public function delete($id)
-    {
-        return parent::delete($id);
-    }
+
 }

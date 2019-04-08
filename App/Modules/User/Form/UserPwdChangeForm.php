@@ -5,7 +5,6 @@ namespace ES\App\Modules\User\Form;
 use ES\Core\Form\Form;
 use ES\Core\Form\WebControls\WebControlsButtons;
 use ES\Core\Form\WebControls\WebControlsInput;
-use ES\Core\Form\WebControlsStandard\checkSecret;
 use ES\Core\Form\WebControlsStandard\InputToken;
 use ES\Core\Toolbox\Url;
 
@@ -26,7 +25,6 @@ class UserPwdChangeForm extends Form
     const SECRET_CONFIRM=3;
     const SECRET_OLD=4;
 
-    use checkSecret;
 
     public function __construct($datas=[],$byName=true)
     {
@@ -36,37 +34,19 @@ class UserPwdChangeForm extends Form
         $token=new InputToken($this->_formName);
         $this[self::TOKEN]=$token;
 
-        //ajout du bouton
-        $button=new WebControlsButtons ($this->_formName);
-        $button->label='Changer';
-        $button->name='update';
-        $button->addCssClass(WebControlsButtons::CSS_ROUNDED);
-        $this[self::BUTTON]=$button;
+        $this[self::BUTTON]=WebControlsButtons::CreateButton($this->_formName,'update','Changer');
 
         //mot de passe
-        $secret=new WebControlsInput($this->_formName);
-        $secret->label ='Nouveau mot de passe';
-        $secret->name='secretNew';
-        $secret->type= WebControlsInput::TYPE_SECRET;
-        $secret->maxLength=100;
-        $secret->helpBlock =MSG_FORM_SECRET_HELPBLOCK;
-        $this[self::SECRET_NEW]=$secret;
+        $this[self::SECRET_NEW]=WebControlsInput::CreateInput($this->_formName,'secretNew','Nouveau mot de passe',null,100,WebControlsInput::TYPE_SECRET);
+        $this[self::SECRET_NEW]->helpBlock =MSG_FORM_SECRET_HELPBLOCK;
+
 
         //mot de passe
-        $secretConfirm=new WebControlsInput($this->_formName);
-        $secretConfirm->label ='Confirmation du mot de passe';
-        $secretConfirm->name='secretConfirm';
-        $secretConfirm->type= WebControlsInput::TYPE_SECRET;
-        $secretConfirm->maxLength=100;
-        $this[self::SECRET_CONFIRM]=$secretConfirm;
+        $this[self::SECRET_CONFIRM]=WebControlsInput::CreateInput($this->_formName,'secretConfirm','Confirmation du mot de passe',null,100,WebControlsInput::TYPE_SECRET);
 
         //mot de passe
-        $secretOld=new WebControlsInput($this->_formName);
-        $secretOld->label ='Ancien mot de passe';
-        $secretOld->name='secretOld';
-        $secretOld->type= WebControlsInput::TYPE_SECRET;
-        $secretOld->maxLength=100;
-        $this[self::SECRET_OLD]=$secretOld;
+        $this[self::SECRET_OLD]=WebControlsInput::CreateInput($this->_formName,'secretOld','Ancien mot de passe',null,100,WebControlsInput::TYPE_SECRET);
+
 
         $this->setText($datas,$byName) ;
     }
@@ -80,14 +60,32 @@ class UserPwdChangeForm extends Form
             $checkOK=false;
         }
 
-        if(!$this->checkSecretNewAndConfirm()) {
-            $checkOK=false;
-        }
-
         if(!$this[self::SECRET_OLD]->check()) {
             $checkOK=false;
         }
 
+        $value=$this[self::SECRET_NEW]->getText();
+        if( empty($value)) {
+
+            $this[self::SECRET_NEW]->setIsInvalid(MSG_FORM_NOT_GOOD);
+            $checkOK=false;
+
+        }  else if(!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$#', $value) ) {
+
+            $this[self::SECRET_NEW]->setIsInvalid(MSG_FORM_SECRET_NOT_COMPLEX);
+            $checkOK= false;
+        }
+        $valueConf=$this[self::SECRET_CONFIRM]->getText();
+        if( empty($valueConf)) {
+
+            $this[self::SECRET_CONFIRM]->setIsInvalid(MSG_FORM_NOT_GOOD);
+            $checkOK=false;
+        }
+
+        if($value<>$valueConf ) {
+            $this[self::SECRET_NEW]->setIsInvalid(MSG_USER_INVALID_SECRET_AND_CONF);
+            $checkOK =false;
+        }
         return $checkOK ;
     }
 

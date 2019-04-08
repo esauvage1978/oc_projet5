@@ -35,18 +35,13 @@ class CommentModifyStatusForm extends Form
         $this->_formName=$this->getFormName();
 
         //ajout du token
-        $token=new InputToken($this->_formName);
-        $this[self::TOKEN]=$token;
+        $this[self::TOKEN]=new InputToken($this->_formName);
 
         //ajout du message de retour
-        $message=new WebControlsMessage($this->_formName);
-        $this[self::MESSAGE]=$message ;
+        $this[self::MESSAGE]=new WebControlsMessage($this->_formName);
+
         //ajout du bouton
-        $button=new WebControlsButtons ($this->_formName);
-        $button->label='Modifier';
-        $button->name='modify';
-        $button->addCssClass(WebControlsButtons::CSS_ROUNDED);
-        $this[self::BUTTON]=$button;
+        $this[self::BUTTON]=WebControlsButtons::CreateButton($this->_formName,'modify','Modifier');
 
         //ajout de la catégorie
         $statut=new WebControlsSelect($this->_formName);
@@ -54,11 +49,7 @@ class CommentModifyStatusForm extends Form
         $statut->name='statut';
         $this[self::STATUS]=$statut;
 
-        $idHidden=new WebControlsInput($this->_formName);
-        $idHidden->name ='hash';
-        $idHidden->type=WebControlsInput::TYPE_HIDDEN;
-        $idHidden->maxLength =60;
-        $this[self::IDHIDDEN]=$idHidden;
+        $this[self::IDHIDDEN]=WebControlsInput::CreateHiddenId($this->_formName,'hash')  ;
 
         $this->setText($datas,$byName);
     }

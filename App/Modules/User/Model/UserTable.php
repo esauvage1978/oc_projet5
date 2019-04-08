@@ -239,8 +239,4 @@ class UserTable extends AbstractTable implements ITable
         return '##INDEX##user/modify/' .$this->getId();
     }
 
-    public function urlShow()
-    {
-        
-    }
 }

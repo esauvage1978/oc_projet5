@@ -32,30 +32,17 @@ class UserConnexionForm extends Form
         $this->_formName=$this->getFormName();
 
         //ajout du token
-        $token=new InputToken($this->_formName);
-        $this[self::TOKEN]=$token;
+
+        $this[self::TOKEN]=new InputToken($this->_formName);
 
         //ajout du bouton
-        $button=new WebControlsButtons ($this->_formName);
-        $button->label='Connexion';
-        $button->name='connexion';
-        $button->addCssClass(WebControlsButtons::CSS_PRIMARY);
-        $this[self::BUTTON]=$button;
+        $this[self::BUTTON]=WebControlsButtons::CreateButton($this->_formName,'connecion','Connexion') ;
 
         //Login
-        $login=new WebControlsInput($this->_formName);
-        $login->label ='Identifiant ou adresse mail';
-        $login->name='login';
-        $login->maxLength=100;
-        $this[self::LOGIN]=$login;
+        $this[self::LOGIN]=WebControlsInput::CreateInput($this->_formName,'login','Identifiant ou adresse mail');
 
         //mot de passe
-        $secret=new WebControlsInput($this->_formName);
-        $secret->label ='Mot de passe';
-        $secret->name='secret';
-        $secret->type= WebControlsInput::TYPE_SECRET;
-        $secret->maxLength=100;
-        $this[self::SECRET]=$secret;
+        $this[self::SECRET]=WebControlsInput::CreateInput($this->_formName,'secret','Mot de passe',null,100,WebControlsInput::TYPE_SECRET);
 
         $this->setText($datas,$byName) ;
     }

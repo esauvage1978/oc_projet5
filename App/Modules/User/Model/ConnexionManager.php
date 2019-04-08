@@ -22,21 +22,21 @@ class ConnexionManager extends AbstractManager
 
     public function IsBlackList($ip) :bool
     {
-        $requete=new QueryBuilder();
-        $retour= $this->query(
-            $requete
-            ->select ('count(*)')
+        return $this->query(
+            $this->_queryBuilder
+            ->select ($this->_queryBuilder::COUNT)
             ->from(self::$table)
             ->where(ConnexionTable::IP .'=:ip')
             ->where(ConnexionTable::DATE .'="' . \date(ES_NOW_SHORT) . '"')
             ->where(ConnexionTable::NBR_CONNEXION .'>' . ES_BRUTEFORCE_LIMITE_CONNEXION_KO )
-            ->render(),['ip'=>$ip],true,false)['count(*)'] ;
-        return ($retour==0?false:true);
+            ->render(),['ip'=>$ip],true,false)[$this->_queryBuilder::COUNT] ;
     }
 
     public function addConnexion($ip, $userRef=null)
     {
-        $connexion=$this->findByIp($ip);
+
+        $connexion=$this->findByIp($ip,$userRef);
+
         if($connexion->hasId()) {
             $connexion->setNbrConnexion($connexion->getNbrConnexion()+1);
             $this->update ($connexion->getId(),$connexion->toArray());
@@ -54,17 +54,27 @@ class ConnexionManager extends AbstractManager
         $connexion->setDate(\date(ES_NOW_SHORT)) ;
         return $connexion;
     }
-    public function findByIp($ip):ConnexionTable
+    public function findByIp($ip, $userRef=null):ConnexionTable
     {
-        $requete=new QueryBuilder();
 
-        return $this->query($requete
+
+        $this->_queryBuilder
             ->select('*')
-            ->from(self::$table)
-            ->where(ConnexionTable::IP .'=:ip')
-            ->where(ConnexionTable::DATE .'="' . \date(ES_NOW_SHORT) . '"')
+            ->from(self::$table);
+
+        if(isset($userRef)) {
+            $this->_queryBuilder
+                ->where(ConnexionTable::IP .'=:ip', ConnexionTable::DATE .'="' . \date(ES_NOW_SHORT) . '"', ConnexionTable::USER_REF . '=:userRef' );
+            $params=['ip'=>$ip,'userRef'=>$userRef];
+        } else {
+            $this->_queryBuilder
+                ->where(ConnexionTable::IP .'=:ip', ConnexionTable::DATE .'="' . \date(ES_NOW_SHORT) . '"');
+            $params=['ip'=>$ip];
+        }
+        return $this->query(
+            $this->_queryBuilder
             ->render(),
-            ['ip'=>$ip],
+            $params,
             true,true);
     }
 }

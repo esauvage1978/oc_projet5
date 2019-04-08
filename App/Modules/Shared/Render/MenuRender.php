@@ -56,7 +56,19 @@ class MenuRender
         }
         return $menu;
     }
+    public function renderFooter() :string
+    {
 
+        if (!$this->_userConnect->isConnect ()) {
+
+            $menu=$this->renderMenuDisconnet();
+        } else {
+
+            $menu=$this->renderMenuRole($this->_userConnect->user->getUserRole()) .
+                  $this->renderMenuUserConnet();
+        }
+        return $menu;
+    }
     private function renderMenuApropos()
     {
         return  $this->_liStart .
@@ -91,10 +103,10 @@ class MenuRender
 
         $bloc=$this->checkAndCreateDropDownLink('user/modify','Mon compte','user/modify/' . $this->_userConnect->user->getId());
         $bloc.= ($bloc!='')? $this->_dropdowDivideur:'';
-        $menu.=$bloc .
+
+        return $menu. $bloc .
                $this->checkAndCreateDropDownLink('user/deconnexion','Me déconnecter') .
                $this->_dropdownEnd ;
-        return $menu ;
 
     }
     private function renderMenuRole($userRole)
@@ -115,7 +127,7 @@ class MenuRender
 
             $bloc=$this->checkAndCreateDropDownLink('blog/article/add','Ajout d\'un article');
             $bloc.=$this->checkAndCreateDropDownLink('blog/category/list','Gestion des catégories');
-            $bloc.=$this->checkAndCreateDropDownLink('blog/commentlist','Modérer les commentaires');
+            $bloc.=$this->checkAndCreateDropDownLink('blog/comment/listadmin','Modérer les commentaires');
             if($bloc!='') {$bloc.= $this->_dropdowDivideur;}
             $menu.=$bloc;
 

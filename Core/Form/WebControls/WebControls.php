@@ -86,24 +86,18 @@ class WebControls
                     $param='class="' . $this->_css . '" ';
                     break;
                 case self::$buildParamsDisabled:
-                    if ($this->disabled) {
-                        $param='	disabled';
-                    }
+                    $this->disabled?$param='disabled':'';
                     break;
                 case self::$buildParamsLabel:
                     $param=$this->label;
                     break;
                 case self::$buildParamsHelBlock:
-                    if(isset($this->helpBlock)) {
-                        $param='<small class="form-text text-muted">'. $this->helpBlock . '</small>';
-                    }
+                    isset($this->helpBlock)?
+                        $param='<small class="form-text text-muted">'. $this->helpBlock . '</small>':'';
+
                     break;
                 case self::$buildParamsId:
-                    if(isset($this->id)) {
-                        $param='id="'.$this->id . '" ';
-                    } else {
-                        $param='id="'. $this->getName()  . '" ';
-                    }
+                    $param='id="'. (isset($this->id)?$this->id: $this->getName() ) . '" ';
                     break;
                 default:
                     $param=MSG_FORM_PARAMS_NOT_FOUND;

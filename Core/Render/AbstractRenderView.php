@@ -11,23 +11,22 @@ abstract class AbstractRenderView
      * @var mixed
      */
     private $_title;
-    private $_home;
     /**
      * contenu des templates
      * @var mixed
      */
     private $_content;
     protected $flash;
-    protected $_request;
-    protected $_userConnect;
+    protected $request;
+    protected $userConnect;
     protected static $module='';
     protected static $modulesViewTemplate=false;
 
-    public function __construct($userConnect,$request)
+    public function __construct($userConnect,Request $request,Flash $flash)
     {
-        $this->_request=$request;
-        $this->_userConnect =$userConnect;
-        $this->flash=new Flash($this->_request);
+        $this->request=$request;
+        $this->userConnect =$userConnect;
+        $this->flash=$flash;
     }
 
     protected function render($view, $data)
@@ -46,7 +45,7 @@ abstract class AbstractRenderView
         }
         $data['flash']=$this->flash;
         $this->_title=$data['title'];
-        $data['home']=(!stripos($view, 'home'))?false:true;
+        $data['home']=stripos($view, 'home');
 
         echo $this->genererFichier(
             ES_ROOT_PATH_FAT_MODULES . 'Shared/View/TemplateView.php',

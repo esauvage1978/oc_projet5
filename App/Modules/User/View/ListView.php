@@ -56,7 +56,7 @@
             <div class="sidebar-content">
                 <ul>
                     <li>
-                        <a href="##INDEX##user/list#topsection">
+                        <a href="##INDEX##user/user/list#topsection">
                             Tous
                         </a>
                     </li>

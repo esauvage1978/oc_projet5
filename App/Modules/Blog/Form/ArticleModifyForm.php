@@ -33,15 +33,11 @@ class ArticleModifyForm extends Form
         $this->_formName=$this->getFormName();
 
         //ajout du token
-        $token=new InputToken($this->_formName);
-        $this[self::TOKEN]=$token;
+        $this[self::TOKEN]=new InputToken($this->_formName);
 
-        //ajout du nom
-        $title=new WebControlsInput($this->_formName);
-        $title->label ='Titre de l\'article';
-        $title->name='title';
-        $title->maxLength=100;
-        $this[self::TITLE]=$title;
+        //ajout du titre
+        $this[self::TITLE]=WebControlsInput::CreateInput($this->_formName,'title','Titre');
+
 
         $champ=new WebControlsTextaera($this->_formName);
         $champ->label ='Chapo';
@@ -55,11 +51,7 @@ class ArticleModifyForm extends Form
         $contentArticle->rows=30;
         $this[self::CONTENT]=$contentArticle;
 
-        $idHidden=new WebControlsInput($this->_formName);
-        $idHidden->name ='idArticle';
-        $idHidden->type=WebControlsInput::TYPE_HIDDEN;
-        $idHidden->defaultControl=WebControlsInput::CONTROLE_INT;
-        $this[self::ID_HIDDEN]=$idHidden;
+        $this[self::ID_HIDDEN]=WebControlsInput::CreateHiddenId($this->_formName,'idArticle');
 
         $this->setText($datas,$byName) ;
     }
@@ -78,11 +70,11 @@ class ArticleModifyForm extends Form
 
 
         //contrôle du nom
-        if( !$this[self::TITLE ]->check() || !$this[self::TITLE]->checkLenght(3,100) ) {
+        if( !$this[self::TITLE ]->check() || !$this[self::TITLE]->checkLenght(4,100) ) {
             $checkOK=false;
         }
 
-        if(!$this[self::CHAPO]->check()) {
+        if(!$this[self::CHAPO]->check() || !$this[self::CHAPO]->checkLenght(1,255)) {
             $checkOK=false;
         }
 

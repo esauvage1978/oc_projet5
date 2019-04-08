@@ -1,63 +1,4 @@
 
-<script type="text/javascript">
-
-
-$(document).ready(function () {
-    $('#commentlist').DataTable(
-        {
-            "columns": [
-                { "orderable": false },
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-            ],
-            "order": [[3, "DESC"]],
-            responsive: true,
-            stateSave: true,
-            "scrollX": true,
-            "searching": true,
-            "paging": false,
-            "info": false,
-            "language": {
-                buttons: {
-                    copyTitle: 'Ajouté au presse-papiers',
-                    copyKeys: 'Appuyez sur <i>ctrl</i> ou <i>\u2318</i> + <i>C</i> pour copier les données du tableau à votre presse-papiers. <br><br>Pour annuler, cliquez sur ce message ou appuyez sur Echap.',
-                    copySuccess: {
-                        _: '%d lignes copiées',
-                        1: '1 ligne copiée'
-                    }
-                },
-                "sProcessing": "Traitement en cours...",
-                "sSearch": "Rechercher&nbsp;:",
-                "sLengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",
-                "sInfo": "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-                "sInfoEmpty": "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-                "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-                "sInfoPostFix": "",
-                "sLoadingRecords": "Chargement en cours...",
-                "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
-                "sEmptyTable": "Aucune donn&eacute;e disponible dans le tableau",
-                "oPaginate": {
-                    "sFirst": "Premier",
-                    "sPrevious": "Pr&eacute;c&eacute;dent",
-                    "sNext": "Suivant",
-                    "sLast": "Dernier"
-                },
-                "oAria": {
-                    "sSortAscending": ": activer pour trier la colonne par ordre croissant",
-                    "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
-                },
-
-            }
-        }
-    );
-});
-
-</script>
-
 <div class="row" id="commentlisttop">
     <div class="col-sm-12">
         <div class="title-box text-center">
@@ -123,7 +64,7 @@ $(document).ready(function () {
                             <?= array_key_exists(6,$row)?$row[6]:''; ?>
                         </td>
                         <td>
-                            <?= array_key_exists(7,$row)?$row[7]:'';; ?>
+                            <?= array_key_exists(7,$row)?$row[7]:''; ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -149,10 +90,11 @@ $(document).ready(function () {
         if (r == true) {
             $.ajax({
                 type: 'POST',
-                url: '##INDEX##blog.comment.changemoderatorstate',
+                dataType : 'json',
+                url: '##INDEX##blog/comment/changemoderatorstate',
                 data: 'id=' + id + '&value=' + value,
                 success: function (code_html, statut) {
-                    $('#retourcommentaire' + id).text(code_html);  
+                    $('#retourcommentaire' + id).text(code_html.message);  
                 },
                 error : function(resultat, statut, erreur){
                     alert('error' + resultat);

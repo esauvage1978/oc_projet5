@@ -58,7 +58,7 @@
                             </a>
                         </div>
                         <div class="post-date">
-                            <span class="ion-ios-clock-outline"></span><?= is_null($data->article->getModifyDate()) ?
+                            <span class="ion-ios-clock-outline"></span> <?= is_null($data->article->getModifyDate()) ?
                                                                        \date(ES_DATE_FR,strtotime ( $data->article->getCreateDate()))
                                                                        :\date(ES_DATE_FR,strtotime ( $data->article->getModifyDate())); ?>
                         </div>

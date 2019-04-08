@@ -60,4 +60,34 @@ class WebControlsParamText  extends WebControls
         }
         return '';
     }
+
+    public function check():bool
+    {
+        $retour=true;
+        $value=$this->getText();
+
+        if( empty($value)) {
+            $this->setIsInvalid(MSG_FORM_NOT_GOOD);
+            $retour=false;
+        }
+
+        return $retour;
+    }
+
+
+    public function checkLenght($mini=null,$maxi=null):bool
+    {
+        $retour=true;
+        $value=$this->getText();
+        if( isset($mini) && strlen($value)<$mini ) {
+
+            $this->setIsInvalid(MSG_FORM_LENGHT_NOT_GOOD . ' (plus de ' . $mini . ' caractères).');
+            $retour=false;
+        } else if( isset($maxi) && strlen($value)>$maxi ) {
+
+            $this->setIsInvalid(MSG_FORM_LENGHT_NOT_GOOD . ' (moins de ' . $maxi . ' caractères).');
+            $retour=false;
+        }
+        return $retour;
+    }
 }

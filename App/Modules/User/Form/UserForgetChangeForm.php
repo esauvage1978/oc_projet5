@@ -7,7 +7,6 @@ use ES\Core\Form\Form;
 use ES\Core\Form\WebControls\WebControlsButtons;
 use ES\Core\Form\WebControlsStandard\InputToken;
 use ES\Core\Form\WebControls\WebControlsInput;
-use ES\Core\Form\WebControlsStandard\checkSecret;
 use ES\Core\Toolbox\Url;
 
 
@@ -32,43 +31,26 @@ class UserForgetChangeForm extends Form
         $this->_formName=$this->getFormName();
 
         //ajout du token
-        $token=new InputToken($this->_formName);
-        $this[self::TOKEN]=$token;
+
+        $this[self::TOKEN]=new InputToken($this->_formName);
 
         //ajout du bouton
-        $button=new WebControlsButtons ($this->_formName);
-        $button->label='Changer votre mot de passe';
-        $button->name='change';
-        $button->addCssClass(WebControlsButtons::CSS_ROUNDED);
-        $this[self::BUTTON]=$button;
+        $this[self::BUTTON]=WebControlsButtons::CreateButton($this->_formName,'change','Changez votre mot de passe');
+
 
         //mot de passe
-        $secret=new WebControlsInput($this->_formName);
-        $secret->label ='Nouveau mot de passe';
-        $secret->name='secretNew';
-        $secret->type= WebControlsInput::TYPE_SECRET;
-        $secret->maxLength=100;
-        $secret->helpBlock =MSG_FORM_SECRET_HELPBLOCK;
-        $this[self::SECRET_NEW]=$secret;
+        $this[self::SECRET_NEW]=WebControlsInput::CreateInput($this->_formName,'secretNew','Nouveau mot de passe',null,100,WebControlsInput::TYPE_SECRET);
+        $this[self::SECRET_NEW]->helpBlock =MSG_FORM_SECRET_HELPBLOCK;
 
         //mot de passe
-        $secretConfirm=new WebControlsInput($this->_formName);
-        $secretConfirm->label ='Confirmation du mot de passe';
-        $secretConfirm->name='secretConfirm';
-        $secretConfirm->type= WebControlsInput::TYPE_SECRET;
-        $secretConfirm->maxLength=100;
-        $this[self::SECRET_CONFIRM]=$secretConfirm;
+        $this[self::SECRET_CONFIRM]=WebControlsInput::CreateInput($this->_formName,'secretConfirm','Confirmation du mot de passe',null,100,WebControlsInput::TYPE_SECRET);
 
-        $hash=new WebControlsInput($this->_formName);
-        $hash->name ='hash';
-        $hash->type=WebControlsInput::TYPE_HIDDEN;
-        $hash->maxLength =60;
-        $this[self::HASH]=$hash;
+        $this[self::HASH]=WebControlsInput::CreateHiddenId($this->_formName,'hash',false);
+
 
         $this->setText($datas,$byName) ;
     }
 
-    use checkSecret;
 
     public function check():bool
     {
@@ -91,8 +73,16 @@ class UserForgetChangeForm extends Form
             $this[self::SECRET_NEW]->setIsInvalid(MSG_FORM_SECRET_NOT_COMPLEX);
             $checkOK= false;
         }
+        $valueConf=$this[self::SECRET_CONFIRM]->getText();
+        if( empty($valueConf)) {
 
-        if(! $this->checkSecretNewAndConfirm()) {
+            $this[self::SECRET_CONFIRM]->setIsInvalid(MSG_FORM_NOT_GOOD);
+            $checkOK=false;
+
+        }
+
+        if($value<>$valueConf ) {
+            $this[self::SECRET_NEW]->setIsInvalid(MSG_USER_INVALID_SECRET_AND_CONF);
             $checkOK =false;
         }
 
@@ -101,7 +91,7 @@ class UserForgetChangeForm extends Form
 
     public function render()
     {
-        return $this->getAction(Url::to('user','pwdforgetchange')) .
+        return $this->getAction(Url::to('user','pwdforgetchange', $this[self::HASH]->getText())) .
                 $this->renderControl(self::TOKEN) .
                $this->renderControl(self::TOKEN) .
                $this->renderControl(self::HASH) .

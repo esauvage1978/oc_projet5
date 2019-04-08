@@ -15,8 +15,6 @@ class WebControlsMessage extends WebControls
 
     const TYPE_DANGER="alert-danger";
     const TYPE_SUCCESS="alert-success";
-    //const TYPE_INFO="alert-info";
-    //const TYPE_WARNING="alert-warning";
 
     private $_type_message;
     private $_message;
@@ -49,8 +47,9 @@ class WebControlsMessage extends WebControls
                     }
                     break;
                 case self::$buildParamsLabel:
-
                     $param=$this->_message;
+                    break;
+                default:
                     break;
             }
 

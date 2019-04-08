@@ -33,6 +33,7 @@
           <directory suffix=".php">./Core/Model/</directory>
           <directory suffix=".php">./Core/Render/</directory>
           <directory suffix=".php">./Core/Toolbox/</directory>
+          <directory suffix=".php">./Core/Upload/</directory>
           <directory suffix=".php">./App/Modules/Blog/Controller/</directory>
           <directory suffix=".php">./App/Modules/Blog/Form/</directory>
           <directory suffix=".php">./App/Modules/Blog/Form/WebControls/</directory>
@@ -48,6 +49,8 @@
           <directory suffix=".php">./App/Modules/User/Form/WebControls/</directory>
           <directory suffix=".php">./App/Modules/User/Model/</directory>
           <directory suffix=".php">./App/Modules/User/Render/</directory>
+          
+          
         </whitelist>
     </filter>
   <logging>

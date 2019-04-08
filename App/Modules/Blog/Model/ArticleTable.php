@@ -142,9 +142,10 @@ class ArticleTable extends AbstractTable implements ITable
     }
     public function setCreateUserRef($value)
     {
-        if(empty($value))
+        if(empty($value) ||
+           !filter_var($value,FILTER_VALIDATE_INT))
         {
-            throw new \InvalidArgumentException('Les données de l``utilisateur ne sont pas présentes.');
+            throw new \InvalidArgumentException('Les données de l``utilisateur sont incorrectes.');
         }
         $this->_createUserRef=$value;
 
@@ -153,7 +154,7 @@ class ArticleTable extends AbstractTable implements ITable
     #region DATE MODIFY
     public function getModifyDate()
     {
-        return $this->_dateModify;
+        return $this->_modifyDate;
     }
     public function setModifyDate($value)
     {
@@ -163,7 +164,7 @@ class ArticleTable extends AbstractTable implements ITable
             throw new \InvalidArgumentException($this->_msgBadDate);
         }
 
-        $this->_dateModify=$value;
+        $this->_modifyDate=$value;
     }
     public function getModifyUserRef()
     {

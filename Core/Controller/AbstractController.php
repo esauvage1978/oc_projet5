@@ -20,18 +20,17 @@ class AbstractController
     use RestrictController;
 
     protected $flash;
-    protected $_request;
+    protected $request;
     protected $renderView;
     protected static $module='';
-    protected $_userConnect=null;
+    protected $userConnect=null;
 
-    public function __construct(UserConnect $userConnect,Request $Request)
+    public function __construct(UserConnect $userConnect,Request $Request,Flash $flash, $renderView )
     {
-        $this->_userConnect =$userConnect ;
-        $this->_request=$Request;
-        $this->flash=new Flash();
-        $caller = '\\ES\\App\\Modules\\' . static::$module . '\\Render\\'. static::$module . 'RenderView';
-        $this->renderView=new $caller($userConnect,$Request);
+        $this->userConnect =$userConnect ;
+        $this->request=$Request;
+        $this->flash=$flash;
+        $this->renderView=$renderView;
     }
 
 

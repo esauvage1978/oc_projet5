@@ -4,6 +4,7 @@ namespace ES\App\Modules\User\Controller;
 
 use ES\App\Modules\User\Model\ConnexionManager;
 use ES\App\Modules\User\Model\UserManager;
+use ES\App\Modules\User\Model\UserMail;
 Use ES\Core\Toolbox\Auth;
 
 use ES\App\Modules\User\Form\UserPwdChangeForm;
@@ -31,22 +32,23 @@ class UserController extends AbstractController
     private $_userManager;
 
 
-    public function __construct(UserConnect $userConnect,Request $request)
+    public function __construct(UserConnect $userConnect,Request $request,$flash, $renderView)
     {
-        parent::__construct($userConnect,$request);
+        parent::__construct($userConnect,$request,$flash, $renderView);
         $this->_userManager=new UserManager();
     }
 
     public function getWidgetDashboard():string
     {
         $users=[];
+        $urlList='user/user/list';
 
         $users[0]=[
             ES_DASHBOARD_TITLE=>'Total',
             ES_DASHBOARD_ICONE=>'ion-ios-people',
             ES_DASHBOARD_NUMBER=>$this->_userManager->countUsers(),
             ES_DASHBOARD_CONTENT=>'Nombre total d\'utilisateur inscrit',
-            ES_DASHBOARD_LINK=>'user/list'
+            ES_DASHBOARD_LINK=>$urlList
         ];
 
         $users[1]=[
@@ -54,7 +56,7 @@ class UserController extends AbstractController
            ES_DASHBOARD_ICONE=>'ion-locked',
            ES_DASHBOARD_NUMBER=>$this->_userManager->countUsers('validaccount',0),
            ES_DASHBOARD_CONTENT=>'Utilisateur n\'ayant pas validé leur compte',
-           ES_DASHBOARD_LINK=>'user/list/validaccount/0'
+           ES_DASHBOARD_LINK=>$urlList .'/validaccount/0'
        ];
 
         $users[2]=[
@@ -62,7 +64,7 @@ class UserController extends AbstractController
            ES_DASHBOARD_ICONE=>'ion-pause',
            ES_DASHBOARD_NUMBER=>$this->_userManager->countUsers ('actif',0),
            ES_DASHBOARD_CONTENT=>'Utilisateur suspendu par un gestionnaire',
-           ES_DASHBOARD_LINK=>'user/list/actif/0'
+           ES_DASHBOARD_LINK=>$urlList .'/actif/0'
        ];
 
         $users[3]=[
@@ -70,7 +72,7 @@ class UserController extends AbstractController
            ES_DASHBOARD_ICONE=>'ion-university',
            ES_DASHBOARD_NUMBER=>$this->_userManager->countUsers ('user_role',ES_USER_ROLE_GESTIONNAIRE),
            ES_DASHBOARD_CONTENT=>'Gestionnaire du site',
-           ES_DASHBOARD_LINK=>'user/list/user_role/' .ES_USER_ROLE_GESTIONNAIRE
+           ES_DASHBOARD_LINK=>$urlList .'/user_role/' .ES_USER_ROLE_GESTIONNAIRE
        ];
         $data=[
             'users'=>$users
@@ -83,49 +85,55 @@ class UserController extends AbstractController
     #region CONNEXION
     public function connexion()
     {
-        //Si ip blacklisté -> accès denied et fin du programme
-        $this->UserIsBlackList();
 
-        $form =new UserConnexionForm($this->_request->getPost() );
+
+        $form =new UserConnexionForm($this->request->getPost() );
         $connexion=new ConnexionManager();
         try
         {
-            if($this->_request->hasPost()) {
-                //contrôle si les champs du formulaire sont renseignés
-                $form->check() || $this->connexionView ($form,true);
 
+            if($this->request->hasPost() && $form->check()) {
                 //Vérification
-                $user=$this->_userManager->findUserByLoginOrMail($form->getText($form::LOGIN));
+                $user=$this->_userManager->findUserByLoginOrMail($form[$form::LOGIN]->getText());
 
                 //si login non trouvé ou mauvais mot de passe
                 if( !$user->hasId() ||
                 !Auth::passwordCompare(
-                    $form->getText($form::SECRET),
-                    $user->getPassword(),true)) {
+                $form[$form::SECRET]->getText(),
+                $user->getPassword(),true)) {
 
                     $this->flash->writeError(MSG_USER_BAD_DATA);
 
                     //traçage de la connexion ko
                     $connexion->addConnexion ( $_SERVER[ES_IP]);
-                    $this->connexionView ($form,true);
-                    // si compte non validé
-                } elseif (!$user->isValidAccount()) {
-                    $this->_userManager->sendMailSignup($user);
-                    $this->flash->writeWarning(MSG_USER_NOT_ACTIVATE);
-                //si compte désactivé par un gestionnaire
-                } elseif ($user->getActif()=='0') {
-                    $this->flash->writeWarning(MSG_USER_SUSPEND);
+
+                    $this->connexionView ($form);
+
                 } else {
-                    //Création de la variable de session
-                    $this->_userConnect->connect($user);
+                    $connexion->addConnexion( $_SERVER[ES_IP],$user->getId());
+
+                    if (!$user->isValidAccount()) {
+                        $mail=new UserMail();
+                        $mail->sendMailSignup ($user);
+                        $this->flash->writeWarning(MSG_USER_NOT_ACTIVATE);
+                        ////si compte désactivé par un gestionnaire
+                    } elseif ($user->getActif()=='0') {
+                        $this->flash->writeWarning(MSG_USER_SUSPEND);
+                    } else {
+                        //Création de la variable de session
+                        $this->userConnect->connect($user);
+                        if($user->getUserRole()== ES_USER_ROLE_GESTIONNAIRE ||
+                            $user->getUserRole()== ES_USER_ROLE_REDACTEUR ||
+                            $user->getUserRole()== ES_USER_ROLE_MODERATEUR ) {
+                            header('location: ' .ES_ROOT_PATH_WEB . 'shared/dashboard');
+                            exit;
+                        }
+                    }
+                    $this->AccueilView();
                 }
-
-                $connexion->addConnexion( $_SERVER[ES_IP],$user->getId());
-                $this->AccueilView(true);
+            } else {
+                $this->connexionView($form);
             }
-
-            $this->connexionView($form);
-
         }
         catch(\InvalidArgumentException $e)
         {
@@ -135,41 +143,29 @@ class UserController extends AbstractController
     }
 
 
-    private function connexionView($form,$exit=false)
+    public function connexionView($form)
     {
-        $this->userView('ConnexionView','Connexion',$form,false,$exit);
+        $this->userView('ConnexionView','Connexion',$form,false,false);
     }
     #endregion
 
-    private function UserIsBlackList()
-    {
-        $connexionManager =new ConnexionManager();
-        if ($connexionManager->IsBlackList( $_SERVER[ES_IP])) {
-            header('location: ' .ES_ROOT_PATH_WEB . 'shared/accessdeniedmanyconnexion');
-            exit;
-        }
-    }
+
 
     #region FORGET VIEW
     public function pwdforget()
     {
-        $this->UserIsBlackList();
+
         try
         {
-            $form =new UserForgetForm($this->_request->getPost() );
+            $form =new UserForgetForm($this->request->getPost() );
 
-            if($this->_request->hasPost())
+            if($this->request->hasPost() && $form->check())
             {
-                //contrôle si les champs du formulaire sont renseignés
-                if(!$form->check()) {
-                    $this->pwdForgetView($form,true);
-                }
-
                 //récupération de l'utilisateur par rapport au login, si non trouvé $user vide
                 $user=$this->_userManager->findUserByLoginOrMail($form[$form::LOGIN]->getText());
 
                 if ($user->hasId() &&
-                    $this->_userManager->forgetInit($user)) {
+                    $this->_userManager->forgetInit($user,new UserMail())) {
 
                     //message pour l'utilisateur
                     $this->flash->writeInfo( 'Un mail de réinitialisation a été envoyé');
@@ -178,7 +174,7 @@ class UserController extends AbstractController
                     $this->accueilView();
 
                 } else {
-
+                    $this->flash->writeError(MSG_USER_BAD_DATA);
                     $form[$form::LOGIN]->setIsInvalid(MSG_FORM_NOT_GOOD);
                     $this->pwdForgetView($form);
 
@@ -191,36 +187,65 @@ class UserController extends AbstractController
         }
         catch(\InvalidArgumentException $e)
         {
-            $this->errorCatchView($e->getMessage(),true);
+            $this->errorCatchView($e->getMessage());
         }
 
     }
-    private function pwdForgetView($form,$exit=false)
+    private function pwdForgetView($form)
     {
         $this->userView('PwdForgetView','Mot de passe oublié ?',
 
             $form,false,
-            $exit);
+            false);
     }
     #endregion
 
     #region FORGET CHANGE
-    public function pwdforgetchange($hash=null)
+    public function pwdforgetchange($hash)
     {
 
         try
         {
-            if($this->_request->hasPost())
+            if($this->request->hasPost())
             {
                 //récupération des paramètres
-                $form =new UserForgetChangeForm($this->_request->getPost());
-                $this->pwdforgetchangeAfterPost($form);
+                $form =new UserForgetChangeForm($this->request->getPost());
+
+                //contrôle si les champs du formulaire sont renseignés
+                if($form->check()) {
+
+                    //initialisation de la class UserTable
+                    $user=$this->_userManager->findByForgetHash($form[$form::HASH]->getText());
+
+                    if($user->hasId() &&
+                        $this->_userManager->forgetReset($user,$form[$form::SECRET_NEW]->getText())) {
+
+                        //message d'info à l'utilisateur
+                        $this->flash->writeSucces( 'Mot de passe modifié');
+
+                        //retour à la page de connexion
+                        $this->accueilView();
+                        exit;
+                    } else {
+                        $this->flash->writeError('Données incorrectes');
+                        $this->accessDeniedView('Adresse incorrectes');
+                    }
+                } else {
+                    $this->pwdForgetChangeView($form);
+                }
             }
             else
             {
-                $form=$this->pwdforgetchangeBeforePost($hash);
+                $form= new UserForgetChangeForm([UserForgetChangeForm::HASH=>$hash],false);
+
+                if( !$this->_userManager->findByForgetHash($hash)->hasId() ) {
+                    $this->accessDeniedView('Adresse incorrectes');
+                } else {
+                    $this->pwdForgetChangeView($form);
+                }
             }
-            $this->pwdForgetChangeView($form);
+
+
         }
         catch(\InvalidArgumentException $e)
         {
@@ -228,48 +253,7 @@ class UserController extends AbstractController
         }
 
     }
-    public function pwdforgetchangeBeforePost($hash)
-    {
-        //contrôle du hash
-        if( empty($hash)) {
-            $this->accessDeniedView('Adresse incorrectes',true);
-        }
 
-        //initialisation de la class UserTable
-        $user=$this->_userManager->findByForgetHash($hash) ;
-
-        if(!$user->hasId()) {
-            $this->accessDeniedView('Les données sont incorrectes',true);
-        }
-
-        //initialisation du formulaire
-        return new UserForgetChangeForm([UserForgetChangeForm::HASH=>$hash],false);
-    }
-    public function pwdforgetchangeAfterPost(UserForgetChangeForm $form)
-    {
-
-        //contrôle si les champs du formulaire sont renseignés
-        if(!$form->check()) {
-            $this->pwdForgetChangeView($form,true);
-        }
-
-        //initialisation de la class UserTable
-        $user=$this->_userManager->findByForgetHash($form[$form::HASH]->getText());
-
-        if($user->hasId() &&
-            $this->_userManager->forgetReset($user,$form[$form::SECRET_NEW]->getText())) {
-
-            //message d'info à l'utilisateur
-            $this->flash->writeSucces( 'Mot de passe modifié');
-
-            //retour à la page de connexion
-            $this->accueilView();
-            exit;
-        } else {
-            $this->errorCatchView('Données incorrectes',true);
-        }
-
-    }
 
     private function pwdForgetChangeView($form,$exit=false)
     {
@@ -279,10 +263,10 @@ class UserController extends AbstractController
     #endregion
 
     #region MODIFY
-    private function modifyView(UserModifyForm $form,$exit=false)
+    private function modifyView(UserModifyForm $form)
     {
         // restriction des contrôle si l'utilisateur n'est pas le gestionnaire
-        if(!$this->_userConnect->canAdministrator() ) {
+        if(!$this->userConnect->canAdministrator() ) {
             $form[$form::USER_ROLE]->disabled=true;
             $form[$form::ACTIF]->disabled=true;
         }
@@ -290,12 +274,12 @@ class UserController extends AbstractController
         $this->userView('ModifyView','Les données de l\'utilisateur',
             $form,
             true,
-            $exit);
+            true);
     }
     public function modify($paramId=null)
     {
         try {
-            if($this->_request->hasPost())  {
+            if($this->request->hasPost())  {
 
                 $this->modifyAfterPost();
             } else {
@@ -308,60 +292,57 @@ class UserController extends AbstractController
     public function modifyAfterPost()
     {
 
-        $form =new UserModifyForm($this->_request->getPost());
+        $form =new UserModifyForm($this->request->getPost());
 
-        if( !$this->valideAccessPageOwnerOrGestionnaire($this->_userConnect->user,
+        if( !$this->valideAccessPageOwnerOrGestionnaire($this->userConnect->user,
                             $form[$form::ID_HIDDEN]->getText())) {
-
-            $this->AccueilView (true);
-        }
-
-        //vérification si user connecté ou administrateur
-        if (!$form->check() ) {
-
-            $this->modifyView($form,$this->_userConnect->user,true);
-        }
-
-        //récupération de l'UserTable
-        $user=$this->_userManager->findById ($form[$form::ID_HIDDEN]->getText());
-
-
-        if(!$user->hasId() ||
-        $this->_userManager->identifiantExist($form[$form::IDENTIFIANT]->getText(),
-                                                    $user->getId()) ||
-        $this->_userManager->mailExist ($form[$form::MAIL]->getText(),
-                                                    $user->getId()))
-        {
-            $this->flash->writeError('L\'identifiant ou le mail existe déjà.');
-            //récupération de l'UserTable
-
+            $this->AccueilView ();
         } else {
-            $user->setMail($form[$form::MAIL]->getText());
-            $user->setIdentifiant($form[$form::IDENTIFIANT]->getText());
-            if($this->_userConnect->user->getUserRole()=='4' ) {
-                $user->setUserRole($form[$form::USER_ROLE]->getText());
 
-                if(($user->getActif()=='0' && $form[$form::ACTIF]->getText()=='on') ||
-                    ($user->getActif()=='1' && $form[$form::ACTIF]->getText()==null)) {
-                    $this->_userManager->changeActifOfUser ($user);
+            //vérification si user connecté ou administrateur
+            if ($form->check() ) {
+
+                //récupération de l'UserTable
+                $user=$this->_userManager->findById ($form[$form::ID_HIDDEN]->getText());
+
+
+                if(!$user->hasId() ||
+                $this->_userManager->identifiantExist($form[$form::IDENTIFIANT]->getText(),
+                                                            $user->getId()) ||
+                $this->_userManager->mailExist ($form[$form::MAIL]->getText(),
+                                                            $user->getId()))
+                {
+                    $this->flash->writeError('L\'identifiant ou le mail existe déjà.');
+
+                } else {
+                    $user->setMail($form[$form::MAIL]->getText());
+                    $user->setIdentifiant($form[$form::IDENTIFIANT]->getText());
+                    if($this->userConnect->user->getUserRole()==ES_USER_ROLE_GESTIONNAIRE ) {
+                        $user->setUserRole($form[$form::USER_ROLE]->getText());
+
+                        if(($user->getActif()=='0' && $form[$form::ACTIF]->getText()=='on') ||
+                            ($user->getActif()=='1' && $form[$form::ACTIF]->getText()==null)) {
+                            $this->_userManager->changeActifOfUser ($user);
+                        }
+                    }
+
+                    $retour=$this->_userManager->createPicture(
+                        $form[$form::FILE]->getName() ,$user->getId()) ;
+                    if(!empty($retour)) {
+                        $this->flash->writeError ($retour);
+                    }
+
+                    $this->_userManager->updateUser($user);
+
+                    $form[$form::ACTIF]->label=$user->getActifLabel();
+
+                    //Information de l'utilisateur
+                    $this->flash->writeSucces ("Utilisateur mis à jour") ;
+
                 }
             }
-
-            $retour=$this->_userManager->createPicture(
-                $form[$form::FILE]->getName() ,$user->getId()) ;
-            if(!empty($retour)) {
-                $this->flash->writeError ($retour);
-            }
-
-            $this->_userManager->updateUser($user);
-
-            $form[$form::ACTIF]->label=$user->getActifLabel();
-
-            //Information de l'utilisateur
-            $this->flash->writeSucces ("Utilisateur mis à jour") ;
-
+            $this->modifyView($form);
         }
-        $this->modifyView($form,true);
     }
     public function modifyBeforePost($paramId=null)
     {
@@ -380,7 +361,7 @@ class UserController extends AbstractController
 
 
         } else {
-            $user=$this->_userConnect->user;
+            $user=$this->userConnect->user;
         }
 
         //Initialisation du formulaire
@@ -394,23 +375,22 @@ class UserController extends AbstractController
 
         $form[$form::ACTIF]->label=$user->getActifLabel();
 
-        $this->modifyView($form,true);
+        $this->modifyView($form);
 
     }
     #endregion
 
     #region VIEW
 
-    private function  userView($view,$title,$form,$user,$exit)
+    private function  userView($view,$title,$form,$user)
     {
         $params=['title'=>$title,'form'=>$form];
         if($user)
         {
-            $params['userConnect']=$this->_userConnect->user;
+            $params['userConnect']=$this->userConnect->user;
         }
 
         $this->view($view,$params);
-        if($exit){exit;}
     }
     #endregion
 
@@ -434,19 +414,19 @@ class UserController extends AbstractController
                 $list=$this->_userManager->getUsers();
             }
 
-            $this->listView($list,true);
+            $this->listView($list);
         }
         catch(\InvalidArgumentException $e)
         {
             $this->errorCatchView( $e->getMessage(),true);
         }
     }
-    private function listView($list,$exit=false)
+    private function listView($list)
     {
         $this->userView('ListView','Liste des utilisateurs',
             $list,
             true,
-            $exit);
+            true);
     }
 
     #endregion
@@ -455,7 +435,7 @@ class UserController extends AbstractController
     public function deconnexion()
     {
         //deconection
-        $this->_userConnect->disconnect();
+        $this->userConnect->disconnect();
 
         //retour à la page d'accueil
         $this->AccueilView();
@@ -471,10 +451,10 @@ class UserController extends AbstractController
         try
         {
 
-            $form =new UserPwdChangeForm($this->_request->getPost());
+            $form =new UserPwdChangeForm($this->request->getPost());
 
 
-            if($this->_request->hasPost()) {
+            if($this->request->hasPost()) {
                 $this->pwdChangeAfterPost($form);
             }
 
@@ -489,41 +469,35 @@ class UserController extends AbstractController
     }
     public function pwdChangeAfterPost($form)
     {
-        if(!$form->check())
+        if($form->check() && Auth::passwordCompare ($form[$form::SECRET_OLD]->getText() ,
+            $this->userConnect->user->getPassword()))
         {
-            $this->pwdChangeView ($form,true);
+
+            //reset de la table utilisateur
+            $this->_userManager->updatePassword($this->userConnect->user,
+               $form[$form::SECRET_NEW]->getText());
+
+            //message d'info à l'utilisateur
+            $this->flash->writeSucces( 'Mot de passe modifié');
+
+            //retour à la page de connexion
+            $this->AccueilView(true);
+        } else {
+            $this->pwdChangeView ($form);
         }
 
-        //comparaison des mots de passe saisis
-        if(!Auth::passwordCompare ($form[$form::SECRET_OLD]->getText() ,
-            $this->_userConnect->user->getPassword()))
-        {
-            $form[$form::SECRET_OLD]->setIsInvalid( 'L\'ancien mot de passe est incorrect');
-            $this->pwdChangeView ($form,true);
-        }
-
-        //reset de la table utilisateur
-        $this->_userManager->updatePassword($this->_userConnect->user,
-           $form[$form::SECRET_NEW]->getText());
-
-        //message d'info à l'utilisateur
-        $this->flash->writeSucces( 'Mot de passe modifié');
-
-        //retour à la page de connexion
-        $this->AccueilView(true);
     }
-    private function pwdChangeView($form,$exit=false)
+    private function pwdChangeView($form)
     {
         $this->userView('PwdChangeView','Changement du mot de passe',
             $form,true,
-            $exit);
+            true);
     }
     #endregion
 
     #region VALIDATION DU COMPTE
-    public function validaccountvalid($hash)
+    public function validaccount($hash)
     {
-        $this->UserIsBlackList();
 
         try
         {
@@ -555,13 +529,13 @@ class UserController extends AbstractController
     #region CREATE ACCOUNT
     public function signup()
     {
-        $this->UserIsBlackList();
 
-        $form =new UsersignupForm($this->_request->getPost());
+
+        $form =new UsersignupForm($this->request->getPost());
 
         try
         {
-            if($this->_request->hasPost()) {
+            if($this->request->hasPost()) {
                 $this->signupAfterPost ($form);
             } else {
                 $this->signupView($form);
@@ -576,34 +550,37 @@ class UserController extends AbstractController
     {
         try {
             //Contrôle de la saisie de l'utilisateur
-            if (!$form->check()) {
-
-                $this->signupView($form,true);
-
-            }
-
-
-            //initialisation de la class UserTable
-            $user=$this->_userManager->createUser(
-                $form[$form::IDENTIFIANT]->getText(),
-                $form[$form::MAIL]->getText(),
-                $form[$form::SECRET_NEW]->getText());
+            if ($form->check()) {
 
 
 
-            if($user->hasId() &&                     //Envoi du mail
-                $this->_userManager->sendMailSignup ($user)) {
-                //Information de l'utilisateur
-                $this->flash->writeSucces ("Utilisateur créé, un mail a été envoyé pour valider l'inscription") ;
+                //initialisation de la class UserTable
+                $user=$this->_userManager->createUser(
+                    $form[$form::IDENTIFIANT]->getText(),
+                    $form[$form::MAIL]->getText(),
+                    $form[$form::SECRET_NEW]->getText());
 
-                //Retour page d'accueil
-                $this->AccueilView(true);
+                $mail=new UserMail();
 
+                if($user->hasId() &&                     //Envoi du mail
+                    $mail->sendMailSignup ($user)) {
+                    //Information de l'utilisateur
+                    $this->flash->writeSucces ("Utilisateur créé, un mail a été envoyé pour valider l'inscription") ;
+
+                    //Retour page d'accueil
+                    $this->AccueilView();
+
+                } else {
+
+                    $this->flash->writeError ('Erreur lors de la création. Identifiant ou mail déjà enregistré.');
+                    $this->signupView($form);
+                }
             } else {
+                    $this->signupView($form);
 
-                $this->flash->writeError ('Erreur lors de la création. Identifiant ou mail déjà enregistré.');
-                $this->signupView($form);
             }
+
+
         }
         catch(\InvalidArgumentException $e)
         {
@@ -611,9 +588,9 @@ class UserController extends AbstractController
         }
 
     }
-    private function signupView($form,$exit=false)
+    private function signupView($form)
     {
-        $this->userView('SignupView','Inscription',$form,false,$exit);
+        $this->userView('SignupView','Inscription',$form,false,false);
     }
 
     #endregion

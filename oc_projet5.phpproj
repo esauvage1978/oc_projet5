@@ -43,9 +43,6 @@
     <Compile Include="App\Modules\Blog\Form\CommentModifyStatusForm.php" />
     <Compile Include="App\Modules\Blog\Model\CommentComposer.php" />
     <Compile Include="App\Modules\Blog\Model\CommentManager.php" />
-    <Compile Include="App\Modules\Blog\Model\Moderator.php" />
-    <Compile Include="App\Modules\Blog\Model\ModeratorInterface.php" />
-    <Compile Include="App\Modules\Blog\Model\ModeratorPhoneNumber.php" />
     <Compile Include="App\Modules\Blog\View\ArticleAddView.php" />
     <Compile Include="App\Modules\Blog\View\ArticleListAdminView.php" />
     <Compile Include="App\Modules\Blog\View\ArticleModifyView.php" />
@@ -64,6 +61,7 @@
     <Compile Include="App\Modules\Shared\View\ErrorCatch.php" />
     <Compile Include="App\Modules\User\Model\ConnexionManager.php" />
     <Compile Include="App\Modules\User\Model\ConnexionTable.php" />
+    <Compile Include="App\Modules\User\Model\UserMail.php" />
     <Compile Include="Config\config.php" />
     <Compile Include="Config\i18n.php" />
     <Compile Include="Core\Database\QueryBuilder.php" />
@@ -87,7 +85,6 @@
     <Compile Include="App\Modules\Shared\View\TemplateView.php" />
     <Compile Include="App\Modules\Shared\Services\Routeur.php" />
     <Compile Include="App\Modules\User\Controller\UserController.php" />
-    <Compile Include="Core\Form\WebControlsStandard\checkSecret.php" />
     <Compile Include="App\Modules\User\Form\UserConnexionForm.php" />
     <Compile Include="App\Modules\User\Form\UserForgetChangeForm.php" />
     <Compile Include="App\Modules\User\Form\UserForgetForm.php" />
@@ -121,6 +118,7 @@
     <Compile Include="Core\Form\WebControls\WebControlsFile.php" />
     <Compile Include="Core\Form\WebControls\WebControlsInput.php" />
     <Compile Include="Core\Form\WebControls\WebControlsButtons.php" />
+    <Compile Include="Core\Form\WebControls\WebControlsMessage.php" />
     <Compile Include="Core\Form\WebControls\WebControlsParamText.php" />
     <Compile Include="Core\Form\WebControls\WebControlsSelect.php" />
     <Compile Include="Core\Form\WebControls\WebControlsTextaera.php" />
@@ -140,12 +138,21 @@
     <Compile Include="datas\certification\datas.php" />
     <Compile Include="Public\index.php" />
     <Compile Include="Public\vendor\devfolio-master\lib\lightbox\links.php" />
+    <Compile Include="Tests\BlogArticle\ArticleModifyStateFormTest.php" />
+    <Compile Include="Tests\BlogArticle\ArticleModifyFormTest.php" />
+    <Compile Include="Tests\BlogArticle\ArticleControllerTest.php" />
+    <Compile Include="Tests\BlogArticle\ArticleManagerTest.php" />
     <Compile Include="Tests\BlogArticle\ArticleShowLastTest.php" />
+    <Compile Include="Tests\BlogArticle\ArticleTableTest.php" />
+    <Compile Include="Tests\BlogArticle\ArticleAddFormTest.php" />
+    <Compile Include="Tests\BlogCategory\BlogControllerTest.php" />
     <Compile Include="Tests\BlogCategory\CategoryControllerTest.php" />
     <Compile Include="Tests\BlogCategory\CategoryFormTest.php" />
     <Compile Include="Tests\BlogCategory\CategoryManagerTest.php" />
     <Compile Include="Tests\BlogCategory\CategoryShowListForArticleTest.php" />
     <Compile Include="Tests\BlogCategory\CategoryTableTest.php" />
+    <Compile Include="Tests\BlogComment\CommentModifyStatusFormTest.php" />
+    <Compile Include="Tests\BlogComment\CommentAddFormTest.php" />
     <Compile Include="Tests\BlogComment\CommentControllerTest.php" />
     <Compile Include="Tests\BlogComment\CommentManagerTest.php" />
     <Compile Include="Tests\BlogComment\CommentTableTest.php" />
@@ -156,13 +163,19 @@
       <Publishable>False</Publishable>
     </Compile>
     <Compile Include="Tests\Core\RequestTest.php" />
-    <Compile Include="Tests\Shared\DashboardTest.php" />
     <Compile Include="Tests\Shared\RouteurTest.php" />
     <Compile Include="Tests\Shared\SharedContactFormTest.php" />
+    <Compile Include="Tests\Shared\SharedControllerTest.php" />
+    <Compile Include="Tests\Shared\SharedMenuRenderTest.php" />
     <Compile Include="Tests\User\ConnexionManagerTest.php" />
     <Compile Include="Tests\User\ConnexionTableTest.php" />
     <Compile Include="Tests\User\UserConnectTest.php" />
     <Compile Include="Tests\User\UserConnexionFormTest.php" />
+    <Compile Include="Tests\User\UserControllerTest.php" />
+    <Compile Include="Tests\User\UserSignupFormTest.php" />
+    <Compile Include="Tests\User\UserPwdChangeFormTest.php" />
+    <Compile Include="Tests\User\UserModifyFormTest.php" />
+    <Compile Include="Tests\User\UserForgetFormTest.php" />
     <Compile Include="Tests\User\UserForgetChangeFormTest.php" />
     <Compile Include="Tests\User\UserManagerTest.php" />
     <Compile Include="Tests\User\UserTableTest.php" />

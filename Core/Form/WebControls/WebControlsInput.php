@@ -116,32 +116,28 @@ class WebControlsInput extends WebControlsParamText
     }
 
 
-    public function check():bool
+
+
+
+    public static function CreateHiddenId($formName,$controlName='idhidden',$controlInt=true)
     {
-        $retour=true;
-        $value=$this->getText();
-
-        if( empty($value)) {
-            $this->setIsInvalid(MSG_FORM_NOT_GOOD);
-            $retour=false;
+        $idHidden=new WebControlsInput($formName);
+        $idHidden->name =$controlName;
+        $idHidden->type=WebControlsInput::TYPE_HIDDEN;
+        $idHidden->maxLength =60;
+        if($controlInt) {
+            $idHidden->defaultControl=WebControlsInput::CONTROLE_INT;
         }
-
-        return $retour;
+        return $idHidden;
     }
-    public function checkLenght($mini=null,$maxi=null):bool
+    public static function CreateInput($formName,$controlName,$controlLabel,$controlPlaceHolder=null,$controlLenght=100,$controlType=WebControlsInput::TYPE_TEXT)
     {
-        $retour=true;
-        $value=$this->getText();
-        if( isset($mini) && strlen($value)<$mini ) {
-
-            $this->setIsInvalid(MSG_FORM_LENGHT_NOT_GOOD . ' (plus de ' . $mini . ' caractères).');
-            $retour=false;
-        } else if( isset($maxi) && strlen($value)>$maxi ) {
-
-            $this->setIsInvalid(MSG_FORM_LENGHT_NOT_GOOD . ' (moins de ' . $maxi . ' caractères).');
-            $retour=false;
-        }
-        return $retour;
+        $input=new WebControlsInput($formName);
+        $input->name =$controlName;
+        $input->label =$controlLabel;
+        $input->placeHolder =$controlPlaceHolder;
+        $input->maxLength =$controlLenght ;
+        $input->type = $controlType;
+        return $input;
     }
-
 }

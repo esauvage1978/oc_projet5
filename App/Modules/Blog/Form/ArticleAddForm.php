@@ -27,8 +27,8 @@ class ArticleAddForm extends Form
     const BUTTON=2;
     const CATEGORY=3;
     const TITLE=4;
-    const CHAPO=5;
-    const CONTENT=6;
+    const CHAPO=4;
+    const CONTENT=4;
 
 
     public function __construct($datas=[],$byName=true)
@@ -36,44 +36,39 @@ class ArticleAddForm extends Form
         $this->_formName=$this->getFormName();
 
         //ajout du token
-        $token=new InputToken($this->_formName);
-        $this[self::TOKEN]=$token;
+        $this[self::TOKEN]=new InputToken($this->_formName);
+
 
         //ajout du message de retour
         $message=new WebControlsMessage($this->_formName);
         $this[self::MESSAGE]=$message ;
 
         //ajout du bouton
-        $button=new WebControlsButtons ($this->_formName);
-        $button->label='Ajouter';
-        $button->name='add';
-        $button->addCssClass(WebControlsButtons::CSS_ROUNDED);
-        $this[self::BUTTON]=$button;
+        $this[self::BUTTON]=WebControlsButtons::CreateButton($this->_formName);
+
 
         //ajout de la catégorie
         $category=new WebControlsSelect($this->_formName);
-        $category->Label='Catégorie';
+        $category->label='Catégorie';
         $category->name='category';
         $this[self::CATEGORY]=$category;
 
         //ajout de la catégorie
-        $titre=new WebControlsInput($this->_formName);
-        $titre->placeHolder='Titre';
-        $titre->name='title';
-        $titre->maxLength=100;
-        $this[self::TITLE]=$titre;
 
-        //ajout de la catégorie
-        $chapo=new WebControlsTextaera($this->_formName);
-        $chapo->placeHolder='Extrait';
-        $chapo->name='chapo';
-        $this[self::CHAPO]=$chapo;
+        $this[self::TITLE]=WebControlsInput::CreateInput($this->_formName,'title',null,'Titre');
 
-        //ajout de la catégorie
-        $mContent=new WebControlsTextaera($this->_formName);
-        $mContent->placeHolder='Contenu';
-        $mContent->name='content';
-        $this[self::CONTENT]=$mContent;
+        $champ=new WebControlsTextaera($this->_formName);
+        $champ->label ='Chapo';
+        $champ->name='message';
+        $champ->rows=3;
+        $this[self::CHAPO]=$champ;
+
+        $contentArticle=new WebControlsTextaera($this->_formName);
+        $contentArticle->label ='Contenu de l\'article';
+        $contentArticle->name='articleContent';
+        $contentArticle->rows=30;
+        $this[self::CONTENT]=$contentArticle;
+
 
 
         $this->setText($datas,$byName);
@@ -102,6 +97,8 @@ class ArticleAddForm extends Form
         if(!$this[self::CONTENT]->check()) {
             $checkOK=false;
         }
+
+
         return $checkOK ;
     }
 

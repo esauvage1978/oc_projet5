@@ -16,9 +16,6 @@ abstract class Form implements \ArrayAccess
     const METHODE_POST='POST';
     const METHODE_GET='GET';
 
-    private $_data;
-    private $_byName;
-
 
     abstract public function render();
     abstract public function check();
@@ -73,15 +70,17 @@ abstract class Form implements \ArrayAccess
 
     protected function setText($datas=[],$byName=true)
     {
-        foreach($datas as $key=>$value) {
-            if(!$byName) {
-                if ($this->_controls[$key]->isWritable ) {
-                    $this->_controls[$key]->setText($value);
-                }
-            } else {
-                foreach ($this->_controls as $control) {
-                    if($control->getName()==$key && $control->isWritable) {
-                        $control->setText($value);
+        if(isset($datas)) {
+            foreach($datas as $key=>$value) {
+                if(!$byName) {
+                    if ($this->_controls[$key]->isWritable ) {
+                        $this->_controls[$key]->setText($value);
+                    }
+                } else {
+                    foreach ($this->_controls as $control) {
+                        if($control->getName()==$key && $control->isWritable) {
+                            $control->setText($value);
+                        }
                     }
                 }
             }

@@ -3,7 +3,6 @@
 namespace ES\App\Modules\Blog\Model;
 
 use ES\Core\Model\AbstractManager;
-use ES\Core\Database\QueryBuilder;
 use ES\App\Modules\Blog\Model\ArticleComposer;
 use ES\Core\Upload\JpgUpload;
 /**
@@ -23,8 +22,10 @@ class ArticleManager extends AbstractManager
 
     public function countArticles($key=null,$value=null)
     {
+        try
+        {
         $this->_queryBuilder
-            ->select ('count(*)')
+            ->select ($this->_queryBuilder::COUNT)
             ->from(self::$table);
         $params=[];
 
@@ -37,62 +38,67 @@ class ArticleManager extends AbstractManager
         return $this->query(
             $this->_queryBuilder
                 ->render(),
-            count($params)?$params:null,true,false)['count(*)'] ;
+            count($params)?$params:null,true,false)[$this->_queryBuilder::COUNT] ;
+        }
+        catch (\PDOException $ex ) {
+            throw new \InvalidArgumentException('Erreur lors du comptage des articles');
+        }
     }
 
     public function getArticles($key=null,$value=null,$actif=true)
     {
 
-        $rqt=new QueryBuilder();
-        $rqt->select('*')
+        $this->_queryBuilder
+            ->select('*')
             ->from($this::$table);
         $params=[];
-        if($key==='validaccount' && $value===0) {
+        $valueParams='value';
 
-            $rqt->where('u_valid_account_date is null');
+        if($key==='user' && isset($value)) {
 
-        } elseif($key==='user' && isset($value)) {
-
-            $rqt->where('ba_create_user_ref=:value');
-            $params['value']=$value;
+            $this->_queryBuilder->where(ArticleTable::CREATE_USER_REF . '=:'.$valueParams);
+            $params[$valueParams]=$value;
 
         } elseif($key==='category' && isset($value)) {
 
-            $rqt->where('ba_category_ref=:value');
-            $params['value']=$value;
+            $this->_queryBuilder->where(ArticleTable::CATEGORY_REF . '=:'.$valueParams);
+            $params[$valueParams]=$value;
 
         } elseif($key==='find' && isset($value)) {
 
-            $rqt->where('(ba_title like :title OR ba_chapo like :chapo OR ba_content like :content)');
+            $this->_queryBuilder->where('('. ArticleTable::TITLE . ' like :title OR '. ArticleTable::CHAPO .' like :chapo OR '. ArticleTable::CONTENT .' like :content)');
             $params['title']='%'.$value.'%';
             $params['chapo']='%'.$value.'%';
             $params['content']='%'.$value.'%';
 
         } elseif(isset($key) && isset($value)) {
 
-            $rqt->where( 'ba_' . $key .'=:value');
-            $params['value']=$value;
+            $this->_queryBuilder->where( 'ba_' . $key .'=:'.$valueParams);
+            $params[$valueParams]=$value;
         }
-        if($actif)
-            $rqt->where('ba_state=' . ES_BLOG_ARTICLE_STATE_ACTIF);
 
-        $rqt->orderBy($this::$order_by);
-        return $this->query($rqt->render(),(count($params)?$params:null),false,true);
+        if($actif) {
+            $this->_queryBuilder->where(ArticleTable::STATE . '=' . ES_BLOG_ARTICLE_STATE_ACTIF);
+        }
+
+        return $this->query(
+            $this->_queryBuilder
+            ->orderBy($this::$order_by)
+            ->render(),(count($params)?$params:null),false,true);
     }
+
     public function getLastArticles($number)
     {
-        if(!is_integer($number) ) {
-            $number=3;
-        } elseif ($number >100) {
+        if(!is_integer($number) || $number >100) {
             $number=3;
         }
 
         return $this->query(
             $this->_queryBuilder
-            ->select('ba_id, ba_title')
-            ->from('ocp5_blog_article')
-            ->where('ba_state=' . ES_BLOG_ARTICLE_STATE_ACTIF)
-            ->orderBy('ba_id')
+            ->select(ArticleTable::ID. ',' . ArticleTable::TITLE)
+            ->from(static::$table)
+            ->where(ArticleTable::STATE . '=' . ES_BLOG_ARTICLE_STATE_ACTIF)
+            ->orderBy(ArticleTable::ID)
             ->limit($number)
             ->render()
             ,null,false,false);
@@ -103,7 +109,7 @@ class ArticleManager extends AbstractManager
         return $this->findByField(ArticleTable::ID,$key);
     }
 
-    public function createArticle($title, $categoryRef,$chapo,$content,$userRef)
+    public function createArticle($title, $categoryRef,$chapo,$content,$userRef) : ArticleTable
     {
         $article= $this->NewArticle($title,$categoryRef,$chapo,$content,$userRef);
 
@@ -113,13 +119,21 @@ class ArticleManager extends AbstractManager
             throw new \InvalidArgumentException('Erreur lors de la création de l\'article');
         }
 
-        $imageSource=ES_ROOT_PATH_FAT . 'Public/images/blog/model.jpg';
-        $imageDestination=ES_ROOT_PATH_FAT . 'Public/images/blog/' . $retour . '.jpg';
-        \copy($imageSource,$imageDestination);
+        try{
+            $imageSource=ES_ROOT_PATH_FAT_DATAS_IMG . 'blog/model.jpg';
+            $imageDestination=ES_ROOT_PATH_FAT_DATAS_IMG . 'blog/' . $retour . '.jpg';
+            \copy($imageSource,$imageDestination);
+        } catch (\InvalidArgumentException $ex ) {
+            throw new \InvalidArgumentException('Erreur lors de la création de la vignette');
+        }
 
         $article->setId($retour);
 
         return $article;
+    }
+    public function deleteArticle($id)
+    {
+        return $this->delete($id);
     }
 
     public function modifyArticle(ArticleTable $article,$userRef) :bool
@@ -129,12 +143,12 @@ class ArticleManager extends AbstractManager
         return $this->update($article->getId(),$article->toArray()) ;
     }
 
-    public function changeStatut($id,$value,$user) :bool
+    public function changeStatut($id,$state,$userRef) :bool
     {
-        $articleComposer=$this->_articleManager->findById($id);
-        $articleComposer->article->setState($value);
+        $articleComposer=$this->findById($id);
+        $articleComposer->article->setState($state);
         $articleComposer->article->setStateDate(\date(ES_NOW));
-        return $this->_articleManager->modifyArticle($articleComposer->article,$user);
+        return $this->modifyArticle($articleComposer->article,$userRef);
     }
 
     public function createPicture($key,$id)
@@ -147,9 +161,10 @@ class ArticleManager extends AbstractManager
     {
         $article = new ArticleTable([]);
         $article->setTitle($title);
-        $article->setCategoryRef($categoryRef);
         $article->setChapo($chapo);
         $article->setContent($content);
+        $article->setTitle($title);
+        $article->setCategoryRef($categoryRef);
         $article->setCreateUserRef($userRef);
         $article->setCreateDate(\date(ES_NOW)) ;
         $article->setState(ES_BLOG_ARTICLE_STATE_BROUILLON);

@@ -30,9 +30,11 @@ class UserConnect
     {
         $this->_request->setSessionValue(self::USER_KEY,$user->getId());
     }
-    public function disconnect()
+    public function disconnect() :bool
     {
         $this->_request->unsetSessionValue(self::USER_KEY);
+        $this->user=null;
+        return true;
     }
     private function getUserConnect()
     {

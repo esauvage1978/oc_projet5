@@ -14,6 +14,9 @@ use ES\Core\Form\WebControls\WebControlsInput;
 class InputToken extends WebControlsInput
 {
     const NAME='TokenHidden';
+    const KEY_FORM='formulaire';
+    const KEY_CSRF='CSRF';
+    const KEY_OLD_TOKEN='old'.ES_TOKEN;
     public $CSRF=true;
 
     public function __construct($prefixeFormName)
@@ -22,32 +25,34 @@ class InputToken extends WebControlsInput
         $this->name=self::NAME;
         $this->type =parent::TYPE_HIDDEN;
 
-        if( isset($_SESSION['formulaire']['CSRF'][$this->prefixeFormName]) ){
-            $_SESSION['formulaire']['CSRF'][$this->prefixeFormName]['old'.ES_TOKEN ]=
-                $_SESSION['formulaire']['CSRF'][$this->prefixeFormName][ES_TOKEN ];
-        } else {
-            $_SESSION['formulaire']['CSRF'][$this->prefixeFormName]['old'.ES_TOKEN ]='';
-        }
-        $_SESSION['formulaire']['CSRF'][$this->prefixeFormName][ES_TOKEN ]=bin2hex(random_bytes(32));
 
-        $this->setText($_SESSION['formulaire']['CSRF'][$this->prefixeFormName][ES_TOKEN]);
+        if( isset($_SESSION[self::KEY_FORM][self::KEY_CSRF][$this->prefixeFormName]) ){
+            $_SESSION[self::KEY_FORM][self::KEY_CSRF][$this->prefixeFormName][self::KEY_OLD_TOKEN ]=
+                $_SESSION[self::KEY_FORM][self::KEY_CSRF][$this->prefixeFormName][ES_TOKEN ];
+        } else {
+            $_SESSION[self::KEY_FORM][self::KEY_CSRF][$this->prefixeFormName][self::KEY_OLD_TOKEN ]='';
+        }
+        $_SESSION[self::KEY_FORM][self::KEY_CSRF][$this->prefixeFormName][ES_TOKEN ]=bin2hex(random_bytes(32));
+
+        $this->setText($_SESSION[self::KEY_FORM][self::KEY_CSRF][$this->prefixeFormName][ES_TOKEN]);
 
     }
 
     public function check():bool
     {
-        if(!$this->CSRF) {
+        if(!$this->CSRF || ! ES_CONTROL_CSRF) {
             return true;
         }
 
         $retour=true;
+
         $value=$this->getText();
-        $token=$_SESSION['formulaire']['CSRF'][$this->prefixeFormName]['old'.ES_TOKEN ];
-        if( !parent::check()|| $value!= $token) {
+        $token=$_SESSION[self::KEY_FORM][self::KEY_CSRF][$this->prefixeFormName][self::KEY_OLD_TOKEN];
+        if( empty($value) || $value!= $token) {
             $this->setIsInvalid(MSG_FORM_TOKEN_OUT_OF_DATE);
             $retour=false;
         } else {
-            $this->setText( $_SESSION['formulaire']['CSRF'][$this->prefixeFormName][ES_TOKEN ]);
+            $this->setText( $_SESSION[self::KEY_FORM][self::KEY_CSRF][$this->prefixeFormName][ES_TOKEN ]);
         }
         return $retour;
     }

@@ -3,7 +3,9 @@
 namespace ES\App\Modules\Shared\Services;
 
 Use ES\Core\Toolbox\Request;
+Use ES\Core\Toolbox\Flash;
 use ES\App\Modules\User\Model\UserConnect;
+use ES\App\Modules\User\Model\ConnexionManager;
 
 /**
  * Routeur de la structure MVC
@@ -26,6 +28,7 @@ class Routeur
 
     private $_request;
     private $_userConnect;
+    private $_flash;
 
     const MODULE_DEFAULT_VALUE='Shared';
     const SECTION_DEFAULT_VALUE='Shared';
@@ -35,10 +38,11 @@ class Routeur
     /**
      * Constructeur privé
      */
-    public function __construct(UserConnect $userConnect,Request $request)
+    public function __construct(UserConnect $userConnect,Request $request,Flash $flash)
     {
         $this->_request=$request;
         $this->_userConnect=$userConnect;
+        $this->_flash=$flash;
     }
 
 
@@ -47,11 +51,19 @@ class Routeur
      */
     public function run()
     {
+
+        $connexionManager =new ConnexionManager();
+        if ($connexionManager->IsBlackList( $_SERVER[ES_IP])) {
+            header('location: ' .ES_ROOT_PATH_WEB . 'shared/accessdeniedmanyconnexion');
+        }
+
         $this->initialiseVariable() || $this->showDefault();
         $this->createModuleInstance() || $this->showDefault();
         $this->createModuleFunction() || $this->showDefault();
         $this->callModuleFunction();
     }
+
+
 
     private function showDefault()
     {
@@ -74,7 +86,19 @@ class Routeur
                 . '\\Controller\\' . ucfirst($this->_section) . 'Controller' ;
 
             if(class_exists($modulesClass )) {
-                $this->_moduleInstance=new $modulesClass(new UserConnect($this->_request),$this->_request);
+                $caller = '\\ES\\App\\Modules\\' . ucfirst($this->_module) . '\\Render\\'. ucfirst($this->_module) . 'RenderView';
+                $renderView=new $caller(
+                    $this->_userConnect,
+                    $this->_request,
+                    $this->_flash);
+
+
+
+                $this->_moduleInstance=new $modulesClass(
+                    $this->_userConnect,
+                    $this->_request,
+                    $this->_flash,
+                    $renderView);
                 $retour= true;
             }
         }
@@ -104,7 +128,6 @@ class Routeur
         $moduleinstance=$this->_moduleInstance;
         $modulefonction=$this->_moduleFunction;
 
-
         if(isset($this->_paramWord)  && isset($this->_paramP) ) {
             $moduleinstance->$modulefonction($this->_paramWord,$this->_paramP);
         } else if(isset($this->_paramWord)  && !isset($this->_paramP) ) {
@@ -127,14 +150,18 @@ class Routeur
         $this->_paramP = $this->_request->getGetValue('p',Request::TYPE_INT);
         $this->_paramWord = $this->_request->getGetValue('word');
 
-        //vérification des droits d'accès aux pages
-        $restrict=new ACL($this->_userConnect );
-        if(!$restrict ->valideAccessPage ($page)) {
-            header('location: ' .ES_ROOT_PATH_WEB . 'shared/accessdenied');
-            exit;
-        }
+
 
         if(!empty($page)) {
+
+            //vérification des droits d'accès aux pages
+            $restrict=new ACL($this->_userConnect );
+
+            if(!$restrict ->valideAccessPage ($page)) {
+                header('location: ' .ES_ROOT_PATH_WEB . 'shared/accessdenied');
+                exit;
+            }
+
             $pageExplode= explode('.',strtolower($page));
             if(\count($pageExplode)==3){
                 $this->_module=$pageExplode[0];
@@ -149,6 +176,7 @@ class Routeur
                 $this->_section=$this->_module;
                 $this->_action='show';
             }
+
 
             $retour=true;
         }

@@ -26,24 +26,18 @@ class CategoryAddForm extends Form
     const CATEGORY=3;
 
 
-    public function __construct($datas=[],$byName=true)
+    protected function initialise_control($datas=[])
     {
-        $this->_formName=$this->getFormName();
-
         //ajout du token
-        $token=new InputToken($this->_formName);
-        $this[self::TOKEN]=$token;
+        $this[self::TOKEN]=new InputToken($this->_formName);
+
 
         //ajout du message de retour
-        $message=new WebControlsMessage($this->_formName);
-        $this[self::MESSAGE]=$message ;
+        $this[self::MESSAGE]=new WebControlsMessage($this->_formName);
 
         //ajout du bouton
-        $button=new WebControlsButtons ($this->_formName);
-        $button->label='Ajouter';
-        $button->name='add';
-        $button->addCssClass(WebControlsButtons::CSS_ROUNDED);
-        $this[self::BUTTON]=$button;
+        $this[self::BUTTON]=WebControlsButtons::CreateButton($this->_formName);
+
 
 
         //ajout de la catégorie
@@ -52,6 +46,14 @@ class CategoryAddForm extends Form
         $name->name='category';
         $name->maxLength=20;
         $this[self::CATEGORY]=$name;
+
+    }
+
+    public function __construct($datas=[],$byName=true)
+    {
+        $this->_formName=$this->getFormName();
+
+        $this->initialise_control($datas);
 
         $this->setText($datas,$byName) ;
     }
@@ -72,14 +74,18 @@ class CategoryAddForm extends Form
         return $checkOK ;
     }
 
+    protected function render_control()
+    {
+        return $this->renderControl(self::MESSAGE,false) .
+               $this->renderControl(self::TOKEN,false) .
+               $this->renderControl(self::CATEGORY) .
+               $this->renderButton(self::BUTTON) ;
+    }
 
     public function render()
     {
         return $this->getAction(Url::to('blog','category','add#categorycrud')) .
-               $this->renderControl(self::MESSAGE,false) .
-               $this->renderControl(self::TOKEN,false) .
-               $this->renderControl(self::CATEGORY) .
-               $this->renderButton(self::BUTTON) .
+                $this->render_control() .
                '</form>';
     }
 }

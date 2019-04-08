@@ -49,7 +49,14 @@ class WebControlsButtons extends WebControls
     }
 
 
-
+    public static function CreateButton($formName,$controlName='add',$controlLabel='Ajouter')
+    {
+        $button=new WebControlsButtons ($formName);
+        $button->label=$controlLabel ;
+        $button->name=$controlName;
+        $button->addCssClass('btn-primary');
+        return $button;
+    }
 
 
 }

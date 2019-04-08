@@ -18,6 +18,7 @@
       "ES\\Core\\Model\\": "Core/Model",
       "ES\\Core\\Render\\": "core/Render",
       "ES\\Core\\Toolbox\\": "core/Toolbox",
+      "ES\\Core\\Upload\\": "core/Upload",
       "ES\\App\\Modules\\Blog\\Controller\\": "App/Modules/Blog/Controller",
       "ES\\App\\Modules\\Blog\\Form\\": "App/Modules/Blog/Form",
       "ES\\App\\Modules\\Blog\\Form\\WebControls\\": "App/Modules/Blog/Form/WebControls",

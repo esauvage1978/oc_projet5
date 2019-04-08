@@ -29,8 +29,7 @@ class CommentAddForm extends Form
         $this->_formName=$this->getFormName();
 
         //ajout du token
-        $token=new InputToken($this->_formName);
-        $this[self::TOKEN]=$token;
+        $this[self::TOKEN]=new InputToken($this->_formName);
 
         //Commentaire
         $comment=new WebControlsTextaera($this->_formName);
@@ -39,10 +38,7 @@ class CommentAddForm extends Form
         $comment->name='comment';
         $this[self::COMMENT]=$comment;
 
-        $idHidden=new WebControlsInput($this->_formName);
-        $idHidden->name ='id';
-        $idHidden->type=WebControlsInput::TYPE_HIDDEN;
-        $this[self::IDARTICLEHIDDEN]=$idHidden;
+        $this[self::IDARTICLEHIDDEN]=WebControlsInput::CreateHiddenId($this->_formName,'id');
 
         $this->setText($datas,$byName) ;
     }
@@ -51,7 +47,7 @@ class CommentAddForm extends Form
     {
         $checkOK=true;
 
-        if(!$this->checkToken() ) {
+        if(!$this[self::TOKEN]->check() ) {
             $checkOK=false;
         }
 
@@ -69,8 +65,8 @@ class CommentAddForm extends Form
     public function render() : string
     {
         return $this->getAction(Url::to('blog','comment','add#commentadd')) .
-               $this->renderControl(self::TOKEN) .
-               $this->renderControl(self::IDARTICLEHIDDEN) .
+               $this->renderControl(self::TOKEN,false) .
+               $this->renderControl(self::IDARTICLEHIDDEN,false) .
                $this->renderControl(self::COMMENT) .
                '</form>';
     }

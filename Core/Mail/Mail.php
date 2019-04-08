@@ -36,10 +36,10 @@ class Mail
     public function send($to,$subject,$body):bool
     {
         try {
+
             $this->_mail->isHTML(true);                                  // Set email format to HTML
             $this->_mail->addAddress($to);
             $this->_mail->Subject = $subject;
-            //$this->_mail->msgHTML(file_get_contents('contents.html'), __DIR__);
             $this->_mail->Body =$body;
             return $this->_mail->send();
         }
