@@ -24,7 +24,7 @@ class CommentTable extends AbstractTable implements ITable
     private $_moderatorDate;
     private $_moderatorUserRef;
     private $_moderatorState;
-    private $_article_ref;
+    private $_articleRef;
 
     const ID= 'bco_id';
     const CREATE_DATE= 'bco_create_date';
@@ -97,10 +97,10 @@ class CommentTable extends AbstractTable implements ITable
     }
     #endregion
 
-    #region CREATE USER REF
+    #region ARTICLE REF
     public function getArticleRef()
     {
-        return $this->_article_ref;
+        return $this->_articleRef;
     }
     public function setArticleRef($value)
     {
@@ -109,7 +109,7 @@ class CommentTable extends AbstractTable implements ITable
         {
             throw new \InvalidArgumentException('Les données de l\'article sont incorrectes.');
         }
-        $this->_article_ref=$value;
+        $this->_articleRef=$value;
 
     }
     #endregion

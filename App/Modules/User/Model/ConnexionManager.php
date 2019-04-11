@@ -3,7 +3,6 @@
 namespace ES\App\Modules\User\Model;
 
 use ES\App\Modules\User\Model\ConnexionTable;
-use ES\Core\Database\QueryBuilder;
 use ES\Core\Model\AbstractManager;
 /**
  * ConnexionManager short summary.

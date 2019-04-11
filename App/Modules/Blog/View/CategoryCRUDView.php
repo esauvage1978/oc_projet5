@@ -93,7 +93,7 @@
                         url: '##INDEX##blog/category/delete',
                         data: $('#CategoryDeleteForm').serialize(),
                         success: function () {
-                                      document.location.href="##INDEX##blog/category/list#categorycrud";
+                                      document.location.href="##INDEX##blog/category/list";
                         }
                       });
 
