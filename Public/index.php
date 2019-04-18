@@ -12,9 +12,7 @@ require_once '../Config/i18n.php';
 require_once '../Core/Autoloader/Autoloader.php';
 require '../App/Modules/Shared/Services/Routeur.php';
 
-ini_set('session.cookie_secure',1);
-ini_set('session.cookie_httponly',1);
-ini_set('session.use_only_cookies',1);
+
 session_start();
 
 Autoloader::register();
