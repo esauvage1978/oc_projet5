@@ -117,19 +117,26 @@ class UserController extends AbstractController
                         $mail->sendMailSignup ($user);
                         $this->flash->writeWarning(MSG_USER_NOT_ACTIVATE);
                         ////si compte désactivé par un gestionnaire
+                        $this->AccueilView();
                     } elseif ($user->getActif()=='0') {
                         $this->flash->writeWarning(MSG_USER_SUSPEND);
+                        $this->AccueilView();
                     } else {
                         //Création de la variable de session
                         $this->userConnect->connect($user);
                         if($user->getUserRole()== ES_USER_ROLE_GESTIONNAIRE ||
                             $user->getUserRole()== ES_USER_ROLE_REDACTEUR ||
                             $user->getUserRole()== ES_USER_ROLE_MODERATEUR ) {
+
+                            session_regenerate_id();
+
                             header('location: ' .ES_ROOT_PATH_WEB . 'shared/dashboard');
-                            exit;
+
+                        } else {
+                            $this->AccueilView();
                         }
                     }
-                    $this->AccueilView();
+
                 }
             } else {
                 $this->connexionView($form);
