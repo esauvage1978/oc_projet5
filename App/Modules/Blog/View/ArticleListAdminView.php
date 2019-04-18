@@ -38,7 +38,7 @@
                     
                     <tr>
                         <td class="text-center">
-                            <a href="##INDEX##blog.article.modify/<?= $articleComposer->article->getId(); ?>">
+                            <a href="##INDEX##blog/article/modify/<?= $articleComposer->article->getId(); ?>">
                                 <i class="ion-edit"></i>
                             </a>
                         </td>
