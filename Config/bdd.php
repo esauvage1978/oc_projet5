@@ -6,5 +6,5 @@
 
 define('ES_DB_HOST', 'localhost');
 define('ES_DB_NAME', 'oc_projet5');
-define('ES_DB_USERNAME', 'root');
-define('ES_DB_PASSWORD', 'palmier');
+define('ES_DB_USERNAME', 'XXX');
+define('ES_DB_PASSWORD', 'XXX');

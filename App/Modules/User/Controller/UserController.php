@@ -129,10 +129,14 @@ class UserController extends AbstractController
                             $user->getUserRole()== ES_USER_ROLE_MODERATEUR ) {
 
 
+                            session_regenerate_id();
 
                             header('location: ' .ES_ROOT_PATH_WEB . 'shared/dashboard');
 
                         } else {
+
+                            session_regenerate_id();
+
                             $this->AccueilView();
                         }
                     }

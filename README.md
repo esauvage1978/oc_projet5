@@ -22,26 +22,19 @@ All are included by composer.
 
 ###### 2.1 Download :
 
-Download `my_little_blog` file on gitHub. You can download, or clone it on : https://github.com/Aeltus/my_little_blog.
+Download `oc_projet5` file on gitHub. You can download, or clone it on : https://github.com/esauvage1978/oc_projet5.
 
 ###### 2.2 Installing :
 
-   1. Put my_little_blog file on root of your web server.
-   2. If it is not already done, install composer : https://getcomposer.org/
-   3. In root file, open a new terminal windows and type in command line : ```composer install --no-dev``` (next times, to update you wil type : ```composer update --no-dev```) "--no-dev if it is a production server"
-   4. If not set, create your database.
-   5. open ```./Application/Config/Private```, set your parameters in .cnf files and rename them in .yml (you can also create a copy of file in .yml)
-   6. Pointed your URL on : ```./index.php```
-   7. In your terminal (in root of your project) type : ```php vendor/doctrine/orm/bin/doctrine orm:schema-tool:create```
+   1. Put oc_projet5 file on root of your web server.
+   2. If not set, create your database. Files are present in directory 'bdd'
+   3. open ```./config/bdd.php ```, replace XXX by your parameters
+   4. open ```./config/config.php ```, replace XXX by your parameters
+   5. Pointed your URL on : ```./Public/index.php```
 
 Your web site is up !!!
 
-##### 3. Testing :
+   6. Create an user 
+   7. in database, on table ocp5_user, change value of ``` u_user_role ``` by ``` 1 ```
 
-You can do some basic tests on this application automatically in dev mode by using phpunit.
 
-For tests, you just have to open a terminal in the root directory of the project, and type : ```php vendor/phpunit/phpunit/phpunit```
-
-#### 4. Notice :
-
-The statement did not ask for an identification, the administration is therefore accessible to all, the link of access to the administration is in the footer
